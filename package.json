@@ -1,15 +1,6 @@
 {
   "name": "components",
   "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "test:unit": "vue-cli-service test:unit",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
-  },
   "dependencies": {
     "vue": "^2.5.16",
     "vue-class-component": "^6.0.0",
@@ -32,9 +23,10 @@
     "@vue/test-utils": "^1.0.0-beta.20",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "^23.4.0",
-    "babel-plugin-require-context-hook": "^1.0.0",
+    "fixpack": "^2.3.1",
     "lint-staged": "^6.0.0",
     "node-sass": "^4.9.0",
+    "require-context": "^1.1.0",
     "sass-loader": "^7.0.1",
     "ts-jest": "^23.0.0",
     "vue-template-compiler": "^2.5.16"
@@ -50,6 +42,17 @@
     "*.vue": [
       "vue-cli-service lint --fix",
       "git add"
+    ],
+    "**/package.json": [
+      "fixpack",
+      "git add"
     ]
+  },
+  "private": true,
+  "scripts": {
+    "build": "build-storybook",
+    "lint": "vue-cli-service lint",
+    "serve": "start-storybook -p 6006",
+    "test:unit": "vue-cli-service test:unit"
   }
 }

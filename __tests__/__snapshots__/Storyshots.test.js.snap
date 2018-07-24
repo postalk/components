@@ -19,14 +19,14 @@ exports[`Storyshots HelloWorld to Storybook 1`] = `
    
   <p>
     
-      This is a UI component dev environment for your app.
-    
+    This is a UI component dev environment for your app.
+  
   </p>
    
   <p>
     
-      We've added some basic stories inside the
-      
+    We've added some basic stories inside the
+    
     <br />
      
     <code
@@ -36,24 +36,20 @@ exports[`Storyshots HelloWorld to Storybook 1`] = `
     </code>
      
     <br />
+     directory.
     
-      directory.
-      
     <br />
+     A story is a single state of one or more UI components. You can have as many stories as you want.
     
-      A story is a single state of one or more UI components. You can have as many stories as
-      you want.
-      
     <br />
-    
-      (Basically a story is like a visual test case.)
-    
+     (Basically a story is like a visual test case.)
+  
   </p>
    
   <p>
     
-      See these sample
-      
+    See these sample
+    
     <br />
      
     <a
@@ -65,9 +61,8 @@ exports[`Storyshots HelloWorld to Storybook 1`] = `
     </a>
      
     <br />
+     for a component called
     
-      for a component called
-      
     <br />
      
     <code
@@ -76,45 +71,43 @@ exports[`Storyshots HelloWorld to Storybook 1`] = `
       Button
     </code>
     
-      .
-    
+    .
+  
   </p>
    
   <p>
     
-      Just like that, you can add your own components as stories.
-      
-    <br />
+    Just like that, you can add your own components as stories.
     
-      You can also edit those components and see changes right away.
-      
     <br />
+     You can also edit those components and see changes right away.
     
-      (Try editing the 
+    <br />
+     (Try editing the
+    
     <code
       class="code"
     >
       Button
     </code>
-     component
-      located at 
+     component located at
+    
     <code
       class="code"
     >
       src/stories/Button.js
     </code>
     .)
-    
+  
   </p>
    
   <p>
     
-      This is just one thing you can do with Storybook.
-      
-    <br />
+    This is just one thing you can do with Storybook.
     
-      Have a look at the
-      
+    <br />
+     Have a look at the
+    
     <br />
      
     <a
@@ -124,14 +117,13 @@ exports[`Storyshots HelloWorld to Storybook 1`] = `
       target="_blank"
     >
       
-        Storybook
-      
+      Storybook
+    
     </a>
      
     <br />
-    
-      repo for more information.
-    
+     repo for more information.
+  
   </p>
    
   <p
@@ -142,9 +134,8 @@ exports[`Storyshots HelloWorld to Storybook 1`] = `
     </b>
      
     <br />
+     Have a look at the
     
-      Have a look at the
-      
     <br />
      
     <code
@@ -154,10 +145,8 @@ exports[`Storyshots HelloWorld to Storybook 1`] = `
     </code>
      
     <br />
-    
-      to add webpack
-      loaders and plugins you are using in this project.
-    
+     to add webpack loaders and plugins you are using in this project.
+  
   </p>
 </div>
 `;
