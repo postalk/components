@@ -1,14 +1,18 @@
 // .storybook/webpack.config.js
 
-const merge = require("webpack-merge");
+const merge = require('webpack-merge')
 
-const createDefaultWebpackConfig = require("@storybook/core/dist/server/config/defaults/webpack.config.js").createDefaultWebpackConfig;
-const wrapInitialConfig = require("@storybook/vue/dist/server/wrapInitialConfig").default;
+const createDefaultWebpackConfig = require('@storybook/core/dist/server/config/defaults/webpack.config.js')
+  .createDefaultWebpackConfig
+const wrapInitialConfig = require('@storybook/vue/dist/server/wrapInitialConfig')
+  .default
 
-const vueConfig = require("@vue/cli-service/webpack.config.js");
+const vueConfig = require('@vue/cli-service/webpack.config.js')
 
-module.exports = (storybookBaseConfig) => {
-  const storybookConfig = wrapInitialConfig(createDefaultWebpackConfig(storybookBaseConfig));
+module.exports = storybookBaseConfig => {
+  const storybookConfig = wrapInitialConfig(
+    createDefaultWebpackConfig(storybookBaseConfig)
+  )
 
   return {
     ...vueConfig, // use vue's webpack configuration by default
@@ -17,11 +21,11 @@ module.exports = (storybookBaseConfig) => {
     // remove duplicated plugins
     plugins: merge({
       customizeArray: merge.unique(
-        "plugins",
+        'plugins',
         [
-          "HotModuleReplacementPlugin",
-          "CaseSensitivePathsPlugin",
-          "WatchMissingNodeModulesPlugin"
+          'HotModuleReplacementPlugin',
+          'CaseSensitivePathsPlugin',
+          'WatchMissingNodeModulesPlugin'
         ],
         plugin => plugin.constructor && plugin.constructor.name
       )
@@ -33,5 +37,5 @@ module.exports = (storybookBaseConfig) => {
         vue$: storybookConfig.resolve.alias.vue$
       }
     }
-  };
-};
+  }
+}
