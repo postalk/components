@@ -4,7 +4,8 @@
   "dependencies": {
     "vue": "^2.5.16",
     "vue-class-component": "^6.0.0",
-    "vue-property-decorator": "^7.0.0"
+    "vue-property-decorator": "^7.0.0",
+    "vue-textarea-autosize": "^1.0.4"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^4.0.0-alpha.14",

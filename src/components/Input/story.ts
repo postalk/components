@@ -1,12 +1,12 @@
 import { storiesOf, addDecorator } from '@storybook/vue'
 import { action } from '@storybook/addon-actions'
+import Input from './index.vue'
 import { CenteredDecorator } from '@/components/test'
-import Button from './index.vue'
 
 addDecorator(CenteredDecorator)
 
-storiesOf('Button', module).add('Default', () => ({
-  components: { Button },
-  template: '<Button :handleClick="action" color="#444">Please X</Button>',
+storiesOf('Input', module).add('Default', () => ({
+  components: { Input },
+  template: '<Input :handleClick="action" :rounded="true">Please X</Input>',
   methods: { action: action('Clicked!') }
 }))
