@@ -1,26 +1,35 @@
-# components
+# postalk components
 
 ## Project setup
+
 ```
-yarn install
+yarn
 ```
 
-### Compiles and hot-reloads for development
-```
-yarn run serve
-```
+### Start storybook and hot-reloads for development
 
-### Compiles and minifies for production
 ```
-yarn run build
+yarn start
 ```
 
 ### Lints and fixes files
+
 ```
-yarn run lint
+yarn lint
 ```
 
 ### Run your unit tests
+
 ```
-yarn run test:unit
+yarn test
 ```
+
+If you want to update snapshots
+
+```
+yarn test -u
+```
+
+## Deployed storybook
+
+https://components-azgnoaegaq.now.sh/
