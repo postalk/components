@@ -1,12 +1,40 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Storyshots Button Default 1`] = `
-<button
-  class="button"
-  style="color: rgb(68, 68, 68); border-color: #444;"
+<div
+  class="wrapper"
 >
-  Please X!
-</button>
+  <div
+    class="centered"
+  >
+    <div
+      class="wrapper"
+    >
+      <div
+        class="centered"
+      >
+        <button
+          class="button"
+          style="color: rgb(68, 68, 68); border-color: #444;"
+        >
+          Please X!
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Centered Default 1`] = `
+<div
+  class="wrapper"
+>
+  <div
+    class="centered"
+  >
+    I’m centered
+  </div>
+</div>
 `;
 
 exports[`Storyshots HelloWorld to Storybook 1`] = `
@@ -148,5 +176,33 @@ exports[`Storyshots HelloWorld to Storybook 1`] = `
      to add webpack loaders and plugins you are using in this project.
   
   </p>
+</div>
+`;
+
+exports[`Storyshots Input Default 1`] = `
+<div
+  class="wrapper"
+>
+  <div
+    class="centered"
+  >
+    <div
+      class="wrapper"
+    >
+      <div
+        class="centered"
+      >
+        <div
+          style="width: 300px;"
+        >
+          <textarea
+            class="input"
+            placeholder="Type something here..."
+            style="resize: none; overflow: hidden; height: 30px;"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 `;
