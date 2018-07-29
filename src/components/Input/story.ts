@@ -7,7 +7,12 @@ storiesOf('Input', module)
   .addDecorator(CenteredDecorator)
   .add('Default', () => ({
     components: { Input },
+    data: () => {
+      return {
+        value: 'Test'
+      }
+    },
     template:
-      '<div style="width: 300px"><Input :handleSubmit="submit" :handleCancel="cancel" /></div>',
+      '<div style="width: 300px"><Input :handleSubmit="submit" :handleCancel="cancel" :initial="value" /></div>',
     methods: { submit: action('Submit!'), cancel: action('Cancel!') }
   }))

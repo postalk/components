@@ -8,37 +8,59 @@
     :max-height="500"
     @blur.native="doneEdit"
     @keypress.native.enter="onEnter"
-    @click.native="editing = true"
+    @keydown.native.esc="onEsc"
+    @focus.native="editing = true"
   ></textarea-autosize>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import VueTextareaAutosize from 'vue-textarea-autosize'
+import { VNode, VNodeDirective, DirectiveFunction } from 'vue'
 
 Vue.use(VueTextareaAutosize)
+
+Vue.directive('focus', {
+  update: (el: HTMLElement, { value }: VNodeDirective, { context }: VNode) => {
+    if (!context) {
+      return
+    }
+    if (!value) {
+      context.$nextTick(() => {
+        el.blur()
+      })
+      return
+    }
+  }
+})
 
 @Component
 export default class Input extends Vue {
   @Prop() private handleSubmit!: (text: string) => void
   @Prop() private handleCancel!: () => void
-  private value: string = ''
+  @Prop({ default: '' })
+  private initial!: string
+  private value: string = this.initial
   private editing: boolean = false
+  private isCancel: boolean = false
   private doneEdit(): void {
-    if (!this.value) {
+    if (this.isCancel || !this.value) {
       this.handleCancel()
-      this.editing = false
+      this.isCancel = false
       return
     }
     this.handleSubmit(this.value)
-    this.editing = false
   }
   private onEnter(e: KeyboardEvent): void {
     if (e.shiftKey) {
       return
     }
     e.preventDefault()
-    this.doneEdit()
+    this.editing = false
+  }
+  private onEsc(): void {
+    this.isCancel = true
+    this.editing = false
   }
 }
 </script>
@@ -47,10 +69,11 @@ export default class Input extends Vue {
 .input {
   width: 100%;
   border: none;
-  opacity: 0;
   &:focus {
     border: #3098db;
-    opacity: 1;
+  }
+  &:not(:focus) {
+    opacity: 0;
   }
 }
 </style>
