@@ -51,7 +51,7 @@
   },
   "private": true,
   "scripts": {
-    "build": "build-storybook -s src/assets/",
+    "build": "build-storybook -s src/assets/ -o .storybook/build",
     "lint": "vue-cli-service lint",
     "serve": "start-storybook -p 6006 -s src/assets/",
     "test": "STORY_ENV=test vue-cli-service test:unit"
