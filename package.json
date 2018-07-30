@@ -27,6 +27,7 @@
     "fixpack": "^2.3.1",
     "lint-staged": "^6.0.0",
     "node-sass": "^4.9.0",
+    "now": "^11.3.3",
     "require-context": "^1.1.0",
     "sass-loader": "^7.0.1",
     "ts-jest": "^23.0.0",
@@ -52,6 +53,7 @@
   "private": true,
   "scripts": {
     "build": "build-storybook -s src/assets/ -o .storybook/build",
+    "deploy": "now --token=${NOW_TOKEN} && now alias --token=${NOW_TOKEN}",
     "lint": "vue-cli-service lint",
     "start": "start-storybook -p 6006 -s src/assets/",
     "test": "STORY_ENV=test vue-cli-service test:unit"
