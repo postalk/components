@@ -24,6 +24,7 @@
     "@vue/test-utils": "^1.0.0-beta.20",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "^23.4.0",
+    "coveralls": "^3.0.2",
     "fixpack": "^2.3.1",
     "lint-staged": "^6.0.0",
     "node-sass": "^4.9.0",
@@ -53,6 +54,7 @@
   "private": true,
   "scripts": {
     "build": "build-storybook -s src/assets/ -o .storybook/build",
+    "coverage": "STORY_ENV=test vue-cli-service test:unit | coveralls",
     "deploy": "now rm postalk-components --yes --token=${NOW_TOKEN} && now --public --token=${NOW_TOKEN} && now alias --token=${NOW_TOKEN}",
     "lint": "vue-cli-service lint",
     "start": "start-storybook -p 6006 -s src/assets/",
