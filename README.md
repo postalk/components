@@ -1,5 +1,8 @@
 # postalk components
 
+[![Build Status on CircleCI](https://circleci.com/gh/postalk/components.svg?style=shield)](https://circleci.com/gh/postalk/components)
+[![BCH compliance](https://bettercodehub.com/edge/badge/postalk/components)](https://bettercodehub.com/results/postalk/components)
+
 ## Project setup
 
 ```

@@ -1,0 +1,8 @@
+component_depth: 3
+languages:
+- typescript
+- javascript
+
+exclude:
+  - .*\.config\.ts
+  - .*\.config\.js
