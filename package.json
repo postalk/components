@@ -12,7 +12,7 @@
     "@storybook/addon-links": "^4.0.0-alpha.14",
     "@storybook/addon-storyshots": "^4.0.0-alpha.14",
     "@storybook/vue": "^4.0.0-alpha.14",
-    "@types/jest": "^23.1.4",
+    "@types/jest": "^23.3.1",
     "@types/storybook__addon-actions": "^3.0.3",
     "@types/storybook__addon-links": "^3.3.1",
     "@types/storybook__addon-storyshots": "^3.4.3",
