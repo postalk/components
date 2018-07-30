@@ -32,4 +32,4 @@ yarn test -u
 
 ## Deployed storybook
 
-https://components-azgnoaegaq.now.sh/
+https://postalk-components.now.sh
