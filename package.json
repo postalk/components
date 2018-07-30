@@ -53,7 +53,7 @@
   "private": true,
   "scripts": {
     "build": "build-storybook -s src/assets/ -o .storybook/build",
-    "deploy": "now --token=${NOW_TOKEN} && now alias --token=${NOW_TOKEN}",
+    "deploy": "now --public --token=${NOW_TOKEN} && now alias --token=${NOW_TOKEN} && now rm postalk-components --safe --yes --token=${NOW_TOKEN}",
     "lint": "vue-cli-service lint",
     "start": "start-storybook -p 6006 -s src/assets/",
     "test": "STORY_ENV=test vue-cli-service test:unit"
