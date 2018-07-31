@@ -7469,9 +7469,9 @@ normalize-url@^3.0.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/normalize-url/-/normalize-url-3.2.0.tgz#98d0948afc82829f374320f405fe9ca55a5f8567"
 
-now@^11.3.3:
-  version "11.3.3"
-  resolved "https://registry.yarnpkg.com/now/-/now-11.3.3.tgz#aff53d0051ef2609fcef373b4ecea81c16e496cc"
+now@^11.3.5:
+  version "11.3.5"
+  resolved "https://registry.yarnpkg.com/now/-/now-11.3.5.tgz#852c389f7d8dbf9f1b4e43b5e9c4200377041a0e"
 
 npm-bundled@^1.0.1:
   version "1.0.3"
