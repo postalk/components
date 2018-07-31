@@ -1109,17 +1109,16 @@
     "@vue/babel-preset-app" "^3.0.0-rc.5"
     babel-loader "^8.0.0-0"
 
-"@vue/cli-plugin-typescript@^3.0.0-rc.5":
-  version "3.0.0-rc.5"
-  resolved "https://registry.yarnpkg.com/@vue/cli-plugin-typescript/-/cli-plugin-typescript-3.0.0-rc.5.tgz#64f2752ba0e6d8bb7e7b8af1bcdd4b3e8e11be28"
+"@vue/cli-plugin-typescript@^3.0.0-rc.9":
+  version "3.0.0-rc.9"
+  resolved "https://registry.yarnpkg.com/@vue/cli-plugin-typescript/-/cli-plugin-typescript-3.0.0-rc.9.tgz#503ba744034622a28b0e75c3543a6c554b15c4c3"
   dependencies:
     "@types/node" "^10.5.2"
-    "@vue/cli-shared-utils" "^3.0.0-rc.5"
+    "@vue/cli-shared-utils" "^3.0.0-rc.9"
     fork-ts-checker-webpack-plugin "^0.4.3"
     globby "^8.0.1"
     ts-loader "^4.4.2"
     tslint "^5.10.0"
-    typescript "~2.9.0"
 
 "@vue/cli-plugin-unit-jest@^3.0.0-rc.5":
   version "3.0.0-rc.5"
@@ -1189,6 +1188,21 @@
 "@vue/cli-shared-utils@^3.0.0-rc.5":
   version "3.0.0-rc.5"
   resolved "https://registry.yarnpkg.com/@vue/cli-shared-utils/-/cli-shared-utils-3.0.0-rc.5.tgz#665cc1af7454609313cd1de68ba1dddd82f3c4de"
+  dependencies:
+    chalk "^2.4.1"
+    execa "^0.10.0"
+    joi "^13.0.0"
+    node-ipc "^9.1.1"
+    opn "^5.3.0"
+    ora "^2.1.0"
+    request "^2.87.0"
+    request-promise-native "^1.0.5"
+    semver "^5.5.0"
+    string.prototype.padstart "^3.0.0"
+
+"@vue/cli-shared-utils@^3.0.0-rc.9":
+  version "3.0.0-rc.9"
+  resolved "https://registry.yarnpkg.com/@vue/cli-shared-utils/-/cli-shared-utils-3.0.0-rc.9.tgz#557a03970dc141712265d857b9a7c4eeca603a35"
   dependencies:
     chalk "^2.4.1"
     execa "^0.10.0"
@@ -10242,10 +10256,6 @@ type-is@~1.6.15, type-is@~1.6.16:
 typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
-
-typescript@~2.9.0:
-  version "2.9.2"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.9.2.tgz#1cbf61d05d6b96269244eb6a3bce4bd914e0f00c"
 
 ua-parser-js@^0.7.18:
   version "0.7.18"
