@@ -32,7 +32,7 @@
     "require-context": "^1.1.0",
     "sass-loader": "^7.1.0",
     "ts-jest": "^23.0.1",
-    "vue-template-compiler": "^2.5.16"
+    "vue-template-compiler": "^2.5.17"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
