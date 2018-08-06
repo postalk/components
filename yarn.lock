@@ -802,11 +802,11 @@
     global "^4.3.2"
     prop-types "^15.6.1"
 
-"@storybook/addon-storyshots@^4.0.0-alpha.14":
-  version "4.0.0-alpha.14"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-storyshots/-/addon-storyshots-4.0.0-alpha.14.tgz#76ae6d2be549428981b413610eccfe3e150692ba"
+"@storybook/addon-storyshots@^4.0.0-alpha.15":
+  version "4.0.0-alpha.15"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-storyshots/-/addon-storyshots-4.0.0-alpha.15.tgz#21dfb6656a731f5d3156ac1d745788c2e3acf4b5"
   dependencies:
-    "@storybook/addons" "4.0.0-alpha.14"
+    "@storybook/addons" "4.0.0-alpha.15"
     babel-runtime "^6.26.0"
     glob "^7.1.2"
     global "^4.3.2"
@@ -822,6 +822,15 @@
     global "^4.3.2"
     util-deprecate "^1.0.2"
 
+"@storybook/addons@4.0.0-alpha.15":
+  version "4.0.0-alpha.15"
+  resolved "https://registry.yarnpkg.com/@storybook/addons/-/addons-4.0.0-alpha.15.tgz#e9f52b70352c7685ff7fa163b1487cc1e6c60f94"
+  dependencies:
+    "@storybook/channels" "4.0.0-alpha.15"
+    "@storybook/components" "4.0.0-alpha.15"
+    global "^4.3.2"
+    util-deprecate "^1.0.2"
+
 "@storybook/channel-postmessage@4.0.0-alpha.14":
   version "4.0.0-alpha.14"
   resolved "https://registry.yarnpkg.com/@storybook/channel-postmessage/-/channel-postmessage-4.0.0-alpha.14.tgz#0beda522582ebb96b5e7b7617211c2572c4a60c6"
@@ -834,6 +843,10 @@
   version "4.0.0-alpha.14"
   resolved "https://registry.yarnpkg.com/@storybook/channels/-/channels-4.0.0-alpha.14.tgz#8b6ab4a865c056497ee1c3232745e2287fe55da8"
 
+"@storybook/channels@4.0.0-alpha.15":
+  version "4.0.0-alpha.15"
+  resolved "https://registry.yarnpkg.com/@storybook/channels/-/channels-4.0.0-alpha.15.tgz#d0fd8d3f50676500ff6bcb99fd064a80639a9b40"
+
 "@storybook/client-logger@4.0.0-alpha.14":
   version "4.0.0-alpha.14"
   resolved "https://registry.yarnpkg.com/@storybook/client-logger/-/client-logger-4.0.0-alpha.14.tgz#ef7385058d932e781ef51fd46c42667371a1af02"
@@ -841,6 +854,22 @@
 "@storybook/components@4.0.0-alpha.14":
   version "4.0.0-alpha.14"
   resolved "https://registry.yarnpkg.com/@storybook/components/-/components-4.0.0-alpha.14.tgz#ed66c7d5d4686cfdf934ee9a3c16f50cf25d60b2"
+  dependencies:
+    emotion "^9.1.3"
+    emotion-theming "^9.1.2"
+    global "^4.3.2"
+    lodash.pick "^4.4.0"
+    lodash.throttle "^4.1.1"
+    prop-types "^15.6.1"
+    react-emotion "^9.1.3"
+    react-inspector "^2.3.0"
+    react-split-pane "^0.1.77"
+    react-textarea-autosize "^6.1.0"
+    render-fragment "^0.1.1"
+
+"@storybook/components@4.0.0-alpha.15":
+  version "4.0.0-alpha.15"
+  resolved "https://registry.yarnpkg.com/@storybook/components/-/components-4.0.0-alpha.15.tgz#f51fdb59d183afbcd90c319d10bacb962b8c554c"
   dependencies:
     emotion "^9.1.3"
     emotion-theming "^9.1.2"
