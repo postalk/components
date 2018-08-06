@@ -791,16 +791,16 @@
     react-inspector "^2.3.0"
     uuid "^3.2.1"
 
-"@storybook/addon-links@^4.0.0-alpha.15":
-  version "4.0.0-alpha.15"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-links/-/addon-links-4.0.0-alpha.15.tgz#4ba90d3c7e2115ea6bba3fc995dede12f3f7b024"
+"@storybook/addon-links@^4.0.0-alpha.16":
+  version "4.0.0-alpha.16"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-links/-/addon-links-4.0.0-alpha.16.tgz#c9cb637c2e97acae64ad6be62877ab163ca0f8ea"
   dependencies:
-    "@storybook/addons" "4.0.0-alpha.15"
-    "@storybook/components" "4.0.0-alpha.15"
-    "@storybook/core-events" "4.0.0-alpha.15"
+    "@storybook/addons" "4.0.0-alpha.16"
+    "@storybook/components" "4.0.0-alpha.16"
+    "@storybook/core-events" "4.0.0-alpha.16"
     babel-runtime "^6.26.0"
     global "^4.3.2"
-    prop-types "^15.6.1"
+    prop-types "^15.6.2"
 
 "@storybook/addon-storyshots@^4.0.0-alpha.15":
   version "4.0.0-alpha.15"
@@ -831,6 +831,15 @@
     global "^4.3.2"
     util-deprecate "^1.0.2"
 
+"@storybook/addons@4.0.0-alpha.16":
+  version "4.0.0-alpha.16"
+  resolved "https://registry.yarnpkg.com/@storybook/addons/-/addons-4.0.0-alpha.16.tgz#c99f10b1c62d076b326441c4838ab111b51976b5"
+  dependencies:
+    "@storybook/channels" "4.0.0-alpha.16"
+    "@storybook/components" "4.0.0-alpha.16"
+    global "^4.3.2"
+    util-deprecate "^1.0.2"
+
 "@storybook/channel-postmessage@4.0.0-alpha.14":
   version "4.0.0-alpha.14"
   resolved "https://registry.yarnpkg.com/@storybook/channel-postmessage/-/channel-postmessage-4.0.0-alpha.14.tgz#0beda522582ebb96b5e7b7617211c2572c4a60c6"
@@ -846,6 +855,10 @@
 "@storybook/channels@4.0.0-alpha.15":
   version "4.0.0-alpha.15"
   resolved "https://registry.yarnpkg.com/@storybook/channels/-/channels-4.0.0-alpha.15.tgz#d0fd8d3f50676500ff6bcb99fd064a80639a9b40"
+
+"@storybook/channels@4.0.0-alpha.16":
+  version "4.0.0-alpha.16"
+  resolved "https://registry.yarnpkg.com/@storybook/channels/-/channels-4.0.0-alpha.16.tgz#94e35a6a1eff2cfeba76aa53440b3773bb416d2e"
 
 "@storybook/client-logger@4.0.0-alpha.14":
   version "4.0.0-alpha.14"
@@ -883,6 +896,22 @@
     react-textarea-autosize "^6.1.0"
     render-fragment "^0.1.1"
 
+"@storybook/components@4.0.0-alpha.16":
+  version "4.0.0-alpha.16"
+  resolved "https://registry.yarnpkg.com/@storybook/components/-/components-4.0.0-alpha.16.tgz#f1be2c763e4940a72a49715d2c7ca074b361633f"
+  dependencies:
+    emotion "^9.2.6"
+    emotion-theming "^9.2.6"
+    global "^4.3.2"
+    lodash.pick "^4.4.0"
+    lodash.throttle "^4.1.1"
+    prop-types "^15.6.2"
+    react-emotion "^9.2.6"
+    react-inspector "^2.3.0"
+    react-split-pane "^0.1.82"
+    react-textarea-autosize "^7.0.4"
+    render-fragment "^0.1.1"
+
 "@storybook/core-events@4.0.0-alpha.14":
   version "4.0.0-alpha.14"
   resolved "https://registry.yarnpkg.com/@storybook/core-events/-/core-events-4.0.0-alpha.14.tgz#8f70a6f93da733b207ae1648e1db292d6dbf43f0"
@@ -890,6 +919,10 @@
 "@storybook/core-events@4.0.0-alpha.15":
   version "4.0.0-alpha.15"
   resolved "https://registry.yarnpkg.com/@storybook/core-events/-/core-events-4.0.0-alpha.15.tgz#f1f1ebbfcffe5c793ae4d2d2bd3ab0b69eed7917"
+
+"@storybook/core-events@4.0.0-alpha.16":
+  version "4.0.0-alpha.16"
+  resolved "https://registry.yarnpkg.com/@storybook/core-events/-/core-events-4.0.0-alpha.16.tgz#95f6e8f39cc647284660f9802eaf01ee8404ac3a"
 
 "@storybook/core@4.0.0-alpha.14":
   version "4.0.0-alpha.14"
@@ -4269,13 +4302,13 @@ emojis-list@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/emojis-list/-/emojis-list-2.1.0.tgz#4daa4d9db00f9819880c79fa457ae5b09a1fd389"
 
-emotion-theming@^9.1.2:
+emotion-theming@^9.1.2, emotion-theming@^9.2.6:
   version "9.2.6"
   resolved "https://registry.yarnpkg.com/emotion-theming/-/emotion-theming-9.2.6.tgz#ca69b94e28f66a5d9ca1e259633246beaa24afbc"
   dependencies:
     hoist-non-react-statics "^2.3.1"
 
-emotion@^9.1.3:
+emotion@^9.1.3, emotion@^9.2.6:
   version "9.2.6"
   resolved "https://registry.yarnpkg.com/emotion/-/emotion-9.2.6.tgz#48517515e769bca6d8f7ff18425a7f133b010f22"
   dependencies:
@@ -8670,7 +8703,7 @@ react-dom@^16.4.0:
     object-assign "^4.1.1"
     prop-types "^15.6.0"
 
-react-emotion@^9.1.3:
+react-emotion@^9.1.3, react-emotion@^9.2.6:
   version "9.2.6"
   resolved "https://registry.yarnpkg.com/react-emotion/-/react-emotion-9.2.6.tgz#3941f78779f9a8ad8300042ddfa9b2cb111442c2"
   dependencies:
@@ -8720,7 +8753,7 @@ react-modal@^3.4.5:
     react-lifecycles-compat "^3.0.0"
     warning "^3.0.0"
 
-react-split-pane@^0.1.77:
+react-split-pane@^0.1.77, react-split-pane@^0.1.82:
   version "0.1.82"
   resolved "https://registry.yarnpkg.com/react-split-pane/-/react-split-pane-0.1.82.tgz#42fbb9fd4823f05e037de0dab3cd6cf9bf0cf4ea"
   dependencies:
@@ -8738,6 +8771,12 @@ react-style-proptype@^3.0.0:
 react-textarea-autosize@^6.1.0:
   version "6.1.0"
   resolved "https://registry.yarnpkg.com/react-textarea-autosize/-/react-textarea-autosize-6.1.0.tgz#df91387f8a8f22020b77e3833c09829d706a09a5"
+  dependencies:
+    prop-types "^15.6.0"
+
+react-textarea-autosize@^7.0.4:
+  version "7.0.4"
+  resolved "https://registry.yarnpkg.com/react-textarea-autosize/-/react-textarea-autosize-7.0.4.tgz#4e4be649b544a88713e7b5043f76950f35d3d503"
   dependencies:
     prop-types "^15.6.0"
 
