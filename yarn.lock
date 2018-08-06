@@ -791,13 +791,13 @@
     react-inspector "^2.3.0"
     uuid "^3.2.1"
 
-"@storybook/addon-links@^4.0.0-alpha.14":
-  version "4.0.0-alpha.14"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-links/-/addon-links-4.0.0-alpha.14.tgz#658f78e68063f4662044680435cb2acdef15422f"
+"@storybook/addon-links@^4.0.0-alpha.15":
+  version "4.0.0-alpha.15"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-links/-/addon-links-4.0.0-alpha.15.tgz#4ba90d3c7e2115ea6bba3fc995dede12f3f7b024"
   dependencies:
-    "@storybook/addons" "4.0.0-alpha.14"
-    "@storybook/components" "4.0.0-alpha.14"
-    "@storybook/core-events" "4.0.0-alpha.14"
+    "@storybook/addons" "4.0.0-alpha.15"
+    "@storybook/components" "4.0.0-alpha.15"
+    "@storybook/core-events" "4.0.0-alpha.15"
     babel-runtime "^6.26.0"
     global "^4.3.2"
     prop-types "^15.6.1"
