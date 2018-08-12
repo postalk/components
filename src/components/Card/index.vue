@@ -48,7 +48,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 import VueDraggableResizable from 'vue-draggable-resizable'
 import Input from '@/components/Input/index.vue'
 
-@Component({
+@Component<Card>({
   components: {
     Input,
     VueDraggableResizable

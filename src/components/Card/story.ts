@@ -1,6 +1,21 @@
 import { storiesOf } from '@storybook/vue'
-import { action } from '@storybook/addon-actions'
+// import { action } from '@storybook/addon-actions'
 import Card from './index.vue'
+import Vue from 'vue'
+
+interface CardType {
+  id: string
+  x: number
+  y: number
+  value: string
+}
+
+interface VueWithData extends Vue {
+  cards: CardType[]
+  diffX: number
+  diffY: number
+  moving?: string
+}
 
 storiesOf('Card', module).add('Default', () => ({
   components: { Card },
@@ -42,17 +57,19 @@ storiesOf('Card', module).add('Default', () => ({
   </div>`,
   methods: {
     move(x, y, key) {
-      this.diffX -= x
-      this.diffY -= y
-      this.moving = key
+      const self = this as VueWithData
+      self.diffX -= x
+      self.diffY -= y
+      self.moving = key
     },
     stop() {
-      this.cards = this.cards.map((card) => {
-        return { ...card, x: card.x + this.diffX, y: card.y + this.diffY }
+      const self = this as VueWithData
+      self.cards = self.cards.map((card) => {
+        return { ...card, x: card.x + self.diffX, y: card.y + self.diffY }
       })
-      this.diffX = 0
-      this.diffY = 0
-      this.moving = undefined
+      self.diffX = 0
+      self.diffY = 0
+      self.moving = undefined
     }
   }
 }))
