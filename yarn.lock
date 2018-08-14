@@ -1085,9 +1085,9 @@
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/@types/storybook__addon-actions/-/storybook__addon-actions-3.4.0.tgz#9a8d9b3c7478e6557a6c50a06c8216d1bdca9fe4"
 
-"@types/storybook__addon-links@^3.3.1":
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/@types/storybook__addon-links/-/storybook__addon-links-3.3.1.tgz#5bbfc05b3882c4c2afd8378222199ba0c570f524"
+"@types/storybook__addon-links@^3.3.2":
+  version "3.3.2"
+  resolved "https://registry.yarnpkg.com/@types/storybook__addon-links/-/storybook__addon-links-3.3.2.tgz#913f6dae27903da7b1f117e9b51ca473770dba50"
   dependencies:
     "@types/react" "*"
 
