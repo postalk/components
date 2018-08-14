@@ -54,7 +54,6 @@
   },
   "private": true,
   "scripts": {
-    "build": "vue-cli-service build:storybook -c .storybook -s src/assets/ -o .storybook/build",
     "coverage": "STORY_ENV=test vue-cli-service test:unit | coveralls",
     "deploy": "now rm postalk-components --yes --token=${NOW_TOKEN} && now --public --token=${NOW_TOKEN} && now alias --token=${NOW_TOKEN}",
     "lint": "vue-cli-service lint",

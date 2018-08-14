@@ -4,16 +4,15 @@
 #
 version: 2
 jobs:
-  build:
+  lint:
     docker:
       - image: circleci/node:10
     steps:
       - checkout
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-{{ checksum "package.json" }}
       - run: yarn install
-      - run: yarn build
       - run: yarn lint
       - save_cache:
           paths:
@@ -26,16 +25,16 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-{{ checksum "package.json" }}
       - run: yarn install
       - run: yarn test
-      - run: "echo \"repo_token: ${COVERALLS_REPO_TOKEN}\" >> .coveralls.yml"
+      - run: 'echo "repo_token: ${COVERALLS_REPO_TOKEN}" >> .coveralls.yml'
       - run: yarn coverage
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-  
+
   deploy:
     docker:
       - image: circleci/node:10
@@ -43,7 +42,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-{{ checksum "package.json" }}
       - run: yarn install
       - run: yarn deploy
       - save_cache:
@@ -51,24 +50,23 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-
 workflows:
   version: 2
   workflow:
     jobs:
-      - build:
+      - lint:
           filters:
             tags:
               only: /^v.*/
       - test:
           requires:
-            - build
+            - lint
           filters:
             tags:
               only: /^v.*/
       - deploy:
           requires:
-            - build
+            - lint
             - test
           filters:
             branches:
