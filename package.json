@@ -26,7 +26,7 @@
     "babel-jest": "^23.4.2",
     "coveralls": "^3.0.2",
     "fixpack": "^2.3.1",
-    "lint-staged": "^7.2.0",
+    "lint-staged": "^7.2.2",
     "node-sass": "^4.9.0",
     "now": "^11.3.8",
     "require-context": "^1.1.0",
