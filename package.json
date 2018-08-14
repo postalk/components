@@ -27,7 +27,7 @@
     "coveralls": "^3.0.2",
     "fixpack": "^2.3.1",
     "lint-staged": "^7.2.2",
-    "node-sass": "^4.9.0",
+    "node-sass": "^4.9.3",
     "now": "^11.3.8",
     "require-context": "^1.1.0",
     "sass-loader": "^7.1.0",
