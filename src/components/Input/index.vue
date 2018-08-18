@@ -4,7 +4,7 @@
     placeholder="Type something here..."
     v-model="value"
     v-focus="editing"
-    :min-height="30"
+    :min-height="16"
     :max-height="500"
     :disabled="disabled"
     @blur.native="doneEdit"

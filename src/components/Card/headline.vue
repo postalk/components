@@ -1,0 +1,23 @@
+<template>
+  <h2 class="headline">{{ txt }}</h2>
+</template>
+
+<script lang="ts">
+import { Component, Prop, Vue } from 'vue-property-decorator'
+@Component
+export default class Headline extends Vue {
+  @Prop() private txt!: string
+}
+</script>
+
+<style scoped lang="scss">
+.headline {
+  text-align: center;
+  font-size: 1.75rem;
+  font-weight: 400;
+  line-height: 1.15;
+  margin-top: 0.1875rem;
+  margin-bottom: 0.125rem;
+  word-wrap: break-word;
+}
+</style>

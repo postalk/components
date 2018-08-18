@@ -4,7 +4,8 @@
       :class="{
         root: true,
         isGrabbing: grabbing,
-        isMoving: moving && moving !== id
+        isMoving: moving && moving !== id,
+        isFocusing: focusing
       }"
       :style="{
         'transform': moving && moving !== id ? `translate(${diffX}px, ${diffY}px)` : undefined
@@ -17,7 +18,9 @@
           'transform': `translate(${x}px, ${y}px)`
         }"
       >
-        <div class="text">{{ value }}</div>
+        <List :txt="value" v-if="isList(value)" />
+        <Headline :txt="value" v-else-if="isHeadline(value)" />
+        <div class="text" v-else>{{ value }}</div>
         <Input 
           class="input" 
           :handleSubmit="submit"
@@ -32,7 +35,7 @@
         class="draggable"
         v-if="width > 0 && height > 0"
         :resizable="false"
-        :grid="[16,16]"
+        :grid="[24,24]"
         :w="width"
         :h="height"
         :x="x - 16"
@@ -47,9 +50,13 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import VueDraggableResizable from 'vue-draggable-resizable'
 import Input from '@/components/Input/index.vue'
+import Headline from './headline.vue'
+import List from './list.vue'
 
 @Component<Card>({
   components: {
+    Headline,
+    List,
     Input,
     VueDraggableResizable
   },
@@ -79,6 +86,7 @@ export default class Card extends Vue {
   private width: number = 0
   private height: number = 0
   private grabbing: boolean = false
+  private focusing: boolean = false
 
   private mounted() {
     this.matchBoundRect()
@@ -100,18 +108,15 @@ export default class Card extends Vue {
   }
 
   private submit(): void {
-    // tslint:disable-next-line
-    console.log('Submit!')
+    this.focusing = false
   }
 
   private cancel(): void {
-    // tslint:disable-next-line
-    console.log('Cancel!')
+    this.focusing = false
   }
 
   private focus(): void {
-    // tslint:disable-next-line
-    console.log('Focus!')
+    this.focusing = true
   }
 
   private onDragging(x: number, y: number): void {
@@ -129,30 +134,36 @@ export default class Card extends Vue {
     this.grabbing = false
     this.handleStop()
   }
+
+  private isHeadline(str: string): boolean {
+    return str.match(/[\u30a0-\u30ff\u3040-\u309f\u3005-\u3006\u30e0-\u9fcf]+/g)
+      ? str.length < 8
+      : str.length < 14
+  }
+
+  private isList(str: string): boolean {
+    return (
+      !!str.match(/\r?\n/) &&
+      str.split(/\r?\n/).filter((s) => !!s.trim()).length > 1
+    )
+  }
 }
 </script>
 
 <style scoped lang="scss">
 .root {
-  width: 16rem;
+  width: 13.5rem;
+  height: 0;
   position: absolute;
-  border: calc(1rem - 1px) solid transparent;
-  &:hover {
-    .back {
-      display: block;
-    }
-  }
   &.isGrabbing {
     .draggable {
       cursor: grabbing;
-    }
-    .card {
-      user-select: none;
+      opacity: 1;
     }
   }
-  &.isMoving {
+  &.isFocusing {
     .card {
-      user-select: none;
+      overflow: visible;
     }
   }
 }
@@ -164,7 +175,9 @@ export default class Card extends Vue {
   line-height: 0;
   text-align: left;
   padding: 0.5rem;
-  z-index: 1;
+  z-index: 2;
+  user-select: none;
+  overflow: hidden;
 }
 
 .text {
@@ -181,8 +194,11 @@ export default class Card extends Vue {
 }
 
 .draggable {
-  z-index: 0;
+  opacity: 0;
   background: #f6f6f6;
   cursor: grab;
+  &:hover {
+    opacity: 1;
+  }
 }
 </style>
