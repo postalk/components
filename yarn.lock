@@ -9919,9 +9919,9 @@ vue-class-component@6.2.0, vue-class-component@^6.2.0:
   version "6.2.0"
   resolved "https://registry.yarnpkg.com/vue-class-component/-/vue-class-component-6.2.0.tgz#7adb1daa9a868c75f30f97f33f4f1b94aee62089"
 
-vue-cli-plugin-storybook@0.4.2:
-  version "0.4.2"
-  resolved "https://registry.yarnpkg.com/vue-cli-plugin-storybook/-/vue-cli-plugin-storybook-0.4.2.tgz#f84236a972013afc88e7aeb9a832528784cc75aa"
+vue-cli-plugin-storybook@0.4.3:
+  version "0.4.3"
+  resolved "https://registry.yarnpkg.com/vue-cli-plugin-storybook/-/vue-cli-plugin-storybook-0.4.3.tgz#489ae6047e4f65962e0a6aabb0325861e0811efa"
   dependencies:
     "@storybook/addons" "^4.0.0-alpha.16"
     "@storybook/vue" "^4.0.0-alpha.16"
