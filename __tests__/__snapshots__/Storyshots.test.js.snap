@@ -32,18 +32,38 @@ exports[`Storyshots Card Default 1`] = `
   >
     <div
       class="card"
-      style="transform: translate(100px, 200px);"
+      style="transform: translate(50px, 300px);"
     >
-      <div
-        class="text"
+      <ul
+        class="list"
       >
-        どこで生れたかとんと見当けんとうがつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは。何で
-      </div>
+        <li
+          class="item"
+        >
+          
+    とんこつラーメン
+  
+        </li>
+        <li
+          class="item"
+        >
+          
+    油そば野菜油増し増しスペシャル
+  
+        </li>
+        <li
+          class="item"
+        >
+          
+    うどん
+  
+        </li>
+      </ul>
        
       <textarea
         class="input input"
         placeholder="Type something here..."
-        style="resize: none; overflow: hidden; height: 30px;"
+        style="resize: none; overflow: hidden; height: 16px;"
       />
     </div>
      
@@ -54,18 +74,40 @@ exports[`Storyshots Card Default 1`] = `
   >
     <div
       class="card"
-      style="transform: translate(600px, 300px);"
+      style="transform: translate(600px, 400px);"
+    >
+      <h2
+        class="headline"
+      >
+        ポメラニアン
+      </h2>
+       
+      <textarea
+        class="input input"
+        placeholder="Type something here..."
+        style="resize: none; overflow: hidden; height: 16px;"
+      />
+    </div>
+     
+    <!---->
+  </div>
+  <div
+    class="root"
+  >
+    <div
+      class="card"
+      style="transform: translate(400px, 100px);"
     >
       <div
         class="text"
       >
-        何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは
+        ようやくの思いで笹原を這い出すと向うに大きな池がある。吾輩は池の前に坐ってどうしたらよかろうと考えて見た。別にこれという 分別 （ ふんべつ ） も出ない。
       </div>
        
       <textarea
         class="input input"
         placeholder="Type something here..."
-        style="resize: none; overflow: hidden; height: 30px;"
+        style="resize: none; overflow: hidden; height: 16px;"
       />
     </div>
      
@@ -105,7 +147,7 @@ exports[`Storyshots Input Default 1`] = `
           <textarea
             class="input"
             placeholder="Type something here..."
-            style="resize: none; overflow: hidden; height: 30px;"
+            style="resize: none; overflow: hidden; height: 16px;"
           />
         </div>
       </div>

@@ -1,5 +1,4 @@
 import { storiesOf } from '@storybook/vue'
-// import { action } from '@storybook/addon-actions'
 import Card from './index.vue'
 import Vue from 'vue'
 
@@ -17,26 +16,33 @@ interface VueWithData extends Vue {
   moving?: string
 }
 
+const cards = [
+  {
+    id: 'key1',
+    x: 50,
+    y: 300,
+    value: 'とんこつラーメン\n' + '油そば野菜油増し増しスペシャル\n' + 'うどん'
+  },
+  {
+    id: 'key2',
+    x: 600,
+    y: 400,
+    value: 'ポメラニアン'
+  },
+  {
+    id: 'key3',
+    x: 400,
+    y: 100,
+    value:
+      'ようやくの思いで笹原を這い出すと向うに大きな池がある。吾輩は池の前に坐ってどうしたらよかろうと考えて見た。別にこれという 分別 （ ふんべつ ） も出ない。'
+  }
+]
+
 storiesOf('Card', module).add('Default', () => ({
   components: { Card },
   data: () => {
     return {
-      cards: [
-        {
-          id: 'key1',
-          x: 100,
-          y: 200,
-          value: `あそび
-楽園追放したからといってこうなるわけ
-何で`
-        },
-        {
-          id: 'key2',
-          x: 600,
-          y: 300,
-          value: 'ポメラニアン'
-        }
-      ],
+      cards,
       diffX: 0,
       diffY: 0,
       moving: undefined
