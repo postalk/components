@@ -567,6 +567,12 @@
   dependencies:
     regenerator-runtime "^0.12.0"
 
+"@babel/runtime@^7.0.0-rc.2":
+  version "7.0.0-rc.3"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.0.0-rc.3.tgz#7b0d6762220d2efa2958e72f8a661e1409c2d5d9"
+  dependencies:
+    regenerator-runtime "^0.12.0"
+
 "@babel/template@7.0.0-beta.47":
   version "7.0.0-beta.47"
   resolved "https://registry.yarnpkg.com/@babel/template/-/template-7.0.0-beta.47.tgz#0473970a7c0bee7a1a18c1ca999d3ba5e5bad83d"
@@ -715,12 +721,12 @@
     global "^4.3.2"
     prop-types "^15.6.2"
 
-"@storybook/addon-storyshots@4.0.0-alpha.16":
-  version "4.0.0-alpha.16"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-storyshots/-/addon-storyshots-4.0.0-alpha.16.tgz#d2b01d72e53eb9e41e34ba74e8b51a49eb89a77a"
+"@storybook/addon-storyshots@4.0.0-alpha.17":
+  version "4.0.0-alpha.17"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-storyshots/-/addon-storyshots-4.0.0-alpha.17.tgz#60d7f94d2b54c38357a490e13e060bd863827105"
   dependencies:
-    "@storybook/addons" "4.0.0-alpha.16"
-    babel-runtime "^6.26.0"
+    "@babel/runtime" "^7.0.0-rc.2"
+    "@storybook/addons" "4.0.0-alpha.17"
     glob "^7.1.2"
     global "^4.3.2"
     jest-specific-snapshot "^1.0.0"
