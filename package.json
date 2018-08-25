@@ -10,7 +10,7 @@
     "vue-draggable-resizable": "1.7.1"
   },
   "devDependencies": {
-    "@storybook/addon-actions": "4.0.0-alpha.16",
+    "@storybook/addon-actions": "4.0.0-alpha.17",
     "@storybook/addon-links": "4.0.0-alpha.17",
     "@storybook/addon-storyshots": "4.0.0-alpha.16",
     "@types/jest": "23.3.1",

@@ -688,14 +688,13 @@
   dependencies:
     any-observable "^0.3.0"
 
-"@storybook/addon-actions@4.0.0-alpha.16":
-  version "4.0.0-alpha.16"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-actions/-/addon-actions-4.0.0-alpha.16.tgz#52a0b2c3f2165cd1a8649cdf4bbf8d54698dfb21"
+"@storybook/addon-actions@4.0.0-alpha.17":
+  version "4.0.0-alpha.17"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-actions/-/addon-actions-4.0.0-alpha.17.tgz#981ef27fce97827a4b45be7c537a3622b0774d27"
   dependencies:
-    "@storybook/addons" "4.0.0-alpha.16"
-    "@storybook/components" "4.0.0-alpha.16"
-    "@storybook/core-events" "4.0.0-alpha.16"
-    babel-runtime "^6.26.0"
+    "@storybook/addons" "4.0.0-alpha.17"
+    "@storybook/components" "4.0.0-alpha.17"
+    "@storybook/core-events" "4.0.0-alpha.17"
     deep-equal "^1.0.1"
     emotion-theming "^9.2.6"
     global "^4.3.2"
