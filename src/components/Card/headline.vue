@@ -13,7 +13,7 @@ export default class Headline extends Vue {
 <style scoped lang="scss">
 .headline {
   text-align: center;
-  font-size: 1.75rem;
+  font-size: 1.25em;
   font-weight: 400;
   line-height: 1.15;
   margin-top: 0.1875rem;

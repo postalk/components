@@ -15,8 +15,8 @@ export default class List extends Vue {
   private getList(): string[] {
     return this.txt
       .split(/\r?\n/)
-      .map((s) => s.trim())
-      .filter((s) => !!s)
+      .map(s => s.trim())
+      .filter(s => !!s)
   }
 }
 </script>
@@ -35,8 +35,9 @@ export default class List extends Vue {
 .item {
   padding-bottom: 0.5rem;
   padding-left: 0.5rem;
+  padding-right: 0.5rem;
   & + .item {
-    border-top: 1px solid rgba(0, 0, 0, 0.12);
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
     padding-top: 0.5rem;
   }
 }
