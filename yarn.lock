@@ -694,13 +694,13 @@
   dependencies:
     any-observable "^0.3.0"
 
-"@storybook/addon-actions@4.0.0-alpha.17":
-  version "4.0.0-alpha.17"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-actions/-/addon-actions-4.0.0-alpha.17.tgz#981ef27fce97827a4b45be7c537a3622b0774d27"
+"@storybook/addon-actions@4.0.0-alpha.18":
+  version "4.0.0-alpha.18"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-actions/-/addon-actions-4.0.0-alpha.18.tgz#c2de255d64801996e27ff240d1a120299c906156"
   dependencies:
-    "@storybook/addons" "4.0.0-alpha.17"
-    "@storybook/components" "4.0.0-alpha.17"
-    "@storybook/core-events" "4.0.0-alpha.17"
+    "@storybook/addons" "4.0.0-alpha.18"
+    "@storybook/components" "4.0.0-alpha.18"
+    "@storybook/core-events" "4.0.0-alpha.18"
     deep-equal "^1.0.1"
     emotion-theming "^9.2.6"
     global "^4.3.2"
@@ -834,10 +834,6 @@
 "@storybook/core-events@4.0.0-alpha.16":
   version "4.0.0-alpha.16"
   resolved "https://registry.yarnpkg.com/@storybook/core-events/-/core-events-4.0.0-alpha.16.tgz#95f6e8f39cc647284660f9802eaf01ee8404ac3a"
-
-"@storybook/core-events@4.0.0-alpha.17":
-  version "4.0.0-alpha.17"
-  resolved "https://registry.yarnpkg.com/@storybook/core-events/-/core-events-4.0.0-alpha.17.tgz#bb541648a59e730842a185e8a83f99b8c1b6eb06"
 
 "@storybook/core-events@4.0.0-alpha.18":
   version "4.0.0-alpha.18"
