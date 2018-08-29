@@ -567,9 +567,9 @@
   dependencies:
     regenerator-runtime "^0.12.0"
 
-"@babel/runtime@^7.0.0-rc.2":
-  version "7.0.0-rc.3"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.0.0-rc.3.tgz#7b0d6762220d2efa2958e72f8a661e1409c2d5d9"
+"@babel/runtime@^7.0.0-rc.3":
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.0.0.tgz#adeb78fedfc855aa05bc041640f3f6f98e85424c"
   dependencies:
     regenerator-runtime "^0.12.0"
 
@@ -721,12 +721,12 @@
     global "^4.3.2"
     prop-types "^15.6.2"
 
-"@storybook/addon-storyshots@4.0.0-alpha.17":
-  version "4.0.0-alpha.17"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-storyshots/-/addon-storyshots-4.0.0-alpha.17.tgz#60d7f94d2b54c38357a490e13e060bd863827105"
+"@storybook/addon-storyshots@4.0.0-alpha.18":
+  version "4.0.0-alpha.18"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-storyshots/-/addon-storyshots-4.0.0-alpha.18.tgz#342beb70205d7897483bfcf6c30da7fb6c564a50"
   dependencies:
-    "@babel/runtime" "^7.0.0-rc.2"
-    "@storybook/addons" "4.0.0-alpha.17"
+    "@babel/runtime" "^7.0.0-rc.3"
+    "@storybook/addons" "4.0.0-alpha.18"
     glob "^7.1.2"
     global "^4.3.2"
     jest-specific-snapshot "^1.0.0"
@@ -738,15 +738,6 @@
   dependencies:
     "@storybook/channels" "4.0.0-alpha.16"
     "@storybook/components" "4.0.0-alpha.16"
-    global "^4.3.2"
-    util-deprecate "^1.0.2"
-
-"@storybook/addons@4.0.0-alpha.17":
-  version "4.0.0-alpha.17"
-  resolved "https://registry.yarnpkg.com/@storybook/addons/-/addons-4.0.0-alpha.17.tgz#ffe54d0aacdb52d8330e78aa5bd13810717c0c49"
-  dependencies:
-    "@storybook/channels" "4.0.0-alpha.17"
-    "@storybook/components" "4.0.0-alpha.17"
     global "^4.3.2"
     util-deprecate "^1.0.2"
 
@@ -771,10 +762,6 @@
   version "4.0.0-alpha.16"
   resolved "https://registry.yarnpkg.com/@storybook/channels/-/channels-4.0.0-alpha.16.tgz#94e35a6a1eff2cfeba76aa53440b3773bb416d2e"
 
-"@storybook/channels@4.0.0-alpha.17":
-  version "4.0.0-alpha.17"
-  resolved "https://registry.yarnpkg.com/@storybook/channels/-/channels-4.0.0-alpha.17.tgz#ce2798258a40c687e948e3eef42085768314cfcd"
-
 "@storybook/channels@4.0.0-alpha.18":
   version "4.0.0-alpha.18"
   resolved "https://registry.yarnpkg.com/@storybook/channels/-/channels-4.0.0-alpha.18.tgz#b618e91dd1048e13397e07dbbe22cc9d04536cfd"
@@ -786,22 +773,6 @@
 "@storybook/components@4.0.0-alpha.16":
   version "4.0.0-alpha.16"
   resolved "https://registry.yarnpkg.com/@storybook/components/-/components-4.0.0-alpha.16.tgz#f1be2c763e4940a72a49715d2c7ca074b361633f"
-  dependencies:
-    emotion "^9.2.6"
-    emotion-theming "^9.2.6"
-    global "^4.3.2"
-    lodash.pick "^4.4.0"
-    lodash.throttle "^4.1.1"
-    prop-types "^15.6.2"
-    react-emotion "^9.2.6"
-    react-inspector "^2.3.0"
-    react-split-pane "^0.1.82"
-    react-textarea-autosize "^7.0.4"
-    render-fragment "^0.1.1"
-
-"@storybook/components@4.0.0-alpha.17":
-  version "4.0.0-alpha.17"
-  resolved "https://registry.yarnpkg.com/@storybook/components/-/components-4.0.0-alpha.17.tgz#43d1895a6ba7b0745055e854ac4861e62dcf295f"
   dependencies:
     emotion "^9.2.6"
     emotion-theming "^9.2.6"
