@@ -2,24 +2,29 @@
     <div 
       v-if="show"
       :class="{
-        root: true,
+        cardRoot: true,
         isGrabbing: grabbing,
         isMoving: moving && moving !== id,
-        isFocusing: focusing
+        isFocusing: focusing,
+        isSelected: selected
       }"
       :style="{
-        transform: moving && moving !== id
-          ? `translate(${diffX}px, ${diffY}px)`
-          : `translate(0px, 0px)`
+        left: `${x}px`,
+        top: `${y}px`,
+        width: `${width - 32 * 2 + 2}px`,
+        height: `${height - 32 * 2 + 2}px`
       }"
     >
       <div 
         ref="card"
         class="card"
         :style="{
-          transform: `translate(${x}px, ${y}px)`,
+          transform: moving && moving !== id && selected 
+            ? `translate(${diffX}px, ${diffY}px)`
+            : undefined,
           'background-color': getColor()['background-color'],
-          'border-color': getColor()['border-color']
+          'border-color': selected ? selectColor : getColor()['border-color'],
+          'outline': selected ? `solid 1px ${selectColor}` : undefined
         }"
       >
         <List :txt="value" v-if="isList(value)" />
@@ -31,12 +36,14 @@
           :handleCancel="cancel"
           :handleFocus="focus"
           :initial="value"
-          :disabled="moving"
+          :disabled="(moving && moving !== id) || grabbing || disabled"
         />
       </div>
       <VueDraggableResizable 
-        ref="draggable"
         class="draggable"
+        :style="{
+          transform: `translate(${-1 * x}px,${-1 * y}px)`
+        }"
         v-if="width > 0 && height > 0"
         :resizable="false"
         :grid="[24,24]"
@@ -56,7 +63,15 @@ import VueDraggableResizable from 'vue-draggable-resizable'
 import Input from '@/components/Input/index.vue'
 import Headline from './headline.vue'
 import List from './list.vue'
-import { yellow, yellowB, blue, blueB, red, redB } from '../color'
+import {
+  yellow,
+  yellowB,
+  blue,
+  blueB,
+  red,
+  redB,
+  select as selectColor
+} from '../color'
 
 @Component<Card>({
   components: {
@@ -74,17 +89,20 @@ import { yellow, yellowB, blue, blueB, red, redB } from '../color'
   }
 })
 export default class Card extends Vue {
+  @Prop() public diffX!: number
+  @Prop() public diffY!: number
+  @Prop() public moving!: string | undefined
+  @Prop() public selected!: boolean
+  @Prop() public disabled!: boolean
   @Prop() private id!: string
   @Prop({ default: '' })
   private value!: string
   @Prop() private initialX!: number
   @Prop() private initialY!: number
-  @Prop() private diffX!: number
-  @Prop() private diffY!: number
-  @Prop() private moving!: boolean
   @Prop() private color!: string
   @Prop() private handleMove!: (x: number, y: number, id: string) => void
   @Prop() private handleStop!: () => void
+  @Prop() private handleStart!: (id: string) => void
 
   private show: boolean = true
   private x: number = this.initialX
@@ -93,6 +111,7 @@ export default class Card extends Vue {
   private height: number = 0
   private grabbing: boolean = false
   private focusing: boolean = false
+  private selectColor: string = selectColor
 
   private mounted() {
     this.matchBoundRect()
@@ -128,6 +147,8 @@ export default class Card extends Vue {
   private onDragging(x: number, y: number): void {
     if (!this.grabbing) {
       this.grabbing = true
+      this.handleStart(this.id)
+      return
     }
     const diffX = this.x - x - 32
     const diffY = this.y - y - 32
@@ -177,10 +198,11 @@ export default class Card extends Vue {
 </script>
 
 <style scoped lang="scss">
-.root {
+.cardRoot {
   width: 12rem;
   height: 0;
   position: absolute;
+  z-index: 0;
   &.isGrabbing {
     .draggable {
       cursor: grabbing;
@@ -192,10 +214,16 @@ export default class Card extends Vue {
       overflow: visible;
     }
   }
+  &.isMoving {
+    .draggable {
+      opacity: 0;
+    }
+  }
 }
 
 .card {
-  position: relative;
+  position: absolute;
+  width: 100%;
   background-color: #fff;
   border: 1px solid #efefef;
   line-height: 0;
@@ -222,8 +250,8 @@ export default class Card extends Vue {
 
 .draggable {
   opacity: 0;
-  background-size: 9px 9px;
-  background-image: url("data:image/svg+xml,%3Csvg width='18' height='18' viewBox='0 0 18 18' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 0h1v1H1zm0 17h1v1H1zm1 0h1v1H2zm0-1h1v1H2zm1 0h1v1H3zm0-1h1v1H3zm1 0h1v1H4zm0-1h1v1H4zm1 0h1v1H5zm0-1h1v1H5zm1 0h1v1H6zm0-1h1v1H6zm1 0h1v1H7zm0-1h1v1H7zm1 0h1v1H8zm0-1h1v1H8zm1 0h1v1H9zm0-1h1v1H9zm1 0h1v1h-1zm0-1h1v1h-1zm1 0h1v1h-1zm0-1h1v1h-1zm1 0h1v1h-1zm0-1h1v1h-1zm1 0h1v1h-1zm0-1h1v1h-1zm1 0h1v1h-1zm0-1h1v1h-1zm1 0h1v1h-1zm0-1h1v1h-1zm1 0h1v1h-1zm0-1h1v1h-1zm1 0h1v1h-1zm0-1h1v1h-1zM0 0h1v1H0zm0 1h1v1H0z' fill='%23E6E6E6' fill-rule='evenodd'/%3E%3C/svg%3E");
+  background-size: 7px 7px;
+  background-image: url("data:image/svg+xml,%3Csvg width='14' height='14' viewBox='0 0 14 14' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h1v1H0zm1 0h1v1H1zM0 1h1v1H0zm1 12h1v1H1zm1-1h1v1H2zm1-1h1v1H3zm1-1h1v1H4zm1-1h1v1H5zm-3 4h1v1H2zm1-1h1v1H3zm1-1h1v1H4zm1-1h1v1H5zm1-2h1v1H6zm0 1h1v1H6zm1-2h1v1H7zm0 1h1v1H7zm1-2h1v1H8zm0 1h1v1H8zm1-2h1v1H9zm0 1h1v1H9zm1-2h1v1h-1zm0 1h1v1h-1zm1-2h1v1h-1zm0 1h1v1h-1zm1-2h1v1h-1zm0 1h1v1h-1zm1-2h1v1h-1zm0 1h1v1h-1z' fill='%23D8D8D8' fill-rule='evenodd'/%3E%3C/svg%3E");
   cursor: grab;
   &:hover {
     opacity: 1;

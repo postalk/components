@@ -1,54 +1,10 @@
 import { storiesOf } from '@storybook/vue'
 import Card from './index.vue'
-import Vue from 'vue'
+import Vue, { ComponentOptions } from 'vue'
+import { cards } from '../data'
+import { CardInfo } from '@/components/types'
 
-interface CardType {
-  id: string
-  x: number
-  y: number
-  value: string
-}
-
-interface VueWithData extends Vue {
-  cards: CardType[]
-  diffX: number
-  diffY: number
-  moving?: string
-}
-
-const cards = [
-  {
-    id: 'key1',
-    x: 48,
-    y: 240,
-    value: 'とんこつラーメン\n' + '油そば野菜油増し増しスペシャル\n' + 'うどん',
-    color: 'yellow'
-  },
-  {
-    id: 'key2',
-    x: 600,
-    y: 360,
-    value: 'BACK STREET BOY',
-    color: 'red'
-  },
-  {
-    id: 'key3',
-    x: 600,
-    y: 120,
-    value:
-      'ようやくの思いで笹原を這い出すと向うに大きな池がある。吾輩は池の前に坐ってどうしたらよかろうと考えて見た。別にこれという 分別 （ ふんべつ ） も出ない。',
-    color: 'blue'
-  },
-  {
-    id: 'key4',
-    x: 480,
-    y: 240,
-    value: '適当に遊んで暮らす毎日であります',
-    color: ''
-  }
-]
-
-storiesOf('Card', module).add('Multiple', () => ({
+const CardTester: ComponentOptions<Vue> = {
   components: { Card },
   data: () => {
     return {
@@ -58,6 +14,27 @@ storiesOf('Card', module).add('Multiple', () => ({
       moving: undefined
     }
   },
+  methods: {
+    move(x, y, key) {
+      const self = this as any
+      self.diffX -= x
+      self.diffY -= y
+      self.moving = key
+    },
+    stop() {
+      const self = this as any
+      self.cards = self.cards.map((card: CardInfo) => {
+        return { ...card, x: card.x + self.diffX, y: card.y + self.diffY }
+      })
+      self.diffX = 0
+      self.diffY = 0
+      self.moving = undefined
+    }
+  }
+}
+
+storiesOf('Card', module).add('Multiple', () => ({
+  methods: {},
   template: `<div>
     <Card
       v-for="card in cards"
@@ -74,21 +51,5 @@ storiesOf('Card', module).add('Multiple', () => ({
       :handleStop="stop"
     />
   </div>`,
-  methods: {
-    move(x, y, key) {
-      const self = this as VueWithData
-      self.diffX -= x
-      self.diffY -= y
-      self.moving = key
-    },
-    stop() {
-      const self = this as VueWithData
-      self.cards = self.cards.map((card) => {
-        return { ...card, x: card.x + self.diffX, y: card.y + self.diffY }
-      })
-      self.diffX = 0
-      self.diffY = 0
-      self.moving = undefined
-    }
-  }
+  ...CardTester
 }))
