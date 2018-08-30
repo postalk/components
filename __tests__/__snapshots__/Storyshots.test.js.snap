@@ -1,39 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Storyshots Button Default 1`] = `
-<div
-  class="wrapper"
->
-  <div
-    class="centered"
-  >
-    <div
-      class="wrapper"
-    >
-      <div
-        class="centered"
-      >
-        <button
-          class="button"
-          style="color: rgb(68, 68, 68); border-color: #444;"
-        >
-          Please X!
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
 exports[`Storyshots Card Multiple 1`] = `
 <div>
   <div
-    class="root"
-    style="transform: translate(0px, 0px);"
+    class="cardRoot"
+    style="left: 48px; top: 240px; width: -62px; height: -62px;"
   >
     <div
       class="card"
-      style="transform: translate(48px, 240px); background-color: rgb(253, 249, 155); border-color: #f9f116;"
+      style="background-color: rgb(253, 249, 155); border-color: #f9f116;"
     >
       <ul
         class="list"
@@ -71,12 +46,12 @@ exports[`Storyshots Card Multiple 1`] = `
     <!---->
   </div>
   <div
-    class="root"
-    style="transform: translate(0px, 0px);"
+    class="cardRoot"
+    style="left: 600px; top: 360px; width: -62px; height: -62px;"
   >
     <div
       class="card"
-      style="transform: translate(600px, 360px); background-color: rgb(255, 166, 166); border-color: #f39393;"
+      style="background-color: rgb(255, 166, 166); border-color: #f39393;"
     >
       <h2
         class="headline"
@@ -94,12 +69,12 @@ exports[`Storyshots Card Multiple 1`] = `
     <!---->
   </div>
   <div
-    class="root"
-    style="transform: translate(0px, 0px);"
+    class="cardRoot"
+    style="left: 600px; top: 120px; width: -62px; height: -62px;"
   >
     <div
       class="card"
-      style="transform: translate(600px, 120px); background-color: rgb(156, 232, 232); border-color: #8ee8e8;"
+      style="background-color: rgb(156, 232, 232); border-color: #8ee8e8;"
     >
       <div
         class="text"
@@ -117,12 +92,11 @@ exports[`Storyshots Card Multiple 1`] = `
     <!---->
   </div>
   <div
-    class="root"
-    style="transform: translate(0px, 0px);"
+    class="cardRoot"
+    style="left: 480px; top: 240px; width: -62px; height: -62px;"
   >
     <div
       class="card"
-      style="transform: translate(480px, 240px);"
     >
       <div
         class="text"
@@ -139,6 +113,126 @@ exports[`Storyshots Card Multiple 1`] = `
      
     <!---->
   </div>
+</div>
+`;
+
+exports[`Storyshots Cards Default 1`] = `
+<div
+  class="canvas"
+>
+  <div
+    class="cardRoot"
+    style="left: 48px; top: 240px; width: -62px; height: -62px;"
+  >
+    <div
+      class="card"
+      style="background-color: rgb(253, 249, 155); border-color: #f9f116;"
+    >
+      <ul
+        class="list"
+      >
+        <li
+          class="item"
+        >
+          
+    とんこつラーメン
+  
+        </li>
+        <li
+          class="item"
+        >
+          
+    油そば野菜油増し増しスペシャル
+  
+        </li>
+        <li
+          class="item"
+        >
+          
+    うどん
+  
+        </li>
+      </ul>
+       
+      <textarea
+        class="input input"
+        placeholder="Type something here..."
+        style="resize: none; overflow: hidden; height: 16px;"
+      />
+    </div>
+     
+    <!---->
+  </div>
+  <div
+    class="cardRoot"
+    style="left: 600px; top: 360px; width: -62px; height: -62px;"
+  >
+    <div
+      class="card"
+      style="background-color: rgb(255, 166, 166); border-color: #f39393;"
+    >
+      <h2
+        class="headline"
+      >
+        BACK STREET BOY
+      </h2>
+       
+      <textarea
+        class="input input"
+        placeholder="Type something here..."
+        style="resize: none; overflow: hidden; height: 16px;"
+      />
+    </div>
+     
+    <!---->
+  </div>
+  <div
+    class="cardRoot"
+    style="left: 600px; top: 120px; width: -62px; height: -62px;"
+  >
+    <div
+      class="card"
+      style="background-color: rgb(156, 232, 232); border-color: #8ee8e8;"
+    >
+      <div
+        class="text"
+      >
+        ようやくの思いで笹原を這い出すと向うに大きな池がある。吾輩は池の前に坐ってどうしたらよかろうと考えて見た。別にこれという 分別 （ ふんべつ ） も出ない。
+      </div>
+       
+      <textarea
+        class="input input"
+        placeholder="Type something here..."
+        style="resize: none; overflow: hidden; height: 16px;"
+      />
+    </div>
+     
+    <!---->
+  </div>
+  <div
+    class="cardRoot"
+    style="left: 480px; top: 240px; width: -62px; height: -62px;"
+  >
+    <div
+      class="card"
+    >
+      <div
+        class="text"
+      >
+        適当に遊んで暮らす毎日であります
+      </div>
+       
+      <textarea
+        class="input input"
+        placeholder="Type something here..."
+        style="resize: none; overflow: hidden; height: 16px;"
+      />
+    </div>
+     
+    <!---->
+  </div>
+   
+  <!---->
 </div>
 `;
 
