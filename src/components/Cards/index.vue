@@ -127,9 +127,7 @@ export default class Cards extends Vue {
 
       if (this.$children.length && this.$children.length > 0) {
         const newIds = this.$children
-          .filter(card => {
-            return this.isSelected(card.$el)
-          })
+          .filter(card => this.isSelected(card.$el))
           .map(card => (card as any).id)
 
         if (!e.shiftKey) {
@@ -139,9 +137,7 @@ export default class Cards extends Vue {
 
         this.selectedCardIds = this.selectedCardIds
           .concat(newIds)
-          .filter(function(id, i, self) {
-            return self.indexOf(id) === i
-          })
+          .filter((id, i, self) => self.indexOf(id) === i)
       }
     }
   }

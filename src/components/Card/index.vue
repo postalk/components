@@ -171,7 +171,7 @@ export default class Card extends Vue {
   private isList(str: string): boolean {
     return (
       !!str.match(/\r?\n/) &&
-      str.split(/\r?\n/).filter((s) => !!s.trim()).length > 1
+      str.split(/\r?\n/).filter(s => !!s.trim()).length > 1
     )
   }
 

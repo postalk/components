@@ -1,4 +1,4 @@
-export type CardInfo = {
+export interface CardInfo {
   id: string
   x: number
   y: number
