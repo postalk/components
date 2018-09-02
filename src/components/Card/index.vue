@@ -3,9 +3,7 @@
       v-if="show"
       :class="{
         cardRoot: true,
-        isGrabbing: grabbing,
         isMoving: moving && moving !== id,
-        isFocusing: focusing,
         isSelected: selected
       }"
       :style="{
@@ -32,37 +30,28 @@
         <div class="text" v-else>{{ value }}</div>
         <Input 
           class="input" 
-          :handleSubmit="submit"
-          :handleCancel="cancel"
-          :handleFocus="focus"
           :initial="value"
-          :disabled="(moving && moving !== id) || grabbing || disabled"
+          :disabled="!!moving || disabled"
+          :handleSubmit="submit"
         />
       </div>
-      <VueDraggableResizable 
-        class="draggable"
-        :style="{
-          transform: `translate(${-1 * x}px,${-1 * y}px)`
-        }"
-        v-if="width > 0 && height > 0"
-        :resizable="false"
-        :grid="[24,24]"
-        :w="width"
-        :h="height"
-        :x="x - 32"
-        :y="y - 32"
-        @dragging="onDragging"
-        @dragstop="onDragstop"
+      <Drag
+        :width="width"
+        :height="height"
+        :x="x"
+        :y="y"
+        :onDragging="onDragging"
+        :onDragStop="handleStop"
       />
     </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import VueDraggableResizable from 'vue-draggable-resizable'
 import Input from '@/components/Input/index.vue'
 import Headline from './headline.vue'
 import List from './list.vue'
+import Drag from './drag.vue'
 import {
   yellow,
   yellowB,
@@ -78,17 +67,26 @@ import {
     Headline,
     List,
     Input,
-    VueDraggableResizable
+    Drag
   },
   watch: {
     moving(newVal, oldVal) {
       if (oldVal && !newVal) {
         this.rerender()
       }
+    },
+    value(newVal, oldVal) {
+      if (oldVal !== newVal) {
+        this.$nextTick(() => {
+          this.matchBoundRect()
+          this.rerender()
+        })
+      }
     }
   }
 })
 export default class Card extends Vue {
+
   @Prop() public diffX!: number
   @Prop() public diffY!: number
   @Prop() public moving!: string | undefined
@@ -100,17 +98,18 @@ export default class Card extends Vue {
   @Prop() private initialX!: number
   @Prop() private initialY!: number
   @Prop() private color!: string
+
   @Prop() private handleMove!: (x: number, y: number, id: string) => void
   @Prop() private handleStop!: () => void
   @Prop() private handleStart!: (id: string) => void
+  @Prop() private handleUpdate!: (id: string, value: string) => void
+  @Prop() private handleRemove!: (id: string) => void
 
   private show: boolean = true
   private x: number = this.initialX
   private y: number = this.initialY
   private width: number = 0
   private height: number = 0
-  private grabbing: boolean = false
-  private focusing: boolean = false
   private selectColor: string = selectColor
 
   private mounted() {
@@ -132,34 +131,23 @@ export default class Card extends Vue {
     })
   }
 
-  private submit(): void {
-    this.focusing = false
-  }
-
-  private cancel(): void {
-    this.focusing = false
-  }
-
-  private focus(): void {
-    this.focusing = true
+  private submit(value: string): void {
+    if (!value) {
+      this.handleRemove(this.id)
+      return
+    }
+    this.handleUpdate(this.id, value)
   }
 
   private onDragging(x: number, y: number): void {
-    if (!this.grabbing) {
-      this.grabbing = true
+    if (!this.moving) {
       this.handleStart(this.id)
-      return
     }
     const diffX = this.x - x - 32
     const diffY = this.y - y - 32
     this.x = x + 32
     this.y = y + 32
     this.handleMove(diffX, diffY, this.id)
-  }
-
-  private onDragstop(): void {
-    this.grabbing = false
-    this.handleStop()
   }
 
   private isHeadline(str: string): boolean {
@@ -169,10 +157,7 @@ export default class Card extends Vue {
   }
 
   private isList(str: string): boolean {
-    return (
-      !!str.match(/\r?\n/) &&
-      str.split(/\r?\n/).filter(s => !!s.trim()).length > 1
-    )
+    return !!str.match(/\r?\n/)
   }
 
   private getColor(): {
@@ -203,17 +188,6 @@ export default class Card extends Vue {
   height: 0;
   position: absolute;
   z-index: 0;
-  &.isGrabbing {
-    .draggable {
-      cursor: grabbing;
-      opacity: 1;
-    }
-  }
-  &.isFocusing {
-    .card {
-      overflow: visible;
-    }
-  }
   &.isMoving {
     .draggable {
       opacity: 0;
@@ -231,7 +205,6 @@ export default class Card extends Vue {
   padding: 0.5rem;
   z-index: 2;
   user-select: none;
-  overflow: hidden;
 }
 
 .text {
@@ -246,15 +219,5 @@ export default class Card extends Vue {
   position: absolute;
   top: 0;
   left: 0;
-}
-
-.draggable {
-  opacity: 0;
-  background-size: 7px 7px;
-  background-image: url("data:image/svg+xml,%3Csvg width='14' height='14' viewBox='0 0 14 14' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h1v1H0zm1 0h1v1H1zM0 1h1v1H0zm1 12h1v1H1zm1-1h1v1H2zm1-1h1v1H3zm1-1h1v1H4zm1-1h1v1H5zm-3 4h1v1H2zm1-1h1v1H3zm1-1h1v1H4zm1-1h1v1H5zm1-2h1v1H6zm0 1h1v1H6zm1-2h1v1H7zm0 1h1v1H7zm1-2h1v1H8zm0 1h1v1H8zm1-2h1v1H9zm0 1h1v1H9zm1-2h1v1h-1zm0 1h1v1h-1zm1-2h1v1h-1zm0 1h1v1h-1zm1-2h1v1h-1zm0 1h1v1h-1zm1-2h1v1h-1zm0 1h1v1h-1z' fill='%23D8D8D8' fill-rule='evenodd'/%3E%3C/svg%3E");
-  cursor: grab;
-  &:hover {
-    opacity: 1;
-  }
 }
 </style>

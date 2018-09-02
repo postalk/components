@@ -4,13 +4,16 @@
     placeholder="Type something here..."
     v-model="value"
     v-focus="editing"
-    :min-height="16"
+    :min-height="30"
     :max-height="500"
     :disabled="disabled"
     @blur.native="doneEdit"
     @keypress.native.enter="onEnter"
     @keydown.native.esc="onEsc"
     @focus.native="onFocus"
+    @keydown.native="stopKeyEvent"
+    @keyup.native="stopKeyEvent"
+    @keypress="stopKeyEvent"
   ></textarea-autosize>
 </template>
 
@@ -44,8 +47,6 @@ Vue.use(VueTextareaAutosize)
 })
 export default class Input extends Vue {
   @Prop() private handleSubmit!: (text: string) => void
-  @Prop() private handleCancel!: () => void
-  @Prop() private handleFocus!: () => void
   @Prop({ default: '' })
   private initial!: string
   @Prop({ default: false })
@@ -56,13 +57,22 @@ export default class Input extends Vue {
   private isCancel: boolean = false
 
   private doneEdit(): void {
-    if (this.isCancel || !this.value || this.initial === this.value) {
-      this.handleCancel()
+    if (this.isCancel || this.initial === this.value) {
       this.isCancel = false
       return
     }
+    if (this.value.match(/\r?\n/)) {
+      this.value = this.value
+        .split(/\r?\n/)
+        .map(s => s.trim())
+        .filter(s => s)
+        .join('\n')
+    } else {
+      this.value = this.value.trim()
+    }
     this.handleSubmit(this.value)
   }
+
   private onEnter(e: KeyboardEvent): void {
     if (e.shiftKey) {
       return
@@ -78,7 +88,10 @@ export default class Input extends Vue {
 
   private onFocus(): void {
     this.editing = true
-    this.handleFocus()
+  }
+
+  private stopKeyEvent(e: KeyboardEvent): void {
+    e.stopPropagation()
   }
 }
 </script>
@@ -93,6 +106,9 @@ export default class Input extends Vue {
   background-color: #fff;
   position: relative;
   padding: 0.5rem;
+  &:not(:focus) {
+    height: 100% !important;
+  }
   &:focus {
     border: #3098db;
   }
