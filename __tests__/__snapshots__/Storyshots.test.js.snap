@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Storyshots Card Multiple 1`] = `
+exports[`Storyshots Card Default 1`] = `
 <div>
   <div
     class="cardRoot"
@@ -39,75 +39,7 @@ exports[`Storyshots Card Multiple 1`] = `
       <textarea
         class="input input"
         placeholder="Type something here..."
-        style="resize: none; overflow: hidden; height: 16px;"
-      />
-    </div>
-     
-    <!---->
-  </div>
-  <div
-    class="cardRoot"
-    style="left: 600px; top: 360px; width: -62px; height: -62px;"
-  >
-    <div
-      class="card"
-      style="background-color: rgb(255, 166, 166); border-color: #f39393;"
-    >
-      <h2
-        class="headline"
-      >
-        BACK STREET BOY
-      </h2>
-       
-      <textarea
-        class="input input"
-        placeholder="Type something here..."
-        style="resize: none; overflow: hidden; height: 16px;"
-      />
-    </div>
-     
-    <!---->
-  </div>
-  <div
-    class="cardRoot"
-    style="left: 600px; top: 120px; width: -62px; height: -62px;"
-  >
-    <div
-      class="card"
-      style="background-color: rgb(156, 232, 232); border-color: #8ee8e8;"
-    >
-      <div
-        class="text"
-      >
-        ようやくの思いで笹原を這い出すと向うに大きな池がある。吾輩は池の前に坐ってどうしたらよかろうと考えて見た。別にこれという 分別 （ ふんべつ ） も出ない。
-      </div>
-       
-      <textarea
-        class="input input"
-        placeholder="Type something here..."
-        style="resize: none; overflow: hidden; height: 16px;"
-      />
-    </div>
-     
-    <!---->
-  </div>
-  <div
-    class="cardRoot"
-    style="left: 480px; top: 240px; width: -62px; height: -62px;"
-  >
-    <div
-      class="card"
-    >
-      <div
-        class="text"
-      >
-        適当に遊んで暮らす毎日であります
-      </div>
-       
-      <textarea
-        class="input input"
-        placeholder="Type something here..."
-        style="resize: none; overflow: hidden; height: 16px;"
+        style="resize: none; overflow: hidden; height: 30px;"
       />
     </div>
      
@@ -157,7 +89,7 @@ exports[`Storyshots Cards Default 1`] = `
       <textarea
         class="input input"
         placeholder="Type something here..."
-        style="resize: none; overflow: hidden; height: 16px;"
+        style="resize: none; overflow: hidden; height: 30px;"
       />
     </div>
      
@@ -180,7 +112,7 @@ exports[`Storyshots Cards Default 1`] = `
       <textarea
         class="input input"
         placeholder="Type something here..."
-        style="resize: none; overflow: hidden; height: 16px;"
+        style="resize: none; overflow: hidden; height: 30px;"
       />
     </div>
      
@@ -203,7 +135,7 @@ exports[`Storyshots Cards Default 1`] = `
       <textarea
         class="input input"
         placeholder="Type something here..."
-        style="resize: none; overflow: hidden; height: 16px;"
+        style="resize: none; overflow: hidden; height: 30px;"
       />
     </div>
      
@@ -225,7 +157,7 @@ exports[`Storyshots Cards Default 1`] = `
       <textarea
         class="input input"
         placeholder="Type something here..."
-        style="resize: none; overflow: hidden; height: 16px;"
+        style="resize: none; overflow: hidden; height: 30px;"
       />
     </div>
      
@@ -267,7 +199,7 @@ exports[`Storyshots Input Default 1`] = `
           <textarea
             class="input"
             placeholder="Type something here..."
-            style="resize: none; overflow: hidden; height: 16px;"
+            style="resize: none; overflow: hidden; height: 30px;"
           />
         </div>
       </div>
