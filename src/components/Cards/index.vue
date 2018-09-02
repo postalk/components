@@ -21,6 +21,8 @@
       :handleMove="onMove"
       :handleStop="onStop"
       :handleStart="onStart"
+      :handleUpdate="onUpdate"
+      :handleRemove="onRemove"
     />
     <div
       v-if="selectStartX !== 0 || selectStartY !== 0"
@@ -49,6 +51,15 @@ export default class Cards extends Vue {
   @Prop({ default: [] })
   private cards!: CardInfo[]
 
+  @Prop()
+  private handleStop!: (
+    updateCardIds: string[],
+    diffX: number,
+    diffY: number
+  ) => void
+  @Prop() private handleUpdate!: (id: string, value: string) => void
+  @Prop() private handleRemove!: (id: string) => void
+
   private diffX: number = 0
   private diffY: number = 0
   private moving: string = ''
@@ -59,7 +70,6 @@ export default class Cards extends Vue {
   private selectH: number = 0
   private selectX: number = 0
   private selectY: number = 0
-
   private selectedCardIds: string[] = []
 
   private onMove(x: number, y: number, key: string): void {
@@ -69,6 +79,8 @@ export default class Cards extends Vue {
   }
 
   private onStop(): void {
+    this.handleStop(this.selectedCardIds, this.diffX, this.diffY)
+
     this.diffX = 0
     this.diffY = 0
     this.moving = ''
@@ -77,11 +89,19 @@ export default class Cards extends Vue {
   private onStart(id: string): void {
     if (!this.selectedCardIds.includes(id)) {
       this.selectedCardIds = [id]
-      this.selectStartX = 0
-      this.selectStartY = 0
-      this.selectW = 0
-      this.selectH = 0
     }
+    this.selectStartX = 0
+    this.selectStartY = 0
+    this.selectW = 0
+    this.selectH = 0
+  }
+
+  private onUpdate(id: string, value: string): void {
+    this.handleUpdate(id, value)
+  }
+
+  private onRemove(id: string): void {
+    this.handleRemove(id)
   }
 
   private startSelect(e: MouseEvent): void {
@@ -97,14 +117,12 @@ export default class Cards extends Vue {
     if (this.selectStartX === 0 && this.selectStartY === 0) {
       return
     }
-
     this.selectW = Math.abs(this.selectStartX - e.pageX)
     this.selectH = Math.abs(this.selectStartY - e.pageY)
 
     if (e.pageX < this.selectStartX) {
       this.selectX = e.pageX
     }
-
     if (e.pageY < this.selectStartY) {
       this.selectY = e.pageY
     }

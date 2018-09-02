@@ -13,11 +13,13 @@ storiesOf('Input', module)
       }
     },
     template: `<div style="width: 300px">
-        <Input :handleSubmit="submit" :handleCancel="cancel" :handleFocus="focus" :initial="value" />
+        <Input
+          :initial="value"
+          :disabled="false"
+          :handleSubmit="submit"
+        />
       </div>`,
     methods: {
-      submit: action('Submit!'),
-      cancel: action('Cancel!'),
-      focus: action('Focus!')
+      submit: action('Submit!')
     }
   }))
