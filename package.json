@@ -34,7 +34,7 @@
     "sass-loader": "7.1.0",
     "ts-jest": "23.1.4",
     "typescript": "3.0.3",
-    "vue-cli-plugin-storybook": "0.4.4",
+    "vue-cli-plugin-storybook": "0.4.6",
     "vue-template-compiler": "2.5.17"
   },
   "gitHooks": {
