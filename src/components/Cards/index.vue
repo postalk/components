@@ -105,6 +105,11 @@ export default class Cards extends Vue {
   }
 
   private startSelect(e: MouseEvent): void {
+    const isCanvas =
+      e && e.target && (e.target as Element).className.match(/canvas/)
+    if (!isCanvas) {
+      return
+    }
     this.selectStartX = e.pageX
     this.selectStartY = e.pageY
     this.selectX = e.pageX
@@ -129,7 +134,7 @@ export default class Cards extends Vue {
   }
 
   private selectElement(e: MouseEvent) {
-    const isCanvasMouseUp =
+    const isCanvas =
       e && e.target && (e.target as Element).className.match(/canvas/)
     if (
       !(
@@ -138,7 +143,7 @@ export default class Cards extends Vue {
         this.selectStartY === 0 &&
         this.selectStartX === 0
       ) ||
-      isCanvasMouseUp
+      isCanvas
     ) {
       this.selectStartX = 0
       this.selectStartY = 0

@@ -207,3 +207,7 @@ exports[`Storyshots Input Default 1`] = `
   </div>
 </div>
 `;
+
+exports[`Storyshots Shortcuts Default 1`] = `<div />`;
+
+exports[`Storyshots Shortcuts Selected 1`] = `<div />`;
