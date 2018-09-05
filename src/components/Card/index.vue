@@ -86,7 +86,6 @@ import {
   }
 })
 export default class Card extends Vue {
-
   @Prop() public diffX!: number
   @Prop() public diffY!: number
   @Prop() public moving!: string | undefined
@@ -184,7 +183,7 @@ export default class Card extends Vue {
 
 <style scoped lang="scss">
 .cardRoot {
-  width: 12rem;
+  width: calc(12rem - 2px);
   height: 0;
   position: absolute;
   z-index: 0;
