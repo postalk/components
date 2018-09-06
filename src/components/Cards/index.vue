@@ -34,23 +34,46 @@
         left: `${selectX}px`
       }"
     />
+    <div
+      v-if="markerX !== 0 && markerY !== 0"
+      class="marker"
+      :style="{
+        top: `${markerY}px`,
+        left: `${markerX}px`
+      }"
+    />
+    <Shortcuts
+      :selectedIds="selectedCardIds"
+      :onClearSelected="clearSelected"
+      :onRemoveSelected="removeSelected"
+      :onMoveSelected="()=>{}"
+      :onChangeColor="()=>{}"
+      :onSelectAll="selectAll"
+      :onUndo="()=>{}"
+      :onNewCard="newCard"
+      :onClearMarker="clearMarker"
+      :onCreateMarker="createMarker"
+    />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import Card from '../Card/index.vue'
+import Shortcuts from '../Shortcuts/index.vue'
 import { CardInfo } from '@/components/types'
 
 @Component<Cards>({
   components: {
-    Card
+    Card,
+    Shortcuts
   }
 })
 export default class Cards extends Vue {
   @Prop({ default: [] })
   private cards!: CardInfo[]
 
+  @Prop() private handleNew!: (x: number, y: number) => void
   @Prop()
   private handleStop!: (
     updateCardIds: string[],
@@ -58,7 +81,7 @@ export default class Cards extends Vue {
     diffY: number
   ) => void
   @Prop() private handleUpdate!: (id: string, value: string) => void
-  @Prop() private handleRemove!: (id: string) => void
+  @Prop() private handleRemove!: (ids: string[]) => void
 
   private diffX: number = 0
   private diffY: number = 0
@@ -71,6 +94,9 @@ export default class Cards extends Vue {
   private selectX: number = 0
   private selectY: number = 0
   private selectedCardIds: string[] = []
+
+  private markerX: number = 0
+  private markerY: number = 0
 
   private onMove(x: number, y: number, key: string): void {
     this.diffX -= x
@@ -101,7 +127,7 @@ export default class Cards extends Vue {
   }
 
   private onRemove(id: string): void {
-    this.handleRemove(id)
+    this.handleRemove([id])
   }
 
   private startSelect(e: MouseEvent): void {
@@ -110,6 +136,7 @@ export default class Cards extends Vue {
     if (!isCanvas) {
       return
     }
+    this.clearMarker()
     this.selectStartX = e.pageX
     this.selectStartY = e.pageY
     this.selectX = e.pageX
@@ -165,6 +192,39 @@ export default class Cards extends Vue {
     }
   }
 
+  private createMarker({ top, left }: { top: number; left: number }) {
+    this.selectedCardIds = []
+    this.markerX =
+      Math.floor((window.innerWidth - 16 * 6) / 10 * left / 24) * 24 + 8
+    this.markerY =
+      Math.floor((window.innerHeight - 7 * 3) / 4 * top / 24) * 24 + 8
+  }
+
+  private clearMarker() {
+    this.markerX = 0
+    this.markerY = 0
+  }
+
+  private newCard() {
+    if (this.markerX === 0 || this.markerY === 0) {
+      return
+    }
+    this.handleNew(this.markerX, this.markerY)
+    this.clearMarker()
+  }
+
+  private removeSelected() {
+    this.handleRemove(this.selectedCardIds)
+  }
+
+  private selectAll() {
+    this.selectedCardIds = this.cards.map(c => c.id)
+  }
+
+  private clearSelected() {
+    this.selectedCardIds = []
+  }
+
   private isSelected(el: HTMLElement) {
     return (
       this.selectX <= el.offsetLeft + el.clientWidth &&
@@ -181,8 +241,30 @@ export default class Cards extends Vue {
   width: 100%;
   height: 100%;
 }
+
 .selector {
   position: absolute;
   background: rgba(0, 0, 0, 0.2);
+}
+
+.marker {
+  width: 12rem;
+  height: 7rem;
+  position: absolute;
+  overflow: hidden;
+  border: 4px solid rgba(#c3d8dd, 0.5);
+  box-shadow: 0 0 0 0 rgba(#c3d8dd, 0.5);
+  animation: pulse 0.6s infinite;
+}
+
+@keyframes pulse {
+  0% {
+  }
+  99% {
+    box-shadow: 0 0 0 8px rgba(#c3d8dd, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(#c3d8dd, 0);
+  }
 }
 </style>

@@ -22,7 +22,8 @@
             : undefined,
           'background-color': getColor()['background-color'],
           'border-color': selected ? selectColor : getColor()['border-color'],
-          'outline': selected ? `solid 1px ${selectColor}` : undefined
+          'outline': selected ? `solid 1px ${selectColor}` : undefined,
+          'min-height': !value ? '60px' : undefined
         }"
       >
         <List :txt="value" v-if="isList(value)" />
@@ -33,6 +34,7 @@
           :initial="value"
           :disabled="!!moving || disabled"
           :handleSubmit="submit"
+          :isNew="id.match(/^new\-/)"
         />
       </div>
       <Drag
