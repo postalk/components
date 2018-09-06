@@ -30,7 +30,8 @@ import {
   SELECT_ALL,
   UNDO,
   CHANGE_COLOR,
-  CLEAR_MARKER
+  CLEAR_MARKER,
+  MOVE_MARKER
 } from './actions'
 import keyboardMap from './map'
 
@@ -40,18 +41,13 @@ export default class Shortcuts extends Vue {
 
   @Prop() private onClearSelected!: () => void
   @Prop() private onRemoveSelected!: () => void
-  @Prop()
-  private onMoveSelected!: (
-    { top, left }: { top: number; left: number }
-  ) => void
+  @Prop() private onMoveSelected!: (left: number, top: number) => void
   @Prop() private onChangeColor!: (color: string) => void
   @Prop() private onSelectAll!: () => void
   @Prop() private onUndo!: () => void
   @Prop() private onNewCard!: () => void
-  @Prop()
-  private onCreateMarker!: (
-    { top, left }: { top: number; left: number }
-  ) => void
+  @Prop() private onCreateMarker!: (left: number, top: number) => void
+  @Prop() private onMoveMarker!: (left: number, top: number) => void
   @Prop() private onClearMarker!: () => void
 
   private created() {
@@ -80,7 +76,7 @@ export default class Shortcuts extends Vue {
         case keyCode === ARROW.RIGHT:
           return {
             type: MOVE_SELECTED,
-            direction: this.getDirection(keyCode)
+            direction: this.getDirection(keyCode, withShift)
           }
         case keyCode === ONE:
         case keyCode === TWO:
@@ -96,6 +92,14 @@ export default class Shortcuts extends Vue {
       case keyCode === ESCAPE:
         return {
           type: CLEAR_MARKER
+        }
+      case keyCode === ARROW.UP:
+      case keyCode === ARROW.DOWN:
+      case keyCode === ARROW.LEFT:
+      case keyCode === ARROW.RIGHT:
+        return {
+          type: MOVE_MARKER,
+          direction: this.getDirection(keyCode, withShift)
         }
       case keyCode === A && withMeta:
         return {
@@ -144,10 +148,10 @@ export default class Shortcuts extends Vue {
         this.onRemoveSelected()
         return
       case MOVE_SELECTED:
-        this.onMoveSelected({
-          top: action.direction ? action.direction.top * 24 : 0,
-          left: action.direction ? action.direction.left * 24 : 0
-        })
+        this.onMoveSelected(
+          action.direction ? action.direction.left * 24 : 0,
+          action.direction ? action.direction.top * 24 : 0
+        )
         return
       case CHANGE_COLOR:
         this.onChangeColor(
@@ -167,22 +171,33 @@ export default class Shortcuts extends Vue {
       case NEW_CARD:
         this.onNewCard()
         return
+      case MOVE_MARKER:
+        this.onMoveMarker(
+          action.direction ? action.direction.left * 24 : 0,
+          action.direction ? action.direction.top * 24 : 0
+        )
+        return
       case CLEAR_MARKER:
         this.onClearMarker()
         return
       case CREATE_MARKER:
-        this.onCreateMarker({
-          top: action.position ? Number(action.position.slice(0, 1)) : 0,
-          left: action.position ? Number(action.position.slice(-1)) : 0
-        })
+        this.onCreateMarker(
+          action.position ? Number(action.position.slice(-1)) : 0,
+          action.position ? Number(action.position.slice(0, 1)) : 0
+        )
         return
     }
   }
 
-  private getDirection(keyCode: number) {
+  private getDirection(keyCode: number, withShift: boolean) {
+    const scale = withShift ? 3 : 1
     return {
-      top: keyCode === ARROW.UP ? -1 : keyCode === ARROW.DOWN ? 1 : 0,
-      left: keyCode === ARROW.LEFT ? -1 : keyCode === ARROW.RIGHT ? 1 : 0
+      top:
+        keyCode === ARROW.UP ? -1 * scale : keyCode === ARROW.DOWN ? scale : 0,
+      left:
+        keyCode === ARROW.LEFT
+          ? -1 * scale
+          : keyCode === ARROW.RIGHT ? scale : 0
     }
   }
 

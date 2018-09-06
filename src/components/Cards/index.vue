@@ -4,6 +4,7 @@
     @mousedown.left="startSelect"
     @mousemove="openSelector"
     @mouseup="selectElement"
+    @click="onClick"
   >
     <Card
       v-for="card in cards"
@@ -51,6 +52,7 @@
       :onSelectAll="selectAll"
       :onUndo="()=>{}"
       :onNewCard="newCard"
+      :onMoveMarker="moveMarker"
       :onClearMarker="clearMarker"
       :onCreateMarker="createMarker"
     />
@@ -161,43 +163,51 @@ export default class Cards extends Vue {
   }
 
   private selectElement(e: MouseEvent) {
-    const isCanvas =
-      e && e.target && (e.target as Element).className.match(/canvas/)
+    const isCanvas = (e.target as Element).className.match(/canvas/)
+
     if (
-      !(
-        this.selectW === 0 &&
-        this.selectH === 0 &&
-        this.selectStartY === 0 &&
-        this.selectStartX === 0
-      ) ||
-      isCanvas
+      this.selectW === 0 &&
+      this.selectH === 0 &&
+      this.selectStartY === 0 &&
+      this.selectStartX === 0 &&
+      !isCanvas
     ) {
-      this.selectStartX = 0
-      this.selectStartY = 0
+      return
+    }
 
-      if (this.$children.length && this.$children.length > 0) {
-        const newIds = this.$children
-          .filter(card => this.isSelected(card.$el))
-          .map(card => (card as any).id)
+    this.selectStartX = 0
+    this.selectStartY = 0
 
-        if (!e.shiftKey) {
-          this.selectedCardIds = newIds
-          return
-        }
+    if (this.$children.length && this.$children.length > 0) {
+      const newIds = this.$children
+        .filter(card => this.isSelected(card.$el))
+        .map(card => (card as any).id)
 
-        this.selectedCardIds = this.selectedCardIds
-          .concat(newIds)
-          .filter((id, i, self) => self.indexOf(id) === i)
+      if (!e.shiftKey) {
+        this.selectedCardIds = newIds
+        return
       }
+
+      this.selectedCardIds = this.selectedCardIds
+        .concat(newIds)
+        .filter((id, i, self) => self.indexOf(id) === i)
     }
   }
 
-  private createMarker({ top, left }: { top: number; left: number }) {
+  private onClick(e: MouseEvent) {
+    const isDraggable = (e.target as Element).className.match(/draggable/)
+    if (isDraggable) {
+      const id = ((e.target as Element).parentElement as Element).id
+      this.selectedCardIds = [id]
+    }
+  }
+
+  private createMarker(x: number, y: number) {
     this.selectedCardIds = []
     this.markerX =
-      Math.floor((window.innerWidth - 16 * 6) / 10 * left / 24) * 24 + 8
+      Math.floor((window.innerWidth - 16 * 6) / 10 * x / 24) * 24 + 8
     this.markerY =
-      Math.floor((window.innerHeight - 7 * 3) / 4 * top / 24) * 24 + 8
+      Math.floor((window.innerHeight - 7 * 3) / 4 * y / 24) * 24 + 8
   }
 
   private clearMarker() {
@@ -223,6 +233,14 @@ export default class Cards extends Vue {
 
   private clearSelected() {
     this.selectedCardIds = []
+  }
+
+  private moveMarker(x: number, y: number) {
+    if (this.markerX === 0 || this.markerY === 0) {
+      return
+    }
+    this.markerX += x
+    this.markerY += y
   }
 
   private isSelected(el: HTMLElement) {

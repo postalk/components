@@ -12,6 +12,7 @@
         width: `${width - 32 * 2 + 2}px`,
         height: `${height - 32 * 2 + 2}px`
       }"
+      :id="id"
     >
       <div 
         ref="card"
