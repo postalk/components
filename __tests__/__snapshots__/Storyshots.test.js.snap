@@ -4,6 +4,7 @@ exports[`Storyshots Card Default 1`] = `
 <div>
   <div
     class="cardRoot"
+    id="key1"
     style="left: 48px; top: 240px; width: -62px; height: -62px;"
   >
     <div
@@ -54,6 +55,7 @@ exports[`Storyshots Cards Default 1`] = `
 >
   <div
     class="cardRoot"
+    id="key1"
     style="left: 48px; top: 240px; width: -62px; height: -62px;"
   >
     <div
@@ -97,6 +99,7 @@ exports[`Storyshots Cards Default 1`] = `
   </div>
   <div
     class="cardRoot"
+    id="key2"
     style="left: 600px; top: 360px; width: -62px; height: -62px;"
   >
     <div
@@ -120,6 +123,7 @@ exports[`Storyshots Cards Default 1`] = `
   </div>
   <div
     class="cardRoot"
+    id="key3"
     style="left: 600px; top: 120px; width: -62px; height: -62px;"
   >
     <div
@@ -143,6 +147,7 @@ exports[`Storyshots Cards Default 1`] = `
   </div>
   <div
     class="cardRoot"
+    id="key4"
     style="left: 480px; top: 240px; width: -62px; height: -62px;"
   >
     <div
