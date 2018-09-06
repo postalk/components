@@ -1,5 +1,6 @@
 <template>
   <textarea-autosize
+    ref="input"
     class="input"
     placeholder="Type something here..."
     v-model="value"
@@ -51,10 +52,21 @@ export default class Input extends Vue {
   private initial!: string
   @Prop({ default: false })
   private disabled!: boolean
+  @Prop({ default: false })
+  private isNew!: boolean
 
   private value: string = this.initial
   private editing: boolean = false
   private isCancel: boolean = false
+
+  private mounted() {
+    if (this.isNew) {
+      this.$nextTick(() => {
+        const input = this.$refs.input as Vue
+        input.$el.focus()
+      })
+    }
+  }
 
   private doneEdit(): void {
     if (this.isCancel || this.initial === this.value) {
@@ -74,10 +86,12 @@ export default class Input extends Vue {
   }
 
   private onEnter(e: KeyboardEvent): void {
-    if (e.shiftKey) {
+    if (!e.shiftKey) {
+      e.preventDefault()
+    }
+    if (e.shiftKey || !this.value) {
       return
     }
-    e.preventDefault()
     this.editing = false
   }
 

@@ -29,7 +29,8 @@ import {
   MOVE_SELECTED,
   SELECT_ALL,
   UNDO,
-  CHANGE_COLOR
+  CHANGE_COLOR,
+  CLEAR_MARKER
 } from './actions'
 import keyboardMap from './map'
 
@@ -51,6 +52,7 @@ export default class Shortcuts extends Vue {
   private onCreateMarker!: (
     { top, left }: { top: number; left: number }
   ) => void
+  @Prop() private onClearMarker!: () => void
 
   private created() {
     window.addEventListener('keydown', this.handler)
@@ -91,6 +93,10 @@ export default class Shortcuts extends Vue {
       }
     }
     switch (true) {
+      case keyCode === ESCAPE:
+        return {
+          type: CLEAR_MARKER
+        }
       case keyCode === A && withMeta:
         return {
           type: SELECT_ALL
@@ -160,6 +166,9 @@ export default class Shortcuts extends Vue {
         return
       case NEW_CARD:
         this.onNewCard()
+        return
+      case CLEAR_MARKER:
+        this.onClearMarker()
         return
       case CREATE_MARKER:
         this.onCreateMarker({

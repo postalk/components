@@ -30,13 +30,43 @@ const SelectTester: ComponentOptions<Vue> = {
     },
     update(id, value) {
       const self = this as any
-      self.cards = self.cards.map(
-        (card: CardInfo) => (card.id === id ? { ...card, value } : card)
-      )
+      self.cards = self.cards.map((card: CardInfo) => {
+        if (card.id === id) {
+          return id.match(/^new\-/)
+            ? {
+                ...card,
+                id: 'key' + self.cards.length,
+                value
+              }
+            : { ...card, value }
+        }
+        return card
+      })
     },
-    remove(id) {
+    remove(ids) {
       const self = this as any
-      self.cards = self.cards.filter((card: CardInfo) => card.id !== id)
+      self.cards = self.cards.filter((card: CardInfo) => !ids.includes(card.id))
+    },
+    newCard(x, y) {
+      const self = this as any
+
+      self.cards = self.cards.filter(
+        (card: CardInfo) => !card.id.match(/^new\-/)
+      )
+
+      const c = 'abcdefghijklmnopqrstuvwxyz0123456789'
+      let r = ''
+      for (let i = 0; i < 8; i++) {
+        r += c[Math.floor(Math.random() * c.length)]
+      }
+
+      self.cards.push({
+        id: 'new-' + r,
+        x,
+        y,
+        value: '',
+        color: 'white'
+      })
     }
   }
 }
@@ -45,6 +75,7 @@ storiesOf('Cards', module).add('Default', () => ({
   methods: {},
   template: `<Cards
     :cards="cards"
+    :handleNew="newCard"
     :handleStop="stop"
     :handleUpdate="update"
     :handleRemove="remove"
