@@ -195,9 +195,10 @@ export default class Cards extends Vue {
   }
 
   private onClick(e: MouseEvent) {
-    const isDraggable = (e.target as Element).className.match(/draggable/)
+    const isDraggable = (e.target as Element).className.match(/drag/)
     if (isDraggable) {
-      const id = ((e.target as Element).parentElement as Element).id
+      const id = (((e.target as Element).parentElement as Element)
+        .parentElement as Element).id
       this.selectedCardIds = [id]
     }
   }

@@ -10,13 +10,45 @@
     v-if="width > 0 && height > 0"
     :resizable="false"
     :grid="[24,24]"
-    :w="width"
-    :h="height"
     :x="x - 32"
     :y="y - 32"
     @dragging="onMove"
     @dragstop="onStop"
+    drag-handle=".drag"
+  >
+  <div 
+    class="drag top"
+    :style="{
+      width: `${width}px`,
+      height: `${32 + 8}px`
+    }"
   />
+  <div 
+    class="drag bottm"
+    :style="{
+      width: `${width}px`,
+      height: `${32 + 8}px`,
+      top: `${height - 32 - 8}px`
+    }"
+  />
+  <div 
+    class="drag left"
+    :style="{
+      width: `${32 + 8}px`,
+      height: `${height - 32 * 2 - 8 * 2}px`,
+      top: `${32 + 8}px`
+    }"
+  />
+  <div 
+    class="drag right"
+    :style="{
+      width: `${32 + 8}px`,
+      height: `${height - 32 * 2 - 8 * 2}px`,
+      top: `${32 + 8}px`,
+      left: `${width - 32 - 8}px`
+    }"
+  />
+  </VueDraggableResizable>
 </template>
 
 <script lang="ts">
@@ -53,13 +85,25 @@ export default class Drag extends Vue {
 
 <style scoped lang="scss">
 .draggable {
+  z-index: 3 !important;
   opacity: 0;
-  background-size: 7px 7px;
-  background-image: url("data:image/svg+xml,%3Csvg width='14' height='14' viewBox='0 0 14 14' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h1v1H0zm1 0h1v1H1zM0 1h1v1H0zm1 12h1v1H1zm1-1h1v1H2zm1-1h1v1H3zm1-1h1v1H4zm1-1h1v1H5zm-3 4h1v1H2zm1-1h1v1H3zm1-1h1v1H4zm1-1h1v1H5zm1-2h1v1H6zm0 1h1v1H6zm1-2h1v1H7zm0 1h1v1H7zm1-2h1v1H8zm0 1h1v1H8zm1-2h1v1H9zm0 1h1v1H9zm1-2h1v1h-1zm0 1h1v1h-1zm1-2h1v1h-1zm0 1h1v1h-1zm1-2h1v1h-1zm0 1h1v1h-1zm1-2h1v1h-1zm0 1h1v1h-1z' fill='%23D8D8D8' fill-rule='evenodd'/%3E%3C/svg%3E");
+  width: 0 !important;
+  height: 0 !important;
   cursor: grab;
   &:hover,
   &.isDragging {
     opacity: 1;
+  }
+}
+.drag {
+  position: absolute;
+  background-size: 7px 7px;
+  background-image: url("data:image/svg+xml,%3Csvg width='14' height='14' viewBox='0 0 14 14' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h1v1H0zm1 0h1v1H1zM0 1h1v1H0zm1 12h1v1H1zm1-1h1v1H2zm1-1h1v1H3zm1-1h1v1H4zm1-1h1v1H5zm-3 4h1v1H2zm1-1h1v1H3zm1-1h1v1H4zm1-1h1v1H5zm1-2h1v1H6zm0 1h1v1H6zm1-2h1v1H7zm0 1h1v1H7zm1-2h1v1H8zm0 1h1v1H8zm1-2h1v1H9zm0 1h1v1H9zm1-2h1v1h-1zm0 1h1v1h-1zm1-2h1v1h-1zm0 1h1v1h-1zm1-2h1v1h-1zm0 1h1v1h-1zm1-2h1v1h-1zm0 1h1v1h-1z' fill='%23D8D8D8' fill-rule='evenodd'/%3E%3C/svg%3E");
+  &.left {
+    background-position: 2px 0;
+  }
+  &.right {
+    background-position: -2px 0;
   }
 }
 </style>
