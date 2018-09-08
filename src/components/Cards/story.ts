@@ -79,6 +79,18 @@ const SelectTester: ComponentOptions<Vue> = {
         value: '',
         color
       })
+    },
+    image(x, y, color, url) {
+      const self = this as any
+
+      self.cards.push({
+        id: 'key' + (self.cards.length + 1),
+        x,
+        y,
+        value:
+          url || `https://i.gyazo.com/4215f0df9b4c256b39afd12327f40277.png`,
+        color
+      })
     }
   }
 }
@@ -88,6 +100,7 @@ storiesOf('Cards', module).add('Default', () => ({
   template: `<Cards
     :cards="cards"
     :handleNew="newCard"
+    :handleImage="image"
     :handleStop="stop"
     :handleColor="color"
     :handleUpdate="update"

@@ -69,7 +69,7 @@ export default class Input extends Vue {
   }
 
   private doneEdit(): void {
-    if (this.isCancel || this.initial === this.value) {
+    if (this.isCancel || (this.initial === this.value && this.value)) {
       this.isCancel = false
       return
     }
