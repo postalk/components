@@ -188,6 +188,11 @@ export default class Cards extends Vue {
       return
     }
 
+    if (this.selectW < 5 && this.selectH < 5 && isCanvas) {
+      this.markerX = Math.round(e.pageX / 24) * 24 + 8
+      this.markerY = Math.round(e.pageY / 24) * 24 + 8
+    }
+
     this.selectStartX = 0
     this.selectStartY = 0
 
