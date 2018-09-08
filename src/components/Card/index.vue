@@ -4,7 +4,8 @@
       :class="{
         cardRoot: true,
         isMoving: moving && moving !== id,
-        isSelected: selected
+        isSelected: selected,
+        isImage: isImage(value)
       }"
       :style="{
         left: `${x}px`,
@@ -28,6 +29,7 @@
         }"
       >
         <List :txt="value" v-if="isList(value)" />
+        <Img :url="value" :handleMeasure="onImageMeasure" v-else-if="isImage(value)" />
         <Headline :txt="value" v-else-if="isHeadline(value)" />
         <div class="text" v-else>{{ value }}</div>
         <Input 
@@ -50,11 +52,13 @@
 </template>
 
 <script lang="ts">
+import isImage from 'is-image-url'
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import Input from '@/components/Input/index.vue'
 import Headline from './headline.vue'
 import List from './list.vue'
 import Drag from './drag.vue'
+import Img from './image.vue'
 import {
   YELLOW,
   YELLOW_DARK,
@@ -69,6 +73,7 @@ import {
   components: {
     Headline,
     List,
+    Img,
     Input,
     Drag
   },
@@ -141,6 +146,11 @@ export default class Card extends Vue {
     this.handleUpdate(this.id, value)
   }
 
+  private onImageMeasure(width: number, height: number) {
+    this.height = height + 32 * 2 + 8 * 2 + 2
+    this.width = width + 32 * 2 + 8 * 2 + 2
+  }
+
   private onDragging(x: number, y: number): void {
     if (!this.moving) {
       this.handleStart(this.id)
@@ -160,6 +170,10 @@ export default class Card extends Vue {
 
   private isList(str: string): boolean {
     return !!str.match(/\r?\n/)
+  }
+
+  private isImage(str: string): boolean {
+    return isImage(str)
   }
 
   private getColor(): {
@@ -193,6 +207,11 @@ export default class Card extends Vue {
   &.isMoving {
     .draggable {
       opacity: 0;
+    }
+  }
+  &.isImage {
+    .card {
+      width: auto;
     }
   }
 }

@@ -35,13 +35,12 @@
         left: `${selectX}px`
       }"
     />
-    <div
-      v-if="markerX !== 0 && markerY !== 0"
-      :class="`marker ${color}`"
-      :style="{
-        top: `${markerY}px`,
-        left: `${markerX}px`
-      }"
+    <Mark
+      :color="color"
+      :x="markerX"
+      :y="markerY"
+      :handleText="newCard"
+      :handleImage="createImageCard"
     />
     <Shortcuts
       :selectedIds="selectedCardIds"
@@ -65,11 +64,13 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 import Card from '../Card/index.vue'
 import Shortcuts from '../Shortcuts/index.vue'
 import { CardInfo } from '@/components/types'
+import Mark from './marker.vue'
 
 @Component<Cards>({
   components: {
     Card,
-    Shortcuts
+    Shortcuts,
+    Mark
   }
 })
 export default class Cards extends Vue {
@@ -86,6 +87,13 @@ export default class Cards extends Vue {
   @Prop() private handleColor!: (updateCardIds: string[], color: string) => void
   @Prop() private handleUpdate!: (id: string, value: string) => void
   @Prop() private handleRemove!: (ids: string[]) => void
+  @Prop()
+  private handleImage!: (
+    x: number,
+    y: number,
+    color: string,
+    url?: string
+  ) => void
 
   private diffX: number = 0
   private diffY: number = 0
@@ -239,6 +247,11 @@ export default class Cards extends Vue {
     this.clearMarker()
   }
 
+  private createImageCard(url?: string) {
+    this.handleImage(this.markerX, this.markerY, this.color, url)
+    this.clearMarker()
+  }
+
   private changeColor(color: string): void {
     this.handleColor(this.selectedCardIds, color)
   }
@@ -283,74 +296,5 @@ export default class Cards extends Vue {
 .selector {
   position: absolute;
   background: rgba(0, 0, 0, 0.2);
-}
-
-.marker {
-  width: 12rem;
-  height: 7rem;
-  position: absolute;
-  overflow: hidden;
-  border: 4px solid rgba(#d8d8d8, 0.5);
-  box-shadow: 0 0 0 0 rgba(#d8d8d8, 0.5);
-  animation: pulse 0.6s infinite;
-  &.blue {
-    border-color: rgba(#8ee8e8, 0.5);
-    box-shadow: 0 0 0 0 rgba(#8ee8e8, 0.5);
-    animation: bluepulse 0.6s infinite;
-  }
-  &.yellow {
-    border-color: rgba(#f9f116, 0.5);
-    box-shadow: 0 0 0 0 rgba(#f9f116, 0.5);
-    animation: yellowpulse 0.6s infinite;
-  }
-  &.red {
-    border-color: rgba(#f39393, 0.5);
-    box-shadow: 0 0 0 0 rgba(#f39393, 0.5);
-    animation: redpulse 0.6s infinite;
-  }
-}
-
-@keyframes pulse {
-  0% {
-  }
-  99% {
-    box-shadow: 0 0 0 8px rgba(#d8d8d8, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(#d8d8d8, 0);
-  }
-}
-
-@keyframes bluepulse {
-  0% {
-  }
-  99% {
-    box-shadow: 0 0 0 8px rgba(#8ee8e8, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(#8ee8e8, 0);
-  }
-}
-
-@keyframes yellowpulse {
-  0% {
-  }
-  99% {
-    box-shadow: 0 0 0 8px rgba(#f9f116, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(#f9f116, 0);
-  }
-}
-
-@keyframes redpulse {
-  0% {
-  }
-  99% {
-    box-shadow: 0 0 0 8px rgba(#f39393, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(#f39393, 0);
-  }
 }
 </style>
