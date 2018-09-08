@@ -37,7 +37,7 @@
     />
     <div
       v-if="markerX !== 0 && markerY !== 0"
-      class="marker"
+      :class="`marker ${color}`"
       :style="{
         top: `${markerY}px`,
         left: `${markerX}px`
@@ -48,11 +48,12 @@
       :onClearSelected="clearSelected"
       :onRemoveSelected="removeSelected"
       :onMoveSelected="()=>{}"
-      :onChangeColor="()=>{}"
+      :onChangeColor="changeColor"
       :onSelectAll="selectAll"
       :onUndo="()=>{}"
       :onNewCard="newCard"
       :onMoveMarker="moveMarker"
+      :onColorMarker="colorMarker"
       :onClearMarker="clearMarker"
       :onCreateMarker="createMarker"
     />
@@ -75,13 +76,14 @@ export default class Cards extends Vue {
   @Prop({ default: [] })
   private cards!: CardInfo[]
 
-  @Prop() private handleNew!: (x: number, y: number) => void
+  @Prop() private handleNew!: (x: number, y: number, color: string) => void
   @Prop()
   private handleStop!: (
     updateCardIds: string[],
     diffX: number,
     diffY: number
   ) => void
+  @Prop() private handleColor!: (updateCardIds: string[], color: string) => void
   @Prop() private handleUpdate!: (id: string, value: string) => void
   @Prop() private handleRemove!: (ids: string[]) => void
 
@@ -99,6 +101,17 @@ export default class Cards extends Vue {
 
   private markerX: number = 0
   private markerY: number = 0
+
+  private color: string = 'white'
+
+  private onClick(e: MouseEvent) {
+    const isDraggable = (e.target as Element).className.match(/drag/)
+    if (isDraggable) {
+      const id = (((e.target as Element).parentElement as Element)
+        .parentElement as Element).id
+      this.selectedCardIds = [id]
+    }
+  }
 
   private onMove(x: number, y: number, key: string): void {
     this.diffX -= x
@@ -194,15 +207,6 @@ export default class Cards extends Vue {
     }
   }
 
-  private onClick(e: MouseEvent) {
-    const isDraggable = (e.target as Element).className.match(/drag/)
-    if (isDraggable) {
-      const id = (((e.target as Element).parentElement as Element)
-        .parentElement as Element).id
-      this.selectedCardIds = [id]
-    }
-  }
-
   private createMarker(x: number, y: number) {
     this.selectedCardIds = []
     this.markerX =
@@ -216,12 +220,22 @@ export default class Cards extends Vue {
     this.markerY = 0
   }
 
+  private colorMarker(color: string) {
+    const colors = ['white', 'blue', 'yellow', 'red']
+    const index = (colors.indexOf(this.color) + 1) % 4
+    this.color = colors[index]
+  }
+
   private newCard() {
     if (this.markerX === 0 || this.markerY === 0) {
       return
     }
-    this.handleNew(this.markerX, this.markerY)
+    this.handleNew(this.markerX, this.markerY, this.color)
     this.clearMarker()
+  }
+
+  private changeColor(color: string): void {
+    this.handleColor(this.selectedCardIds, color)
   }
 
   private removeSelected() {
@@ -271,19 +285,67 @@ export default class Cards extends Vue {
   height: 7rem;
   position: absolute;
   overflow: hidden;
-  border: 4px solid rgba(#c3d8dd, 0.5);
-  box-shadow: 0 0 0 0 rgba(#c3d8dd, 0.5);
+  border: 4px solid rgba(#d8d8d8, 0.5);
+  box-shadow: 0 0 0 0 rgba(#d8d8d8, 0.5);
   animation: pulse 0.6s infinite;
+  &.blue {
+    border-color: rgba(#8ee8e8, 0.5);
+    box-shadow: 0 0 0 0 rgba(#8ee8e8, 0.5);
+    animation: bluepulse 0.6s infinite;
+  }
+  &.yellow {
+    border-color: rgba(#f9f116, 0.5);
+    box-shadow: 0 0 0 0 rgba(#f9f116, 0.5);
+    animation: yellowpulse 0.6s infinite;
+  }
+  &.red {
+    border-color: rgba(#f39393, 0.5);
+    box-shadow: 0 0 0 0 rgba(#f39393, 0.5);
+    animation: redpulse 0.6s infinite;
+  }
 }
 
 @keyframes pulse {
   0% {
   }
   99% {
-    box-shadow: 0 0 0 8px rgba(#c3d8dd, 0);
+    box-shadow: 0 0 0 8px rgba(#d8d8d8, 0);
   }
   100% {
-    box-shadow: 0 0 0 0 rgba(#c3d8dd, 0);
+    box-shadow: 0 0 0 0 rgba(#d8d8d8, 0);
+  }
+}
+
+@keyframes bluepulse {
+  0% {
+  }
+  99% {
+    box-shadow: 0 0 0 8px rgba(#8ee8e8, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(#8ee8e8, 0);
+  }
+}
+
+@keyframes yellowpulse {
+  0% {
+  }
+  99% {
+    box-shadow: 0 0 0 8px rgba(#f9f116, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(#f9f116, 0);
+  }
+}
+
+@keyframes redpulse {
+  0% {
+  }
+  99% {
+    box-shadow: 0 0 0 8px rgba(#f39393, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(#f39393, 0);
   }
 }
 </style>
