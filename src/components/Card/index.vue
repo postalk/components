@@ -56,13 +56,13 @@ import Headline from './headline.vue'
 import List from './list.vue'
 import Drag from './drag.vue'
 import {
-  yellow,
-  yellowB,
-  blue,
-  blueB,
-  red,
-  redB,
-  select as selectColor
+  YELLOW,
+  YELLOW_DARK,
+  BLUE,
+  BLUE_DARK,
+  RED,
+  RED_DARK,
+  SELECT
 } from '../color'
 
 @Component<Card>({
@@ -112,7 +112,7 @@ export default class Card extends Vue {
   private y: number = this.initialY
   private width: number = 0
   private height: number = 0
-  private selectColor: string = selectColor
+  private selectColor: string = SELECT
 
   private mounted() {
     this.matchBoundRect()
@@ -169,16 +169,16 @@ export default class Card extends Vue {
     return {
       'background-color':
         this.color === 'red'
-          ? red
+          ? RED
           : this.color === 'blue'
-            ? blue
-            : this.color === 'yellow' ? yellow : '',
+            ? BLUE
+            : this.color === 'yellow' ? YELLOW : '',
       'border-color':
         this.color === 'red'
-          ? redB
+          ? RED_DARK
           : this.color === 'blue'
-            ? blueB
-            : this.color === 'yellow' ? yellowB : ''
+            ? BLUE_DARK
+            : this.color === 'yellow' ? YELLOW_DARK : ''
     }
   }
 }

@@ -18,7 +18,13 @@ import {
   ARROW,
   ONE,
   TWO,
-  THREE
+  THREE,
+  I,
+  R,
+  Y,
+  B,
+  W,
+  ALT
 } from './keyboards'
 import {
   NEW_CARD,
@@ -31,7 +37,8 @@ import {
   UNDO,
   CHANGE_COLOR,
   CLEAR_MARKER,
-  MOVE_MARKER
+  MOVE_MARKER,
+  COLOR_MARKER
 } from './actions'
 import keyboardMap from './map'
 
@@ -48,6 +55,7 @@ export default class Shortcuts extends Vue {
   @Prop() private onNewCard!: () => void
   @Prop() private onCreateMarker!: (left: number, top: number) => void
   @Prop() private onMoveMarker!: (left: number, top: number) => void
+  @Prop() private onColorMarker!: () => void
   @Prop() private onClearMarker!: () => void
 
   private created() {
@@ -58,7 +66,14 @@ export default class Shortcuts extends Vue {
     window.removeEventListener('keydown', this.handler)
   }
 
-  private mapActions(keyCode: number, withShift: boolean, withMeta: boolean) {
+  private mapActions(
+    keyCode: number,
+    withShift: boolean,
+    withMeta: boolean,
+    withCtrl: boolean,
+    withAlt: boolean
+  ) {
+    const isSingle = !withShift && !withMeta && !withCtrl && !withAlt
     if (this.selectedIds.length > 0) {
       switch (true) {
         case keyCode === ESCAPE:
@@ -78,13 +93,18 @@ export default class Shortcuts extends Vue {
             type: MOVE_SELECTED,
             direction: this.getDirection(keyCode, withShift)
           }
-        case keyCode === ONE:
-        case keyCode === TWO:
-        case keyCode === THREE:
-        case keyCode === ZERO:
+        case keyCode === W && withAlt:
+        case keyCode === R && withAlt:
+        case keyCode === Y && withAlt:
+        case keyCode === B && withAlt:
           return {
             type: CHANGE_COLOR,
-            color: keyCode - ZERO
+            color:
+              keyCode === W
+                ? 'white'
+                : keyCode === R
+                  ? 'red'
+                  : keyCode === Y ? 'yellow' : keyCode === B ? 'blue' : ''
           }
       }
     }
@@ -101,6 +121,10 @@ export default class Shortcuts extends Vue {
           type: MOVE_MARKER,
           direction: this.getDirection(keyCode, withShift)
         }
+      case keyCode === ALT:
+        return {
+          type: COLOR_MARKER
+        }
       case keyCode === A && withMeta:
         return {
           type: SELECT_ALL
@@ -113,20 +137,20 @@ export default class Shortcuts extends Vue {
         return {
           type: NEW_CARD
         }
-      case keyCode >= ZERO && keyCode <= NINE:
+      case keyCode >= ZERO && keyCode <= NINE && isSingle:
         return {
           type: CREATE_MARKER,
           position: this.getPosition(keyCode, 'number')
         }
-      case keyCode >= A && keyCode <= Z:
+      case keyCode >= A && keyCode <= Z && isSingle:
         return {
           type: CREATE_MARKER,
           position: this.getPosition(keyCode, 'alpha')
         }
-      case keyCode === COLON:
-      case keyCode === COMMA:
-      case keyCode === DOT:
-      case keyCode === SLASH:
+      case keyCode === COLON && isSingle:
+      case keyCode === COMMA && isSingle:
+      case keyCode === DOT && isSingle:
+      case keyCode === SLASH && isSingle:
         return {
           type: CREATE_MARKER,
           position: this.getPosition(keyCode)
@@ -139,7 +163,13 @@ export default class Shortcuts extends Vue {
   }
 
   private handler(e: KeyboardEvent) {
-    const action = this.mapActions(e.which, e.shiftKey, e.metaKey)
+    const action = this.mapActions(
+      e.which,
+      e.shiftKey,
+      e.metaKey,
+      e.ctrlKey,
+      e.altKey
+    )
     switch (action.type) {
       case CLEAR_SELECTED:
         this.onClearSelected()
@@ -154,13 +184,7 @@ export default class Shortcuts extends Vue {
         )
         return
       case CHANGE_COLOR:
-        this.onChangeColor(
-          action.color === 1
-            ? 'blue'
-            : action.color === 2
-              ? 'yellow'
-              : action.color === 3 ? 'red' : 'white'
-        )
+        this.onChangeColor(action.color ? action.color : '')
         return
       case SELECT_ALL:
         this.onSelectAll()
@@ -170,6 +194,9 @@ export default class Shortcuts extends Vue {
         return
       case NEW_CARD:
         this.onNewCard()
+        return
+      case COLOR_MARKER:
+        this.onColorMarker()
         return
       case MOVE_MARKER:
         this.onMoveMarker(

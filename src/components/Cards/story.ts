@@ -28,6 +28,18 @@ const SelectTester: ComponentOptions<Vue> = {
             : card
       )
     },
+    color(ids, color) {
+      const self = this as any
+      self.cards = self.cards.map(
+        (card: CardInfo) =>
+          ids.includes(card.id)
+            ? {
+                ...card,
+                color
+              }
+            : card
+      )
+    },
     update(id, value) {
       const self = this as any
       self.cards = self.cards.map((card: CardInfo) => {
@@ -47,7 +59,7 @@ const SelectTester: ComponentOptions<Vue> = {
       const self = this as any
       self.cards = self.cards.filter((card: CardInfo) => !ids.includes(card.id))
     },
-    newCard(x, y) {
+    newCard(x, y, color) {
       const self = this as any
 
       self.cards = self.cards.filter(
@@ -65,7 +77,7 @@ const SelectTester: ComponentOptions<Vue> = {
         x,
         y,
         value: '',
-        color: 'white'
+        color
       })
     }
   }
@@ -77,6 +89,7 @@ storiesOf('Cards', module).add('Default', () => ({
     :cards="cards"
     :handleNew="newCard"
     :handleStop="stop"
+    :handleColor="color"
     :handleUpdate="update"
     :handleRemove="remove"
   />`,
