@@ -2,6 +2,7 @@
   "name": "components",
   "version": "0.1.0",
   "dependencies": {
+    "debounce-promise": "3.1.0",
     "is-image-url": "1.1.8",
     "vue": "2.5.17",
     "vue-class-component": "6.2.0",

@@ -1,6 +1,5 @@
 <template>
   <div
-    v-if="x !== 0 && y !== 0"
     :class="`marker ${color}`"
     :style="{
       top: `${y}px`,
