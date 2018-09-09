@@ -28,6 +28,6 @@ export const cards: CardInfo[] = [
     x: 480,
     y: 240,
     value: '適当に遊んで暮らす毎日であります',
-    color: ''
+    color: 'white'
   }
 ]

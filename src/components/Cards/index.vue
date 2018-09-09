@@ -23,6 +23,7 @@
       :handleStop="onStop"
       :handleStart="onStart"
       :handleUpdate="onUpdate"
+      :handleSelect="onSelect"
       :handleRemove="onRemove"
     />
     <div
@@ -36,6 +37,7 @@
       }"
     />
     <Mark
+      v-if="markerX !== 0 && markerY !== 0 && selectedCardIds.length === 0"
       :color="color"
       :x="markerX"
       :y="markerY"
@@ -46,7 +48,8 @@
       :selectedIds="selectedCardIds"
       :onClearSelected="clearSelected"
       :onRemoveSelected="removeSelected"
-      :onMoveSelected="()=>{}"
+      :onMoveSelected="onMove"
+      :onMoveDoneSelected="onStop"
       :onChangeColor="changeColor"
       :onSelectAll="selectAll"
       :onUndo="()=>{}"
@@ -114,10 +117,19 @@ export default class Cards extends Vue {
 
   private onClick(e: MouseEvent) {
     const isDraggable = (e.target as Element).className.match(/drag/)
+
     if (isDraggable) {
-      const id = (((e.target as Element).parentElement as Element)
+      const clickedId = (((e.target as Element).parentElement as Element)
         .parentElement as Element).id
-      this.selectedCardIds = [id]
+
+      if (!e.shiftKey) {
+        this.selectedCardIds = [clickedId]
+        return
+      }
+
+      this.selectedCardIds = this.selectedCardIds
+        .concat([clickedId])
+        .filter((id, i, self) => self.indexOf(id) === i)
     }
   }
 
@@ -147,6 +159,10 @@ export default class Cards extends Vue {
 
   private onUpdate(id: string, value: string): void {
     this.handleUpdate(id, value)
+  }
+
+  private onSelect(id: string): void {
+    this.selectedCardIds = [id]
   }
 
   private onRemove(id: string): void {
@@ -253,7 +269,16 @@ export default class Cards extends Vue {
   }
 
   private changeColor(color: string): void {
-    this.handleColor(this.selectedCardIds, color)
+    if (color) {
+      this.handleColor(this.selectedCardIds, color)
+      return
+    }
+    const colors = ['white', 'blue', 'yellow', 'red']
+    const current = this.cards.filter(card =>
+      this.selectedCardIds.includes(card.id)
+    )[0].color
+    const index = (colors.indexOf(current) + 1) % 4
+    this.handleColor(this.selectedCardIds, colors[index])
   }
 
   private removeSelected() {

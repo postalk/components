@@ -1,6 +1,7 @@
 <template></template>
 
 <script lang="ts">
+import debounce from 'debounce-promise'
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import {
   ENTER,
@@ -48,7 +49,9 @@ export default class Shortcuts extends Vue {
 
   @Prop() private onClearSelected!: () => void
   @Prop() private onRemoveSelected!: () => void
-  @Prop() private onMoveSelected!: (left: number, top: number) => void
+  @Prop()
+  private onMoveSelected!: (diffX: number, diffY: number, key: string) => void
+  @Prop() private onMoveDoneSelected!: () => void
   @Prop() private onChangeColor!: (color: string) => void
   @Prop() private onSelectAll!: () => void
   @Prop() private onUndo!: () => void
@@ -57,6 +60,8 @@ export default class Shortcuts extends Vue {
   @Prop() private onMoveMarker!: (left: number, top: number) => void
   @Prop() private onColorMarker!: () => void
   @Prop() private onClearMarker!: () => void
+
+  private timer: () => Promise<void> = debounce(() => Promise.resolve(), 500)
 
   private created() {
     window.addEventListener('keydown', this.handler)
@@ -76,6 +81,10 @@ export default class Shortcuts extends Vue {
     const isSingle = !withShift && !withMeta && !withCtrl && !withAlt
     if (this.selectedIds.length > 0) {
       switch (true) {
+        case keyCode === ALT && !withShift && !withMeta && !withCtrl:
+          return {
+            type: CHANGE_COLOR
+          }
         case keyCode === ESCAPE:
           return {
             type: CLEAR_SELECTED
@@ -91,7 +100,8 @@ export default class Shortcuts extends Vue {
         case keyCode === ARROW.RIGHT:
           return {
             type: MOVE_SELECTED,
-            direction: this.getDirection(keyCode, withShift)
+            direction: this.getDirection(keyCode, withShift),
+            timer: this.timer
           }
         case keyCode === W && withAlt:
         case keyCode === R && withAlt:
@@ -178,15 +188,23 @@ export default class Shortcuts extends Vue {
         this.onRemoveSelected()
         return
       case MOVE_SELECTED:
+        e.preventDefault()
+        if (action.timer) {
+          action.timer().then(() => {
+            this.onMoveDoneSelected()
+          })
+        }
         this.onMoveSelected(
-          action.direction ? action.direction.left * 24 : 0,
-          action.direction ? action.direction.top * 24 : 0
+          action.direction ? action.direction.left * -24 : 0,
+          action.direction ? action.direction.top * -24 : 0,
+          'none'
         )
         return
       case CHANGE_COLOR:
         this.onChangeColor(action.color ? action.color : '')
         return
       case SELECT_ALL:
+        e.preventDefault()
         this.onSelectAll()
         return
       case UNDO:
@@ -199,6 +217,7 @@ export default class Shortcuts extends Vue {
         this.onColorMarker()
         return
       case MOVE_MARKER:
+        e.preventDefault()
         this.onMoveMarker(
           action.direction ? action.direction.left * 24 : 0,
           action.direction ? action.direction.top * 24 : 0
