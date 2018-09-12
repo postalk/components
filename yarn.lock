@@ -1645,9 +1645,9 @@
     ts-loader "^4.4.2"
     tslint "^5.10.0"
 
-"@vue/cli-plugin-unit-jest@3.0.2":
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/@vue/cli-plugin-unit-jest/-/cli-plugin-unit-jest-3.0.2.tgz#bd74fff27ce932139a4c58ca6497cf127af28bb6"
+"@vue/cli-plugin-unit-jest@3.0.3":
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/@vue/cli-plugin-unit-jest/-/cli-plugin-unit-jest-3.0.3.tgz#4b2dde19edcd09d275e11cc193dfc8fdf167896c"
   dependencies:
     "@vue/cli-shared-utils" "^3.0.2"
     babel-jest "^23.4.0"
