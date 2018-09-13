@@ -48,6 +48,8 @@ Vue.use(VueTextareaAutosize)
 })
 export default class Input extends Vue {
   @Prop() private handleSubmit!: (text: string) => void
+  @Prop() private handleFocus!: () => void
+  @Prop() private handleBlur!: () => void
   @Prop({ default: '' })
   private initial!: string
   @Prop({ default: false })
@@ -69,6 +71,7 @@ export default class Input extends Vue {
   }
 
   private doneEdit(): void {
+    this.handleBlur()
     if (this.isCancel || (this.initial === this.value && this.value)) {
       this.isCancel = false
       return
@@ -101,6 +104,7 @@ export default class Input extends Vue {
   }
 
   private onFocus(): void {
+    this.handleFocus()
     this.editing = true
   }
 
