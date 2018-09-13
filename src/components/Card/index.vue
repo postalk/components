@@ -5,12 +5,12 @@
         cardRoot: true,
         isMoving: moving && moving !== id,
         isSelected: selected,
-        isImage: isImage(value)
+        isImage: isImage(value),
+        isEditing: editing
       }"
       :style="{
         left: `${x}px`,
         top: `${y}px`,
-        width: `${width - 32 * 2 + 2}px`,
         height: `${height - 32 * 2 + 2}px`
       }"
       :id="id"
@@ -36,11 +36,14 @@
           class="input" 
           :initial="value"
           :disabled="!!moving || disabled"
-          :handleSubmit="submit"
           :isNew="id.match(/^new\-/)"
+          :handleSubmit="submit"
+          :handleFocus="focus"
+          :handleBlur="blur"
         />
       </div>
       <Drag
+        class="card-draggable"
         :width="width"
         :height="height"
         :x="x"
@@ -115,6 +118,7 @@ export default class Card extends Vue {
   @Prop() private handleRemove!: (id: string) => void
 
   private show: boolean = true
+  private editing: boolean = false
   private x: number = this.initialX
   private y: number = this.initialY
   private width: number = 0
@@ -151,6 +155,14 @@ export default class Card extends Vue {
     this.handleUpdate(this.id, value)
   }
 
+  private focus() {
+    this.editing = true
+  }
+
+  private blur() {
+    this.editing = false
+  }
+
   private onImageMeasure(width: number, height: number) {
     this.height = height + 32 * 2 + 8 * 2 + 2
     this.width = width + 32 * 2 + 8 * 2 + 2
@@ -168,9 +180,14 @@ export default class Card extends Vue {
   }
 
   private isHeadline(str: string): boolean {
-    return str.match(/[\u30a0-\u30ff\u3040-\u309f\u3005-\u3006\u30e0-\u9fcf]+/g)
-      ? str.length < 9
-      : str.length < 16
+    const multiByteLen = Array.from(str).filter(s =>
+      s.match(/[\u30a0-\u30ff\u3040-\u309f\u3005-\u3006\u30e0-\u9fcf]+/g)
+    ).length
+    const textWidth = (str.length - multiByteLen) * 1 + multiByteLen * 2
+
+    return multiByteLen
+      ? textWidth < 24
+      : str.split(/\b\S+\b/g).length - 1 < 3 || str.length < 14
   }
 
   private isList(str: string): boolean {
@@ -205,7 +222,7 @@ export default class Card extends Vue {
 
 <style scoped lang="scss">
 .cardRoot {
-  width: calc(12rem - 2px);
+  width: 15rem;
   height: 0;
   position: absolute;
   z-index: 0;
@@ -217,6 +234,11 @@ export default class Card extends Vue {
   &.isImage {
     .card {
       width: auto;
+    }
+  }
+  &.isEditing {
+    .card-draggable {
+      display: none;
     }
   }
 }

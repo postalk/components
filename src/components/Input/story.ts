@@ -17,9 +17,13 @@ storiesOf('Input', module)
           :initial="value"
           :disabled="false"
           :handleSubmit="submit"
+          :handleFocus="focus"
+          :handleBlur="blur"
         />
       </div>`,
     methods: {
-      submit: action('Submit!')
+      submit: action('Submit!'),
+      focus: action('Focus!'),
+      blur: action('blur!')
     }
   }))

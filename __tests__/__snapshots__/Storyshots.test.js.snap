@@ -5,11 +5,10 @@ exports[`Storyshots Card Default 1`] = `
   <div
     class="cardRoot"
     id="key1"
-    style="left: 48px; top: 240px; width: -62px; height: -62px;"
+    style="left: 56px; top: 188px; height: -62px;"
   >
     <div
       class="card"
-      style="background-color: rgb(253, 249, 155); border-color: #f9f116;"
     >
       <ul
         class="list"
@@ -56,11 +55,10 @@ exports[`Storyshots Cards Default 1`] = `
   <div
     class="cardRoot"
     id="key1"
-    style="left: 48px; top: 240px; width: -62px; height: -62px;"
+    style="left: 56px; top: 188px; height: -62px;"
   >
     <div
       class="card"
-      style="background-color: rgb(253, 249, 155); border-color: #f9f116;"
     >
       <ul
         class="list"
@@ -100,7 +98,7 @@ exports[`Storyshots Cards Default 1`] = `
   <div
     class="cardRoot"
     id="key2"
-    style="left: 600px; top: 360px; width: -62px; height: -62px;"
+    style="left: 440px; top: 128px; height: -62px;"
   >
     <div
       class="card"
@@ -109,7 +107,7 @@ exports[`Storyshots Cards Default 1`] = `
       <h2
         class="headline"
       >
-        BACK STREET BOY
+        適当に遊んで暮らす毎日
       </h2>
        
       <textarea
@@ -124,11 +122,34 @@ exports[`Storyshots Cards Default 1`] = `
   <div
     class="cardRoot"
     id="key3"
-    style="left: 600px; top: 120px; width: -62px; height: -62px;"
+    style="left: 56px; top: 128px; height: -62px;"
   >
     <div
       class="card"
       style="background-color: rgb(156, 232, 232); border-color: #8ee8e8;"
+    >
+      <h2
+        class="headline"
+      >
+        福岡でなに食べるか
+      </h2>
+       
+      <textarea
+        class="input input"
+        placeholder="Type something here..."
+        style="resize: none; overflow: hidden; height: 30px;"
+      />
+    </div>
+     
+    <!---->
+  </div>
+  <div
+    class="cardRoot"
+    id="key4"
+    style="left: 440px; top: 188px; height: -62px;"
+  >
+    <div
+      class="card"
     >
       <div
         class="text"
@@ -147,17 +168,40 @@ exports[`Storyshots Cards Default 1`] = `
   </div>
   <div
     class="cardRoot"
-    id="key4"
-    style="left: 480px; top: 240px; width: -62px; height: -62px;"
+    id="key5"
+    style="left: 824px; top: 128px; height: -62px;"
+  >
+    <div
+      class="card"
+      style="background-color: rgb(253, 249, 155); border-color: #f9f116;"
+    >
+      <h2
+        class="headline"
+      >
+        My Profile
+      </h2>
+       
+      <textarea
+        class="input input"
+        placeholder="Type something here..."
+        style="resize: none; overflow: hidden; height: 30px;"
+      />
+    </div>
+     
+    <!---->
+  </div>
+  <div
+    class="cardRoot isImage"
+    id="key6"
+    style="left: 824px; top: 188px; height: -62px;"
   >
     <div
       class="card"
     >
-      <div
-        class="text"
-      >
-        適当に遊んで暮らす毎日であります
-      </div>
+      <img
+        class="image"
+        src="https://i.gyazo.com/4215f0df9b4c256b39afd12327f40277.png"
+      />
        
       <textarea
         class="input input"
