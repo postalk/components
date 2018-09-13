@@ -57,12 +57,15 @@
       "git add"
     ]
   },
+  "main": "dist/index.common.js",
   "private": true,
   "scripts": {
-    "build": "vue-cli-service build:storybook -c .storybook -o ./.storybook/build -s src/assets/",
+    "build": "vue-cli-service build --target lib --name index src/index.js",
+    "build:storybook": "vue-cli-service build:storybook -c .storybook -o ./.storybook/build -s src/assets/",
     "coverage": "STORY_ENV=test vue-cli-service test:unit | coveralls",
     "deploy": "now rm postalk-components --yes --token=${NOW_TOKEN} && now --public --token=${NOW_TOKEN} && now alias --token=${NOW_TOKEN}",
     "lint": "vue-cli-service lint",
+    "postinstall": "npm run build",
     "start": "vue-cli-service serve:storybook -p 6006 -c .storybook -s src/assets/",
     "test": "STORY_ENV=test vue-cli-service test:unit"
   }
