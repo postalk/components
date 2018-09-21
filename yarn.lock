@@ -1298,13 +1298,13 @@
     react-inspector "^2.3.0"
     uuid "^3.3.2"
 
-"@storybook/addon-links@4.0.0-alpha.21":
-  version "4.0.0-alpha.21"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-links/-/addon-links-4.0.0-alpha.21.tgz#2d429f7a39a8313a0cd0f81868ef7622047b38c7"
+"@storybook/addon-links@4.0.0-alpha.22":
+  version "4.0.0-alpha.22"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-links/-/addon-links-4.0.0-alpha.22.tgz#2b82a3569d009752782759aa348102656f97c5b5"
   dependencies:
-    "@storybook/addons" "4.0.0-alpha.21"
-    "@storybook/components" "4.0.0-alpha.21"
-    "@storybook/core-events" "4.0.0-alpha.21"
+    "@storybook/addons" "4.0.0-alpha.22"
+    "@storybook/components" "4.0.0-alpha.22"
+    "@storybook/core-events" "4.0.0-alpha.22"
     global "^4.3.2"
     prop-types "^15.6.2"
 
@@ -1325,15 +1325,6 @@
   dependencies:
     "@storybook/channels" "4.0.0-alpha.20"
     "@storybook/components" "4.0.0-alpha.20"
-    global "^4.3.2"
-    util-deprecate "^1.0.2"
-
-"@storybook/addons@4.0.0-alpha.21":
-  version "4.0.0-alpha.21"
-  resolved "https://registry.yarnpkg.com/@storybook/addons/-/addons-4.0.0-alpha.21.tgz#4d5b9f4ce2b75ca03b68847ca31cf78e148d3ad7"
-  dependencies:
-    "@storybook/channels" "4.0.0-alpha.21"
-    "@storybook/components" "4.0.0-alpha.21"
     global "^4.3.2"
     util-deprecate "^1.0.2"
 
@@ -1358,10 +1349,6 @@
   version "4.0.0-alpha.20"
   resolved "https://registry.yarnpkg.com/@storybook/channels/-/channels-4.0.0-alpha.20.tgz#a2cfff4fa3cc36060e4f59651d8ae0713448f113"
 
-"@storybook/channels@4.0.0-alpha.21":
-  version "4.0.0-alpha.21"
-  resolved "https://registry.yarnpkg.com/@storybook/channels/-/channels-4.0.0-alpha.21.tgz#5fc63c5331db26e2a1678038dbe1212badcc095c"
-
 "@storybook/channels@4.0.0-alpha.22":
   version "4.0.0-alpha.22"
   resolved "https://registry.yarnpkg.com/@storybook/channels/-/channels-4.0.0-alpha.22.tgz#6a6361f0719acb5f36f62814c8ae50e79094c55e"
@@ -1373,22 +1360,6 @@
 "@storybook/components@4.0.0-alpha.20":
   version "4.0.0-alpha.20"
   resolved "https://registry.yarnpkg.com/@storybook/components/-/components-4.0.0-alpha.20.tgz#e87909f95145573d695605c1228680ba9d509578"
-  dependencies:
-    "@emotion/core" "0.13.0"
-    "@emotion/provider" "0.11.1"
-    "@emotion/styled" "0.10.5"
-    global "^4.3.2"
-    lodash.pick "^4.4.0"
-    lodash.throttle "^4.1.1"
-    prop-types "^15.6.2"
-    react-inspector "^2.3.0"
-    react-split-pane "^0.1.82"
-    react-textarea-autosize "^7.0.4"
-    render-fragment "^0.1.1"
-
-"@storybook/components@4.0.0-alpha.21":
-  version "4.0.0-alpha.21"
-  resolved "https://registry.yarnpkg.com/@storybook/components/-/components-4.0.0-alpha.21.tgz#c86594f2bf2c057294a88d214fe0f2acf7bde091"
   dependencies:
     "@emotion/core" "0.13.0"
     "@emotion/provider" "0.11.1"
@@ -1421,10 +1392,6 @@
 "@storybook/core-events@4.0.0-alpha.20":
   version "4.0.0-alpha.20"
   resolved "https://registry.yarnpkg.com/@storybook/core-events/-/core-events-4.0.0-alpha.20.tgz#8596fa73a99e3a3a4699ab28256716b1059cb264"
-
-"@storybook/core-events@4.0.0-alpha.21":
-  version "4.0.0-alpha.21"
-  resolved "https://registry.yarnpkg.com/@storybook/core-events/-/core-events-4.0.0-alpha.21.tgz#46fd682afc0cede8dfb6058b4358c08fbb832236"
 
 "@storybook/core-events@4.0.0-alpha.22":
   version "4.0.0-alpha.22"
