@@ -1319,7 +1319,7 @@
     jest-specific-snapshot "^1.0.0"
     read-pkg-up "^4.0.0"
 
-"@storybook/addons@4.0.0-alpha.20", "@storybook/addons@^4.0.0-alpha.20":
+"@storybook/addons@4.0.0-alpha.20":
   version "4.0.0-alpha.20"
   resolved "https://registry.yarnpkg.com/@storybook/addons/-/addons-4.0.0-alpha.20.tgz#8bde211b59a45a7e878492946993e4e37625447e"
   dependencies:
@@ -1528,7 +1528,7 @@
     react-lifecycles-compat "^3.0.4"
     react-modal "^3.5.1"
 
-"@storybook/vue@^4.0.0-alpha.20":
+"@storybook/vue@4.0.0-alpha.20":
   version "4.0.0-alpha.20"
   resolved "https://registry.yarnpkg.com/@storybook/vue/-/vue-4.0.0-alpha.20.tgz#98aef635c1c41bb8961c86fbad6c9b540a3504cd"
   dependencies:
@@ -10197,12 +10197,12 @@ vue-class-component@6.2.0, vue-class-component@^6.2.0:
   version "6.2.0"
   resolved "https://registry.yarnpkg.com/vue-class-component/-/vue-class-component-6.2.0.tgz#7adb1daa9a868c75f30f97f33f4f1b94aee62089"
 
-vue-cli-plugin-storybook@0.4.7:
-  version "0.4.7"
-  resolved "https://registry.yarnpkg.com/vue-cli-plugin-storybook/-/vue-cli-plugin-storybook-0.4.7.tgz#6b6f54630ca03fc092083d7b6fd908520dd9576a"
+vue-cli-plugin-storybook@0.4.8:
+  version "0.4.8"
+  resolved "https://registry.yarnpkg.com/vue-cli-plugin-storybook/-/vue-cli-plugin-storybook-0.4.8.tgz#e984da8eb6c4691fae0b355aa8b825d778518090"
   dependencies:
-    "@storybook/addons" "^4.0.0-alpha.20"
-    "@storybook/vue" "^4.0.0-alpha.20"
+    "@storybook/addons" "4.0.0-alpha.20"
+    "@storybook/vue" "4.0.0-alpha.20"
 
 vue-draggable-resizable@1.7.2:
   version "1.7.2"
