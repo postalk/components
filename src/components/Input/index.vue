@@ -117,7 +117,6 @@ export default class Input extends Vue {
 <style scoped lang="scss">
 .input {
   font-size: 0.875rem;
-  color: #222;
   width: 100%;
   border: none;
   line-height: 1.5;

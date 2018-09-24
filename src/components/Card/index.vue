@@ -28,7 +28,8 @@
           'min-height': !value ? '60px' : undefined
         }"
       >
-        <List :txt="value" v-if="isList(value)" />
+        <OrderedList :txt="value" v-if="isOrderedList(value)" />
+        <List :txt="value" v-else-if="isList(value)" />
         <Img :url="value" :handleMeasure="onImageMeasure" v-else-if="isImage(value)" />
         <Headline :txt="value" v-else-if="isHeadline(value, color)" />
         <div class="text" v-else>{{ value }}</div>
@@ -59,6 +60,7 @@ import isImage from 'is-image-url'
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import Input from '@/components/Input/index.vue'
 import Headline from './headline.vue'
+import OrderedList from './ordered-list.vue'
 import List from './list.vue'
 import Drag from './drag.vue'
 import Img from './image.vue'
@@ -75,6 +77,7 @@ import {
 @Component<Card>({
   components: {
     Headline,
+    OrderedList,
     List,
     Img,
     Input,
@@ -193,6 +196,10 @@ export default class Card extends Vue {
 
   private isList(str: string): boolean {
     return !!str.match(/\r?\n/)
+  }
+
+  private isOrderedList(str: string): boolean {
+    return this.isList(str) && !!str.match(/^[0-9０-９](\.?)(\s|　)/)
   }
 
   private isImage(str: string): boolean {
