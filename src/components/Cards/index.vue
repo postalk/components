@@ -306,7 +306,8 @@ export default class Cards extends Vue {
       this.selectX <= el.offsetLeft + el.clientWidth &&
       this.selectX + this.selectW >= el.offsetLeft &&
       this.selectY <= el.offsetTop + el.clientHeight &&
-      this.selectY + this.selectH >= el.offsetTop
+      this.selectY + this.selectH >= el.offsetTop &&
+      !el.className.match(/isImage/)
     )
   }
 }
