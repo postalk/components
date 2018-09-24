@@ -30,7 +30,7 @@
       >
         <List :txt="value" v-if="isList(value)" />
         <Img :url="value" :handleMeasure="onImageMeasure" v-else-if="isImage(value)" />
-        <Headline :txt="value" v-else-if="isHeadline(value)" />
+        <Headline :txt="value" v-else-if="isHeadline(value, color)" />
         <div class="text" v-else>{{ value }}</div>
         <Input 
           class="input" 
@@ -179,15 +179,16 @@ export default class Card extends Vue {
     this.handleMove(diffX, diffY, this.id)
   }
 
-  private isHeadline(str: string): boolean {
+  private isHeadline(str: string, color: string): boolean {
     const multiByteLen = Array.from(str).filter(s =>
       s.match(/[\u30a0-\u30ff\u3040-\u309f\u3005-\u3006\u30e0-\u9fcf]+/g)
     ).length
     const textWidth = (str.length - multiByteLen) * 1 + multiByteLen * 2
 
     return multiByteLen
-      ? textWidth < 24
-      : str.split(/\b\S+\b/g).length - 1 < 3 || str.length < 14
+      ? textWidth < 24 && (color !== 'white' && !!color)
+      : (str.split(/\b\S+\b/g).length - 1 < 3 || str.length < 14) &&
+          (color !== 'white' && !!color)
   }
 
   private isList(str: string): boolean {
