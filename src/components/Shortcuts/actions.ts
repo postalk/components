@@ -1,5 +1,7 @@
 export const NEW_CARD = 'new_card'
 export const UNDO = 'undo'
+export const COPY = 'copy'
+export const PASTE = 'paste'
 export const SELECT_ALL = 'select_all'
 export const CHANGE_COLOR = 'change_color'
 export const CLEAR_SELECTED = 'clear_selected'

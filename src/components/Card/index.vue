@@ -98,7 +98,6 @@ import {
         this.$nextTick(() => {
           this.matchBoundRect()
           this.rerender()
-          this.handleSelect(this.id)
         })
       }
     }
@@ -121,7 +120,6 @@ export default class Card extends Vue {
   @Prop() private handleStop!: () => void
   @Prop() private handleStart!: (id: string) => void
   @Prop() private handleUpdate!: (id: string, value: string) => void
-  @Prop() private handleSelect!: (id: string) => void
   @Prop() private handleRemove!: (id: string) => void
 
   private show: boolean = true
@@ -134,9 +132,6 @@ export default class Card extends Vue {
 
   private mounted() {
     this.matchBoundRect()
-    if (!this.id.match(/^new\-/)) {
-      this.handleSelect(this.id)
-    }
   }
 
   private matchBoundRect(): void {
