@@ -9,12 +9,14 @@
     :max-height="500"
     :disabled="disabled"
     @blur.native="doneEdit"
-    @keypress.native.enter="onEnter"
+    @keypress.native.enter.exact.prevent="onEnter"
     @keydown.native.esc="onEsc"
     @focus.native="onFocus"
-    @keydown.native="stopKeyEvent"
-    @keyup.native="stopKeyEvent"
-    @keypress="stopKeyEvent"
+    @keydown.native="stopEvent"
+    @keyup.native="stopEvent"
+    @keypress="stopEvent"
+    @copy.native="stopEvent"
+    @paste.native="stopEvent"
   ></textarea-autosize>
 </template>
 
@@ -72,9 +74,16 @@ export default class Input extends Vue {
 
   private doneEdit(): void {
     this.handleBlur()
-    if (this.isCancel || (this.initial === this.value && this.value)) {
+    if (
+      (this.isCancel && !this.isNew) ||
+      (this.initial === this.value && this.value)
+    ) {
       this.isCancel = false
       return
+    }
+    if (this.isCancel && this.isNew) {
+      this.isCancel = false
+      this.value = ''
     }
     if (this.value.match(/\r?\n/)) {
       this.value = this.value
@@ -89,10 +98,7 @@ export default class Input extends Vue {
   }
 
   private onEnter(e: KeyboardEvent): void {
-    if (!e.shiftKey) {
-      e.preventDefault()
-    }
-    if (e.shiftKey || !this.value) {
+    if (!this.value) {
       return
     }
     this.editing = false
@@ -108,7 +114,7 @@ export default class Input extends Vue {
     this.editing = true
   }
 
-  private stopKeyEvent(e: KeyboardEvent): void {
+  private stopEvent(e: KeyboardEvent | ClipboardEvent): void {
     e.stopPropagation()
   }
 }

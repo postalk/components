@@ -73,7 +73,6 @@ storiesOf('Card', module).add('Default', () => ({
       :handleStart="start"
       :handleUpdate="update"
       :handleRemove="remove"
-      :handleSelect="select"
     />
   </div>`,
   ...CardTester

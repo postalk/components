@@ -42,6 +42,7 @@ import {
   COLOR_MARKER
 } from './actions'
 import keyboardMap from './map'
+import { addListener, removeListener } from '@/components/browser'
 
 @Component
 export default class Shortcuts extends Vue {
@@ -54,6 +55,8 @@ export default class Shortcuts extends Vue {
   @Prop() private onMoveDoneSelected!: () => void
   @Prop() private onChangeColor!: (color: string) => void
   @Prop() private onSelectAll!: () => void
+  @Prop() private onCopy!: (e: ClipboardEvent) => void
+  @Prop() private onPaste!: (e: ClipboardEvent) => void
   @Prop() private onUndo!: () => void
   @Prop() private onNewCard!: () => void
   @Prop() private onCreateMarker!: (left: number, top: number) => void
@@ -64,11 +67,15 @@ export default class Shortcuts extends Vue {
   private timer: () => Promise<void> = debounce(() => Promise.resolve(), 500)
 
   private created() {
-    window.addEventListener('keydown', this.handler)
+    addListener('keydown', this.keyBoardHandler)
+    addListener('copy', this.copyHandler as EventListener)
+    addListener('paste', this.pasteHandler as EventListener)
   }
 
   private destroyed() {
-    window.removeEventListener('keydown', this.handler)
+    removeListener('keydown', this.keyBoardHandler)
+    removeListener('copy', this.copyHandler as EventListener)
+    removeListener('paste', this.pasteHandler as EventListener)
   }
 
   private mapActions(
@@ -172,7 +179,7 @@ export default class Shortcuts extends Vue {
     }
   }
 
-  private handler(e: KeyboardEvent) {
+  private keyBoardHandler(e: KeyboardEvent) {
     const action = this.mapActions(
       e.which,
       e.shiftKey,
@@ -233,6 +240,16 @@ export default class Shortcuts extends Vue {
         )
         return
     }
+  }
+
+  private copyHandler(e: ClipboardEvent) {
+    e.preventDefault()
+    this.onCopy(e)
+  }
+
+  private pasteHandler(e: ClipboardEvent) {
+    e.preventDefault()
+    this.onPaste(e)
   }
 
   private getDirection(keyCode: number, withShift: boolean) {

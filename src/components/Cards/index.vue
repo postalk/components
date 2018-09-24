@@ -1,10 +1,11 @@
 <template>
   <div
     class="canvas"
-    @mousedown.left="startSelect"
-    @mousemove="openSelector"
-    @mouseup="selectElement"
+    @mousedown.left.self="startSelect"
+    @mousemove.left="openSelector"
+    @mouseup.left="selectElement"
     @click="onClick"
+    @dblclick.exact="onDblClick"
   >
     <Card
       v-for="card in cards"
@@ -23,7 +24,6 @@
       :handleStop="onStop"
       :handleStart="onStart"
       :handleUpdate="onUpdate"
-      :handleSelect="onSelect"
       :handleRemove="onRemove"
     />
     <div
@@ -53,6 +53,8 @@
       :onChangeColor="changeColor"
       :onSelectAll="selectAll"
       :onUndo="()=>{}"
+      :onCopy="copy"
+      :onPaste="paste"
       :onNewCard="newCard"
       :onMoveMarker="moveMarker"
       :onColorMarker="colorMarker"
@@ -66,7 +68,12 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import Card from '../Card/index.vue'
 import Shortcuts from '../Shortcuts/index.vue'
-import { CardInfo } from '@/components/types'
+import { CardInfo, CardForm } from '@/components/types'
+import {
+  ua,
+  width as windowWidth,
+  height as windowHeight
+} from '@/components/browser'
 import Mark from './marker.vue'
 
 @Component<Cards>({
@@ -74,6 +81,28 @@ import Mark from './marker.vue'
     Card,
     Shortcuts,
     Mark
+  },
+  watch: {
+    cards(newVal, oldVal) {
+      if (this.willSelect === 0) {
+        return
+      }
+      if (oldVal.length < newVal.length) {
+        for (let i = 0; i < newVal.length - oldVal.length; i++) {
+          this.selectedCardIds = this.selectedCardIds.concat([
+            newVal[newVal.length - i - 1].id // FIXME: author
+          ])
+          this.willSelect--
+        }
+        return
+      }
+      newVal.forEach((c: CardInfo, i: number) => {
+        if (c.value !== oldVal[i].value) {
+          this.selectedCardIds = [c.id] // FIXME: author
+          this.willSelect--
+        }
+      })
+    }
   }
 })
 export default class Cards extends Vue {
@@ -90,13 +119,7 @@ export default class Cards extends Vue {
   @Prop() private handleColor!: (updateCardIds: string[], color: string) => void
   @Prop() private handleUpdate!: (id: string, value: string) => void
   @Prop() private handleRemove!: (ids: string[]) => void
-  @Prop()
-  private handleImage!: (
-    x: number,
-    y: number,
-    color: string,
-    url?: string
-  ) => void
+  @Prop() private handleCreate!: (cards: CardForm[]) => void
 
   private diffX: number = 0
   private diffY: number = 0
@@ -109,6 +132,7 @@ export default class Cards extends Vue {
   private selectX: number = 0
   private selectY: number = 0
   private selectedCardIds: string[] = []
+  private willSelect: number = 0
 
   private markerX: number = 0
   private markerY: number = 0
@@ -119,6 +143,10 @@ export default class Cards extends Vue {
     const isDraggable = (e.target as Element).className.match(/drag/)
 
     if (isDraggable) {
+      this.selectStartX = 0
+      this.selectStartY = 0
+      this.selectW = 0
+      this.selectH = 0
       const clickedId = (((e.target as Element).parentElement as Element)
         .parentElement as Element).id
 
@@ -133,6 +161,11 @@ export default class Cards extends Vue {
     }
   }
 
+  private onDblClick(e: MouseEvent) {
+    this.markerX = Math.round((e.pageX - 12) / 24) * 24 + 8
+    this.markerY = Math.round((e.pageY - 12) / 24) * 24 + 8
+  }
+
   private onMove(x: number, y: number, key: string): void {
     this.diffX -= x
     this.diffY -= y
@@ -140,11 +173,15 @@ export default class Cards extends Vue {
   }
 
   private onStop(): void {
+    this.moving = ''
+    if (this.diffX === 0 && this.diffY === 0) {
+      return
+    }
+
     this.handleStop(this.selectedCardIds, this.diffX, this.diffY)
 
     this.diffX = 0
     this.diffY = 0
-    this.moving = ''
   }
 
   private onStart(id: string): void {
@@ -158,11 +195,8 @@ export default class Cards extends Vue {
   }
 
   private onUpdate(id: string, value: string): void {
+    this.willSelect = 1
     this.handleUpdate(id, value)
-  }
-
-  private onSelect(id: string): void {
-    this.selectedCardIds = [id]
   }
 
   private onRemove(id: string): void {
@@ -170,11 +204,6 @@ export default class Cards extends Vue {
   }
 
   private startSelect(e: MouseEvent): void {
-    const isCanvas =
-      e && e.target && (e.target as Element).className.match(/canvas/)
-    if (!isCanvas) {
-      return
-    }
     this.clearMarker()
     this.selectStartX = e.pageX
     this.selectStartY = e.pageY
@@ -212,11 +241,6 @@ export default class Cards extends Vue {
       return
     }
 
-    if (this.selectW < 5 && this.selectH < 5 && isCanvas) {
-      this.markerX = Math.round(e.pageX / 24) * 24 + 8
-      this.markerY = Math.round(e.pageY / 24) * 24 + 8
-    }
-
     this.selectStartX = 0
     this.selectStartY = 0
 
@@ -238,10 +262,14 @@ export default class Cards extends Vue {
 
   private createMarker(x: number, y: number) {
     this.selectedCardIds = []
-    this.markerX =
-      Math.floor((window.innerWidth - 16 * 6) / 10 * x / 24) * 24 + 8
-    this.markerY =
-      Math.floor((window.innerHeight - 7 * 3) / 4 * y / 24) * 24 + 8
+    const willX = Math.floor((windowWidth() - 16 * 6) / 10 * x / 24) * 24 + 8
+    const willY = Math.floor((windowHeight() - 7 * 3) / 4 * y / 24) * 24 + 8
+    if (this.markerX === willX && this.markerY === willY) {
+      this.newCard()
+      return
+    }
+    this.markerX = willX
+    this.markerY = willY
   }
 
   private clearMarker() {
@@ -263,8 +291,16 @@ export default class Cards extends Vue {
     this.clearMarker()
   }
 
-  private createImageCard(url?: string) {
-    this.handleImage(this.markerX, this.markerY, this.color, url)
+  private createImageCard(url: string) {
+    this.handleCreate([
+      {
+        x: this.markerX,
+        y: this.markerY,
+        color: this.color,
+        value: url as string,
+        author: 'me' // FIXME
+      }
+    ])
     this.clearMarker()
   }
 
@@ -291,6 +327,79 @@ export default class Cards extends Vue {
 
   private clearSelected() {
     this.selectedCardIds = []
+  }
+
+  private copy(e: ClipboardEvent) {
+    if (!e.clipboardData) { return }
+
+    const selectedCards = this.cards.filter(card =>
+      this.selectedCardIds.includes(card.id)
+    )
+    selectedCards.sort((a, b) => {
+      if (a.x + a.y < b.x + b.y) { return -1 }
+      if (a.x + a.y > b.x + b.y) { return 1 }
+      return 0
+    })
+
+    const medianX =
+      Math.floor(
+        (selectedCards[selectedCards.length - 1].x + selectedCards[0].x) /
+          (2 * 24)
+      ) * 24
+    const medianY =
+      Math.floor(
+        (selectedCards[selectedCards.length - 1].y + selectedCards[0].y) /
+          (2 * 24)
+      ) * 24
+
+    e.clipboardData.setData(
+      'text/plain',
+      selectedCards.map(card => card.value).join('\n')
+    )
+    e.clipboardData.setData(
+      'text/html',
+      selectedCards
+        .map(
+          c =>
+            `<span data-y="${c.y - medianY}" data-x="${c.x -
+              medianX}" data-color="${c.color}">${c.value}</span>`
+        )
+        .join()
+    )
+  }
+
+  private paste(e: ClipboardEvent) {
+    const html = e.clipboardData.getData('text/html')
+    if (!html) { return }
+    const parser = new DOMParser()
+    const spans = parser
+      .parseFromString(html, 'text/html')
+      .body.querySelectorAll('span')
+    if (spans.length < 1) { return }
+    const cards = Array.prototype.slice
+      .call(spans)
+      .filter(
+        (el: HTMLSpanElement) =>
+          el.textContent && el.dataset.x && el.dataset.y && el.dataset.color
+      )
+      .map((el: HTMLSpanElement) => ({
+        x:
+          Math.floor(Math.floor(windowWidth() / 2) / 24) * 24 +
+          Number(el.dataset.x) -
+          24 * 5,
+        y:
+          Math.floor(Math.floor(windowHeight() / 2) / 24) * 24 +
+          Number(el.dataset.y) -
+          24,
+        color: el.dataset.color as string,
+        value: el.textContent,
+        author: 'me' // FIXME
+      }))
+
+    this.willSelect = cards.length
+    this.handleCreate(cards)
+    this.clearMarker()
+    this.clearSelected()
   }
 
   private moveMarker(x: number, y: number) {

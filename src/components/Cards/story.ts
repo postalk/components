@@ -2,7 +2,8 @@ import { storiesOf } from '@storybook/vue'
 import Cards from './index.vue'
 import Vue, { ComponentOptions } from 'vue'
 import { cards } from '../data'
-import { CardInfo } from '@/components/types'
+import { CardInfo, CardForm } from '@/components/types'
+import { randomStr } from '@/components/test'
 
 const SelectTester: ComponentOptions<Vue> = {
   components: { Cards },
@@ -66,31 +67,22 @@ const SelectTester: ComponentOptions<Vue> = {
         (card: CardInfo) => !card.id.match(/^new\-/)
       )
 
-      const c = 'abcdefghijklmnopqrstuvwxyz0123456789'
-      let r = ''
-      for (let i = 0; i < 8; i++) {
-        r += c[Math.floor(Math.random() * c.length)]
-      }
-
       self.cards.push({
-        id: 'new-' + r,
+        id: 'new-' + randomStr(),
         x,
         y,
         value: '',
-        color
+        color,
+        author: 'me'
       })
     },
-    image(x, y, color, url) {
+    create(cardList) {
       const self = this as any
-
-      self.cards.push({
-        id: 'key' + (self.cards.length + 1),
-        x,
-        y,
-        value:
-          url || `https://i.gyazo.com/4215f0df9b4c256b39afd12327f40277.png`,
-        color
-      })
+      cardList = cardList.map((c: CardForm) => ({
+        ...c,
+        id: `key-${randomStr()}`
+      }))
+      self.cards = self.cards.concat(cardList)
     }
   }
 }
@@ -100,7 +92,7 @@ storiesOf('Cards', module).add('Default', () => ({
   template: `<Cards
     :cards="cards"
     :handleNew="newCard"
-    :handleImage="image"
+    :handleCreate="create"
     :handleStop="stop"
     :handleColor="color"
     :handleUpdate="update"
