@@ -31,10 +31,7 @@ export default class OrderedList extends Vue {
   line-height: 1.5;
   list-style-type: none;
   padding-left: 0;
-  margin-top: -0.5rem;
-  margin-bottom: -0.5rem;
-  margin-left: -0.5rem;
-  margin-right: -0.5rem;
+  margin: -0.5rem;
   font-size: 0.875rem;
   &:after {
     content: '';

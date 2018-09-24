@@ -6,6 +6,7 @@
         isMoving: moving && moving !== id,
         isSelected: selected,
         isImage: isImage(value),
+        isTable: isTable(value),
         isEditing: editing
       }"
       :style="{
@@ -28,7 +29,8 @@
           'min-height': !value ? '60px' : undefined
         }"
       >
-        <OrderedList :txt="value" v-if="isOrderedList(value)" />
+        <Table :txt="value" v-if="isTable(value)" />
+        <OrderedList :txt="value" v-else-if="isOrderedList(value)" />
         <List :txt="value" v-else-if="isList(value)" />
         <Img :url="value" :handleMeasure="onImageMeasure" v-else-if="isImage(value)" />
         <Headline :txt="value" v-else-if="isHeadline(value, color)" />
@@ -60,6 +62,7 @@ import isImage from 'is-image-url'
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import Input from '@/components/Input/index.vue'
 import Headline from './headline.vue'
+import Table from './table.vue'
 import OrderedList from './ordered-list.vue'
 import List from './list.vue'
 import Drag from './drag.vue'
@@ -77,6 +80,7 @@ import {
 @Component<Card>({
   components: {
     Headline,
+    Table,
     OrderedList,
     List,
     Img,
@@ -202,6 +206,10 @@ export default class Card extends Vue {
     return this.isList(str) && !!str.match(/^[0-9０-９](\.?)(\s|　)/)
   }
 
+  private isTable(str: string): boolean {
+    return !!str.match(/[\s|　][\/|／][\s|　]/)
+  }
+
   private isImage(str: string): boolean {
     return isImage(str)
   }
@@ -247,6 +255,13 @@ export default class Card extends Vue {
   &.isEditing {
     .card-draggable {
       display: none;
+    }
+  }
+  &.isTable {
+    width: auto;
+    min-width: 15rem;
+    .card {
+      width: auto;
     }
   }
 }
