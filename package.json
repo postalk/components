@@ -13,7 +13,7 @@
     "vuex": "3.0.1"
   },
   "devDependencies": {
-    "@storybook/addon-actions": "4.0.0-alpha.22",
+    "@storybook/addon-actions": "4.0.0-alpha.23",
     "@storybook/addon-links": "4.0.0-alpha.23",
     "@storybook/addon-storyshots": "4.0.0-alpha.22",
     "@types/jest": "23.3.2",
