@@ -1,6 +1,6 @@
 {
   "name": "@postalk/components",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
@@ -69,7 +69,7 @@
   "scripts": {
     "build": "vue-cli-service build --target lib --name index src/index.js",
     "build:storybook": "vue-cli-service build:storybook -c .storybook -o ./.storybook/build -s src/assets/",
-    "bump": "conventional-changelog -p angular -i CHANGELOG.md -s",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
     "commit": "git-cz",
     "coverage": "STORY_ENV=test vue-cli-service test:unit | coveralls",
     "deploy": "now rm postalk-components --yes --token=${NOW_TOKEN} && now --public --token=${NOW_TOKEN} && now alias --token=${NOW_TOKEN}",
