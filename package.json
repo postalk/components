@@ -1,6 +1,11 @@
 {
   "name": "components",
   "version": "0.1.0",
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
   "dependencies": {
     "debounce-promise": "3.1.0",
     "is-image-url": "1.1.8",
@@ -28,7 +33,10 @@
     "@vue/test-utils": "1.0.0-beta.25",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "23.6.0",
+    "commitizen": "2.10.1",
+    "conventional-changelog-cli": "2.0.5",
     "coveralls": "3.0.2",
+    "cz-conventional-changelog": "2.1.0",
     "fixpack": "2.3.1",
     "lint-staged": "7.3.0",
     "node-sass": "4.9.3",
@@ -62,6 +70,8 @@
   "scripts": {
     "build": "vue-cli-service build --target lib --name index src/index.js",
     "build:storybook": "vue-cli-service build:storybook -c .storybook -o ./.storybook/build -s src/assets/",
+    "bump": "conventional-changelog -p angular -i CHANGELOG.md -s",
+    "commit": "git-cz",
     "coverage": "STORY_ENV=test vue-cli-service test:unit | coveralls",
     "deploy": "now rm postalk-components --yes --token=${NOW_TOKEN} && now --public --token=${NOW_TOKEN} && now alias --token=${NOW_TOKEN}",
     "lint": "vue-cli-service lint",
