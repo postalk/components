@@ -1,4 +1,16 @@
 
+<a name="v0.1.3"></a>
+## [v0.1.3](https://github.com/postalk/components/compare/v0.1.2...v0.1.3) (2018-10-01)
+
+### Chore
+
+* **release:** v0.1.3
+
+### Docs
+
+* update changelog
+
+
 <a name="v0.1.2"></a>
 ## [v0.1.2](https://github.com/postalk/components/compare/v0.1.1...v0.1.2) (2018-10-01)
 
