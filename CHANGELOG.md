@@ -1,4 +1,22 @@
 
+<a name="v0.1.2"></a>
+## [v0.1.2](https://github.com/postalk/components/compare/v0.1.1...v0.1.2) (2018-10-01)
+
+### Chore
+
+* **release:** v0.1.2
+* **storybook:** update snapshot
+
+### Refactor
+
+* **cards:** simplify cards interface
+
+### Pull Requests
+
+* Merge pull request [#130](https://github.com/postalk/components/issues/130) from postalk/release
+* Merge pull request [#129](https://github.com/postalk/components/issues/129) from postalk/fix/cards
+
+
 <a name="v0.1.1"></a>
 ## [v0.1.1](https://github.com/postalk/components/compare/v0.1.0...v0.1.1) (2018-09-29)
 
