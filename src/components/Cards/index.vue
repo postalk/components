@@ -2,7 +2,7 @@
   <div
     class="canvas"
     @mousedown.left.self="startSelect"
-    @mousemove.left="openSelector"
+    @mousemove="openSelector"
     @mouseup.left="selectElement"
     @click="onClick"
     @dblclick.exact="onDblClick"
@@ -26,6 +26,23 @@
       :handleUpdate="onUpdate"
       :handleRemove="onRemove"
     />
+    <Card
+      v-if="newCard.color !== undefined"
+      id="new"
+      :color="newCard.color"
+      :initialX="newCard.x"
+      :initialY="newCard.y"
+      :diffX="diffX"
+      :diffY="diffY"
+      :moving="moving"
+      :selected="selectedCardIds.includes('new')"
+      :disabled="(selectStartX !== 0 || selectStartY !== 0) && (selectW > 0 && selectH > 0)"
+      :handleMove="onMove"
+      :handleStop="onStop"
+      :handleStart="onStart"
+      :handleUpdate="onNewCardUpdate"
+      :handleRemove="onNewCardRemove"
+    />
     <div
       v-if="selectStartX !== 0 || selectStartY !== 0"
       class="selector"
@@ -41,7 +58,7 @@
       :color="color"
       :x="markerX"
       :y="markerY"
-      :handleText="newCard"
+      :handleText="createNewCard"
       :handleImage="createImageCard"
     />
     <Shortcuts
@@ -52,10 +69,10 @@
       :onMoveDoneSelected="onStop"
       :onChangeColor="changeColor"
       :onSelectAll="selectAll"
-      :onUndo="()=>{}"
+      :onUndo="handleUndo"
       :onCopy="copy"
       :onPaste="paste"
-      :onNewCard="newCard"
+      :onNewCard="createNewCard"
       :onMoveMarker="moveMarker"
       :onColorMarker="colorMarker"
       :onClearMarker="clearMarker"
@@ -89,16 +106,19 @@ import Mark from './marker.vue'
       }
       if (oldVal.length < newVal.length) {
         for (let i = 0; i < newVal.length - oldVal.length; i++) {
+          if (newVal[newVal.length - i - 1].author !== this.author) {
+            return
+          }
           this.selectedCardIds = this.selectedCardIds.concat([
-            newVal[newVal.length - i - 1].id // FIXME: author
+            newVal[newVal.length - i - 1].id
           ])
           this.willSelect--
         }
         return
       }
       newVal.forEach((c: CardInfo, i: number) => {
-        if (c.value !== oldVal[i].value) {
-          this.selectedCardIds = [c.id] // FIXME: author
+        if (c.value !== oldVal[i].value && c.author === this.author) {
+          this.selectedCardIds = [c.id]
           this.willSelect--
         }
       })
@@ -108,18 +128,19 @@ import Mark from './marker.vue'
 export default class Cards extends Vue {
   @Prop({ default: [] })
   private cards!: CardInfo[]
+  @Prop({ default: '' })
+  private author!: string
 
-  @Prop() private handleNew!: (x: number, y: number, color: string) => void
   @Prop()
-  private handleStop!: (
-    updateCardIds: string[],
-    diffX: number,
-    diffY: number
-  ) => void
-  @Prop() private handleColor!: (updateCardIds: string[], color: string) => void
-  @Prop() private handleUpdate!: (id: string, value: string) => void
-  @Prop() private handleRemove!: (ids: string[]) => void
-  @Prop() private handleCreate!: (cards: CardForm[]) => void
+  private handleUpdate!: (ids: string[], cards: Partial<CardInfo>) => void
+  @Prop()
+  private handleRemove!: (ids: string[]) => void
+  @Prop()
+  private handleCreate!: (cards: CardForm[]) => void
+  @Prop()
+  private handleUndo!: () => void
+
+  private newCard: Partial<CardInfo> = {}
 
   private diffX: number = 0
   private diffY: number = 0
@@ -136,6 +157,9 @@ export default class Cards extends Vue {
 
   private markerX: number = 0
   private markerY: number = 0
+
+  private cursorX: number = 0
+  private cursorY: number = 0
 
   private color: string = 'white'
 
@@ -178,7 +202,14 @@ export default class Cards extends Vue {
       return
     }
 
-    this.handleStop(this.selectedCardIds, this.diffX, this.diffY)
+    this.cards.forEach(card => {
+      if (this.selectedCardIds.includes(card.id)) {
+        this.handleUpdate([card.id], {
+          x: card.x + this.diffX,
+          y: card.y + this.diffY
+        })
+      }
+    })
 
     this.diffX = 0
     this.diffY = 0
@@ -196,11 +227,29 @@ export default class Cards extends Vue {
 
   private onUpdate(id: string, value: string): void {
     this.willSelect = 1
-    this.handleUpdate(id, value)
+    this.handleUpdate([id], { value })
+  }
+
+  private onNewCardUpdate(id: string, value: string): void {
+    this.willSelect = 1
+    this.handleCreate([
+      {
+        x: this.newCard.x || 0,
+        y: this.newCard.y || 0,
+        value,
+        color: this.newCard.color || '',
+        author: this.author
+      }
+    ])
+    this.newCard = {}
   }
 
   private onRemove(id: string): void {
     this.handleRemove([id])
+  }
+
+  private onNewCardRemove(): void {
+    this.newCard = {}
   }
 
   private startSelect(e: MouseEvent): void {
@@ -214,6 +263,8 @@ export default class Cards extends Vue {
   }
 
   private openSelector(e: MouseEvent): void {
+    this.cursorX = e.pageX
+    this.cursorY = e.pageY
     if (this.selectStartX === 0 && this.selectStartY === 0) {
       return
     }
@@ -262,10 +313,11 @@ export default class Cards extends Vue {
 
   private createMarker(x: number, y: number) {
     this.selectedCardIds = []
-    const willX = Math.floor((windowWidth() - 16 * 6) / 10 * x / 24) * 24 + 8
-    const willY = Math.floor((windowHeight() - 7 * 3) / 4 * y / 24) * 24 + 8
+    const willX =
+      Math.floor((((windowWidth() - 16 * 6) / 10) * x) / 24) * 24 + 8
+    const willY = Math.floor((((windowHeight() - 7 * 3) / 4) * y) / 24) * 24 + 8
     if (this.markerX === willX && this.markerY === willY) {
-      this.newCard()
+      this.createNewCard()
       return
     }
     this.markerX = willX
@@ -283,11 +335,19 @@ export default class Cards extends Vue {
     this.color = colors[index]
   }
 
-  private newCard() {
+  private createNewCard() {
     if (this.markerX === 0 || this.markerY === 0) {
+      this.markerX = Math.floor(this.cursorX / 24) * 24 + 8
+      this.markerY = Math.floor(this.cursorY / 24) * 24 + 8
       return
     }
-    this.handleNew(this.markerX, this.markerY, this.color)
+
+    this.newCard = {
+      x: this.markerX,
+      y: this.markerY,
+      color: this.color,
+      author: this.author
+    }
     this.clearMarker()
   }
 
@@ -298,7 +358,7 @@ export default class Cards extends Vue {
         y: this.markerY,
         color: this.color,
         value: url as string,
-        author: 'me' // FIXME
+        author: this.author
       }
     ])
     this.clearMarker()
@@ -306,7 +366,7 @@ export default class Cards extends Vue {
 
   private changeColor(color: string): void {
     if (color) {
-      this.handleColor(this.selectedCardIds, color)
+      this.handleUpdate(this.selectedCardIds, { color })
       return
     }
     const colors = ['white', 'blue', 'yellow', 'red']
@@ -314,7 +374,9 @@ export default class Cards extends Vue {
       this.selectedCardIds.includes(card.id)
     )[0].color
     const index = (colors.indexOf(current) + 1) % 4
-    this.handleColor(this.selectedCardIds, colors[index])
+    this.handleUpdate(this.selectedCardIds, {
+      color: colors[index]
+    })
   }
 
   private removeSelected() {
@@ -330,14 +392,20 @@ export default class Cards extends Vue {
   }
 
   private copy(e: ClipboardEvent) {
-    if (!e.clipboardData) { return }
+    if (!e.clipboardData) {
+      return
+    }
 
     const selectedCards = this.cards.filter(card =>
       this.selectedCardIds.includes(card.id)
     )
     selectedCards.sort((a, b) => {
-      if (a.x + a.y < b.x + b.y) { return -1 }
-      if (a.x + a.y > b.x + b.y) { return 1 }
+      if (a.x + a.y < b.x + b.y) {
+        return -1
+      }
+      if (a.x + a.y > b.x + b.y) {
+        return 1
+      }
       return 0
     })
 
@@ -370,12 +438,16 @@ export default class Cards extends Vue {
 
   private paste(e: ClipboardEvent) {
     const html = e.clipboardData.getData('text/html')
-    if (!html) { return }
+    if (!html) {
+      return
+    }
     const parser = new DOMParser()
     const spans = parser
       .parseFromString(html, 'text/html')
       .body.querySelectorAll('span')
-    if (spans.length < 1) { return }
+    if (spans.length < 1) {
+      return
+    }
     const cards = Array.prototype.slice
       .call(spans)
       .filter(
@@ -393,7 +465,7 @@ export default class Cards extends Vue {
           24,
         color: el.dataset.color as string,
         value: el.textContent,
-        author: 'me' // FIXME
+        author: this.author
       }))
 
     this.willSelect = cards.length

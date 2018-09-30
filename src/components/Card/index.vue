@@ -39,7 +39,7 @@
           class="input" 
           :initial="value"
           :disabled="!!moving || disabled"
-          :isNew="id.match(/^new\-/)"
+          :isNew="id.match(/^new$/)"
           :handleSubmit="submit"
           :handleFocus="focus"
           :handleBlur="blur"
