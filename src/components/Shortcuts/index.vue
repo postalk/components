@@ -46,23 +46,37 @@ import { addListener, removeListener } from '@/components/browser'
 
 @Component
 export default class Shortcuts extends Vue {
-  @Prop() private selectedIds!: string[]
+  @Prop()
+  private selectedIds!: string[]
 
-  @Prop() private onClearSelected!: () => void
-  @Prop() private onRemoveSelected!: () => void
+  @Prop()
+  private onClearSelected!: () => void
+  @Prop()
+  private onRemoveSelected!: () => void
   @Prop()
   private onMoveSelected!: (diffX: number, diffY: number, key: string) => void
-  @Prop() private onMoveDoneSelected!: () => void
-  @Prop() private onChangeColor!: (color: string) => void
-  @Prop() private onSelectAll!: () => void
-  @Prop() private onCopy!: (e: ClipboardEvent) => void
-  @Prop() private onPaste!: (e: ClipboardEvent) => void
-  @Prop() private onUndo!: () => void
-  @Prop() private onNewCard!: () => void
-  @Prop() private onCreateMarker!: (left: number, top: number) => void
-  @Prop() private onMoveMarker!: (left: number, top: number) => void
-  @Prop() private onColorMarker!: () => void
-  @Prop() private onClearMarker!: () => void
+  @Prop()
+  private onMoveDoneSelected!: () => void
+  @Prop()
+  private onChangeColor!: (color: string) => void
+  @Prop()
+  private onSelectAll!: () => void
+  @Prop()
+  private onCopy!: (e: ClipboardEvent) => void
+  @Prop()
+  private onPaste!: (e: ClipboardEvent) => void
+  @Prop()
+  private onUndo!: () => void
+  @Prop()
+  private onNewCard!: () => void
+  @Prop()
+  private onCreateMarker!: (left: number, top: number) => void
+  @Prop()
+  private onMoveMarker!: (left: number, top: number) => void
+  @Prop()
+  private onColorMarker!: () => void
+  @Prop()
+  private onClearMarker!: () => void
 
   private timer: () => Promise<void> = debounce(() => Promise.resolve(), 500)
 
@@ -121,7 +135,11 @@ export default class Shortcuts extends Vue {
                 ? 'white'
                 : keyCode === R
                   ? 'red'
-                  : keyCode === Y ? 'yellow' : keyCode === B ? 'blue' : ''
+                  : keyCode === Y
+                    ? 'yellow'
+                    : keyCode === B
+                      ? 'blue'
+                      : ''
           }
       }
     }
@@ -154,24 +172,24 @@ export default class Shortcuts extends Vue {
         return {
           type: NEW_CARD
         }
-      case keyCode >= ZERO && keyCode <= NINE && isSingle:
-        return {
-          type: CREATE_MARKER,
-          position: this.getPosition(keyCode, 'number')
-        }
-      case keyCode >= A && keyCode <= Z && isSingle:
-        return {
-          type: CREATE_MARKER,
-          position: this.getPosition(keyCode, 'alpha')
-        }
-      case keyCode === COLON && isSingle:
-      case keyCode === COMMA && isSingle:
-      case keyCode === DOT && isSingle:
-      case keyCode === SLASH && isSingle:
-        return {
-          type: CREATE_MARKER,
-          position: this.getPosition(keyCode)
-        }
+      // case keyCode >= ZERO && keyCode <= NINE && isSingle:
+      //   return {
+      //     type: CREATE_MARKER,
+      //     position: this.getPosition(keyCode, 'number')
+      //   }
+      // case keyCode >= A && keyCode <= Z && isSingle:
+      //   return {
+      //     type: CREATE_MARKER,
+      //     position: this.getPosition(keyCode, 'alpha')
+      //   }
+      // case keyCode === COLON && isSingle:
+      // case keyCode === COMMA && isSingle:
+      // case keyCode === DOT && isSingle:
+      // case keyCode === SLASH && isSingle:
+      //   return {
+      //     type: CREATE_MARKER,
+      //     position: this.getPosition(keyCode)
+      //   }
       default:
         return {
           type: UNKNOWN
@@ -233,11 +251,11 @@ export default class Shortcuts extends Vue {
       case CLEAR_MARKER:
         this.onClearMarker()
         return
-      case CREATE_MARKER:
-        this.onCreateMarker(
-          action.position ? Number(action.position.slice(-1)) : 0,
-          action.position ? Number(action.position.slice(0, 1)) : 0
-        )
+        // case CREATE_MARKER:
+        //   this.onCreateMarker(
+        //     action.position ? Number(action.position.slice(-1)) : 0,
+        //     action.position ? Number(action.position.slice(0, 1)) : 0
+        //   )
         return
     }
   }
@@ -260,7 +278,9 @@ export default class Shortcuts extends Vue {
       left:
         keyCode === ARROW.LEFT
           ? -1 * scale
-          : keyCode === ARROW.RIGHT ? scale : 0
+          : keyCode === ARROW.RIGHT
+            ? scale
+            : 0
     }
   }
 
@@ -276,7 +296,9 @@ export default class Shortcuts extends Vue {
           ? keyboardMap[37]
           : keyCode === DOT
             ? keyboardMap[38]
-            : keyCode === SLASH ? keyboardMap[39] : keyboardMap[0]
+            : keyCode === SLASH
+              ? keyboardMap[39]
+              : keyboardMap[0]
     }
   }
 }
