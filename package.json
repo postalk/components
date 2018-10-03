@@ -21,7 +21,7 @@
     "@storybook/addon-actions": "4.0.0-alpha.23",
     "@storybook/addon-links": "4.0.0-alpha.23",
     "@storybook/addon-storyshots": "4.0.0-alpha.23",
-    "@types/jest": "23.3.2",
+    "@types/jest": "23.3.3",
     "@types/storybook__addon-actions": "3.4.1",
     "@types/storybook__addon-links": "3.3.2",
     "@types/storybook__addon-storyshots": "3.4.3",
