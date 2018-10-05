@@ -1397,12 +1397,12 @@
     global "^4.3.2"
     prop-types "^15.6.2"
 
-"@storybook/addon-storyshots@4.0.0-alpha.23":
-  version "4.0.0-alpha.23"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-storyshots/-/addon-storyshots-4.0.0-alpha.23.tgz#9703d8521ad40356522c2937fc4f79ac027fabdb"
+"@storybook/addon-storyshots@4.0.0-alpha.24":
+  version "4.0.0-alpha.24"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-storyshots/-/addon-storyshots-4.0.0-alpha.24.tgz#d161b2714fca259f7f5b5ba9b6bd74c8ac7704aa"
   dependencies:
     "@babel/runtime" "^7.0.0"
-    "@storybook/addons" "4.0.0-alpha.23"
+    "@storybook/addons" "4.0.0-alpha.24"
     glob "^7.1.3"
     global "^4.3.2"
     jest-specific-snapshot "^1.0.0"
@@ -1414,15 +1414,6 @@
   dependencies:
     "@storybook/channels" "4.0.0-alpha.20"
     "@storybook/components" "4.0.0-alpha.20"
-    global "^4.3.2"
-    util-deprecate "^1.0.2"
-
-"@storybook/addons@4.0.0-alpha.23":
-  version "4.0.0-alpha.23"
-  resolved "https://registry.yarnpkg.com/@storybook/addons/-/addons-4.0.0-alpha.23.tgz#329ba88b2da6652dfaadb71e9913df590920c7eb"
-  dependencies:
-    "@storybook/channels" "4.0.0-alpha.23"
-    "@storybook/components" "4.0.0-alpha.23"
     global "^4.3.2"
     util-deprecate "^1.0.2"
 
@@ -1447,10 +1438,6 @@
   version "4.0.0-alpha.20"
   resolved "https://registry.yarnpkg.com/@storybook/channels/-/channels-4.0.0-alpha.20.tgz#a2cfff4fa3cc36060e4f59651d8ae0713448f113"
 
-"@storybook/channels@4.0.0-alpha.23":
-  version "4.0.0-alpha.23"
-  resolved "https://registry.yarnpkg.com/@storybook/channels/-/channels-4.0.0-alpha.23.tgz#5a2b24682c9d05f4d2b157f44b403bdc4bf5886e"
-
 "@storybook/channels@4.0.0-alpha.24":
   version "4.0.0-alpha.24"
   resolved "https://registry.yarnpkg.com/@storybook/channels/-/channels-4.0.0-alpha.24.tgz#dae7da50b5ba186377536b99cc1df13ce7144de3"
@@ -1472,22 +1459,6 @@
     prop-types "^15.6.2"
     react-inspector "^2.3.0"
     react-split-pane "^0.1.82"
-    react-textarea-autosize "^7.0.4"
-    render-fragment "^0.1.1"
-
-"@storybook/components@4.0.0-alpha.23":
-  version "4.0.0-alpha.23"
-  resolved "https://registry.yarnpkg.com/@storybook/components/-/components-4.0.0-alpha.23.tgz#b73b2edab0955de722699f949d1fcdd06cdda383"
-  dependencies:
-    "@emotion/core" "^0.13.1"
-    "@emotion/provider" "^0.11.2"
-    "@emotion/styled" "^0.10.6"
-    global "^4.3.2"
-    lodash.pick "^4.4.0"
-    lodash.throttle "^4.1.1"
-    prop-types "^15.6.2"
-    react-inspector "^2.3.0"
-    react-split-pane "^0.1.84"
     react-textarea-autosize "^7.0.4"
     render-fragment "^0.1.1"
 
