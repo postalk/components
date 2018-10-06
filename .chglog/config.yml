@@ -5,12 +5,13 @@ info:
   repository_url: https://github.com/postalk/components
 options:
   commits:
-    # filters:
-    #   Type:
-    #     - feat
-    #     - fix
-    #     - perf
-    #     - refactor
+    filters:
+      Type:
+        - feat
+        - fix
+        - perf
+        - refactor
+        - test
   commit_groups:
     # title_maps:
     #   feat: Features
