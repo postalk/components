@@ -1,4 +1,28 @@
 
+<a name="v0.1.5"></a>
+## [v0.1.5](https://github.com/postalk/components/compare/v0.1.4...v0.1.5) (2018-10-06)
+
+### Chore
+
+* **release:** bump v0.1.5
+
+### Docs
+
+* update changelog v0.1.4
+
+### Fix
+
+* **cards:** bugs about updating position
+
+### Style
+
+* **cards:** remove useless type
+
+### Pull Requests
+
+* Merge pull request [#139](https://github.com/postalk/components/issues/139) from postalk/fix/cards
+
+
 <a name="v0.1.4"></a>
 ## [v0.1.4](https://github.com/postalk/components/compare/v0.1.3...v0.1.4) (2018-10-06)
 
