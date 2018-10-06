@@ -123,23 +123,23 @@ export default class Shortcuts extends Vue {
             type: MOVE_SELECTED,
             direction: this.getDirection(keyCode, withShift)
           }
-        case keyCode === W && withAlt:
-        case keyCode === R && withAlt:
-        case keyCode === Y && withAlt:
-        case keyCode === B && withAlt:
-          return {
-            type: CHANGE_COLOR,
-            color:
-              keyCode === W
-                ? 'white'
-                : keyCode === R
-                  ? 'red'
-                  : keyCode === Y
-                    ? 'yellow'
-                    : keyCode === B
-                      ? 'blue'
-                      : ''
-          }
+        // case keyCode === W && withAlt:
+        // case keyCode === R && withAlt:
+        // case keyCode === Y && withAlt:
+        // case keyCode === B && withAlt:
+        //   return {
+        //     type: CHANGE_COLOR,
+        //     color:
+        //       keyCode === W
+        //         ? 'white'
+        //         : keyCode === R
+        //           ? 'red'
+        //           : keyCode === Y
+        //             ? 'yellow'
+        //             : keyCode === B
+        //               ? 'blue'
+        //               : ''
+        //   }
       }
     }
     switch (true) {
@@ -221,7 +221,7 @@ export default class Shortcuts extends Vue {
         )
         return
       case CHANGE_COLOR:
-        this.onChangeColor(action.color ? action.color : '')
+        this.onChangeColor('')
         return
       case SELECT_ALL:
         e.preventDefault()

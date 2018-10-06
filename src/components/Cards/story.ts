@@ -14,22 +14,16 @@ const SelectTester: ComponentOptions<Vue> = {
     }
   },
   methods: {
-    update(ids, update) {
-      const self = this as any
-      setTimeout(() => {
-        self.cards = self.cards.map(
-          (card: CardInfo) =>
-            ids.includes(card.id) ? { ...card, ...update } : card
-        )
-      }, 100)
-    },
-    positionUpdate(ids, diff) {
+    update(updates) {
       const self = this as any
       setTimeout(() => {
         self.cards = self.cards.map((card: CardInfo) => {
-          return ids.includes(card.id)
-            ? { ...card, x: card.x + diff.x, y: card.y + diff.y }
-            : card
+          updates.forEach((update: CardInfo) => {
+            if (update.id === card.id) {
+              card = { ...card, ...update }
+            }
+          })
+          return card
         })
       }, 100)
     },
@@ -64,7 +58,6 @@ storiesOf('Cards', module).add('Default', () => ({
     author="me"
     :handleCreate="create"
     :handleUpdate="update"
-    :handlePositionUpdate="positionUpdate"
     :handleRemove="remove"
     :handleUndo="undo"
   />`,
