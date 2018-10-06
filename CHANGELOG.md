@@ -1,51 +1,56 @@
 
-<a name="v0.1.6"></a>
+<a name="v0.1.7"></a>
+## [v0.1.7](https://github.com/postalk/components/compare/v0.1.6...v0.1.7) (2018-10-07)
 
+### Fix
+
+* **cards:** avoid to unselect after changed color
+
+### Refactor
+
+* **cards:** simplify update interface
+
+
+<a name="v0.1.6"></a>
 ## [v0.1.6](https://github.com/postalk/components/compare/v0.1.5...v0.1.6) (2018-10-07)
 
 ### Fix
 
-- **cards:** bugs about watching cards data
-  
-  
-<a name="v0.1.5"></a>
+* **cards:** bugs about watching cards data
 
+
+<a name="v0.1.5"></a>
 ## [v0.1.5](https://github.com/postalk/components/compare/v0.1.4...v0.1.5) (2018-10-06)
 
 ### Fix
 
-- **cards:** bugs about updating position
-  
-  
-<a name="v0.1.4"></a>
+* **cards:** bugs about updating position
 
+
+<a name="v0.1.4"></a>
 ## [v0.1.4](https://github.com/postalk/components/compare/v0.1.3...v0.1.4) (2018-10-06)
 
 ### Fix
 
-- **cards:** add min-width min-height to canvas
-  
-  
-<a name="v0.1.3"></a>
+* **cards:** add min-width min-height to canvas
 
+
+<a name="v0.1.3"></a>
 ## [v0.1.3](https://github.com/postalk/components/compare/v0.1.2...v0.1.3) (2018-10-01)
 
 
 <a name="v0.1.2"></a>
-
 ## [v0.1.2](https://github.com/postalk/components/compare/v0.1.1...v0.1.2) (2018-10-01)
 
 ### Refactor
 
-- **cards:** simplify cards interface
-  
-  
-<a name="v0.1.1"></a>
+* **cards:** simplify cards interface
 
+
+<a name="v0.1.1"></a>
 ## [v0.1.1](https://github.com/postalk/components/compare/v0.1.0...v0.1.1) (2018-09-29)
 
 
 <a name="v0.1.0"></a>
-
 ## v0.1.0 (2018-09-29)
 
