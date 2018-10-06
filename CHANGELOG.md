@@ -1,4 +1,12 @@
 
+<a name="v0.1.9"></a>
+## [v0.1.9](https://github.com/postalk/components/compare/v0.1.8...v0.1.9) (2018-10-07)
+
+### Fix
+
+* **canvas:** avoid to create marker on canvas by dblclicking card
+
+
 <a name="v0.1.8"></a>
 ## [v0.1.8](https://github.com/postalk/components/compare/v0.1.7...v0.1.8) (2018-10-07)
 
