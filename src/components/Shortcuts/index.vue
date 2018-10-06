@@ -78,7 +78,7 @@ export default class Shortcuts extends Vue {
   @Prop()
   private onClearMarker!: () => void
 
-  private moveTimer: Function = debounce(this.onMoveDoneSelected, 750)
+  private moveTimer = debounce(this.onMoveDoneSelected, 750)
 
   private created() {
     addListener('keydown', this.keyBoardHandler)
