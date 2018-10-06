@@ -116,8 +116,11 @@ import Mark from './marker.vue'
         newVal.forEach((c: CardInfo, i: number) => {
           this.willSelect = this.willSelect.filter(card => {
             if (
-              card.id === c.id ||
-              (card.value === c.value && card.x === c.x && card.y === c.y)
+              (card.id && card.id === c.id && card.value !== c.value) ||
+              (!card.id &&
+                card.value === c.value &&
+                card.x === c.x &&
+                card.y === c.y)
             ) {
               this.selectedCardIds.push(c.id)
               return false
@@ -136,12 +139,7 @@ export default class Cards extends Vue {
   private author!: string
 
   @Prop()
-  private handleUpdate!: (ids: string[], cards: Partial<CardInfo>) => void
-  @Prop()
-  private handlePositionUpdate!: (
-    ids: string[],
-    diff: { x: number; y: number }
-  ) => void
+  private handleUpdate!: (cards: Array<Partial<CardInfo>>) => void
   @Prop()
   private handleRemove!: (ids: string[]) => void
   @Prop()
@@ -212,13 +210,17 @@ export default class Cards extends Vue {
       return
     }
 
-    this.willPositionClear = this.cards.filter(card =>
+    const selectedCards = this.cards.filter(card =>
       this.selectedCardIds.includes(card.id)
     )
-    this.handlePositionUpdate(this.selectedCardIds, {
-      x: this.diffX,
-      y: this.diffY
-    })
+    this.willPositionClear = selectedCards
+    const updates = selectedCards.map(card => ({
+      id: card.id,
+      x: card.x + this.diffX,
+      y: card.y + this.diffY
+    }))
+
+    this.handleUpdate(updates)
   }
 
   private onStart(id: string): void {
@@ -232,21 +234,21 @@ export default class Cards extends Vue {
   }
 
   private onUpdate(id: string, value: string): void {
-    this.willSelect = [{ id }]
-    this.handleUpdate([id], { value })
+    const prevVal = this.cards.filter(card => card.id === id)[0].value
+    this.willSelect = [{ id, value: prevVal }]
+    this.handleUpdate([{ id, value }])
   }
 
   private onNewCardUpdate(id: string, value: string): void {
-    this.willSelect = [{ id }]
-    this.handleCreate([
-      {
-        x: this.newCard.x || 0,
-        y: this.newCard.y || 0,
-        value,
-        color: this.newCard.color || '',
-        author: this.author
-      }
-    ])
+    const payload = {
+      x: this.newCard.x || 0,
+      y: this.newCard.y || 0,
+      value,
+      color: this.newCard.color || '',
+      author: this.author
+    }
+    this.willSelect = [payload]
+    this.handleCreate([payload])
     this.newCard = {}
   }
 
@@ -372,18 +374,18 @@ export default class Cards extends Vue {
   }
 
   private changeColor(color: string): void {
-    if (color) {
-      this.handleUpdate(this.selectedCardIds, { color })
-      return
-    }
     const colors = ['white', 'blue', 'yellow', 'red']
     const current = this.cards.filter(card =>
       this.selectedCardIds.includes(card.id)
     )[0].color
     const index = (colors.indexOf(current) + 1) % 4
-    this.handleUpdate(this.selectedCardIds, {
+
+    const updates = this.selectedCardIds.map(id => ({
+      id,
       color: colors[index]
-    })
+    }))
+
+    this.handleUpdate(updates)
   }
 
   private removeSelected() {
