@@ -1,4 +1,12 @@
 
+<a name="v0.1.8"></a>
+## [v0.1.8](https://github.com/postalk/components/compare/v0.1.7...v0.1.8) (2018-10-07)
+
+### Perf
+
+* **shortcuts:** improve moving card debounce time
+
+
 <a name="v0.1.7"></a>
 ## [v0.1.7](https://github.com/postalk/components/compare/v0.1.6...v0.1.7) (2018-10-07)
 
