@@ -496,6 +496,8 @@ export default class Cards extends Vue {
 
 <style scoped lang="scss">
 .canvas {
+  min-height: 1200px;
+  min-width: 2000px;
   width: 100%;
   height: 100%;
 }
