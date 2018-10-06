@@ -15,6 +15,7 @@
         height: `${height - 32 * 2 + 2}px`
       }"
       :id="id"
+      @dblclick="stopEvent"
     >
       <div 
         ref="card"
@@ -104,7 +105,6 @@ import {
   }
 })
 export default class Card extends Vue {
-
   @Prop()
   public diff!: { x: number; y: number }
   @Prop()
@@ -158,6 +158,10 @@ export default class Card extends Vue {
     this.$nextTick(() => {
       this.show = true
     })
+  }
+
+  private stopEvent(e: MouseEvent): void {
+    e.stopPropagation()
   }
 
   private submit(value: string): void {
