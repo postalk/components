@@ -13,11 +13,9 @@
       :id="card.id"
       :value="card.value"
       :color="card.color"
-      :initialX="card.x"
-      :initialY="card.y"
-      :diffX="diffX"
-      :diffY="diffY"
-      :moving="moving"
+      :initial="{ x: card.x, y: card.y }"
+      :diff="{ x: diffX, y: diffY }"
+      :movingId="moving"
       :selected="selectedCardIds.includes(card.id)"
       :disabled="(selectStartX !== 0 || selectStartY !== 0) && (selectW > 0 && selectH > 0)"
       :handleMove="onMove"
@@ -30,11 +28,9 @@
       v-if="newCard.color !== undefined"
       id="new"
       :color="newCard.color"
-      :initialX="newCard.x"
-      :initialY="newCard.y"
-      :diffX="diffX"
-      :diffY="diffY"
-      :moving="moving"
+      :initial="{ x: newCard.x, y: newCard.y }"
+      :diff="{ x: diffX, y: diffY }"
+      :movingId="moving"
       :selected="selectedCardIds.includes('new')"
       :disabled="(selectStartX !== 0 || selectStartY !== 0) && (selectW > 0 && selectH > 0)"
       :handleMove="onMove"
@@ -101,9 +97,25 @@ import Mark from './marker.vue'
   },
   watch: {
     cards(newVal, oldVal) {
+      if (this.willPositionClearIds.length > 0) {
+        oldVal.forEach((c: CardInfo, i: number) => {
+          if (c.x !== newVal[i].x || c.y !== newVal[i].y) {
+            this.willPositionClearIds = this.willPositionClearIds.filter(
+              id => id !== c.id
+            )
+          }
+        })
+        if (this.willPositionClearIds.length === 0) {
+          this.moving = ''
+          this.diffX = 0
+          this.diffY = 0
+        }
+      }
+
       if (this.willSelect === 0) {
         return
       }
+
       if (oldVal.length < newVal.length) {
         for (let i = 0; i < newVal.length - oldVal.length; i++) {
           if (newVal[newVal.length - i - 1].author !== this.author) {
@@ -134,6 +146,11 @@ export default class Cards extends Vue {
   @Prop()
   private handleUpdate!: (ids: string[], cards: Partial<CardInfo>) => void
   @Prop()
+  private handlePositionUpdate!: (
+    ids: string[],
+    diff: { x: number; y: number }
+  ) => void
+  @Prop()
   private handleRemove!: (ids: string[]) => void
   @Prop()
   private handleCreate!: (cards: CardForm[]) => void
@@ -154,6 +171,7 @@ export default class Cards extends Vue {
   private selectY: number = 0
   private selectedCardIds: string[] = []
   private willSelect: number = 0
+  private willPositionClearIds: string[] = []
 
   private markerX: number = 0
   private markerY: number = 0
@@ -166,7 +184,7 @@ export default class Cards extends Vue {
   private onClick(e: MouseEvent) {
     const isDraggable = (e.target as Element).className.match(/drag/)
 
-    if (isDraggable) {
+    if (isDraggable && !this.moving) {
       this.selectStartX = 0
       this.selectStartY = 0
       this.selectW = 0
@@ -197,22 +215,16 @@ export default class Cards extends Vue {
   }
 
   private onStop(): void {
-    this.moving = ''
     if (this.diffX === 0 && this.diffY === 0) {
+      this.moving = ''
       return
     }
 
-    this.cards.forEach(card => {
-      if (this.selectedCardIds.includes(card.id)) {
-        this.handleUpdate([card.id], {
-          x: card.x + this.diffX,
-          y: card.y + this.diffY
-        })
-      }
+    this.willPositionClearIds = this.selectedCardIds
+    this.handlePositionUpdate(this.selectedCardIds, {
+      x: this.diffX,
+      y: this.diffY
     })
-
-    this.diffX = 0
-    this.diffY = 0
   }
 
   private onStart(id: string): void {
@@ -283,11 +295,12 @@ export default class Cards extends Vue {
     const isCanvas = (e.target as Element).className.match(/canvas/)
 
     if (
-      this.selectW === 0 &&
-      this.selectH === 0 &&
-      this.selectStartY === 0 &&
-      this.selectStartX === 0 &&
-      !isCanvas
+      (this.selectW === 0 &&
+        this.selectH === 0 &&
+        this.selectStartY === 0 &&
+        this.selectStartX === 0 &&
+        !isCanvas) ||
+      (this.selectW === 0 && this.selectW === 0 && this.moving)
     ) {
       return
     }

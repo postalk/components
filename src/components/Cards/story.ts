@@ -16,14 +16,30 @@ const SelectTester: ComponentOptions<Vue> = {
   methods: {
     update(ids, update) {
       const self = this as any
-      self.cards = self.cards.map(
-        (card: CardInfo) =>
-          ids.includes(card.id) ? { ...card, ...update } : card
-      )
+      setTimeout(() => {
+        self.cards = self.cards.map(
+          (card: CardInfo) =>
+            ids.includes(card.id) ? { ...card, ...update } : card
+        )
+      }, 100)
+    },
+    positionUpdate(ids, diff) {
+      const self = this as any
+      setTimeout(() => {
+        self.cards = self.cards.map((card: CardInfo) => {
+          return ids.includes(card.id)
+            ? { ...card, x: card.x + diff.x, y: card.y + diff.y }
+            : card
+        })
+      }, 100)
     },
     remove(ids) {
       const self = this as any
-      self.cards = self.cards.filter((card: CardInfo) => !ids.includes(card.id))
+      setTimeout(() => {
+        self.cards = self.cards.filter(
+          (card: CardInfo) => !ids.includes(card.id)
+        )
+      }, 100)
     },
     create(cardList) {
       const self = this as any
@@ -31,7 +47,9 @@ const SelectTester: ComponentOptions<Vue> = {
         ...c,
         id: `key-${randomStr()}`
       }))
-      self.cards = self.cards.concat(cardList)
+      setTimeout(() => {
+        self.cards = self.cards.concat(cardList)
+      }, 100)
     },
     undo() {
       action('undo')
@@ -46,6 +64,7 @@ storiesOf('Cards', module).add('Default', () => ({
     author="me"
     :handleCreate="create"
     :handleUpdate="update"
+    :handlePositionUpdate="positionUpdate"
     :handleRemove="remove"
     :handleUndo="undo"
   />`,

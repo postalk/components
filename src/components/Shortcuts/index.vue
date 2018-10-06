@@ -78,7 +78,7 @@ export default class Shortcuts extends Vue {
   @Prop()
   private onClearMarker!: () => void
 
-  private timer: () => Promise<void> = debounce(() => Promise.resolve(), 500)
+  private moveTimer: Function = debounce(this.onMoveDoneSelected, 750)
 
   private created() {
     addListener('keydown', this.keyBoardHandler)
@@ -121,8 +121,7 @@ export default class Shortcuts extends Vue {
         case keyCode === ARROW.RIGHT:
           return {
             type: MOVE_SELECTED,
-            direction: this.getDirection(keyCode, withShift),
-            timer: this.timer
+            direction: this.getDirection(keyCode, withShift)
           }
         case keyCode === W && withAlt:
         case keyCode === R && withAlt:
@@ -214,11 +213,7 @@ export default class Shortcuts extends Vue {
         return
       case MOVE_SELECTED:
         e.preventDefault()
-        if (action.timer) {
-          action.timer().then(() => {
-            this.onMoveDoneSelected()
-          })
-        }
+        this.moveTimer()
         this.onMoveSelected(
           action.direction ? action.direction.left * -24 : 0,
           action.direction ? action.direction.top * -24 : 0,
@@ -251,12 +246,12 @@ export default class Shortcuts extends Vue {
       case CLEAR_MARKER:
         this.onClearMarker()
         return
-        // case CREATE_MARKER:
-        //   this.onCreateMarker(
-        //     action.position ? Number(action.position.slice(-1)) : 0,
-        //     action.position ? Number(action.position.slice(0, 1)) : 0
-        //   )
-        return
+      // case CREATE_MARKER:
+      //   this.onCreateMarker(
+      //     action.position ? Number(action.position.slice(-1)) : 0,
+      //     action.position ? Number(action.position.slice(0, 1)) : 0
+      //   )
+      // return
     }
   }
 
