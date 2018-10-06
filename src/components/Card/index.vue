@@ -3,7 +3,7 @@
       v-if="show"
       :class="{
         cardRoot: true,
-        isMoving: moving && moving !== id,
+        isMoving: movingId && movingId !== id,
         isSelected: selected,
         isImage: isImage(value),
         isTable: isTable(value),
@@ -20,8 +20,8 @@
         ref="card"
         class="card"
         :style="{
-          transform: moving && moving !== id && selected 
-            ? `translate(${diffX}px, ${diffY}px)`
+          transform: movingId && movingId !== id && selected 
+            ? `translate(${diff.x}px, ${diff.y}px)`
             : undefined,
           'background-color': getColor()['background-color'],
           'border-color': selected ? selectColor : getColor()['border-color'],
@@ -38,7 +38,7 @@
         <Input 
           class="input" 
           :initial="value"
-          :disabled="!!moving || disabled"
+          :disabled="!!movingId || disabled"
           :isNew="id.match(/^new$/)"
           :handleSubmit="submit"
           :handleFocus="focus"
@@ -88,8 +88,8 @@ import {
     Drag
   },
   watch: {
-    moving(newVal, oldVal) {
-      if (oldVal && !newVal) {
+    initial(newVal, oldVal) {
+      if (oldVal.x !== newVal.x || oldVal.y !== newVal.y) {
         this.rerender()
       }
     },
@@ -104,28 +104,39 @@ import {
   }
 })
 export default class Card extends Vue {
-  @Prop() public diffX!: number
-  @Prop() public diffY!: number
-  @Prop() public moving!: string | undefined
-  @Prop() public selected!: boolean
-  @Prop() public disabled!: boolean
-  @Prop() private id!: string
+
+  @Prop()
+  public diff!: { x: number; y: number }
+  @Prop()
+  public movingId!: string | undefined
+  @Prop()
+  public selected!: boolean
+  @Prop()
+  public disabled!: boolean
+  @Prop()
+  private id!: string
   @Prop({ default: '' })
   private value!: string
-  @Prop() private initialX!: number
-  @Prop() private initialY!: number
-  @Prop() private color!: string
+  @Prop()
+  private color!: string
+  @Prop()
+  private initial!: { x: number; y: number }
 
-  @Prop() private handleMove!: (x: number, y: number, id: string) => void
-  @Prop() private handleStop!: () => void
-  @Prop() private handleStart!: (id: string) => void
-  @Prop() private handleUpdate!: (id: string, value: string) => void
-  @Prop() private handleRemove!: (id: string) => void
+  @Prop()
+  private handleMove!: (x: number, y: number, id: string) => void
+  @Prop()
+  private handleStop!: () => void
+  @Prop()
+  private handleStart!: (id: string) => void
+  @Prop()
+  private handleUpdate!: (id: string, value: string) => void
+  @Prop()
+  private handleRemove!: (id: string) => void
 
   private show: boolean = true
   private editing: boolean = false
-  private x: number = this.initialX
-  private y: number = this.initialY
+  private x: number = this.initial.x
+  private y: number = this.initial.y
   private width: number = 0
   private height: number = 0
   private selectColor: string = SELECT
@@ -142,8 +153,8 @@ export default class Card extends Vue {
 
   private rerender(): void {
     this.show = false
-    this.x = this.initialX
-    this.y = this.initialY
+    this.x = this.initial.x
+    this.y = this.initial.y
     this.$nextTick(() => {
       this.show = true
     })
@@ -171,7 +182,7 @@ export default class Card extends Vue {
   }
 
   private onDragging(x: number, y: number): void {
-    if (!this.moving) {
+    if (!this.movingId) {
       this.handleStart(this.id)
     }
     const diffX = this.x - x - 32
@@ -219,13 +230,17 @@ export default class Card extends Vue {
           ? RED
           : this.color === 'blue'
             ? BLUE
-            : this.color === 'yellow' ? YELLOW : '',
+            : this.color === 'yellow'
+              ? YELLOW
+              : '',
       'border-color':
         this.color === 'red'
           ? RED_DARK
           : this.color === 'blue'
             ? BLUE_DARK
-            : this.color === 'yellow' ? YELLOW_DARK : ''
+            : this.color === 'yellow'
+              ? YELLOW_DARK
+              : ''
     }
   }
 }
