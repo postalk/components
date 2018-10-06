@@ -116,8 +116,11 @@ import Mark from './marker.vue'
         newVal.forEach((c: CardInfo, i: number) => {
           this.willSelect = this.willSelect.filter(card => {
             if (
-              card.id === c.id ||
-              (card.value === c.value && card.x === c.x && card.y === c.y)
+              (card.id && card.id === c.id && card.value !== c.value) ||
+              (!card.id &&
+                card.value === c.value &&
+                card.x === c.x &&
+                card.y === c.y)
             ) {
               this.selectedCardIds.push(c.id)
               return false
@@ -232,21 +235,21 @@ export default class Cards extends Vue {
   }
 
   private onUpdate(id: string, value: string): void {
-    this.willSelect = [{ id }]
+    const prevVal = this.cards.filter(card => card.id === id)[0].value
+    this.willSelect = [{ id, value: prevVal }]
     this.handleUpdate([id], { value })
   }
 
   private onNewCardUpdate(id: string, value: string): void {
-    this.willSelect = [{ id }]
-    this.handleCreate([
-      {
-        x: this.newCard.x || 0,
-        y: this.newCard.y || 0,
-        value,
-        color: this.newCard.color || '',
-        author: this.author
-      }
-    ])
+    const payload = {
+      x: this.newCard.x || 0,
+      y: this.newCard.y || 0,
+      value,
+      color: this.newCard.color || '',
+      author: this.author
+    }
+    this.willSelect = [payload]
+    this.handleCreate([payload])
     this.newCard = {}
   }
 
