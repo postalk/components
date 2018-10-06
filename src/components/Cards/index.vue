@@ -97,43 +97,35 @@ import Mark from './marker.vue'
   },
   watch: {
     cards(newVal, oldVal) {
-      if (this.willPositionClearIds.length > 0) {
-        oldVal.forEach((c: CardInfo, i: number) => {
-          if (c.x !== newVal[i].x || c.y !== newVal[i].y) {
-            this.willPositionClearIds = this.willPositionClearIds.filter(
-              id => id !== c.id
-            )
-          }
+      if (this.willPositionClear.length > 0) {
+        newVal.forEach((c: CardInfo, i: number) => {
+          this.willPositionClear = this.willPositionClear.filter(
+            card => !(card.id === c.id && (card.x !== c.x || card.y !== c.y))
+          )
         })
-        if (this.willPositionClearIds.length === 0) {
+        if (this.willPositionClear.length === 0) {
           this.moving = ''
           this.diffX = 0
           this.diffY = 0
         }
       }
 
-      if (this.willSelect === 0) {
-        return
-      }
+      if (this.willSelect.length > 0) {
+        this.selectedCardIds = []
 
-      if (oldVal.length < newVal.length) {
-        for (let i = 0; i < newVal.length - oldVal.length; i++) {
-          if (newVal[newVal.length - i - 1].author !== this.author) {
-            return
-          }
-          this.selectedCardIds = this.selectedCardIds.concat([
-            newVal[newVal.length - i - 1].id
-          ])
-          this.willSelect--
-        }
-        return
+        newVal.forEach((c: CardInfo, i: number) => {
+          this.willSelect = this.willSelect.filter(card => {
+            if (
+              card.id === c.id ||
+              (card.value === c.value && card.x === c.x && card.y === c.y)
+            ) {
+              this.selectedCardIds.push(c.id)
+              return false
+            }
+            return true
+          })
+        })
       }
-      newVal.forEach((c: CardInfo, i: number) => {
-        if (c.value !== oldVal[i].value && c.author === this.author) {
-          this.selectedCardIds = [c.id]
-          this.willSelect--
-        }
-      })
     }
   }
 })
@@ -170,8 +162,8 @@ export default class Cards extends Vue {
   private selectX: number = 0
   private selectY: number = 0
   private selectedCardIds: string[] = []
-  private willSelect: number = 0
-  private willPositionClearIds: string[] = []
+  private willSelect: Array<Partial<CardInfo>> = []
+  private willPositionClear: Array<Partial<CardInfo>> = []
 
   private markerX: number = 0
   private markerY: number = 0
@@ -220,7 +212,9 @@ export default class Cards extends Vue {
       return
     }
 
-    this.willPositionClearIds = this.selectedCardIds
+    this.willPositionClear = this.cards.filter(card =>
+      this.selectedCardIds.includes(card.id)
+    )
     this.handlePositionUpdate(this.selectedCardIds, {
       x: this.diffX,
       y: this.diffY
@@ -238,12 +232,12 @@ export default class Cards extends Vue {
   }
 
   private onUpdate(id: string, value: string): void {
-    this.willSelect = 1
+    this.willSelect = [{ id }]
     this.handleUpdate([id], { value })
   }
 
   private onNewCardUpdate(id: string, value: string): void {
-    this.willSelect = 1
+    this.willSelect = [{ id }]
     this.handleCreate([
       {
         x: this.newCard.x || 0,
@@ -481,7 +475,7 @@ export default class Cards extends Vue {
         author: this.author
       }))
 
-    this.willSelect = cards.length
+    this.willSelect = cards
     this.handleCreate(cards)
     this.clearMarker()
     this.clearSelected()
