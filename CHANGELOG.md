@@ -1,4 +1,40 @@
 
+<a name="v0.1.4"></a>
+## [v0.1.4](https://github.com/postalk/components/compare/v0.1.3...v0.1.4) (2018-10-06)
+
+### Build
+
+* **deps:** bump vue-property-decorator from 7.1.1 to 7.2.0
+* **deps-dev:** bump [@storybook](https://github.com/storybook)/addon-storyshots
+* **deps-dev:** bump [@storybook](https://github.com/storybook)/addon-actions
+* **deps-dev:** bump [@storybook](https://github.com/storybook)/addon-links
+* **deps-dev:** bump commitizen from 2.10.1 to 3.0.2
+* **deps-dev:** bump [@types](https://github.com/types)/jest from 23.3.2 to 23.3.3
+* **deps-dev:** bump ts-jest from 23.10.2 to 23.10.3
+
+### Chore
+
+* **release:** bump v0.1.4
+
+### Docs
+
+* update changelog
+
+### Fix
+
+* **cards:** add min-width min-height to canvas
+
+### Pull Requests
+
+* Merge pull request [#138](https://github.com/postalk/components/issues/138) from postalk/dependabot/npm_and_yarn/[@storybook](https://github.com/storybook)/addon-storyshots-4.0.0-alpha.24
+* Merge pull request [#137](https://github.com/postalk/components/issues/137) from postalk/dependabot/npm_and_yarn/[@storybook](https://github.com/storybook)/addon-actions-4.0.0-alpha.24
+* Merge pull request [#136](https://github.com/postalk/components/issues/136) from postalk/dependabot/npm_and_yarn/[@storybook](https://github.com/storybook)/addon-links-4.0.0-alpha.24
+* Merge pull request [#135](https://github.com/postalk/components/issues/135) from postalk/dependabot/npm_and_yarn/commitizen-3.0.2
+* Merge pull request [#133](https://github.com/postalk/components/issues/133) from postalk/dependabot/npm_and_yarn/vue-property-decorator-7.2.0
+* Merge pull request [#134](https://github.com/postalk/components/issues/134) from postalk/dependabot/npm_and_yarn/[@types](https://github.com/types)/jest-23.3.3
+* Merge pull request [#131](https://github.com/postalk/components/issues/131) from postalk/dependabot/npm_and_yarn/ts-jest-23.10.3
+
+
 <a name="v0.1.3"></a>
 ## [v0.1.3](https://github.com/postalk/components/compare/v0.1.2...v0.1.3) (2018-10-01)
 
