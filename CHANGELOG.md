@@ -1,4 +1,12 @@
 
+<a name="v0.1.11"></a>
+## [v0.1.11](https://github.com/postalk/components/compare/v0.1.10...v0.1.11) (2018-10-07)
+
+### Fix
+
+* **cards:** make sure to select all cards after paste
+
+
 <a name="v0.1.10"></a>
 ## [v0.1.10](https://github.com/postalk/components/compare/v0.1.9...v0.1.10) (2018-10-07)
 
