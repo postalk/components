@@ -1,4 +1,16 @@
 
+<a name="v0.2.0"></a>
+## [v0.2.0](https://github.com/postalk/components/compare/v0.1.11...v0.2.0) (2018-10-08)
+
+### Feat
+
+* **image:** implement uploading image
+
+### Test
+
+* update snapshot
+
+
 <a name="v0.1.11"></a>
 ## [v0.1.11](https://github.com/postalk/components/compare/v0.1.10...v0.1.11) (2018-10-07)
 
