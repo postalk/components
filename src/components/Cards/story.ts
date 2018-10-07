@@ -37,13 +37,11 @@ const SelectTester: ComponentOptions<Vue> = {
     },
     create(cardList) {
       const self = this as any
-      cardList = cardList.map((c: CardForm) => ({
-        ...c,
-        id: `key-${randomStr()}`
-      }))
-      setTimeout(() => {
-        self.cards = self.cards.concat(cardList)
-      }, 100)
+      cardList.forEach((c: CardForm, i: number) => {
+        setTimeout(() => {
+          self.cards.push({ ...c, id: `key-${randomStr()}` })
+        }, 50 * (i + 1))
+      })
     },
     undo() {
       action('undo')

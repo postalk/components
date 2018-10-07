@@ -111,8 +111,6 @@ import Mark from './marker.vue'
       }
 
       if (this.willSelect.length > 0) {
-        this.selectedCardIds = []
-
         newVal.forEach((c: CardInfo, i: number) => {
           this.willSelect = this.willSelect.filter(card => {
             if (
@@ -478,9 +476,9 @@ export default class Cards extends Vue {
       }))
 
     this.willSelect = cards
-    this.handleCreate(cards)
     this.clearMarker()
     this.clearSelected()
+    this.handleCreate(cards)
   }
 
   private moveMarker(x: number, y: number) {
