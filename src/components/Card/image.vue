@@ -9,8 +9,10 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
 @Component
 export default class Img extends Vue {
-  @Prop() private url!: string
-  @Prop() private handleMeasure!: (w: number, height: number) => void
+  @Prop()
+  private url!: string
+  @Prop()
+  private handleMeasure!: (w: number, height: number) => void
 
   private mounted() {
     const self = this
@@ -29,5 +31,6 @@ export default class Img extends Vue {
 <style scoped lang="scss">
 .image {
   display: block;
+  width: 100%;
 }
 </style>

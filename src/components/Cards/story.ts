@@ -43,9 +43,21 @@ const SelectTester: ComponentOptions<Vue> = {
         }, 50 * (i + 1))
       })
     },
-    undo() {
-      action('undo')
-    }
+    image(cardList) {
+      const self = this as any
+      cardList.forEach((c: CardForm, i: number) => {
+        const { file, ...cd } = c
+        setTimeout(() => {
+          self.cards.push({
+            ...cd,
+            value: 'upload image will be shown',
+            id: `key-${randomStr()}`
+          })
+        }, 50 * (i + 1))
+      })
+    },
+    deleteImage: action('deleteImages'),
+    undo: action('undo')
   }
 }
 
@@ -57,6 +69,8 @@ storiesOf('Cards', module).add('Default', () => ({
     :handleCreate="create"
     :handleUpdate="update"
     :handleRemove="remove"
+    :handleImage="image"
+    :handleDeleteImage="deleteImage"
     :handleUndo="undo"
   />`,
   ...SelectTester

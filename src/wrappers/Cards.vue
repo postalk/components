@@ -6,6 +6,8 @@
       :handleCreate="handleCreate"
       :handleUpdate="handleUpdate"
       :handleRemove="handleRemove"
+      :handleImage="handleImage"
+      :handleDeleteImage="handleDeleteImage"
       :handleUndo="handleUndo"
     />
   </div>
@@ -33,6 +35,10 @@ export default class CardsWrapper extends Vue {
   private handleRemove!: (ids: string[]) => void
   @Prop()
   private handleCreate!: (cards: CardForm[]) => void
+  @Prop()
+  private handleImage!: (cards: CardForm[]) => void
+  @Prop()
+  private handleDeleteImage!: (fileNames: string[]) => void
   @Prop()
   private handleUndo!: () => void
 }

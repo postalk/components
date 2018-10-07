@@ -33,16 +33,20 @@ import Dropzone from 'vue2-dropzone'
   }
 })
 export default class Mark extends Vue {
-  @Prop() private color!: string
-  @Prop() private x!: number
-  @Prop() private y!: number
+  @Prop()
+  private color!: string
+  @Prop()
+  private x!: number
+  @Prop()
+  private y!: number
 
-  @Prop() private handleText!: () => void
-  @Prop() private handleImage!: () => void
+  @Prop()
+  private handleText!: () => void
+  @Prop()
+  private handleImage!: (file: File) => void
 
-  private onAddFile() {
-    // TODO  Upload to Firebase
-    this.handleImage()
+  private onAddFile(file: File) {
+    this.handleImage(file)
   }
 }
 </script>
