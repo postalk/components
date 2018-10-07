@@ -78,6 +78,7 @@
 </template>
 
 <script lang="ts">
+import isImage from 'is-image-url'
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import Card from '../Card/index.vue'
 import Shortcuts from '../Shortcuts/index.vue'
@@ -142,6 +143,10 @@ export default class Cards extends Vue {
   private handleRemove!: (ids: string[]) => void
   @Prop()
   private handleCreate!: (cards: CardForm[]) => void
+  @Prop()
+  private handleImage!: (cards: CardForm[]) => void
+  @Prop()
+  private handleDeleteImage!: (fileNames: string[]) => void
   @Prop()
   private handleUndo!: () => void
 
@@ -358,14 +363,14 @@ export default class Cards extends Vue {
     this.clearMarker()
   }
 
-  private createImageCard(url: string) {
-    this.handleCreate([
+  private createImageCard(file: File) {
+    this.handleImage([
       {
         x: this.markerX,
         y: this.markerY,
         color: this.color,
-        value: url as string,
-        author: this.author
+        author: this.author,
+        file
       }
     ])
     this.clearMarker()
@@ -387,6 +392,22 @@ export default class Cards extends Vue {
   }
 
   private removeSelected() {
+    const fileNames = this.cards
+      .filter(
+        card =>
+          this.selectedCardIds.includes(card.id) &&
+          isImage(card.value) &&
+          card.value.match(/^https:\/\/firebasestorage\.googleapis\.com\//)
+      )
+      .map(card =>
+        (card.value.match(
+          /%2F.*(png|jpe?g|svg|gif|PNG|JPE?G|SVG|GIF)/
+        ) as string[])[0].replace(/%2F/, '')
+      )
+
+    if (fileNames.length > 0) {
+      this.handleDeleteImage(fileNames)
+    }
     this.handleRemove(this.selectedCardIds)
   }
 

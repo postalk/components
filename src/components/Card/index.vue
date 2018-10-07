@@ -27,7 +27,9 @@
           'background-color': getColor()['background-color'],
           'border-color': selected ? selectColor : getColor()['border-color'],
           'outline': selected ? `solid 1px ${selectColor}` : undefined,
-          'min-height': !value ? '60px' : undefined
+          'min-height': !value ? '60px' : undefined,
+          width: isImage(value) ? `${width - (32 * 2 + 2)}px` : undefined,
+          height: isImage(value) ? `${height - (32 * 2 + 2)}px` : undefined
         }"
       >
         <Table :txt="value" v-if="isTable(value)" />
@@ -181,8 +183,8 @@ export default class Card extends Vue {
   }
 
   private onImageMeasure(width: number, height: number) {
-    this.height = height + 32 * 2 + 8 * 2 + 2
-    this.width = width + 32 * 2 + 8 * 2 + 2
+    this.height = Math.round(height / 2) + 32 * 2 + 8 * 2 + 2
+    this.width = Math.round(width / 2) + 32 * 2 + 8 * 2 + 2
   }
 
   private onDragging(x: number, y: number): void {
@@ -264,6 +266,9 @@ export default class Card extends Vue {
   &.isImage {
     .card {
       width: auto;
+      background-color: transparent;
+      border: none;
+      padding: 0;
     }
   }
   &.isEditing {
