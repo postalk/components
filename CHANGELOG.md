@@ -1,4 +1,12 @@
 
+<a name="v0.2.1"></a>
+## [v0.2.1](https://github.com/postalk/components/compare/v0.2.0...v0.2.1) (2018-10-08)
+
+### Fix
+
+* **card:** prevent focusing when dblclick canvas
+
+
 <a name="v0.2.0"></a>
 ## [v0.2.0](https://github.com/postalk/components/compare/v0.1.11...v0.2.0) (2018-10-08)
 
