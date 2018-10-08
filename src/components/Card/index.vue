@@ -31,6 +31,7 @@
           width: isImage(value) ? `${width - (32 * 2 + 2)}px` : undefined,
           height: isImage(value) ? `${height - (32 * 2 + 2)}px` : undefined
         }"
+        @click="focus"
       >
         <Table :txt="value" v-if="isTable(value)" />
         <OrderedList :txt="value" v-else-if="isOrderedList(value)" />
@@ -39,12 +40,11 @@
         <Headline :txt="value" v-else-if="isHeadline(value, color)" />
         <div class="text" v-else>{{ value }}</div>
         <Input 
+          v-if="editing"
           class="input" 
           :initial="value"
-          :disabled="!!movingId || disabled"
           :isNew="id.match(/^new$/)"
           :handleSubmit="submit"
-          :handleFocus="focus"
           :handleBlur="blur"
         />
       </div>
@@ -114,8 +114,6 @@ export default class Card extends Vue {
   @Prop()
   public selected!: boolean
   @Prop()
-  public disabled!: boolean
-  @Prop()
   private id!: string
   @Prop({ default: '' })
   private value!: string
@@ -145,6 +143,9 @@ export default class Card extends Vue {
 
   private mounted() {
     this.matchBoundRect()
+    if (this.id === 'new') {
+      this.editing = true
+    }
   }
 
   private matchBoundRect(): void {
@@ -286,6 +287,7 @@ export default class Card extends Vue {
 }
 
 .card {
+  cursor: pointer;
   position: absolute;
   width: 100%;
   background-color: #fff;

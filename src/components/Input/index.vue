@@ -7,14 +7,12 @@
     v-focus="editing"
     :min-height="30"
     :max-height="500"
-    :disabled="disabled"
     @blur.native="doneEdit"
     @keypress.native.enter.exact.prevent="onEnter"
     @keydown.native.esc="onEsc"
-    @focus.native="onFocus"
     @keydown.native="stopEvent"
     @keyup.native="stopEvent"
-    @keypress="stopEvent"
+    @keypress.native="stopEvent"
     @copy.native="stopEvent"
     @paste.native="stopEvent"
   ></textarea-autosize>
@@ -49,36 +47,31 @@ Vue.use(VueTextareaAutosize)
   }
 })
 export default class Input extends Vue {
-  @Prop() private handleSubmit!: (text: string) => void
-  @Prop() private handleFocus!: () => void
-  @Prop() private handleBlur!: () => void
+  @Prop()
+  private handleSubmit!: (text: string) => void
+  @Prop()
+  private handleBlur!: () => void
   @Prop({ default: '' })
   private initial!: string
-  @Prop({ default: false })
-  private disabled!: boolean
   @Prop({ default: false })
   private isNew!: boolean
 
   private value: string = this.initial
-  private editing: boolean = false
+  private editing: boolean = true
   private isCancel: boolean = false
 
   private mounted() {
-    if (this.isNew) {
-      this.$nextTick(() => {
-        const input = this.$refs.input as Vue
-        input.$el.focus()
-      })
-    }
+    const input = this.$refs.input as Vue
+    input.$el.focus()
   }
 
   private doneEdit(): void {
-    this.handleBlur()
     if (
       (this.isCancel && !this.isNew) ||
       (this.initial === this.value && this.value)
     ) {
       this.isCancel = false
+      this.handleBlur()
       return
     }
     if (this.isCancel && this.isNew) {
@@ -95,6 +88,7 @@ export default class Input extends Vue {
       this.value = this.value.trim()
     }
     this.handleSubmit(this.value)
+    this.handleBlur()
   }
 
   private onEnter(e: KeyboardEvent): void {
@@ -107,11 +101,6 @@ export default class Input extends Vue {
   private onEsc(): void {
     this.isCancel = true
     this.editing = false
-  }
-
-  private onFocus(): void {
-    this.handleFocus()
-    this.editing = true
   }
 
   private stopEvent(e: KeyboardEvent | ClipboardEvent): void {
@@ -129,14 +118,8 @@ export default class Input extends Vue {
   background-color: #fff;
   position: relative;
   padding: 0.5rem;
-  &:not(:focus) {
-    height: 100% !important;
-  }
   &:focus {
     border: #3098db;
-  }
-  &:not(:focus) {
-    opacity: 0;
   }
 }
 </style>

@@ -15,15 +15,13 @@ storiesOf('Input', module)
     template: `<div style="width: 300px">
         <Input
           :initial="value"
-          :disabled="false"
+          :isNew="false"
           :handleSubmit="submit"
-          :handleFocus="focus"
           :handleBlur="blur"
         />
       </div>`,
     methods: {
       submit: action('Submit!'),
-      focus: action('Focus!'),
       blur: action('blur!')
     }
   }))
