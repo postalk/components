@@ -36,11 +36,7 @@ exports[`Storyshots Card Default 1`] = `
         </li>
       </ul>
        
-      <textarea
-        class="input input"
-        placeholder="Type something here..."
-        style="resize: none; overflow: hidden; height: 30px;"
-      />
+      <!---->
     </div>
      
     <!---->
@@ -86,11 +82,7 @@ exports[`Storyshots Cards Default 1`] = `
         </li>
       </ul>
        
-      <textarea
-        class="input input"
-        placeholder="Type something here..."
-        style="resize: none; overflow: hidden; height: 30px;"
-      />
+      <!---->
     </div>
      
     <!---->
@@ -110,11 +102,7 @@ exports[`Storyshots Cards Default 1`] = `
         適当に遊んで暮らす毎日
       </h2>
        
-      <textarea
-        class="input input"
-        placeholder="Type something here..."
-        style="resize: none; overflow: hidden; height: 30px;"
-      />
+      <!---->
     </div>
      
     <!---->
@@ -134,11 +122,7 @@ exports[`Storyshots Cards Default 1`] = `
         福岡でなに食べるか
       </h2>
        
-      <textarea
-        class="input input"
-        placeholder="Type something here..."
-        style="resize: none; overflow: hidden; height: 30px;"
-      />
+      <!---->
     </div>
      
     <!---->
@@ -157,11 +141,7 @@ exports[`Storyshots Cards Default 1`] = `
         ようやくの思いで笹原を這い出すと向うに大きな池がある。吾輩は池の前に坐ってどうしたらよかろうと考えて見た。別にこれという 分別 （ ふんべつ ） も出ない。
       </div>
        
-      <textarea
-        class="input input"
-        placeholder="Type something here..."
-        style="resize: none; overflow: hidden; height: 30px;"
-      />
+      <!---->
     </div>
      
     <!---->
@@ -181,11 +161,7 @@ exports[`Storyshots Cards Default 1`] = `
         My Profile
       </h2>
        
-      <textarea
-        class="input input"
-        placeholder="Type something here..."
-        style="resize: none; overflow: hidden; height: 30px;"
-      />
+      <!---->
     </div>
      
     <!---->
@@ -204,11 +180,7 @@ exports[`Storyshots Cards Default 1`] = `
         src="https://i.gyazo.com/4215f0df9b4c256b39afd12327f40277.png"
       />
        
-      <textarea
-        class="input input"
-        placeholder="Type something here..."
-        style="resize: none; overflow: hidden; height: 30px;"
-      />
+      <!---->
     </div>
      
     <!---->

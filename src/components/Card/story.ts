@@ -65,7 +65,6 @@ storiesOf('Card', module).add('Default', () => ({
       :diff="{ x: diffX, y: diffY }"
       :movingId="moving"
       :selected="false"
-      :disabled="false"
       :handleMove="move"
       :handleStop="stop"
       :handleStart="start"
