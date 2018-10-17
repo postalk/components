@@ -119,8 +119,7 @@ interface CardInfoEx extends CardInfo {
           this.willSelect = this.willSelect.filter(card => {
             if (
               !card.id &&
-              (card.value === c.value ||
-                (card.file && c.value.match(card.file.name))) &&
+              (card.value === c.value || card.file) &&
               card.color === c.color &&
               card.x === c.x &&
               card.y === c.y
