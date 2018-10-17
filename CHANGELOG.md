@@ -1,4 +1,12 @@
 
+<a name="v0.3.0"></a>
+## [v0.3.0](https://github.com/postalk/components/compare/v0.2.1...v0.3.0) (2018-10-18)
+
+### Feat
+
+* **cards:** implement undo
+
+
 <a name="v0.2.1"></a>
 ## [v0.2.1](https://github.com/postalk/components/compare/v0.2.0...v0.2.1) (2018-10-08)
 
