@@ -88,6 +88,10 @@ import {
 } from '@/components/browser'
 import Mark from './marker.vue'
 
+interface CardInfoEx extends CardInfo {
+  file: File
+}
+
 @Component<Cards>({
   components: {
     Card,
@@ -110,21 +114,34 @@ import Mark from './marker.vue'
       }
 
       if (this.willSelect.length > 0) {
+        const deleteCardIds: string[] = []
         newVal.forEach((c: CardInfo, i: number) => {
           this.willSelect = this.willSelect.filter(card => {
             if (
-              (card.id && card.id === c.id && card.value !== c.value) ||
-              (!card.id &&
-                card.value === c.value &&
-                card.x === c.x &&
-                card.y === c.y)
+              !card.id &&
+              (card.value === c.value ||
+                (card.file && c.value.match(card.file.name))) &&
+              card.color === c.color &&
+              card.x === c.x &&
+              card.y === c.y
             ) {
+              deleteCardIds.push(c.id)
+              this.selectedCardIds.push(c.id)
+              return false
+            }
+            if (card.id && card.id === c.id && card.value !== c.value) {
               this.selectedCardIds.push(c.id)
               return false
             }
             return true
           })
         })
+        if (deleteCardIds.length > 0) {
+          this.handleAddUndoActions({
+            type: 'DELETE_CARDS',
+            ids: deleteCardIds
+          })
+        }
       }
     }
   }
@@ -144,9 +161,15 @@ export default class Cards extends Vue {
   @Prop()
   private handleImage!: (cards: CardForm[]) => void
   @Prop()
-  private handleDeleteImage!: (fileNames: string[]) => void
-  @Prop()
   private handleUndo!: () => void
+  @Prop()
+  private handleAddUndoActions!: (
+    actions: {
+      type: string
+      ids?: string[]
+      cards?: Array<Partial<CardInfo>>
+    }
+  ) => void
 
   private newCard: Partial<CardInfo> = {}
 
@@ -161,7 +184,7 @@ export default class Cards extends Vue {
   private selectX: number = 0
   private selectY: number = 0
   private selectedCardIds: string[] = []
-  private willSelect: Array<Partial<CardInfo>> = []
+  private willSelect: Array<Partial<CardInfoEx>> = []
   private willPositionClear: Array<Partial<CardInfo>> = []
 
   private markerX: number = 0
@@ -221,6 +244,14 @@ export default class Cards extends Vue {
       y: card.y + this.diffY
     }))
 
+    this.handleAddUndoActions({
+      type: 'UPDATE_CARDS',
+      cards: selectedCards.map(card => ({
+        id: card.id,
+        x: card.x,
+        y: card.y
+      }))
+    })
     this.handleUpdate(updates)
   }
 
@@ -237,6 +268,10 @@ export default class Cards extends Vue {
   private onUpdate(id: string, value: string): void {
     const prevVal = this.cards.filter(card => card.id === id)[0].value
     this.willSelect = [{ id, value: prevVal }]
+    this.handleAddUndoActions({
+      type: 'UPDATE_CARDS',
+      cards: [{ id, value: prevVal }]
+    })
     this.handleUpdate([{ id, value }])
   }
 
@@ -254,6 +289,11 @@ export default class Cards extends Vue {
   }
 
   private onRemove(id: string): void {
+    const selectedCards = this.cards.filter(card => card.id === id)
+    this.handleAddUndoActions({
+      type: 'ADD_CARDS',
+      cards: selectedCards
+    })
     this.handleRemove([id])
   }
 
@@ -362,23 +402,24 @@ export default class Cards extends Vue {
   }
 
   private createImageCard(file: File) {
-    this.handleImage([
-      {
-        x: this.markerX,
-        y: this.markerY,
-        color: this.color,
-        author: this.author,
-        file
-      }
-    ])
+    const card = {
+      x: this.markerX,
+      y: this.markerY,
+      color: this.color,
+      author: this.author,
+      file
+    }
+    this.willSelect = [card]
+    this.handleImage([card])
     this.clearMarker()
   }
 
   private changeColor(color: string): void {
     const colors = ['white', 'blue', 'yellow', 'red']
-    const current = this.cards.filter(card =>
+    const selectedCards = this.cards.filter(card =>
       this.selectedCardIds.includes(card.id)
-    )[0].color
+    )
+    const current = selectedCards[0].color
     const index = (colors.indexOf(current) + 1) % 4
 
     const updates = this.selectedCardIds.map(id => ({
@@ -386,26 +427,24 @@ export default class Cards extends Vue {
       color: colors[index]
     }))
 
+    this.handleAddUndoActions({
+      type: 'UPDATE_CARDS',
+      cards: selectedCards.map(card => ({
+        id: card.id,
+        color: card.color
+      }))
+    })
     this.handleUpdate(updates)
   }
 
   private removeSelected() {
-    const fileNames = this.cards
-      .filter(
-        card =>
-          this.selectedCardIds.includes(card.id) &&
-          isImage(card.value) &&
-          card.value.match(/^https:\/\/firebasestorage\.googleapis\.com\//)
-      )
-      .map(card =>
-        (card.value.match(
-          /%2F.*(png|jpe?g|svg|gif|PNG|JPE?G|SVG|GIF)/
-        ) as string[])[0].replace(/%2F/, '')
-      )
-
-    if (fileNames.length > 0) {
-      this.handleDeleteImage(fileNames)
-    }
+    const selectedCards = this.cards.filter(card =>
+      this.selectedCardIds.includes(card.id)
+    )
+    this.handleAddUndoActions({
+      type: 'ADD_CARDS',
+      cards: selectedCards
+    })
     this.handleRemove(this.selectedCardIds)
   }
 

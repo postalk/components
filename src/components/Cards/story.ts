@@ -4,13 +4,13 @@ import Vue, { ComponentOptions } from 'vue'
 import { cards } from '../data'
 import { CardInfo, CardForm } from '@/components/types'
 import { randomStr } from '@/components/test'
-import { action } from '@storybook/addon-actions'
 
 const SelectTester: ComponentOptions<Vue> = {
   components: { Cards },
   data: () => {
     return {
-      cards
+      cards,
+      undos: []
     }
   },
   methods: {
@@ -39,7 +39,7 @@ const SelectTester: ComponentOptions<Vue> = {
       const self = this as any
       cardList.forEach((c: CardForm, i: number) => {
         setTimeout(() => {
-          self.cards.push({ ...c, id: `key-${randomStr()}` })
+          self.cards.push({ id: `key-${randomStr()}`, ...c })
         }, 50 * (i + 1))
       })
     },
@@ -56,8 +56,26 @@ const SelectTester: ComponentOptions<Vue> = {
         }, 50 * (i + 1))
       })
     },
-    deleteImage: action('deleteImages'),
-    undo: action('undo')
+    addUndo(action) {
+      const self = this as any
+      self.undos = self.undos.concat(action)
+    },
+    undo() {
+      const self = this as any
+      if (self.undos.length < 1) { return }
+      const action = self.undos.pop()
+      switch (action.type) {
+        case 'DELETE_CARDS':
+          self.remove(action.ids)
+          return
+        case 'UPDATE_CARDS':
+          self.update(action.cards)
+          return
+        case 'ADD_CARDS':
+          self.create(action.cards)
+          return
+      }
+    }
   }
 }
 
@@ -70,8 +88,8 @@ storiesOf('Cards', module).add('Default', () => ({
     :handleUpdate="update"
     :handleRemove="remove"
     :handleImage="image"
-    :handleDeleteImage="deleteImage"
     :handleUndo="undo"
+    :handleAddUndoActions="addUndo"
   />`,
   ...SelectTester
 }))
