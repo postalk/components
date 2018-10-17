@@ -1682,9 +1682,9 @@
     "@types/puppeteer" "*"
     "@types/react" "*"
 
-"@types/storybook__vue@3.3.0":
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/@types/storybook__vue/-/storybook__vue-3.3.0.tgz#105236d4a3e00636c57c45f2743e4d4b1d30e647"
+"@types/storybook__vue@3.3.1":
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/@types/storybook__vue/-/storybook__vue-3.3.1.tgz#be15009df7333692e0df46e0b6e5e287729dfeec"
   dependencies:
     "@types/webpack-env" "*"
     vue "^2.0.0"
