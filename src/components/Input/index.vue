@@ -78,15 +78,7 @@ export default class Input extends Vue {
       this.isCancel = false
       this.value = ''
     }
-    if (this.value.match(/\r?\n/)) {
-      this.value = this.value
-        .split(/\r?\n/)
-        .map(s => s.trim())
-        .filter(s => s)
-        .join('\n')
-    } else {
-      this.value = this.value.trim()
-    }
+    this.value = this.value.trim()
     this.handleSubmit(this.value)
     this.handleBlur()
   }

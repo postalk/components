@@ -86,6 +86,7 @@ import {
   width as windowWidth,
   height as windowHeight
 } from '@/components/browser'
+import { escapeHTML, nl2br } from '@/components/utils'
 import Mark from './marker.vue'
 
 interface CardInfoEx extends CardInfo {
@@ -265,25 +266,47 @@ export default class Cards extends Vue {
   }
 
   private onUpdate(id: string, value: string): void {
-    const prevVal = this.cards.filter(card => card.id === id)[0].value
-    this.willSelect = [{ id, value: prevVal }]
+    this.willSelect = []
+    const selectedCard = this.cards.filter(card => card.id === id)[0]
+    const cards = this.getMultipleCard(value)
+    if (cards.length > 1) {
+      this.handleUpdate([{ id, value: cards[0].value }])
+      const payloads = cards.filter((card, i) => i !== 0).map(card => ({
+        x: selectedCard.x || 0,
+        y: selectedCard.y
+          ? Math.floor((selectedCard.y + card.offset) / 24) * 24 + 8
+          : 0,
+        value: card.value,
+        color: selectedCard.color || '',
+        author: this.author
+      }))
+      this.willSelect = payloads
+      this.handleCreate(payloads)
+    } else {
+      this.handleUpdate([{ id, value }])
+    }
+    const prevVal = selectedCard.value
+    this.willSelect = this.willSelect.concat([{ id, value: prevVal }])
     this.handleAddUndoActions({
       type: 'UPDATE_CARDS',
       cards: [{ id, value: prevVal }]
     })
-    this.handleUpdate([{ id, value }])
   }
 
   private onNewCardUpdate(id: string, value: string): void {
-    const payload = {
+    const cards = this.getMultipleCard(value)
+    const payloads = cards.map(card => ({
       x: this.newCard.x || 0,
-      y: this.newCard.y || 0,
-      value,
+      y: this.newCard.y
+        ? Math.floor((this.newCard.y + card.offset) / 24) * 24 + 8
+        : 0,
+      value: card.value,
       color: this.newCard.color || '',
       author: this.author
-    }
-    this.willSelect = [payload]
-    this.handleCreate([payload])
+    }))
+
+    this.willSelect = payloads
+    this.handleCreate(payloads)
     this.newCard = {}
   }
 
@@ -298,6 +321,46 @@ export default class Cards extends Vue {
 
   private onNewCardRemove(): void {
     this.newCard = {}
+  }
+
+  private getMultipleCard(text: string): Array<{ offset: number; value: string }> {
+    const cards: Array<{ offset: number; value: string }> = []
+    const paragraphs = text.match(/[^\r\n]+((\r|\n|\r\n)[^\r\n]+)*/g)
+    let offset = 0
+    if (paragraphs) {
+      paragraphs.forEach(p => {
+        const testTxt = nl2br(escapeHTML(p))
+        const test = document.createElement('div')
+        test.className = 'calc-test-width'
+        test.innerHTML = testTxt
+        document.body.appendChild(test)
+        const height = test.clientHeight
+        document.body.removeChild(test)
+        const brMatch = testTxt.match(/<br \/>/g)
+        const paddingNum = brMatch ? brMatch.length + 1 : 1
+        if (!!p && !!p.trim()) {
+          cards.push({
+            offset,
+            value: p
+          })
+          offset += height + paddingNum * 8 * 2 + paddingNum + 2 + 12
+          /*
+            font-size: 14
+            line-height: 1.5
+            padding top, bottom: 8
+            border top, bottom: 1
+            space: 12
+            card's width = 222
+          */
+        }
+      })
+    } else {
+      cards.push({
+        offset,
+        value: text
+      })
+    }
+    return cards
   }
 
   private startSelect(e: MouseEvent): void {
@@ -569,5 +632,17 @@ export default class Cards extends Vue {
 .selector {
   position: absolute;
   background: rgba(0, 0, 0, 0.2);
+}
+</style>
+
+<style>
+.calc-test-width {
+  font-size: 14px;
+  position: absolute;
+  visibility: hidden;
+  height: auto;
+  width: 222px;
+  word-break: break-word;
+  line-height: 1.5;
 }
 </style>
