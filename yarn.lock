@@ -1403,12 +1403,12 @@
     global "^4.3.2"
     prop-types "^15.6.2"
 
-"@storybook/addon-storyshots@4.0.0-rc.0":
-  version "4.0.0-rc.0"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-storyshots/-/addon-storyshots-4.0.0-rc.0.tgz#168a1d45692fde301483e1f603be4c73c0caf3ea"
+"@storybook/addon-storyshots@4.0.0-rc.1":
+  version "4.0.0-rc.1"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-storyshots/-/addon-storyshots-4.0.0-rc.1.tgz#0122a335baa70a8d3808278665d42b45740da3c2"
   dependencies:
     "@babel/runtime" "^7.1.2"
-    "@storybook/addons" "4.0.0-rc.0"
+    "@storybook/addons" "4.0.0-rc.1"
     glob "^7.1.3"
     global "^4.3.2"
     jest-specific-snapshot "^1.0.0"
@@ -1420,15 +1420,6 @@
   dependencies:
     "@storybook/channels" "4.0.0-alpha.20"
     "@storybook/components" "4.0.0-alpha.20"
-    global "^4.3.2"
-    util-deprecate "^1.0.2"
-
-"@storybook/addons@4.0.0-rc.0":
-  version "4.0.0-rc.0"
-  resolved "https://registry.yarnpkg.com/@storybook/addons/-/addons-4.0.0-rc.0.tgz#dabb2d0eff62aa8d1229fbd9af8f1b4b2527dbca"
-  dependencies:
-    "@storybook/channels" "4.0.0-rc.0"
-    "@storybook/components" "4.0.0-rc.0"
     global "^4.3.2"
     util-deprecate "^1.0.2"
 
@@ -1453,10 +1444,6 @@
   version "4.0.0-alpha.20"
   resolved "https://registry.yarnpkg.com/@storybook/channels/-/channels-4.0.0-alpha.20.tgz#a2cfff4fa3cc36060e4f59651d8ae0713448f113"
 
-"@storybook/channels@4.0.0-rc.0":
-  version "4.0.0-rc.0"
-  resolved "https://registry.yarnpkg.com/@storybook/channels/-/channels-4.0.0-rc.0.tgz#9e92b40316196d756926fadebb913a3e4d3ba8ee"
-
 "@storybook/channels@4.0.0-rc.1":
   version "4.0.0-rc.1"
   resolved "https://registry.yarnpkg.com/@storybook/channels/-/channels-4.0.0-rc.1.tgz#319caa14a5774381de4b3d41f090788a9d8c62a0"
@@ -1478,21 +1465,6 @@
     prop-types "^15.6.2"
     react-inspector "^2.3.0"
     react-split-pane "^0.1.82"
-    react-textarea-autosize "^7.0.4"
-    render-fragment "^0.1.1"
-
-"@storybook/components@4.0.0-rc.0":
-  version "4.0.0-rc.0"
-  resolved "https://registry.yarnpkg.com/@storybook/components/-/components-4.0.0-rc.0.tgz#69eeb4a87e401351a13aaad53e4a06bb2e8f5a94"
-  dependencies:
-    "@emotion/core" "^0.13.1"
-    "@emotion/provider" "^0.11.2"
-    "@emotion/styled" "^0.10.6"
-    global "^4.3.2"
-    lodash "^4.17.11"
-    prop-types "^15.6.2"
-    react-inspector "^2.3.0"
-    react-split-pane "^0.1.84"
     react-textarea-autosize "^7.0.4"
     render-fragment "^0.1.1"
 
