@@ -10477,6 +10477,10 @@ vue-textarea-autosize@1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/vue-textarea-autosize/-/vue-textarea-autosize-1.0.4.tgz#671e4f9b69d278be9b94ea304a3032bcabb54135"
 
+vue-tweet-embed@2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/vue-tweet-embed/-/vue-tweet-embed-2.1.2.tgz#2933d76971fc0488453325f55b9e60414eac1219"
+
 vue2-dropzone@3.5.2:
   version "3.5.2"
   resolved "https://registry.yarnpkg.com/vue2-dropzone/-/vue2-dropzone-3.5.2.tgz#602630b1577d861810555646b72338de69feebe2"

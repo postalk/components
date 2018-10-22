@@ -1,12 +1,13 @@
 <template>
     <div 
-      v-if="show"
       :class="{
         cardRoot: true,
         isMoving: movingId && movingId !== id,
         isSelected: selected,
         isImage: isImage(value),
         isTable: isTable(value),
+        isYoutube: isYoutube(value),
+        isTwitter: isTwitter(value),
         isEditing: editing
       }"
       :style="{
@@ -33,7 +34,9 @@
         }"
         @click="focus"
       >
-        <Table :txt="value" v-if="isTable(value)" />
+        <Youtube :txt="value" v-if="isYoutube(value)" />
+        <Twitter :txt="value" v-else-if="isTwitter(value)" />
+        <Table :txt="value" v-else-if="isTable(value)" />
         <OrderedList :txt="value" v-else-if="isOrderedList(value)" />
         <List :txt="value" v-else-if="isList(value)" />
         <Img :url="value" :handleMeasure="onImageMeasure" v-else-if="isImage(value)" />
@@ -49,6 +52,7 @@
         />
       </div>
       <Drag
+        v-if="show"
         class="card-draggable"
         :width="width"
         :height="height"
@@ -70,6 +74,8 @@ import OrderedList from './ordered-list.vue'
 import List from './list.vue'
 import Drag from './drag.vue'
 import Img from './image.vue'
+import Youtube from './youtube.vue'
+import Twitter from './twitter.vue'
 import {
   YELLOW,
   YELLOW_DARK,
@@ -88,7 +94,9 @@ import {
     List,
     Img,
     Input,
-    Drag
+    Drag,
+    Youtube,
+    Twitter
   },
   watch: {
     initial(newVal, oldVal) {
@@ -227,6 +235,17 @@ export default class Card extends Vue {
     return isImage(str)
   }
 
+  private isYoutube(str: string): boolean {
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=)([^#\&\?]*).*/
+    const match = str.match(regExp)
+    return !!match && match[2].length === 11
+  }
+
+  private isTwitter(str: string): boolean {
+    const regExp = /^https\:\/\/twitter\.com\/.+\/status\/([0-9]+)/
+    return !!str.match(regExp)
+  }
+
   private getColor(): {
     'background-color': string
     'border-color': string
@@ -264,12 +283,20 @@ export default class Card extends Vue {
       opacity: 0;
     }
   }
-  &.isImage {
+  &.isImage,
+  &.isYoutube {
     .card {
       width: auto;
       background-color: transparent;
       border: none;
       padding: 0;
+    }
+  }
+  &.isTwitter {
+    .card {
+      width: auto;
+      padding-top: 0;
+      padding-bottom: 0;
     }
   }
   &.isEditing {
