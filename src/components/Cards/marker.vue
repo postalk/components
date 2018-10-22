@@ -60,6 +60,7 @@ export default class Mark extends Vue {
 
 <style scoped lang="scss">
 .marker {
+  z-index: 5;
   background-color: rgba(255, 255, 255, 0.85);
   width: 12rem;
   height: 7rem;

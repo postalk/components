@@ -10,8 +10,8 @@
     v-if="width > 0 && height > 0"
     :resizable="false"
     :grid="[24,24]"
-    :x="x - 32"
-    :y="y - 32"
+    :x="x - DRAG_WIDTH"
+    :y="y - DRAG_WIDTH"
     @dragging="onMove"
     @dragstop="onStop"
     drag-handle=".drag"
@@ -20,32 +20,32 @@
     class="drag top"
     :style="{
       width: `${width}px`,
-      height: `${32 + 8}px`
+      height: `${DRAG_WIDTH + OVERRAPPING}px`
     }"
   />
   <div 
     class="drag bottm"
     :style="{
+      top: `${height - DRAG_WIDTH - OVERRAPPING}px`,
       width: `${width}px`,
-      height: `${32 + 8}px`,
-      top: `${height - 32 - 8}px`
+      height: `${DRAG_WIDTH + OVERRAPPING}px`
     }"
   />
   <div 
     class="drag left"
     :style="{
-      width: `${32 + 8}px`,
-      height: `${height - 32 * 2 - 8 * 2}px`,
-      top: `${32 + 8}px`
+      top: `${DRAG_WIDTH + OVERRAPPING}px`,
+      width: `${DRAG_WIDTH + OVERRAPPING}px`,
+      height: `${height - DRAG_WIDTH * 2 - OVERRAPPING * 2}px`
     }"
   />
   <div 
     class="drag right"
     :style="{
-      width: `${32 + 8}px`,
-      height: `${height - 32 * 2 - 8 * 2}px`,
-      top: `${32 + 8}px`,
-      left: `${width - 32 - 8}px`
+      top: `${DRAG_WIDTH + OVERRAPPING}px`,
+      left: `${width - DRAG_WIDTH - OVERRAPPING}px`,
+      width: `${DRAG_WIDTH + OVERRAPPING}px`,
+      height: `${height - DRAG_WIDTH * 2 - OVERRAPPING * 2}px`
     }"
   />
   </VueDraggableResizable>
@@ -60,14 +60,22 @@ import VueDraggableResizable from 'vue-draggable-resizable'
   }
 })
 export default class Drag extends Vue {
-  @Prop() public width!: number
-  @Prop() public height!: number
-  @Prop() public x!: number
-  @Prop() public y!: number
-  @Prop() private onDragging!: (x: number, y: number) => void
-  @Prop() private onDragStop!: () => void
+  @Prop()
+  public width!: number
+  @Prop()
+  public height!: number
+  @Prop()
+  public x!: number
+  @Prop()
+  public y!: number
+  @Prop()
+  private onDragging!: (x: number, y: number) => void
+  @Prop()
+  private onDragStop!: () => void
 
   private dragging = false
+  private DRAG_WIDTH = 20
+  private OVERRAPPING = 8
 
   private onMove(x: number, y: number) {
     if (!this.dragging) {
@@ -85,7 +93,7 @@ export default class Drag extends Vue {
 
 <style scoped lang="scss">
 .draggable {
-  z-index: 3 !important;
+  z-index: 5 !important;
   opacity: 0;
   width: 0 !important;
   height: 0 !important;
