@@ -1,4 +1,16 @@
 
+<a name="v0.5.0"></a>
+## [v0.5.0](https://github.com/postalk/components/compare/v0.4.0...v0.5.0) (2018-10-24)
+
+### Feat
+
+* **card:** add embed, youtube & twitter
+
+### Fix
+
+* **card:** make narrow draggable width
+
+
 <a name="v0.4.0"></a>
 ## [v0.4.0](https://github.com/postalk/components/compare/v0.3.1...v0.4.0) (2018-10-21)
 
