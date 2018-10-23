@@ -1,18 +1,19 @@
 <template>
     <div 
-      v-if="show"
       :class="{
         cardRoot: true,
         isMoving: movingId && movingId !== id,
         isSelected: selected,
         isImage: isImage(value),
         isTable: isTable(value),
+        isYoutube: isYoutube(value),
+        isTwitter: isTwitter(value),
         isEditing: editing
       }"
       :style="{
         left: `${x}px`,
         top: `${y}px`,
-        height: `${height - 32 * 2 + 2}px`
+        height: `${height - DRAG_WIDTH * 2 + 2}px`
       }"
       :id="id"
       @dblclick="stopEvent"
@@ -28,12 +29,14 @@
           'border-color': selected ? selectColor : getColor()['border-color'],
           'outline': selected ? `solid 1px ${selectColor}` : undefined,
           'min-height': !value ? '60px' : undefined,
-          width: isImage(value) ? `${width - (32 * 2 + 2)}px` : undefined,
-          height: isImage(value) ? `${height - (32 * 2 + 2)}px` : undefined
+          width: isImage(value) ? `${width - (DRAG_WIDTH * 2 + 2)}px` : undefined,
+          height: isImage(value) ? `${height - (DRAG_WIDTH * 2 + 2)}px` : undefined
         }"
         @click="focus"
       >
-        <Table :txt="value" v-if="isTable(value)" />
+        <Youtube :txt="value" v-if="isYoutube(value)" />
+        <Twitter :txt="value" v-else-if="isTwitter(value)" />
+        <Table :txt="value" v-else-if="isTable(value)" />
         <OrderedList :txt="value" v-else-if="isOrderedList(value)" />
         <List :txt="value" v-else-if="isList(value)" />
         <Img :url="value" :handleMeasure="onImageMeasure" v-else-if="isImage(value)" />
@@ -49,6 +52,7 @@
         />
       </div>
       <Drag
+        v-if="show"
         class="card-draggable"
         :width="width"
         :height="height"
@@ -70,6 +74,8 @@ import OrderedList from './ordered-list.vue'
 import List from './list.vue'
 import Drag from './drag.vue'
 import Img from './image.vue'
+import Youtube from './youtube.vue'
+import Twitter from './twitter.vue'
 import {
   YELLOW,
   YELLOW_DARK,
@@ -88,7 +94,9 @@ import {
     List,
     Img,
     Input,
-    Drag
+    Drag,
+    Youtube,
+    Twitter
   },
   watch: {
     initial(newVal, oldVal) {
@@ -141,6 +149,8 @@ export default class Card extends Vue {
   private height: number = 0
   private selectColor: string = SELECT
 
+  private DRAG_WIDTH = 20
+
   private mounted() {
     this.matchBoundRect()
     if (this.id === 'new') {
@@ -150,8 +160,8 @@ export default class Card extends Vue {
 
   private matchBoundRect(): void {
     const el = this.$refs.card as Element
-    this.height = el.clientHeight + 32 * 2 + 2
-    this.width = el.clientWidth + 32 * 2 + 2
+    this.height = el.clientHeight + this.DRAG_WIDTH * 2 + 2
+    this.width = el.clientWidth + this.DRAG_WIDTH * 2 + 2
   }
 
   private rerender(): void {
@@ -184,18 +194,18 @@ export default class Card extends Vue {
   }
 
   private onImageMeasure(width: number, height: number) {
-    this.height = Math.round(height / 2) + 32 * 2 + 8 * 2 + 2
-    this.width = Math.round(width / 2) + 32 * 2 + 8 * 2 + 2
+    this.height = Math.round(height / 2) + this.DRAG_WIDTH * 2 + 8 * 2 + 2
+    this.width = Math.round(width / 2) + this.DRAG_WIDTH * 2 + 8 * 2 + 2
   }
 
   private onDragging(x: number, y: number): void {
     if (!this.movingId) {
       this.handleStart(this.id)
     }
-    const diffX = this.x - x - 32
-    const diffY = this.y - y - 32
-    this.x = x + 32
-    this.y = y + 32
+    const diffX = this.x - x - this.DRAG_WIDTH
+    const diffY = this.y - y - this.DRAG_WIDTH
+    this.x = x + this.DRAG_WIDTH
+    this.y = y + this.DRAG_WIDTH
     this.handleMove(diffX, diffY, this.id)
   }
 
@@ -225,6 +235,17 @@ export default class Card extends Vue {
 
   private isImage(str: string): boolean {
     return isImage(str)
+  }
+
+  private isYoutube(str: string): boolean {
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=)([^#\&\?]*).*/
+    const match = str.match(regExp)
+    return !!match && match[2].length === 11
+  }
+
+  private isTwitter(str: string): boolean {
+    const regExp = /^https\:\/\/twitter\.com\/.+\/status\/([0-9]+)/
+    return !!str.match(regExp)
   }
 
   private getColor(): {
@@ -258,13 +279,15 @@ export default class Card extends Vue {
   width: 15rem;
   height: 0;
   position: absolute;
-  z-index: 0;
+  z-index: 1;
   &.isMoving {
     .draggable {
       opacity: 0;
     }
   }
-  &.isImage {
+  &.isImage,
+  &.isYoutube {
+    z-index: 0 !important;
     .card {
       width: auto;
       background-color: transparent;
@@ -272,7 +295,15 @@ export default class Card extends Vue {
       padding: 0;
     }
   }
+  &.isTwitter {
+    .card {
+      width: auto;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+  }
   &.isEditing {
+    z-index: 3;
     .card-draggable {
       display: none;
     }
@@ -295,7 +326,7 @@ export default class Card extends Vue {
   line-height: 0;
   text-align: left;
   padding: 0.5rem;
-  z-index: 2;
+  z-index: 4;
   user-select: none;
 }
 

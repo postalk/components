@@ -70,7 +70,7 @@
       :onMoveMarker="moveMarker"
       :onColorMarker="colorMarker"
       :onClearMarker="clearMarker"
-      :onCreateMarker="createMarker"
+      :onCreateMarker="()=>{}"
     />
   </div>
 </template>
@@ -195,6 +195,10 @@ export default class Cards extends Vue {
 
   private color: string = 'white'
 
+  private OFFSET = 20
+  private GRID = 24
+  private CARD_PADDING = 8
+
   private onClick(e: MouseEvent) {
     const isDraggable = (e.target as Element).className.match(/drag/)
 
@@ -218,8 +222,10 @@ export default class Cards extends Vue {
   }
 
   private onDblClick(e: MouseEvent) {
-    this.markerX = Math.round((e.pageX - 12) / 24) * 24 + 8
-    this.markerY = Math.round((e.pageY - 12) / 24) * 24 + 8
+    this.markerX =
+      Math.round((e.pageX - this.GRID) / this.GRID) * this.GRID + this.OFFSET
+    this.markerY =
+      Math.round((e.pageY - this.GRID) / this.GRID) * this.GRID + this.OFFSET
   }
 
   private onMove(x: number, y: number, key: string): void {
@@ -274,7 +280,8 @@ export default class Cards extends Vue {
       const payloads = cards.filter((card, i) => i !== 0).map(card => ({
         x: selectedCard.x || 0,
         y: selectedCard.y
-          ? Math.floor((selectedCard.y + card.offset) / 24) * 24 + 8
+          ? Math.floor((selectedCard.y + card.offset) / this.GRID) * this.GRID +
+            this.OFFSET
           : 0,
         value: card.value,
         color: selectedCard.color || '',
@@ -298,7 +305,8 @@ export default class Cards extends Vue {
     const payloads = cards.map(card => ({
       x: this.newCard.x || 0,
       y: this.newCard.y
-        ? Math.floor((this.newCard.y + card.offset) / 24) * 24 + 8
+        ? Math.floor((this.newCard.y + card.offset) / this.GRID) * this.GRID +
+          this.OFFSET
         : 0,
       value: card.value,
       color: this.newCard.color || '',
@@ -323,7 +331,9 @@ export default class Cards extends Vue {
     this.newCard = {}
   }
 
-  private getMultipleCard(text: string): Array<{ offset: number; value: string }> {
+  private getMultipleCard(
+    text: string
+  ): Array<{ offset: number; value: string }> {
     const cards: Array<{ offset: number; value: string }> = []
     const paragraphs = text.match(/[^\r\n]+((\r|\n|\r\n)[^\r\n]+)*/g)
     let offset = 0
@@ -343,13 +353,12 @@ export default class Cards extends Vue {
             offset,
             value: p
           })
-          offset += height + paddingNum * 8 * 2 + paddingNum + 2 + 12
+          offset += height + paddingNum * this.CARD_PADDING * 2 + paddingNum + 2
           /*
             font-size: 14
             line-height: 1.5
             padding top, bottom: 8
             border top, bottom: 1
-            space: 12
             card's width = 222
           */
         }
@@ -378,6 +387,9 @@ export default class Cards extends Vue {
     this.cursorY = e.pageY
     if (this.selectStartX === 0 && this.selectStartY === 0) {
       return
+    }
+    if (e.pageX < 10 || e.pageY < 10) {
+      this.selectElement(e)
     }
     this.selectW = Math.abs(this.selectStartX - e.pageX)
     this.selectH = Math.abs(this.selectStartY - e.pageY)
@@ -423,18 +435,18 @@ export default class Cards extends Vue {
     }
   }
 
-  private createMarker(x: number, y: number) {
-    this.selectedCardIds = []
-    const willX =
-      Math.floor((((windowWidth() - 16 * 6) / 10) * x) / 24) * 24 + 8
-    const willY = Math.floor((((windowHeight() - 7 * 3) / 4) * y) / 24) * 24 + 8
-    if (this.markerX === willX && this.markerY === willY) {
-      this.createNewCard()
-      return
-    }
-    this.markerX = willX
-    this.markerY = willY
-  }
+  // private createMarker(x: number, y: number) {
+  //   this.selectedCardIds = []
+  //   const willX =
+  //     Math.floor((((windowWidth() - 16 * 6) / 10) * x) / 24) * 24 + 8
+  //   const willY = Math.floor((((windowHeight() - 7 * 3) / 4) * y) / 24) * 24 + 8
+  //   if (this.markerX === willX && this.markerY === willY) {
+  //     this.createNewCard()
+  //     return
+  //   }
+  //   this.markerX = willX
+  //   this.markerY = willY
+  // }
 
   private clearMarker() {
     this.markerX = 0
@@ -449,8 +461,10 @@ export default class Cards extends Vue {
 
   private createNewCard() {
     if (this.markerX === 0 || this.markerY === 0) {
-      this.markerX = Math.floor(this.cursorX / 24) * 24 + 8
-      this.markerY = Math.floor(this.cursorY / 24) * 24 + 8
+      this.markerX =
+        Math.floor(this.cursorX / this.GRID) * this.GRID + this.OFFSET
+      this.markerY =
+        Math.floor(this.cursorY / this.GRID) * this.GRID + this.OFFSET
       return
     }
 
@@ -539,13 +553,13 @@ export default class Cards extends Vue {
     const medianX =
       Math.floor(
         (selectedCards[selectedCards.length - 1].x + selectedCards[0].x) /
-          (2 * 24)
-      ) * 24
+          (2 * this.GRID)
+      ) * this.GRID
     const medianY =
       Math.floor(
         (selectedCards[selectedCards.length - 1].y + selectedCards[0].y) /
-          (2 * 24)
-      ) * 24
+          (2 * this.GRID)
+      ) * this.GRID
 
     e.clipboardData.setData(
       'text/plain',
@@ -583,13 +597,13 @@ export default class Cards extends Vue {
       )
       .map((el: HTMLSpanElement) => ({
         x:
-          Math.floor(Math.floor(windowWidth() / 2) / 24) * 24 +
+          Math.floor(Math.floor(windowWidth() / 2) / this.GRID) * this.GRID +
           Number(el.dataset.x) -
-          24 * 5,
+          this.GRID * 5,
         y:
-          Math.floor(Math.floor(windowHeight() / 2) / 24) * 24 +
+          Math.floor(Math.floor(windowHeight() / 2) / this.GRID) * this.GRID +
           Number(el.dataset.y) -
-          24,
+          this.GRID,
         color: el.dataset.color as string,
         value: el.textContent,
         author: this.author
@@ -630,6 +644,7 @@ export default class Cards extends Vue {
 }
 
 .selector {
+  z-index: 5;
   position: absolute;
   background: rgba(0, 0, 0, 0.2);
 }
