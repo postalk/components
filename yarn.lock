@@ -1393,13 +1393,13 @@
     react-inspector "^2.3.0"
     uuid "^3.3.2"
 
-"@storybook/addon-links@4.0.0-rc.2":
-  version "4.0.0-rc.2"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-links/-/addon-links-4.0.0-rc.2.tgz#29f91e812ad71eeddc854160958422f93d72e657"
+"@storybook/addon-links@4.0.0-rc.3":
+  version "4.0.0-rc.3"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-links/-/addon-links-4.0.0-rc.3.tgz#b0c88990d5176fd08e79d22d36cbd4eb3a6542ae"
   dependencies:
-    "@storybook/addons" "4.0.0-rc.2"
-    "@storybook/components" "4.0.0-rc.2"
-    "@storybook/core-events" "4.0.0-rc.2"
+    "@storybook/addons" "4.0.0-rc.3"
+    "@storybook/components" "4.0.0-rc.3"
+    "@storybook/core-events" "4.0.0-rc.3"
     global "^4.3.2"
     prop-types "^15.6.2"
 
@@ -1514,10 +1514,6 @@
 "@storybook/core-events@4.0.0-alpha.20":
   version "4.0.0-alpha.20"
   resolved "https://registry.yarnpkg.com/@storybook/core-events/-/core-events-4.0.0-alpha.20.tgz#8596fa73a99e3a3a4699ab28256716b1059cb264"
-
-"@storybook/core-events@4.0.0-rc.2":
-  version "4.0.0-rc.2"
-  resolved "https://registry.yarnpkg.com/@storybook/core-events/-/core-events-4.0.0-rc.2.tgz#3c043ecb9be215ebb03f0281cc7f876692c637f8"
 
 "@storybook/core-events@4.0.0-rc.3":
   version "4.0.0-rc.3"

@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "@storybook/addon-actions": "4.0.0-rc.3",
-    "@storybook/addon-links": "4.0.0-rc.2",
+    "@storybook/addon-links": "4.0.0-rc.3",
     "@storybook/addon-storyshots": "4.0.0-rc.2",
     "@types/jest": "23.3.7",
     "@types/storybook__addon-actions": "3.4.1",
