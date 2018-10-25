@@ -19,9 +19,21 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
 @Component
 export default class Table extends Vue {
-  @Prop() private txt!: string
+  @Prop()
+  private txt!: string
+  private len = 0
 
-  private len: number = 1
+  private created() {
+    const rows = this.txt
+      .split(/\r?\n/)
+      .map(s => s.trim())
+      .filter(s => !!s)
+
+    rows.forEach(row => {
+      const cells = row.split(/[\s|　][\/|／][\s|　]/).map(cell => cell.trim())
+      this.len = cells.length > this.len ? cells.length : this.len
+    })
+  }
 
   private getRow(): string[] {
     return this.txt
@@ -31,9 +43,7 @@ export default class Table extends Vue {
   }
 
   private getCell(row: string): string[] {
-    const result = row.split(/[\s|　][\/|／][\s|　]/).map(cell => cell.trim())
-    this.len = result.length > this.len ? result.length : this.len
-    return result
+    return row.split(/[\s|　][\/|／][\s|　]/).map(cell => cell.trim())
   }
 }
 </script>
@@ -49,6 +59,7 @@ export default class Table extends Vue {
   border-right: 1px solid rgba(0, 0, 0, 0.05);
 }
 .cell {
+  width: 7.5rem;
   font-size: 0.8125rem;
   font-weight: normal;
   vertical-align: middle;
