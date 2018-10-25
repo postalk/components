@@ -152,7 +152,10 @@ interface CardInfoEx extends CardInfo {
       }
     },
     selectedCardIds(newVal, oldVal) {
-      if (!newVal.every((e: string) => oldVal.includes(e))) {
+      if (
+        !newVal.every((e: string) => oldVal.includes(e)) ||
+        !oldVal.every((e: string) => newVal.includes(e))
+      ) {
         this.handleSelect(newVal)
       }
     }
