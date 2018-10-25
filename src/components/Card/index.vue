@@ -4,6 +4,7 @@
         cardRoot: true,
         isMoving: movingId && movingId !== id,
         isSelected: selected,
+        isDisabled: disabled,
         isImage: isImage(value),
         isTable: isTable(value),
         isYoutube: isYoutube(value),
@@ -61,6 +62,12 @@
         :onDragging="onDragging"
         :onDragStop="handleStop"
       />
+      <div
+        v-if="disabled"
+        class="disabled-text"
+      >
+        selected by someone
+      </div>
     </div>
 </template>
 
@@ -121,6 +128,8 @@ export default class Card extends Vue {
   public movingId!: string | undefined
   @Prop()
   public selected!: boolean
+  @Prop()
+  public disabled!: boolean
   @Prop()
   private id!: string
   @Prop({ default: '' })
@@ -318,6 +327,20 @@ export default class Card extends Vue {
       width: auto;
     }
   }
+  &.isDisabled {
+    z-index: 0 !important;
+    opacity: 0.5;
+    &:after {
+      content: '';
+      background-color: rgba(255, 255, 255, 0);
+      z-index: 6;
+      position: absolute;
+      top: -20px;
+      left: -20px;
+      width: calc(100% + 20px + 20px);
+      height: calc(100% + 20px + 20px);
+    }
+  }
 }
 
 .card {
@@ -345,5 +368,15 @@ export default class Card extends Vue {
   position: absolute;
   top: 0;
   left: 0;
+}
+.disabled-text {
+  user-select: none;
+  position: absolute;
+  top: -1.125rem;
+  right: 0;
+  font-size: 0.75rem;
+  font-weight: bold;
+  font-style: italic;
+  color: #222;
 }
 </style>

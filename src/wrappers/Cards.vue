@@ -2,6 +2,7 @@
   <div class="wrapper">
     <Cards
       :cards="cards"
+      :disableIds="disableIds"
       :author="author"
       :handleCreate="handleCreate"
       :handleUpdate="handleUpdate"
@@ -29,6 +30,8 @@ export default class CardsWrapper extends Vue {
   private cards!: CardInfo[]
   @Prop({ default: '' })
   private author!: string
+  @Prop({ default: [] })
+  private disableIds!: string[]
 
   @Prop()
   private handleCreate!: (cards: CardForm[]) => void

@@ -17,6 +17,7 @@
       :diff="{ x: diffX, y: diffY }"
       :movingId="moving"
       :selected="selectedCardIds.includes(card.id)"
+      :disabled="disableIds.includes(card.id)"
       :handleMove="onMove"
       :handleStop="onStop"
       :handleStart="onStart"
@@ -130,13 +131,13 @@ interface CardInfoEx extends CardInfo {
               deleteCardIds.push(c.id)
               this.selectedCardIds = [
                 ...new Set([...this.selectedCardIds, ...[c.id]])
-              ]
+              ].filter(id => !this.disableIds.includes(id))
               return false
             }
             if (card.id && card.id === c.id && card.value !== c.value) {
               this.selectedCardIds = [
                 ...new Set([...this.selectedCardIds, ...[c.id]])
-              ]
+              ].filter(id => !this.disableIds.includes(id))
               return false
             }
             return true
@@ -162,6 +163,8 @@ export default class Cards extends Vue {
   private cards!: CardInfo[]
   @Prop({ default: '' })
   private author!: string
+  @Prop({ default: [] })
+  private disableIds!: string[]
 
   @Prop()
   private handleUpdate!: (cards: Array<Partial<CardInfo>>) => void
@@ -376,13 +379,25 @@ export default class Cards extends Vue {
             offset,
             value: p
           })
-          offset += height + paddingNum * this.CARD_PADDING * 2 + paddingNum + 2
+          offset =
+            Math.floor(
+              (offset +
+                height +
+                paddingNum * this.CARD_PADDING * 2 +
+                paddingNum +
+                2 +
+                5) /
+                this.GRID
+            ) *
+              this.GRID +
+            this.OFFSET
           /*
             font-size: 14
             line-height: 1.5
             padding top, bottom: 8
             border top, bottom: 1
             card's width = 222
+            additional = 5
           */
         }
       })
@@ -448,11 +463,15 @@ export default class Cards extends Vue {
         .map(card => (card as any).id)
 
       if (!e.shiftKey) {
-        this.selectedCardIds = newIds
+        this.selectedCardIds = newIds.filter(
+          id => !this.disableIds.includes(id)
+        )
         return
       }
 
-      this.selectedCardIds = [...new Set([...this.selectedCardIds, ...newIds])]
+      this.selectedCardIds = [
+        ...new Set([...this.selectedCardIds, ...newIds])
+      ].filter(id => !this.disableIds.includes(id))
     }
   }
 
@@ -534,7 +553,9 @@ export default class Cards extends Vue {
   }
 
   private selectAll() {
-    this.selectedCardIds = this.cards.map(c => c.id)
+    this.selectedCardIds = this.cards
+      .map(c => c.id)
+      .filter(id => !this.disableIds.includes(id))
   }
 
   private clearSelected() {
