@@ -32,7 +32,7 @@
           width: isImage(value) ? `${width - (DRAG_WIDTH * 2 + 2)}px` : undefined,
           height: isImage(value) ? `${height - (DRAG_WIDTH * 2 + 2)}px` : undefined
         }"
-        @click="focus"
+        @click="onClick"
       >
         <Youtube :txt="value" v-if="isYoutube(value)" />
         <Twitter :txt="value" v-else-if="isTwitter(value)" />
@@ -140,6 +140,8 @@ export default class Card extends Vue {
   private handleUpdate!: (id: string, value: string) => void
   @Prop()
   private handleRemove!: (id: string) => void
+  @Prop()
+  private handleSelect!: (id: string) => void
 
   private show: boolean = true
   private editing: boolean = false
@@ -185,8 +187,9 @@ export default class Card extends Vue {
     this.handleUpdate(this.id, value)
   }
 
-  private focus() {
+  private onClick() {
     this.editing = true
+    this.handleSelect(this.id)
   }
 
   private blur() {

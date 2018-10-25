@@ -62,7 +62,9 @@ const SelectTester: ComponentOptions<Vue> = {
     },
     undo() {
       const self = this as any
-      if (self.undos.length < 1) { return }
+      if (self.undos.length < 1) {
+        return
+      }
       const action = self.undos.pop()
       switch (action.type) {
         case 'DELETE_CARDS':
@@ -75,7 +77,8 @@ const SelectTester: ComponentOptions<Vue> = {
           self.create(action.cards)
           return
       }
-    }
+    },
+    select() {}
   }
 }
 
@@ -87,6 +90,7 @@ storiesOf('Cards', module).add('Default', () => ({
     :handleCreate="create"
     :handleUpdate="update"
     :handleRemove="remove"
+    :handleSelect="select"
     :handleImage="image"
     :handleUndo="undo"
     :handleAddUndoActions="addUndo"
