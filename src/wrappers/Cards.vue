@@ -2,10 +2,12 @@
   <div class="wrapper">
     <Cards
       :cards="cards"
+      :disableIds="disableIds"
       :author="author"
       :handleCreate="handleCreate"
       :handleUpdate="handleUpdate"
       :handleRemove="handleRemove"
+      :handleSelect="handleSelect"
       :handleImage="handleImage"
       :handleUndo="handleUndo"
       :handleAddUndoActions="handleAddUndoActions"
@@ -28,6 +30,8 @@ export default class CardsWrapper extends Vue {
   private cards!: CardInfo[]
   @Prop({ default: '' })
   private author!: string
+  @Prop({ default: [] })
+  private disableIds!: string[]
 
   @Prop()
   private handleCreate!: (cards: CardForm[]) => void
@@ -35,6 +39,8 @@ export default class CardsWrapper extends Vue {
   private handleUpdate!: (cards: Array<Partial<CardInfo>>) => void
   @Prop()
   private handleRemove!: (ids: string[]) => void
+  @Prop()
+  private handleSelect!: (ids: string[]) => void
   @Prop()
   private handleImage!: (cards: CardForm[]) => void
   @Prop()

@@ -40,6 +40,8 @@ exports[`Storyshots Card Default 1`] = `
     </div>
      
     <!---->
+     
+    <!---->
   </div>
 </div>
 `;
@@ -86,6 +88,8 @@ exports[`Storyshots Cards Default 1`] = `
     </div>
      
     <!---->
+     
+    <!---->
   </div>
   <div
     class="cardRoot"
@@ -106,9 +110,11 @@ exports[`Storyshots Cards Default 1`] = `
     </div>
      
     <!---->
+     
+    <!---->
   </div>
   <div
-    class="cardRoot"
+    class="cardRoot isDisabled"
     id="key3"
     style="left: 68px; top: 140px; height: -38px;"
   >
@@ -126,9 +132,17 @@ exports[`Storyshots Cards Default 1`] = `
     </div>
      
     <!---->
+     
+    <div
+      class="disabled-text"
+    >
+      
+    selected by someone
+  
+    </div>
   </div>
   <div
-    class="cardRoot"
+    class="cardRoot isDisabled"
     id="key4"
     style="left: 452px; top: 212px; height: -38px;"
   >
@@ -145,6 +159,14 @@ exports[`Storyshots Cards Default 1`] = `
     </div>
      
     <!---->
+     
+    <div
+      class="disabled-text"
+    >
+      
+    selected by someone
+  
+    </div>
   </div>
   <div
     class="cardRoot"
@@ -165,6 +187,8 @@ exports[`Storyshots Cards Default 1`] = `
     </div>
      
     <!---->
+     
+    <!---->
   </div>
   <div
     class="cardRoot isImage"
@@ -182,6 +206,8 @@ exports[`Storyshots Cards Default 1`] = `
        
       <!---->
     </div>
+     
+    <!---->
      
     <!---->
   </div>
