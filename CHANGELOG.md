@@ -1,4 +1,12 @@
 
+<a name="v0.6.1"></a>
+## [v0.6.1](https://github.com/postalk/components/compare/v0.6.0...v0.6.1) (2018-10-26)
+
+### Fix
+
+* **cards:** fix handleSelect
+
+
 <a name="v0.6.0"></a>
 ## [v0.6.0](https://github.com/postalk/components/compare/v0.5.0...v0.6.0) (2018-10-26)
 
