@@ -373,7 +373,7 @@ export default class Card extends Vue {
   user-select: none;
   position: absolute;
   top: -1.125rem;
-  right: 0;
+  left: 0;
   font-size: 0.75rem;
   font-weight: bold;
   font-style: italic;
