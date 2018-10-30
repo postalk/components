@@ -1375,16 +1375,16 @@
   dependencies:
     any-observable "^0.3.0"
 
-"@storybook/addon-actions@4.0.0-rc.6":
-  version "4.0.0-rc.6"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-actions/-/addon-actions-4.0.0-rc.6.tgz#d788ac929cadc00cd8ba3f2bf2db95959551249c"
+"@storybook/addon-actions@4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-actions/-/addon-actions-4.0.0.tgz#7dfd5f2c2d180d38faa29d111ed3ed31ce1e84e0"
   dependencies:
     "@emotion/core" "^0.13.1"
     "@emotion/provider" "^0.11.2"
     "@emotion/styled" "^0.10.6"
-    "@storybook/addons" "4.0.0-rc.6"
-    "@storybook/components" "4.0.0-rc.6"
-    "@storybook/core-events" "4.0.0-rc.6"
+    "@storybook/addons" "4.0.0"
+    "@storybook/components" "4.0.0"
+    "@storybook/core-events" "4.0.0"
     deep-equal "^1.0.1"
     global "^4.3.2"
     lodash "^4.17.11"
@@ -1414,6 +1414,15 @@
     jest-specific-snapshot "^1.0.0"
     read-pkg-up "^4.0.0"
 
+"@storybook/addons@4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@storybook/addons/-/addons-4.0.0.tgz#b71b545a735b902fa62934ac98fd262b65c924f7"
+  dependencies:
+    "@storybook/channels" "4.0.0"
+    "@storybook/components" "4.0.0"
+    global "^4.3.2"
+    util-deprecate "^1.0.2"
+
 "@storybook/addons@4.0.0-alpha.20":
   version "4.0.0-alpha.20"
   resolved "https://registry.yarnpkg.com/@storybook/addons/-/addons-4.0.0-alpha.20.tgz#8bde211b59a45a7e878492946993e4e37625447e"
@@ -1440,6 +1449,10 @@
     global "^4.3.2"
     json-stringify-safe "^5.0.1"
 
+"@storybook/channels@4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@storybook/channels/-/channels-4.0.0.tgz#b712d711f67966028dbff5c57e6ddc6f53d5cbac"
+
 "@storybook/channels@4.0.0-alpha.20":
   version "4.0.0-alpha.20"
   resolved "https://registry.yarnpkg.com/@storybook/channels/-/channels-4.0.0-alpha.20.tgz#a2cfff4fa3cc36060e4f59651d8ae0713448f113"
@@ -1451,6 +1464,21 @@
 "@storybook/client-logger@4.0.0-alpha.20":
   version "4.0.0-alpha.20"
   resolved "https://registry.yarnpkg.com/@storybook/client-logger/-/client-logger-4.0.0-alpha.20.tgz#0bed337e89061a45348c70a0eef6c2561c317a39"
+
+"@storybook/components@4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@storybook/components/-/components-4.0.0.tgz#5006f5b423eb1ae8b97fc82710b532c0e1b45805"
+  dependencies:
+    "@emotion/core" "^0.13.1"
+    "@emotion/provider" "^0.11.2"
+    "@emotion/styled" "^0.10.6"
+    global "^4.3.2"
+    lodash "^4.17.11"
+    prop-types "^15.6.2"
+    react-inspector "^2.3.0"
+    react-split-pane "^0.1.84"
+    react-textarea-autosize "^7.0.4"
+    render-fragment "^0.1.1"
 
 "@storybook/components@4.0.0-alpha.20":
   version "4.0.0-alpha.20"
@@ -1482,6 +1510,10 @@
     react-split-pane "^0.1.84"
     react-textarea-autosize "^7.0.4"
     render-fragment "^0.1.1"
+
+"@storybook/core-events@4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@storybook/core-events/-/core-events-4.0.0.tgz#9fc5e094044f161e4484139833c4cc2e743ec34c"
 
 "@storybook/core-events@4.0.0-alpha.20":
   version "4.0.0-alpha.20"
