@@ -962,25 +962,16 @@
     global "^4.3.2"
     prop-types "^15.6.2"
 
-"@storybook/addon-storyshots@4.0.0":
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-storyshots/-/addon-storyshots-4.0.0.tgz#836dec662eb071d07f5e06fcb9bf798631b74289"
+"@storybook/addon-storyshots@4.0.2":
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-storyshots/-/addon-storyshots-4.0.2.tgz#57a41afd56db2d7331f21d259e4ad116b4b226dd"
   dependencies:
     "@babel/runtime" "^7.1.2"
-    "@storybook/addons" "4.0.0"
+    "@storybook/addons" "4.0.2"
     glob "^7.1.3"
     global "^4.3.2"
     jest-specific-snapshot "^1.0.0"
     read-pkg-up "^4.0.0"
-
-"@storybook/addons@4.0.0":
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/@storybook/addons/-/addons-4.0.0.tgz#b71b545a735b902fa62934ac98fd262b65c924f7"
-  dependencies:
-    "@storybook/channels" "4.0.0"
-    "@storybook/components" "4.0.0"
-    global "^4.3.2"
-    util-deprecate "^1.0.2"
 
 "@storybook/addons@4.0.0-alpha.20":
   version "4.0.0-alpha.20"
@@ -1008,10 +999,6 @@
     global "^4.3.2"
     json-stringify-safe "^5.0.1"
 
-"@storybook/channels@4.0.0":
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/@storybook/channels/-/channels-4.0.0.tgz#b712d711f67966028dbff5c57e6ddc6f53d5cbac"
-
 "@storybook/channels@4.0.0-alpha.20":
   version "4.0.0-alpha.20"
   resolved "https://registry.yarnpkg.com/@storybook/channels/-/channels-4.0.0-alpha.20.tgz#a2cfff4fa3cc36060e4f59651d8ae0713448f113"
@@ -1023,21 +1010,6 @@
 "@storybook/client-logger@4.0.0-alpha.20":
   version "4.0.0-alpha.20"
   resolved "https://registry.yarnpkg.com/@storybook/client-logger/-/client-logger-4.0.0-alpha.20.tgz#0bed337e89061a45348c70a0eef6c2561c317a39"
-
-"@storybook/components@4.0.0":
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/@storybook/components/-/components-4.0.0.tgz#5006f5b423eb1ae8b97fc82710b532c0e1b45805"
-  dependencies:
-    "@emotion/core" "^0.13.1"
-    "@emotion/provider" "^0.11.2"
-    "@emotion/styled" "^0.10.6"
-    global "^4.3.2"
-    lodash "^4.17.11"
-    prop-types "^15.6.2"
-    react-inspector "^2.3.0"
-    react-split-pane "^0.1.84"
-    react-textarea-autosize "^7.0.4"
-    render-fragment "^0.1.1"
 
 "@storybook/components@4.0.0-alpha.20":
   version "4.0.0-alpha.20"
