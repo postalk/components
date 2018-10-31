@@ -952,13 +952,13 @@
     react-inspector "^2.3.0"
     uuid "^3.3.2"
 
-"@storybook/addon-links@4.0.0-rc.6":
-  version "4.0.0-rc.6"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-links/-/addon-links-4.0.0-rc.6.tgz#f2c3d12035cd7f4f284bc0e358c3db698ef25546"
+"@storybook/addon-links@4.0.1":
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-links/-/addon-links-4.0.1.tgz#ad38d347ef4cec81f444b9488c4d03333faf159f"
   dependencies:
-    "@storybook/addons" "4.0.0-rc.6"
-    "@storybook/components" "4.0.0-rc.6"
-    "@storybook/core-events" "4.0.0-rc.6"
+    "@storybook/addons" "4.0.1"
+    "@storybook/components" "4.0.1"
+    "@storybook/core-events" "4.0.1"
     global "^4.3.2"
     prop-types "^15.6.2"
 
@@ -1000,6 +1000,15 @@
     global "^4.3.2"
     util-deprecate "^1.0.2"
 
+"@storybook/addons@4.0.1":
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/@storybook/addons/-/addons-4.0.1.tgz#40fb67fe76915abdc11684c67a3ef8a39bf8d7f7"
+  dependencies:
+    "@storybook/channels" "4.0.1"
+    "@storybook/components" "4.0.1"
+    global "^4.3.2"
+    util-deprecate "^1.0.2"
+
 "@storybook/channel-postmessage@4.0.0-alpha.20":
   version "4.0.0-alpha.20"
   resolved "https://registry.yarnpkg.com/@storybook/channel-postmessage/-/channel-postmessage-4.0.0-alpha.20.tgz#c9ad284dcaba542e5c98c1d99d29fc5677e4df94"
@@ -1019,6 +1028,10 @@
 "@storybook/channels@4.0.0-rc.6":
   version "4.0.0-rc.6"
   resolved "https://registry.yarnpkg.com/@storybook/channels/-/channels-4.0.0-rc.6.tgz#b13b859175f5033a0f7c71d61178b6a4ad5c54ae"
+
+"@storybook/channels@4.0.1":
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/@storybook/channels/-/channels-4.0.1.tgz#5e8de19c01ab7c988952f64a6f7e2de75a3eb93e"
 
 "@storybook/client-logger@4.0.0-alpha.20":
   version "4.0.0-alpha.20"
@@ -1070,6 +1083,21 @@
     react-textarea-autosize "^7.0.4"
     render-fragment "^0.1.1"
 
+"@storybook/components@4.0.1":
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/@storybook/components/-/components-4.0.1.tgz#0e9d9f719936967403529151f7975866857b1793"
+  dependencies:
+    "@emotion/core" "^0.13.1"
+    "@emotion/provider" "^0.11.2"
+    "@emotion/styled" "^0.10.6"
+    global "^4.3.2"
+    lodash "^4.17.11"
+    prop-types "^15.6.2"
+    react-inspector "^2.3.0"
+    react-split-pane "^0.1.84"
+    react-textarea-autosize "^7.0.4"
+    render-fragment "^0.1.1"
+
 "@storybook/core-events@4.0.0-alpha.20":
   version "4.0.0-alpha.20"
   resolved "https://registry.yarnpkg.com/@storybook/core-events/-/core-events-4.0.0-alpha.20.tgz#8596fa73a99e3a3a4699ab28256716b1059cb264"
@@ -1077,6 +1105,10 @@
 "@storybook/core-events@4.0.0-rc.6":
   version "4.0.0-rc.6"
   resolved "https://registry.yarnpkg.com/@storybook/core-events/-/core-events-4.0.0-rc.6.tgz#38a07a7bd589f4234d6ac56f775f6e2472943643"
+
+"@storybook/core-events@4.0.1":
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/@storybook/core-events/-/core-events-4.0.1.tgz#087093c00a3eafe76d52d38830e668b88bd01cf6"
 
 "@storybook/core@4.0.0-alpha.20":
   version "4.0.0-alpha.20"
