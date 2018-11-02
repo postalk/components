@@ -1288,15 +1288,15 @@
     "@vue/babel-preset-app" "^3.1.0"
     babel-loader "^8.0.4"
 
-"@vue/cli-plugin-typescript@3.1.0":
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/@vue/cli-plugin-typescript/-/cli-plugin-typescript-3.1.0.tgz#2abf7b67584dfad7e86dce1cf34c53e32c2019d6"
+"@vue/cli-plugin-typescript@3.1.1":
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/@vue/cli-plugin-typescript/-/cli-plugin-typescript-3.1.1.tgz#9c3a62795dd6f7359325384b303904e7d7b76d8d"
   dependencies:
     "@types/webpack-env" "^1.13.6"
-    "@vue/cli-shared-utils" "^3.1.0"
+    "@vue/cli-shared-utils" "^3.1.1"
     fork-ts-checker-webpack-plugin "^0.4.14"
     globby "^8.0.1"
-    ts-loader "^5.2.2"
+    ts-loader "^5.3.0"
     tslint "^5.11.0"
 
 "@vue/cli-plugin-unit-jest@3.1.0":
@@ -10277,9 +10277,9 @@ ts-jest@23.10.4:
     semver "^5.5"
     yargs-parser "10.x"
 
-ts-loader@^5.2.2:
-  version "5.2.2"
-  resolved "https://registry.yarnpkg.com/ts-loader/-/ts-loader-5.2.2.tgz#a707849b08ca754cc46f5c7053e79fe1c84caf0e"
+ts-loader@^5.3.0:
+  version "5.3.0"
+  resolved "https://registry.yarnpkg.com/ts-loader/-/ts-loader-5.3.0.tgz#4bac24e57bc5189391ab14987d9898ce53ef5cf7"
   dependencies:
     chalk "^2.3.0"
     enhanced-resolve "^4.0.0"
