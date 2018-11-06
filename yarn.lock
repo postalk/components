@@ -962,12 +962,12 @@
     global "^4.3.2"
     prop-types "^15.6.2"
 
-"@storybook/addon-storyshots@4.0.2":
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-storyshots/-/addon-storyshots-4.0.2.tgz#57a41afd56db2d7331f21d259e4ad116b4b226dd"
+"@storybook/addon-storyshots@4.0.4":
+  version "4.0.4"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-storyshots/-/addon-storyshots-4.0.4.tgz#022f754de2f3f1173ea9fd3a0a9b1a14996f36e0"
   dependencies:
     "@babel/runtime" "^7.1.2"
-    "@storybook/addons" "4.0.2"
+    "@storybook/addons" "4.0.4"
     glob "^7.1.3"
     global "^4.3.2"
     jest-specific-snapshot "^1.0.0"
@@ -979,15 +979,6 @@
   dependencies:
     "@storybook/channels" "4.0.0-alpha.20"
     "@storybook/components" "4.0.0-alpha.20"
-    global "^4.3.2"
-    util-deprecate "^1.0.2"
-
-"@storybook/addons@4.0.2":
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/@storybook/addons/-/addons-4.0.2.tgz#95fa2384c122953359693849abd711a1611a9bcf"
-  dependencies:
-    "@storybook/channels" "4.0.2"
-    "@storybook/components" "4.0.2"
     global "^4.3.2"
     util-deprecate "^1.0.2"
 
@@ -1012,10 +1003,6 @@
   version "4.0.0-alpha.20"
   resolved "https://registry.yarnpkg.com/@storybook/channels/-/channels-4.0.0-alpha.20.tgz#a2cfff4fa3cc36060e4f59651d8ae0713448f113"
 
-"@storybook/channels@4.0.2":
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/@storybook/channels/-/channels-4.0.2.tgz#7a00367a5e4be8a05ed0fce3709a50cc62628629"
-
 "@storybook/channels@4.0.4":
   version "4.0.4"
   resolved "https://registry.yarnpkg.com/@storybook/channels/-/channels-4.0.4.tgz#fdf717cd726d15508ac80ff93a3893b75d3ab8b8"
@@ -1037,21 +1024,6 @@
     prop-types "^15.6.2"
     react-inspector "^2.3.0"
     react-split-pane "^0.1.82"
-    react-textarea-autosize "^7.0.4"
-    render-fragment "^0.1.1"
-
-"@storybook/components@4.0.2":
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/@storybook/components/-/components-4.0.2.tgz#06ed3675c8d798b20c7464335d2bd090f99402af"
-  dependencies:
-    "@emotion/core" "^0.13.1"
-    "@emotion/provider" "^0.11.2"
-    "@emotion/styled" "^0.10.6"
-    global "^4.3.2"
-    lodash "^4.17.11"
-    prop-types "^15.6.2"
-    react-inspector "^2.3.0"
-    react-split-pane "^0.1.84"
     react-textarea-autosize "^7.0.4"
     render-fragment "^0.1.1"
 
