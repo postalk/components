@@ -10,31 +10,31 @@ exports[`Storyshots Card Default 1`] = `
     <div
       class="card"
     >
-      <ul
+      <ol
         class="list"
       >
         <li
-          class="item"
+          class="item is-0"
         >
           
     とんこつラーメン
   
         </li>
         <li
-          class="item"
+          class="item is-1"
         >
           
     油そば野菜油増し増しスペシャル
   
         </li>
         <li
-          class="item"
+          class="item is-2"
         >
           
     うどん
   
         </li>
-      </ul>
+      </ol>
        
       <!---->
     </div>
@@ -58,31 +58,31 @@ exports[`Storyshots Cards Default 1`] = `
     <div
       class="card"
     >
-      <ul
+      <ol
         class="list"
       >
         <li
-          class="item"
+          class="item is-0"
         >
           
     とんこつラーメン
   
         </li>
         <li
-          class="item"
+          class="item is-1"
         >
           
     油そば野菜油増し増しスペシャル
   
         </li>
         <li
-          class="item"
+          class="item is-2"
         >
           
     うどん
   
         </li>
-      </ul>
+      </ol>
        
       <!---->
     </div>

@@ -6,14 +6,15 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
 @Component
 export default class Headline extends Vue {
-  @Prop() private txt!: string
+  @Prop()
+  private txt!: string
 }
 </script>
 
 <style scoped lang="scss">
 .headline {
   text-align: center;
-  font-size: 1.25em;
+  font-size: 0.9375rem;
   font-weight: 400;
   line-height: 1.15;
   margin-top: 0.1875rem;
