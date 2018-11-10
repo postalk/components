@@ -395,7 +395,7 @@ export default class Cards extends Vue {
               this.GRID +
             this.OFFSET
           /*
-            font-size: 14
+            font-size: 12
             line-height: 1.5
             padding top, bottom: 8
             border top, bottom: 1
@@ -685,11 +685,11 @@ export default class Cards extends Vue {
 
 <style>
 .calc-test-width {
-  font-size: 14px;
+  font-size: 0.8125rem;
   position: absolute;
   visibility: hidden;
   height: auto;
-  width: 222px;
+  width: calc(12rem - 1rem - 2px);
   word-break: break-word;
   line-height: 1.5;
 }

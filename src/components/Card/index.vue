@@ -39,7 +39,6 @@
         <Twitter :txt="value" v-else-if="isTwitter(value)" />
         <Table :txt="value" v-else-if="isTable(value)" />
         <OrderedList :txt="value" v-else-if="isOrderedList(value)" />
-        <List :txt="value" v-else-if="isList(value)" />
         <Img :url="value" :handleMeasure="onImageMeasure" v-else-if="isImage(value)" />
         <Headline :txt="value" v-else-if="isHeadline(value, color)" />
         <div class="text" v-else>{{ value }}</div>
@@ -78,7 +77,6 @@ import Input from '@/components/Input/index.vue'
 import Headline from './headline.vue'
 import Table from './table.vue'
 import OrderedList from './ordered-list.vue'
-import List from './list.vue'
 import Drag from './drag.vue'
 import Img from './image.vue'
 import Youtube from './youtube.vue'
@@ -98,7 +96,6 @@ import {
     Headline,
     Table,
     OrderedList,
-    List,
     Img,
     Input,
     Drag,
@@ -233,12 +230,8 @@ export default class Card extends Vue {
           (color !== 'white' && !!color)
   }
 
-  private isList(str: string): boolean {
-    return !!str.match(/\r?\n/)
-  }
-
   private isOrderedList(str: string): boolean {
-    return this.isList(str) && !!str.match(/^[0-9０-９](\.?)(\s|　)/)
+    return !!str.match(/\r?\n/)
   }
 
   private isTable(str: string): boolean {
@@ -288,7 +281,7 @@ export default class Card extends Vue {
 
 <style scoped lang="scss">
 .cardRoot {
-  width: 15rem;
+  width: 12rem;
   height: 0;
   position: absolute;
   z-index: 1;
@@ -322,7 +315,7 @@ export default class Card extends Vue {
   }
   &.isTable {
     width: auto;
-    min-width: 15rem;
+    min-width: 11.25rem;
     .card {
       width: auto;
     }
@@ -357,7 +350,7 @@ export default class Card extends Vue {
 }
 
 .text {
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   color: #222;
   line-height: 1.5;
   word-wrap: break-word;
@@ -374,7 +367,7 @@ export default class Card extends Vue {
   position: absolute;
   top: -1.125rem;
   left: 0;
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   font-weight: bold;
   font-style: italic;
   color: #222;

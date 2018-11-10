@@ -9,7 +9,7 @@
     }"
     v-if="width > 0 && height > 0"
     :resizable="false"
-    :grid="[24,24]"
+    :grid="[16,16]"
     :x="x - DRAG_WIDTH"
     :y="y - DRAG_WIDTH"
     @dragging="onMove"
