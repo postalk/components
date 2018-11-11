@@ -55,7 +55,7 @@ const SelectTester: ComponentOptions<Vue> = {
             value: 'upload image will be shown',
             id: `key-${randomStr()}`
           })
-        }, 50 * (i + 1))
+        }, 1000 * (i + 1))
       })
     },
     addUndo(undoAction) {

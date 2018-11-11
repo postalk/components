@@ -17,10 +17,6 @@ storiesOf('Shortcuts', module)
     :onSelectAll="action('all')"
     :onUndo="action('undo')"
     :onNewCard="action('new')"
-    :onMoveMarker="action('movemarker')"
-    :onColorMarker="action('colormarker')"
-    :onClearMarker="action('clearmarker')"
-    :onCreateMarker="action('create')"
   />`
   }))
   .add('Selected', () => ({
@@ -37,9 +33,5 @@ storiesOf('Shortcuts', module)
     :onSelectAll="action('all')"
     :onUndo="action('undo')"
     :onNewCard="action('new')"
-    :onMoveMarker="action('movemarker')"
-    :onColorMarker="action('colormarker')"
-    :onClearMarker="action('clearmarker')"
-    :onCreateMarker="action('create')"
   />`
   }))

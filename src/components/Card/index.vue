@@ -9,7 +9,8 @@
         isTable: isTable(value),
         isYoutube: isYoutube(value),
         isTwitter: isTwitter(value),
-        isEditing: editing
+        isEditing: editing,
+        isOutside: x < 0 || x > 79.5 * UNIT || y < 0 || y > 46.25 * UNIT
       }"
       :style="{
         left: `${x}px`,
@@ -29,7 +30,7 @@
           'background-color': getColor()['background-color'],
           'border-color': selected ? selectColor : getColor()['border-color'],
           'outline': selected ? `solid 1px ${selectColor}` : undefined,
-          'min-height': !value ? '60px' : undefined,
+          'min-height': !value ? UNIT * 3 : undefined,
           width: isImage(value) ? `${width - (DRAG_WIDTH * 2 + 2)}px` : undefined,
           height: isImage(value) ? `${height - (DRAG_WIDTH * 2 + 2)}px` : undefined
         }"
@@ -90,6 +91,7 @@ import {
   RED_DARK,
   SELECT
 } from '../color'
+import { DRAG_WIDTH, CARD_PADDING, UNIT } from '@/components/numbers'
 
 @Component<Card>({
   components: {
@@ -157,7 +159,8 @@ export default class Card extends Vue {
   private height: number = 0
   private selectColor: string = SELECT
 
-  private DRAG_WIDTH = 20
+  private DRAG_WIDTH = DRAG_WIDTH
+  private UNIT = UNIT
 
   private mounted() {
     this.matchBoundRect()
@@ -168,8 +171,8 @@ export default class Card extends Vue {
 
   private matchBoundRect(): void {
     const el = this.$refs.card as Element
-    this.height = el.clientHeight + this.DRAG_WIDTH * 2 + 2
-    this.width = el.clientWidth + this.DRAG_WIDTH * 2 + 2
+    this.height = el.clientHeight + DRAG_WIDTH * 2 + 2
+    this.width = el.clientWidth + DRAG_WIDTH * 2 + 2
   }
 
   private rerender(): void {
@@ -203,18 +206,18 @@ export default class Card extends Vue {
   }
 
   private onImageMeasure(width: number, height: number) {
-    this.height = Math.round(height / 2) + this.DRAG_WIDTH * 2 + 8 * 2 + 2
-    this.width = Math.round(width / 2) + this.DRAG_WIDTH * 2 + 8 * 2 + 2
+    this.height = Math.round(height / 2) + DRAG_WIDTH * 2 + CARD_PADDING * 2 + 2
+    this.width = Math.round(width / 2) + DRAG_WIDTH * 2 + CARD_PADDING * 2 + 2
   }
 
   private onDragging(x: number, y: number): void {
     if (!this.movingId) {
       this.handleStart(this.id)
     }
-    const diffX = this.x - x - this.DRAG_WIDTH
-    const diffY = this.y - y - this.DRAG_WIDTH
-    this.x = x + this.DRAG_WIDTH
-    this.y = y + this.DRAG_WIDTH
+    const diffX = this.x - x - DRAG_WIDTH
+    const diffY = this.y - y - DRAG_WIDTH
+    this.x = x + DRAG_WIDTH
+    this.y = y + DRAG_WIDTH
     this.handleMove(diffX, diffY, this.id)
   }
 
@@ -333,6 +336,9 @@ export default class Card extends Vue {
       width: calc(100% + 20px + 20px);
       height: calc(100% + 20px + 20px);
     }
+  }
+  &.isOutside {
+    opacity: 0.6;
   }
 }
 

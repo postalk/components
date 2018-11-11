@@ -1,6 +1,6 @@
 html, body {
   background-position: 20px 20px;
-  background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23BBBBBB' d='M0 0h1v1H0z' fill-rule='evenodd'/%3E%3C/svg%3E");
+  background-color: #f6f6f6;
   height: 100%;
 }
 

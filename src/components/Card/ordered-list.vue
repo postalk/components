@@ -21,7 +21,7 @@ export default class OrderedList extends Vue {
   private getList(): string[] {
     return this.txt
       .split(/\r?\n/)
-      .map(s => s.trim().replace(/^[0-9０-９](\.?)(\s|　)/, ''))
+      .map(s => s.trim().replace(/^[0-9０-９(\-(\s|　))](\.?)(\s|　)/, ''))
       .filter(s => !!s)
   }
 }

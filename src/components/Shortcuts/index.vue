@@ -3,46 +3,20 @@
 <script lang="ts">
 import debounce from 'debounce-promise'
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import {
-  ENTER,
-  ESCAPE,
-  DELETE,
-  BACKSPACE,
-  ZERO,
-  NINE,
-  Z,
-  A,
-  COLON,
-  COMMA,
-  DOT,
-  SLASH,
-  ARROW,
-  ONE,
-  TWO,
-  THREE,
-  I,
-  R,
-  Y,
-  B,
-  W,
-  ALT
-} from './keyboards'
+import { ENTER, ESCAPE, DELETE, BACKSPACE, Z, A, ARROW, ALT } from './keyboards'
 import {
   NEW_CARD,
   CLEAR_SELECTED,
   UNKNOWN,
   REMOVE_SELECTED,
-  CREATE_MARKER,
   MOVE_SELECTED,
   SELECT_ALL,
   UNDO,
-  CHANGE_COLOR,
-  CLEAR_MARKER,
-  MOVE_MARKER,
-  COLOR_MARKER
+  CHANGE_COLOR
 } from './actions'
 import keyboardMap from './map'
 import { addListener, removeListener } from '@/components/browser'
+import { GRID } from '@/components/numbers'
 
 @Component
 export default class Shortcuts extends Vue {
@@ -69,14 +43,6 @@ export default class Shortcuts extends Vue {
   private onUndo!: () => void
   @Prop()
   private onNewCard!: () => void
-  @Prop()
-  private onCreateMarker!: (left: number, top: number) => void
-  @Prop()
-  private onMoveMarker!: (left: number, top: number) => void
-  @Prop()
-  private onColorMarker!: () => void
-  @Prop()
-  private onClearMarker!: () => void
 
   private moveTimer = debounce(this.onMoveDoneSelected, 300)
 
@@ -123,42 +89,9 @@ export default class Shortcuts extends Vue {
             type: MOVE_SELECTED,
             direction: this.getDirection(keyCode, withShift)
           }
-        // case keyCode === W && withAlt:
-        // case keyCode === R && withAlt:
-        // case keyCode === Y && withAlt:
-        // case keyCode === B && withAlt:
-        //   return {
-        //     type: CHANGE_COLOR,
-        //     color:
-        //       keyCode === W
-        //         ? 'white'
-        //         : keyCode === R
-        //           ? 'red'
-        //           : keyCode === Y
-        //             ? 'yellow'
-        //             : keyCode === B
-        //               ? 'blue'
-        //               : ''
-        //   }
       }
     }
     switch (true) {
-      case keyCode === ESCAPE:
-        return {
-          type: CLEAR_MARKER
-        }
-      case keyCode === ARROW.UP:
-      case keyCode === ARROW.DOWN:
-      case keyCode === ARROW.LEFT:
-      case keyCode === ARROW.RIGHT:
-        return {
-          type: MOVE_MARKER,
-          direction: this.getDirection(keyCode, withShift)
-        }
-      case keyCode === ALT:
-        return {
-          type: COLOR_MARKER
-        }
       case keyCode === A && withMeta:
         return {
           type: SELECT_ALL
@@ -171,24 +104,6 @@ export default class Shortcuts extends Vue {
         return {
           type: NEW_CARD
         }
-      // case keyCode >= ZERO && keyCode <= NINE && isSingle:
-      //   return {
-      //     type: CREATE_MARKER,
-      //     position: this.getPosition(keyCode, 'number')
-      //   }
-      // case keyCode >= A && keyCode <= Z && isSingle:
-      //   return {
-      //     type: CREATE_MARKER,
-      //     position: this.getPosition(keyCode, 'alpha')
-      //   }
-      // case keyCode === COLON && isSingle:
-      // case keyCode === COMMA && isSingle:
-      // case keyCode === DOT && isSingle:
-      // case keyCode === SLASH && isSingle:
-      //   return {
-      //     type: CREATE_MARKER,
-      //     position: this.getPosition(keyCode)
-      //   }
       default:
         return {
           type: UNKNOWN
@@ -215,8 +130,8 @@ export default class Shortcuts extends Vue {
         e.preventDefault()
         this.moveTimer()
         this.onMoveSelected(
-          action.direction ? action.direction.left * -24 : 0,
-          action.direction ? action.direction.top * -24 : 0,
+          action.direction ? action.direction.left * -1 * GRID : 0,
+          action.direction ? action.direction.top * -1 * GRID : 0,
           'none'
         )
         return
@@ -233,25 +148,6 @@ export default class Shortcuts extends Vue {
       case NEW_CARD:
         this.onNewCard()
         return
-      case COLOR_MARKER:
-        this.onColorMarker()
-        return
-      case MOVE_MARKER:
-        e.preventDefault()
-        this.onMoveMarker(
-          action.direction ? action.direction.left * 24 : 0,
-          action.direction ? action.direction.top * 24 : 0
-        )
-        return
-      case CLEAR_MARKER:
-        this.onClearMarker()
-        return
-      // case CREATE_MARKER:
-      //   this.onCreateMarker(
-      //     action.position ? Number(action.position.slice(-1)) : 0,
-      //     action.position ? Number(action.position.slice(0, 1)) : 0
-      //   )
-      // return
     }
   }
 
@@ -276,24 +172,6 @@ export default class Shortcuts extends Vue {
           : keyCode === ARROW.RIGHT
             ? scale
             : 0
-    }
-  }
-
-  private getPosition(keyCode: number, type?: string) {
-    if (type === 'number') {
-      return keyboardMap[keyCode - ZERO]
-    } else if (type === 'alpha') {
-      return keyboardMap[keyCode - A + 10]
-    } else {
-      return keyCode === COLON
-        ? keyboardMap[36]
-        : keyCode === COMMA
-          ? keyboardMap[37]
-          : keyCode === DOT
-            ? keyboardMap[38]
-            : keyCode === SLASH
-              ? keyboardMap[39]
-              : keyboardMap[0]
     }
   }
 }
