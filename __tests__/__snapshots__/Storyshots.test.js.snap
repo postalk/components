@@ -5,7 +5,7 @@ exports[`Storyshots Card Default 1`] = `
   <div
     class="cardRoot"
     id="key1"
-    style="left: 68px; top: 212px; height: -38px;"
+    style="left: 84px; top: 228px; height: -38px;"
   >
     <div
       class="card"
@@ -48,177 +48,191 @@ exports[`Storyshots Card Default 1`] = `
 
 exports[`Storyshots Cards Default 1`] = `
 <div
-  class="canvas"
+  class="board"
 >
   <div
-    class="cardRoot"
-    id="key1"
-    style="left: 68px; top: 212px; height: -38px;"
+    class="wrapper"
   >
     <div
-      class="card"
-    >
-      <ol
-        class="list"
-      >
-        <li
-          class="item is-0"
-        >
-          
-    とんこつラーメン
-  
-        </li>
-        <li
-          class="item is-1"
-        >
-          
-    油そば野菜油増し増しスペシャル
-  
-        </li>
-        <li
-          class="item is-2"
-        >
-          
-    うどん
-  
-        </li>
-      </ol>
-       
-      <!---->
-    </div>
-     
-    <!---->
-     
-    <!---->
-  </div>
-  <div
-    class="cardRoot"
-    id="key2"
-    style="left: 452px; top: 140px; height: -38px;"
-  >
-    <div
-      class="card"
-      style="background-color: rgb(255, 166, 166); border-color: #f39393;"
-    >
-      <h2
-        class="headline"
-      >
-        適当に遊んで暮らす毎日
-      </h2>
-       
-      <!---->
-    </div>
-     
-    <!---->
-     
-    <!---->
-  </div>
-  <div
-    class="cardRoot isDisabled"
-    id="key3"
-    style="left: 68px; top: 140px; height: -38px;"
-  >
-    <div
-      class="card"
-      style="background-color: rgb(156, 232, 232); border-color: #8ee8e8;"
-    >
-      <h2
-        class="headline"
-      >
-        福岡でなに食べるか
-      </h2>
-       
-      <!---->
-    </div>
-     
-    <!---->
-     
-    <div
-      class="disabled-text"
-    >
-      
-    selected by someone
-  
-    </div>
-  </div>
-  <div
-    class="cardRoot isDisabled"
-    id="key4"
-    style="left: 452px; top: 212px; height: -38px;"
-  >
-    <div
-      class="card"
+      class="centered"
     >
       <div
-        class="text"
+        class="canvas"
       >
-        ようやくの思いで笹原を這い出すと向うに大きな池がある。吾輩は池の前に坐ってどうしたらよかろうと考えて見た。別にこれという 分別 （ ふんべつ ） も出ない。
-      </div>
-       
-      <!---->
-    </div>
-     
-    <!---->
-     
-    <div
-      class="disabled-text"
-    >
-      
+        <div
+          class="cardRoot"
+          id="key1"
+          style="left: 84px; top: 228px; height: -38px;"
+        >
+          <div
+            class="card"
+          >
+            <ol
+              class="list"
+            >
+              <li
+                class="item is-0"
+              >
+                
+    とんこつラーメン
+  
+              </li>
+              <li
+                class="item is-1"
+              >
+                
+    油そば野菜油増し増しスペシャル
+  
+              </li>
+              <li
+                class="item is-2"
+              >
+                
+    うどん
+  
+              </li>
+            </ol>
+             
+            <!---->
+          </div>
+           
+          <!---->
+           
+          <!---->
+        </div>
+        <div
+          class="cardRoot"
+          id="key2"
+          style="left: 404px; top: 132px; height: -38px;"
+        >
+          <div
+            class="card"
+            style="background-color: rgb(255, 166, 166); border-color: #f39393;"
+          >
+            <h2
+              class="headline"
+            >
+              適当に遊んで暮らす毎日
+            </h2>
+             
+            <!---->
+          </div>
+           
+          <!---->
+           
+          <!---->
+        </div>
+        <div
+          class="cardRoot isDisabled"
+          id="key3"
+          style="left: 84px; top: 132px; height: -38px;"
+        >
+          <div
+            class="card"
+            style="background-color: rgb(156, 232, 232); border-color: #8ee8e8;"
+          >
+            <h2
+              class="headline"
+            >
+              福岡でなに食べるか
+            </h2>
+             
+            <!---->
+          </div>
+           
+          <!---->
+           
+          <div
+            class="disabled-text"
+          >
+            
     selected by someone
   
+          </div>
+        </div>
+        <div
+          class="cardRoot isDisabled"
+          id="key4"
+          style="left: 404px; top: 228px; height: -38px;"
+        >
+          <div
+            class="card"
+          >
+            <div
+              class="text"
+            >
+              ようやくの思いで笹原を這い出すと向うに大きな池がある。吾輩は池の前に坐ってどうしたらよかろうと考えて見た。別にこれという 分別 （ ふんべつ ） も出ない。
+            </div>
+             
+            <!---->
+          </div>
+           
+          <!---->
+           
+          <div
+            class="disabled-text"
+          >
+            
+    selected by someone
+  
+          </div>
+        </div>
+        <div
+          class="cardRoot"
+          id="key5"
+          style="left: 724px; top: 132px; height: -38px;"
+        >
+          <div
+            class="card"
+            style="background-color: rgb(253, 249, 155); border-color: #f9f116;"
+          >
+            <h2
+              class="headline"
+            >
+              My Profile
+            </h2>
+             
+            <!---->
+          </div>
+           
+          <!---->
+           
+          <!---->
+        </div>
+        <div
+          class="cardRoot isImage"
+          id="key6"
+          style="left: 724px; top: 228px; height: -38px;"
+        >
+          <div
+            class="card"
+            style="width: -42px; height: -42px;"
+          >
+            <img
+              class="image"
+              src="https://i.gyazo.com/4215f0df9b4c256b39afd12327f40277.png"
+            />
+             
+            <!---->
+          </div>
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <!---->
+         
+        <!---->
+         
+        <!---->
+      </div>
     </div>
   </div>
-  <div
-    class="cardRoot"
-    id="key5"
-    style="left: 836px; top: 140px; height: -38px;"
-  >
-    <div
-      class="card"
-      style="background-color: rgb(253, 249, 155); border-color: #f9f116;"
-    >
-      <h2
-        class="headline"
-      >
-        My Profile
-      </h2>
-       
-      <!---->
-    </div>
-     
-    <!---->
-     
-    <!---->
-  </div>
-  <div
-    class="cardRoot isImage"
-    id="key6"
-    style="left: 836px; top: 212px; height: -38px;"
-  >
-    <div
-      class="card"
-      style="width: -42px; height: -42px;"
-    >
-      <img
-        class="image"
-        src="https://i.gyazo.com/4215f0df9b4c256b39afd12327f40277.png"
-      />
-       
-      <!---->
-    </div>
-     
-    <!---->
-     
-    <!---->
-  </div>
-   
-  <!---->
-   
-  <!---->
-   
-  <!---->
    
   <div />
+   
+  <!---->
 </div>
 `;
 

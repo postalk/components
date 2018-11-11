@@ -14,9 +14,7 @@
     "vue-draggable-resizable": "1.7.3",
     "vue-property-decorator": "7.2.0",
     "vue-textarea-autosize": "1.0.4",
-    "vue-tweet-embed": "2.1.2",
-    "vue2-dropzone": "3.5.2",
-    "vuex": "3.0.1"
+    "vue-tweet-embed": "2.1.2"
   },
   "devDependencies": {
     "@storybook/addon-actions": "4.0.4",

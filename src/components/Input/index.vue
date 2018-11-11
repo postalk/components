@@ -10,9 +10,9 @@
     @blur.native="doneEdit"
     @keypress.native.enter.exact.prevent="onEnter"
     @keydown.native.esc="onEsc"
-    @keydown.native="stopEvent"
-    @keyup.native="stopEvent"
-    @keypress.native="stopEvent"
+    @keydown.native="stopKeyEvent"
+    @keypress.native="stopKeyEvent"
+    @keyup.native="stopKeyEvent"
     @copy.native="stopEvent"
     @paste.native="stopEvent"
   ></textarea-autosize>
@@ -22,6 +22,7 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import VueTextareaAutosize from 'vue-textarea-autosize'
 import { VNode, VNodeDirective, DirectiveFunction } from 'vue'
+import { ENTER } from '@/components/Shortcuts/keyboards'
 
 Vue.use(VueTextareaAutosize)
 
@@ -95,7 +96,14 @@ export default class Input extends Vue {
     this.editing = false
   }
 
-  private stopEvent(e: KeyboardEvent | ClipboardEvent): void {
+  private stopKeyEvent(e: KeyboardEvent): void {
+    if (!this.value && e.keyCode === ENTER && !e.shiftKey) {
+      return
+    }
+    e.stopPropagation()
+  }
+
+  private stopEvent(e: ClipboardEvent): void {
     e.stopPropagation()
   }
 }
