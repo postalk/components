@@ -962,12 +962,12 @@
     global "^4.3.2"
     prop-types "^15.6.2"
 
-"@storybook/addon-storyshots@4.0.4":
-  version "4.0.4"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-storyshots/-/addon-storyshots-4.0.4.tgz#022f754de2f3f1173ea9fd3a0a9b1a14996f36e0"
+"@storybook/addon-storyshots@4.0.6":
+  version "4.0.6"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-storyshots/-/addon-storyshots-4.0.6.tgz#225eef26155b92f5e1fc9b4cedea53b3192e1fab"
   dependencies:
     "@babel/runtime" "^7.1.2"
-    "@storybook/addons" "4.0.4"
+    "@storybook/addons" "4.0.6"
     glob "^7.1.3"
     global "^4.3.2"
     jest-specific-snapshot "^1.0.0"
