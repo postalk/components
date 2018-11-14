@@ -5,6 +5,7 @@
       :class="`is-${index}`"
       v-for="(value, index) in getList()"
       :key="index"
+      v-linkified
     >
       {{ value }}
     </li>
@@ -13,6 +14,10 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
+import linkify from 'vue-linkify'
+
+Vue.directive('linkified', linkify)
+
 @Component
 export default class OrderedList extends Vue {
   @Prop()

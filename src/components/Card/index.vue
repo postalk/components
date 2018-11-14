@@ -9,6 +9,7 @@
         isTable: isTable(value),
         isYoutube: isYoutube(value),
         isTwitter: isTwitter(value),
+        isHTML: html,
         isEditing: editing,
         isOutside: x < 0 || x > 79.5 * UNIT || y < 0 || y > 46.25 * UNIT
       }"
@@ -36,13 +37,15 @@
         }"
         @click="onClick"
       >
-        <Youtube :txt="value" v-if="isYoutube(value)" />
+        <WebPage v-if="html" :html="html" :handleMeasure="onHTMLMeasure" />
+        <Img :url="value" :handleMeasure="onImageMeasure" v-else-if="isImage(value)" />
+        <Youtube :txt="value" v-else-if="isYoutube(value)" />
         <Twitter :txt="value" v-else-if="isTwitter(value)" />
+        <URL :txt="value" :handleURL="onURL" v-else-if="isUrl(value)" />
         <Table :txt="value" v-else-if="isTable(value)" />
         <OrderedList :txt="value" v-else-if="isOrderedList(value)" />
-        <Img :url="value" :handleMeasure="onImageMeasure" v-else-if="isImage(value)" />
         <Headline :txt="value" v-else-if="isHeadline(value, color)" />
-        <div class="text" v-else>{{ value }}</div>
+        <div class="text" v-else v-linkified>{{ value }}</div>
         <Input 
           v-if="editing"
           class="input" 
@@ -82,6 +85,10 @@ import Drag from './drag.vue'
 import Img from './image.vue'
 import Youtube from './youtube.vue'
 import Twitter from './twitter.vue'
+import URL from './url.vue'
+import WebPage from './webpage.vue'
+import linkify from 'vue-linkify'
+import isUrl from 'is-url'
 import {
   YELLOW,
   YELLOW_DARK,
@@ -93,6 +100,8 @@ import {
 } from '../color'
 import { DRAG_WIDTH, CARD_PADDING, UNIT } from '@/components/numbers'
 
+Vue.directive('linkified', linkify)
+
 @Component<Card>({
   components: {
     Headline,
@@ -102,7 +111,9 @@ import { DRAG_WIDTH, CARD_PADDING, UNIT } from '@/components/numbers'
     Input,
     Drag,
     Youtube,
-    Twitter
+    Twitter,
+    URL,
+    WebPage
   },
   watch: {
     initial(newVal, oldVal) {
@@ -111,6 +122,14 @@ import { DRAG_WIDTH, CARD_PADDING, UNIT } from '@/components/numbers'
       }
     },
     value(newVal, oldVal) {
+      if (oldVal !== newVal) {
+        this.$nextTick(() => {
+          this.matchBoundRect()
+          this.rerender()
+        })
+      }
+    },
+    html(newVal, oldVal) {
       if (oldVal !== newVal) {
         this.$nextTick(() => {
           this.matchBoundRect()
@@ -137,6 +156,8 @@ export default class Card extends Vue {
   private color!: string
   @Prop()
   private initial!: { x: number; y: number }
+  @Prop()
+  private html!: string
 
   @Prop()
   private handleMove!: (x: number, y: number, id: string) => void
@@ -150,6 +171,8 @@ export default class Card extends Vue {
   private handleRemove!: (id: string) => void
   @Prop()
   private handleSelect!: (id: string) => void
+  @Prop()
+  private handleURL!: (url: string, id: string) => void
 
   private show: boolean = true
   private editing: boolean = false
@@ -161,6 +184,8 @@ export default class Card extends Vue {
 
   private DRAG_WIDTH = DRAG_WIDTH
   private UNIT = UNIT
+
+  private isUrl = isUrl
 
   private mounted() {
     this.matchBoundRect()
@@ -210,6 +235,15 @@ export default class Card extends Vue {
     this.width = Math.round(width / 2) + DRAG_WIDTH * 2 + CARD_PADDING * 2 + 2
   }
 
+  private onHTMLMeasure(ratio: number, defaultHeight: number) {
+    this.height =
+      defaultHeight +
+      (12 * UNIT - 1 * UNIT - 2) * ratio +
+      DRAG_WIDTH * 2 +
+      CARD_PADDING * 2 +
+      2
+  }
+
   private onDragging(x: number, y: number): void {
     if (!this.movingId) {
       this.handleStart(this.id)
@@ -219,6 +253,10 @@ export default class Card extends Vue {
     this.x = x + DRAG_WIDTH
     this.y = y + DRAG_WIDTH
     this.handleMove(diffX, diffY, this.id)
+  }
+
+  private onURL(url: string) {
+    this.handleURL(url, this.id)
   }
 
   private isHeadline(str: string, color: string): boolean {

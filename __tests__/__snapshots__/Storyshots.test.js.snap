@@ -24,7 +24,15 @@ exports[`Storyshots Card Default 1`] = `
           class="item is-1"
         >
           
-    油そば野菜油増し増しスペシャル
+    油そば野菜油 
+          <a
+            class="linkified"
+            href="http://google.com"
+            target="_blank"
+          >
+            google.com
+          </a>
+           増し増しスペシャル
   
         </li>
         <li
@@ -60,7 +68,7 @@ exports[`Storyshots Cards Default 1`] = `
         class="canvas"
       >
         <div
-          class="cardRoot"
+          class="cardRoot isDisabled"
           id="key1"
           style="left: 84px; top: 228px; height: -38px;"
         >
@@ -81,7 +89,15 @@ exports[`Storyshots Cards Default 1`] = `
                 class="item is-1"
               >
                 
-    油そば野菜油増し増しスペシャル
+    油そば野菜油 
+                <a
+                  class="linkified"
+                  href="http://google.com"
+                  target="_blank"
+                >
+                  google.com
+                </a>
+                 増し増しスペシャル
   
               </li>
               <li
@@ -98,7 +114,13 @@ exports[`Storyshots Cards Default 1`] = `
            
           <!---->
            
-          <!---->
+          <div
+            class="disabled-text"
+          >
+            
+    selected by someone
+  
+          </div>
         </div>
         <div
           class="cardRoot"
@@ -151,7 +173,7 @@ exports[`Storyshots Cards Default 1`] = `
           </div>
         </div>
         <div
-          class="cardRoot isDisabled"
+          class="cardRoot"
           id="key4"
           style="left: 404px; top: 228px; height: -38px;"
         >
@@ -161,7 +183,14 @@ exports[`Storyshots Cards Default 1`] = `
             <div
               class="text"
             >
-              ようやくの思いで笹原を這い出すと向うに大きな池がある。吾輩は池の前に坐ってどうしたらよかろうと考えて見た。別にこれという 分別 （ ふんべつ ） も出ない。
+              <a
+                class="linkified"
+                href="http://google.com"
+                target="_blank"
+              >
+                google.com
+              </a>
+               ようやくの思池がある&lt;script&gt;alert("aaa")&lt;/script&gt;。吾輩は池に坐ってて見た。別 （ ふんべつ ） も出ない。
             </div>
              
             <!---->
@@ -169,13 +198,7 @@ exports[`Storyshots Cards Default 1`] = `
            
           <!---->
            
-          <div
-            class="disabled-text"
-          >
-            
-    selected by someone
-  
-          </div>
+          <!---->
         </div>
         <div
           class="cardRoot"
@@ -212,6 +235,87 @@ exports[`Storyshots Cards Default 1`] = `
               class="image"
               src="https://i.gyazo.com/4215f0df9b4c256b39afd12327f40277.png"
             />
+             
+            <!---->
+          </div>
+           
+          <!---->
+           
+          <!---->
+        </div>
+        <div
+          class="cardRoot isTable"
+          id="key7"
+          style="left: 404px; top: 452px; height: -38px;"
+        >
+          <div
+            class="card"
+          >
+            <table
+              class="table"
+              style="width: 360px;"
+            >
+              <tbody>
+                <tr
+                  class="row"
+                >
+                  <td
+                    class="cell"
+                  >
+                    
+        
+                    <a
+                      class="linkified"
+                      href="http://google.com"
+                      target="_blank"
+                    >
+                      google.com
+                    </a>
+                    
+      
+                  </td>
+                  <td
+                    class="cell"
+                  >
+                    
+        hoge
+      
+                  </td>
+                  <td
+                    class="cell"
+                  >
+                    
+        sega
+      
+                  </td>
+                </tr>
+                <tr
+                  class="row"
+                >
+                  <td
+                    class="cell"
+                  >
+                    
+        teko
+      
+                  </td>
+                  <td
+                    class="cell"
+                  >
+                    
+        neko
+      
+                  </td>
+                  <td
+                    class="cell"
+                  >
+                    
+        tako
+      
+                  </td>
+                </tr>
+              </tbody>
+            </table>
              
             <!---->
           </div>
