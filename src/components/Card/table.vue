@@ -7,7 +7,7 @@
   >
     <tbody>
       <tr class="row" v-for="(value, index) in getRow()" :key="index">
-        <td class="cell" v-for="(cell, i) in getCell(value)" :key="i">
+        <td class="cell" v-for="(cell, i) in getCell(value)" :key="i" v-linkified>
           {{ cell }}
         </td>
       </tr>
@@ -17,6 +17,10 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
+import linkify from 'vue-linkify'
+
+Vue.directive('linkified', linkify)
+
 @Component
 export default class Table extends Vue {
   @Prop()

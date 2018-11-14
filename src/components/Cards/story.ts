@@ -11,7 +11,7 @@ const SelectTester: ComponentOptions<Vue> = {
   data: () => {
     return {
       cards,
-      disables: ['key3', 'key4'],
+      disables: ['key3', 'key1'],
       undos: []
     }
   },
@@ -58,6 +58,25 @@ const SelectTester: ComponentOptions<Vue> = {
         }, 1000 * (i + 1))
       })
     },
+    url(url: string, id: string) {
+      const self = this as any
+      setTimeout(() => {
+        self.cards = self.cards.map((card: CardInfo) => {
+          return card.id === id
+            ? {
+                ...card,
+                html: `
+<img class="url__favicon" src="https://dpidudyah7i0b.cloudfront.net/favicon.ico">
+<span class="url__sitetitle">ゲンロンショップ</span>
+<a class="url__title" href="" target="_blank">ゲンロン9</a>
+<div class="url__description">date 型の input 要素は、中身を自動的に検証するテ...</div>
+<img class="url__img" src="https://genron.co.jp/shop/html/upload/save_image/1026152623_5bd2b38f2aec5.jpg">
+                `
+              }
+            : card
+        })
+      }, 100)
+    },
     addUndo(undoAction) {
       const self = this as any
       self.undos = self.undos.concat(undoAction)
@@ -95,6 +114,7 @@ storiesOf('Cards', module).add('Default', () => ({
     :handleRemove="remove"
     :handleSelect="select"
     :handleImage="image"
+    :handleURL="url"
     :handleUndo="undo"
     :handleAddUndoActions="addUndo"
   />`,

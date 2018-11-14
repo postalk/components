@@ -17,6 +17,7 @@
         :id="card.id"
         :value="card.value"
         :color="card.color"
+        :html="card.html"
         :initial="{ x: card.x, y: card.y }"
         :diff="{ x: diffX, y: diffY }"
         :movingId="moving"
@@ -28,6 +29,7 @@
         :handleUpdate="onUpdate"
         :handleRemove="onRemove"
         :handleSelect="onSelect"
+        :handleURL="handleURL"
       />
       <Card
         v-if="newCard.color !== undefined"
@@ -176,6 +178,8 @@ export default class Cards extends Vue {
   private handleSelect!: (ids: string[]) => void
   @Prop()
   private handleImage!: (cards: CardForm[]) => void
+  @Prop()
+  private handleURL!: (url: string, id: string) => void
   @Prop()
   private handleUndo!: () => void
   @Prop()
@@ -494,7 +498,7 @@ export default class Cards extends Vue {
 </style>
 
 <style>
-.calc-test-width {
+.calc-text-width {
   font-size: 0.8125rem;
   position: absolute;
   visibility: hidden;

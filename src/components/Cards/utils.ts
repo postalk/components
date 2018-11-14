@@ -62,7 +62,7 @@ export const getMultipleCards = (text: string) => {
     paragraphs.forEach(p => {
       const testTxt = nl2br(escapeHTML(p))
       const test = document.createElement('div')
-      test.className = 'calc-test-width'
+      test.className = 'calc-text-width'
       test.innerHTML = testTxt
       document.body.appendChild(test)
       const height = test.clientHeight

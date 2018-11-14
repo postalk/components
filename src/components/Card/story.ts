@@ -46,9 +46,8 @@ const CardTester: ComponentOptions<Vue> = {
       const self = this as any
       self.card = undefined
     },
-    select() {
-      action('selected!')
-    }
+    select: action('selected!'),
+    url: action('url!')
   }
 }
 
@@ -71,6 +70,7 @@ storiesOf('Card', module).add('Default', () => ({
       :handleUpdate="update"
       :handleRemove="remove"
       :handleSelect="select"
+      :handleURL="url"
     />
   </div>`,
   ...CardTester

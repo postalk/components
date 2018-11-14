@@ -7,11 +7,14 @@
     }
   },
   "dependencies": {
+    "@types/is-url": "1.2.28",
     "debounce-promise": "3.1.0",
     "is-image-url": "1.1.8",
+    "is-url": "1.2.4",
     "vue": "2.5.17",
     "vue-class-component": "6.3.2",
     "vue-draggable-resizable": "1.7.3",
+    "vue-linkify": "1.0.1",
     "vue-property-decorator": "7.2.0",
     "vue-textarea-autosize": "1.0.4",
     "vue-tweet-embed": "2.1.2"

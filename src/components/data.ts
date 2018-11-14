@@ -6,7 +6,10 @@ export const cards: CardInfo[] = [
     id: 'key1',
     x: GRID * 5 + OFFSET,
     y: GRID * 14 + OFFSET,
-    value: 'とんこつラーメン\n' + '油そば野菜油増し増しスペシャル\n' + 'うどん',
+    value:
+      'とんこつラーメン\n' +
+      '油そば野菜油 google.com 増し増しスペシャル\n' +
+      'うどん',
     color: 'white',
     author: 'me'
   },
@@ -31,7 +34,7 @@ export const cards: CardInfo[] = [
     x: GRID * 25 + OFFSET,
     y: GRID * 14 + OFFSET,
     value:
-      'ようやくの思いで笹原を這い出すと向うに大きな池がある。吾輩は池の前に坐ってどうしたらよかろうと考えて見た。別にこれという 分別 （ ふんべつ ） も出ない。',
+      'google.com ようやくの思いで笹原を這い出すと向うに大きな池がある<script>alert("aaa")</script>。吾輩は池の前に坐ってどうしたらよかろうと考えて見た。別にこれという 分別 （ ふんべつ ） も出ない。',
     color: 'white',
     author: 'me'
   },
@@ -48,6 +51,14 @@ export const cards: CardInfo[] = [
     x: GRID * 45 + OFFSET,
     y: GRID * 14 + OFFSET,
     value: `https://i.gyazo.com/4215f0df9b4c256b39afd12327f40277.png`,
+    color: 'white',
+    author: 'me'
+  },
+  {
+    id: 'key7',
+    x: GRID * 25 + OFFSET,
+    y: GRID * 28 + OFFSET,
+    value: 'google.com / hoge / sega\nteko / neko / tako',
     color: 'white',
     author: 'me'
   }
