@@ -107,6 +107,9 @@ export default class CardCanvas extends Vue {
 
   private onDragOver(e: DragEvent): void {
     e.preventDefault()
+    if (!e || !e.dataTransfer) {
+      return
+    }
     e.dataTransfer.dropEffect = 'copy'
     this.isDragging = true
   }
@@ -118,6 +121,9 @@ export default class CardCanvas extends Vue {
   private onDrop(e: DragEvent): void {
     e.preventDefault()
     this.isDragging = false
+    if (!e || !e.dataTransfer) {
+      return
+    }
     const files = e.dataTransfer.files
     let file
     if (files.length < 1) {
