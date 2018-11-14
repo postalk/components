@@ -34,7 +34,7 @@ export const cards: CardInfo[] = [
     x: GRID * 25 + OFFSET,
     y: GRID * 14 + OFFSET,
     value:
-      'google.com ようやくの思いで笹原を這い出すと向うに大きな池がある<script>alert("aaa")</script>。吾輩は池の前に坐ってどうしたらよかろうと考えて見た。別にこれという 分別 （ ふんべつ ） も出ない。',
+      'google.com ようやくの思池がある<script>alert("aaa")</script>。吾輩は池に坐ってて見た。別 （ ふんべつ ） も出ない。',
     color: 'white',
     author: 'me'
   },
