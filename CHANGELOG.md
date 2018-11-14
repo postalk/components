@@ -1,4 +1,22 @@
 
+<a name="v0.6.3"></a>
+## [v0.6.3](https://github.com/postalk/components/compare/v0.6.2...v0.6.3) (2018-11-15)
+
+### Feat
+
+* quick new card & fix canvas size
+* **card:** add url card
+
+### Fix
+
+* **card:** change size of card
+
+### BREAKING CHANGE
+
+
+remove marker & list & change almost elements size
+
+
 <a name="v0.6.2"></a>
 ## [v0.6.2](https://github.com/postalk/components/compare/v0.6.1...v0.6.2) (2018-10-27)
 
