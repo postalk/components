@@ -1,4 +1,16 @@
 
+<a name="v0.7.1"></a>
+## [v0.7.1](https://github.com/postalk/components/compare/v.0.7.0...v0.7.1) (2018-11-16)
+
+### Fix
+
+* **wrapper:** add handleURL
+
+
+<a name="v.0.7.0"></a>
+## [v.0.7.0](https://github.com/postalk/components/compare/v0.7.0...v.0.7.0) (2018-11-16)
+
+
 <a name="v0.7.0"></a>
 ## [v0.7.0](https://github.com/postalk/components/compare/v0.6.4...v0.7.0) (2018-11-16)
 
