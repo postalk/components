@@ -10,6 +10,7 @@
       :handleSelect="handleSelect"
       :handleImage="handleImage"
       :handleUndo="handleUndo"
+      :handleURL="handleURL"
       :handleAddUndoActions="handleAddUndoActions"
     />
   </div>
@@ -43,6 +44,8 @@ export default class CardsWrapper extends Vue {
   private handleSelect!: (ids: string[]) => void
   @Prop()
   private handleImage!: (cards: CardForm[]) => void
+  @Prop()
+  private handleURL!: (url: string, id: string) => void
   @Prop()
   private handleUndo!: () => void
   @Prop()
