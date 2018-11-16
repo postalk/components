@@ -13,7 +13,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 export default class Centered extends Vue {}
 </script>
 
-<style>
+<style scoped lang="scss">
 .wrapper {
   display: block;
   position: absolute;
