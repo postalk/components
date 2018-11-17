@@ -1,4 +1,12 @@
 
+<a name="v0.7.4"></a>
+## [v0.7.4](https://github.com/postalk/components/compare/v0.7.3...v0.7.4) (2018-11-17)
+
+### Fix
+
+* **card:** fix calculating webpage's open graph image
+
+
 <a name="v0.7.3"></a>
 ## [v0.7.3](https://github.com/postalk/components/compare/v0.7.2...v0.7.3) (2018-11-17)
 
