@@ -1,4 +1,12 @@
 
+<a name="v0.7.6"></a>
+## [v0.7.6](https://github.com/postalk/components/compare/v0.7.5...v0.7.6) (2018-11-17)
+
+### Fix
+
+* **url:** refetch when changed url value
+
+
 <a name="v0.7.5"></a>
 ## [v0.7.5](https://github.com/postalk/components/compare/v0.7.4...v0.7.5) (2018-11-17)
 
