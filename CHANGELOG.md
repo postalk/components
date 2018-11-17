@@ -1,4 +1,12 @@
 
+<a name="v0.7.5"></a>
+## [v0.7.5](https://github.com/postalk/components/compare/v0.7.4...v0.7.5) (2018-11-17)
+
+### Fix
+
+* **card:** use linkifyjs instead of vue-linkify
+
+
 <a name="v0.7.4"></a>
 ## [v0.7.4](https://github.com/postalk/components/compare/v0.7.3...v0.7.4) (2018-11-17)
 
