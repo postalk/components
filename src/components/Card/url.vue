@@ -6,7 +6,15 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import linkify from 'linkifyjs/string'
 
-@Component
+@Component<URL>({
+  watch: {
+    txt(newVal, oldVal) {
+      if (oldVal !== newVal) {
+        this.handleURL(newVal)
+      }
+    }
+  }
+})
 export default class URL extends Vue {
   @Prop()
   private txt!: string
