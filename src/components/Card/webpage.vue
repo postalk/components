@@ -94,6 +94,7 @@ export default class WebPage extends Vue {
     margin-top: 0.125rem;
     margin-bottom: 0.125rem;
     line-height: 1.5;
+    word-wrap: break-word;
   }
   .url__description {
     color: #666;
@@ -101,6 +102,7 @@ export default class WebPage extends Vue {
     margin-top: 0.125rem;
     margin-bottom: 0.125rem;
     line-height: 1.5;
+    word-wrap: break-word;
   }
   .url__img {
     display: block;
