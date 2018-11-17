@@ -16,15 +16,12 @@ exports[`Storyshots Card Default 1`] = `
         <li
           class="item is-0"
         >
-          
-    とんこつラーメン
-  
+          とんこつラーメン
         </li>
         <li
           class="item is-1"
         >
-          
-    油そば野菜油 
+          油そば野菜油 
           <a
             class="linkified"
             href="http://google.com"
@@ -33,14 +30,11 @@ exports[`Storyshots Card Default 1`] = `
             google.com
           </a>
            増し増しスペシャル
-  
         </li>
         <li
           class="item is-2"
         >
-          
-    うどん
-  
+          うどん
         </li>
       </ol>
        
@@ -81,15 +75,12 @@ exports[`Storyshots Cards Default 1`] = `
               <li
                 class="item is-0"
               >
-                
-    とんこつラーメン
-  
+                とんこつラーメン
               </li>
               <li
                 class="item is-1"
               >
-                
-    油そば野菜油 
+                油そば野菜油 
                 <a
                   class="linkified"
                   href="http://google.com"
@@ -98,14 +89,11 @@ exports[`Storyshots Cards Default 1`] = `
                   google.com
                 </a>
                  増し増しスペシャル
-  
               </li>
               <li
                 class="item is-2"
               >
-                
-    うどん
-  
+                うどん
               </li>
             </ol>
              
@@ -262,8 +250,6 @@ exports[`Storyshots Cards Default 1`] = `
                   <td
                     class="cell"
                   >
-                    
-        
                     <a
                       class="linkified"
                       href="http://google.com"
@@ -271,22 +257,16 @@ exports[`Storyshots Cards Default 1`] = `
                     >
                       google.com
                     </a>
-                    
-      
                   </td>
                   <td
                     class="cell"
                   >
-                    
-        hoge
-      
+                    hoge
                   </td>
                   <td
                     class="cell"
                   >
-                    
-        sega
-      
+                    sega
                   </td>
                 </tr>
                 <tr
@@ -295,23 +275,17 @@ exports[`Storyshots Cards Default 1`] = `
                   <td
                     class="cell"
                   >
-                    
-        teko
-      
+                    teko
                   </td>
                   <td
                     class="cell"
                   >
-                    
-        neko
-      
+                    neko
                   </td>
                   <td
                     class="cell"
                   >
-                    
-        tako
-      
+                    tako
                   </td>
                 </tr>
               </tbody>

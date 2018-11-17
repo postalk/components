@@ -7,9 +7,12 @@
   >
     <tbody>
       <tr class="row" v-for="(value, index) in getRow()" :key="index">
-        <td class="cell" v-for="(cell, i) in getCell(value)" :key="i" v-linkified>
-          {{ cell }}
-        </td>
+        <td 
+          class="cell"
+          v-for="(cell, i) in getCell(value)"
+          :key="i"
+          v-html="convertLinkified(cell)"
+        />
       </tr>
     </tbody>
   </table>
@@ -17,9 +20,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import linkify from 'vue-linkify'
-
-Vue.directive('linkified', linkify)
+import linkify from 'linkifyjs/string'
 
 @Component
 export default class Table extends Vue {
@@ -48,6 +49,10 @@ export default class Table extends Vue {
 
   private getCell(row: string): string[] {
     return row.split(/[\s|　][\/|／][\s|　]/).map(cell => cell.trim())
+  }
+
+  private convertLinkified(str: string): string {
+    return linkify(str)
   }
 }
 </script>

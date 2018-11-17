@@ -5,18 +5,14 @@
       :class="`is-${index}`"
       v-for="(value, index) in getList()"
       :key="index"
-      v-linkified
-    >
-      {{ value }}
-    </li>
+      v-html="convertLinkified(value)"
+    />
   </ol>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import linkify from 'vue-linkify'
-
-Vue.directive('linkified', linkify)
+import linkify from 'linkifyjs/string'
 
 @Component
 export default class OrderedList extends Vue {
@@ -28,6 +24,10 @@ export default class OrderedList extends Vue {
       .split(/\r?\n/)
       .map(s => s.trim().replace(/^[0-9０-９(\-(\s|　))](\.?)(\s|　)/, ''))
       .filter(s => !!s)
+  }
+
+  private convertLinkified(str: string): string {
+    return linkify(str)
   }
 }
 </script>

@@ -1,12 +1,10 @@
 <template>
-  <span v-linkified class="text">{{ txt }}</span>
+  <span class="text" v-html="getLinkified()" />
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import linkify from 'vue-linkify'
-
-Vue.directive('linkified', linkify)
+import linkify from 'linkifyjs/string'
 
 @Component
 export default class URL extends Vue {
@@ -16,6 +14,9 @@ export default class URL extends Vue {
   private handleURL!: (url: string) => void
   private mounted() {
     this.handleURL(this.txt)
+  }
+  private getLinkified(): string {
+    return linkify(this.txt)
   }
 }
 </script>
