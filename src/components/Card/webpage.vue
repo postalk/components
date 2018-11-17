@@ -23,8 +23,8 @@ export default class WebPage extends Vue {
       return
     }
     const imgEl = matches[1]
-    const match = imgEl.match(/[^"\'=\s]+\.(jpe?g|png|gif|svg)/)
-    if (!match) {
+    const source = imgEl.match(/\s?src="(.+)"/)
+    if (!source || source.length < 2) {
       return
     }
     const atag = this.html.match(/<a[^>]*>([\s\S]*?)<\/a>/)
@@ -52,7 +52,7 @@ export default class WebPage extends Vue {
     height += calcDiv.clientHeight
     document.body.removeChild(calcDiv)
 
-    const src = match[0]
+    const src = source[1]
     const img = new Image()
     img.onload = function() {
       const that = this as any
