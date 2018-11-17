@@ -1,6 +1,6 @@
 {
   "name": "@postalk/components",
-  "version": "0.7.5",
+  "version": "0.7.6",
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
