@@ -45,7 +45,7 @@
         <Table :txt="value" v-else-if="isTable(value)" />
         <OrderedList :txt="value" v-else-if="isOrderedList(value)" />
         <Headline :txt="value" v-else-if="isHeadline(value, color)" />
-        <div class="text" v-else v-linkified>{{ value }}</div>
+        <div class="text" v-else v-html="getLinkified()" />
         <Input 
           v-if="editing"
           class="input" 
@@ -87,7 +87,7 @@ import Youtube from './youtube.vue'
 import Twitter from './twitter.vue'
 import URL from './url.vue'
 import WebPage from './webpage.vue'
-import linkify from 'vue-linkify'
+import linkify from 'linkifyjs/string'
 import isUrl from 'is-url'
 import {
   YELLOW,
@@ -99,8 +99,6 @@ import {
   SELECT
 } from '../color'
 import { DRAG_WIDTH, CARD_PADDING, UNIT } from '@/components/numbers'
-
-Vue.directive('linkified', linkify)
 
 @Component<Card>({
   components: {
@@ -318,6 +316,10 @@ export default class Card extends Vue {
               ? YELLOW_DARK
               : ''
     }
+  }
+
+  private getLinkified(): string {
+    return linkify(this.value)
   }
 }
 </script>
