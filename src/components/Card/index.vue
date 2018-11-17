@@ -37,7 +37,7 @@
         }"
         @click="onClick"
       >
-        <WebPage v-if="html" :html="html" :handleMeasure="onHTMLMeasure" />
+        <WebPage v-if="html && url === value" :html="html" :handleMeasure="onHTMLMeasure" />
         <Img :url="value" :handleMeasure="onImageMeasure" v-else-if="isImage(value)" />
         <Youtube :txt="value" v-else-if="isYoutube(value)" />
         <Twitter :txt="value" v-else-if="isTwitter(value)" />
@@ -158,6 +158,8 @@ export default class Card extends Vue {
   private initial!: { x: number; y: number }
   @Prop()
   private html!: string
+  @Prop()
+  private url!: string
 
   @Prop()
   private handleMove!: (x: number, y: number, id: string) => void

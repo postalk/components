@@ -18,6 +18,7 @@
         :value="card.value"
         :color="card.color"
         :html="card.html"
+        :url="card.url"
         :initial="{ x: card.x, y: card.y }"
         :diff="{ x: diffX, y: diffY }"
         :movingId="moving"
