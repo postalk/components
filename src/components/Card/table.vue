@@ -75,5 +75,6 @@ export default class Table extends Vue {
   padding: 0.6125rem 0.5rem;
   border: 1px solid rgba(0, 0, 0, 0.05);
   text-align: center;
+  word-wrap: break-word;
 }
 </style>
