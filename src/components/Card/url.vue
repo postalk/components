@@ -1,5 +1,5 @@
 <template>
-  <span v-linkified>{{ txt }}</span>
+  <span v-linkified class="text">{{ txt }}</span>
 </template>
 
 <script lang="ts">
@@ -19,3 +19,12 @@ export default class URL extends Vue {
   }
 }
 </script>
+
+<style scoped lang="scss">
+.text {
+  font-size: 0.8125rem;
+  color: #222;
+  line-height: 1.5;
+  word-wrap: break-word;
+}
+</style>

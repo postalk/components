@@ -65,12 +65,13 @@ const SelectTester: ComponentOptions<Vue> = {
           return card.id === id
             ? {
                 ...card,
+                url: `https://postalk.io`,
                 html: `
-<img class="url__favicon" src="https://dpidudyah7i0b.cloudfront.net/favicon.ico">
-<span class="url__sitetitle">ゲンロンショップ</span>
-<a class="url__title" href="" target="_blank">ゲンロン9</a>
-<div class="url__description">date 型の input 要素は、中身を自動的に検証するテ...</div>
-<img class="url__img" src="https://genron.co.jp/shop/html/upload/save_image/1026152623_5bd2b38f2aec5.jpg">
+<img class="url__favicon" src="https://d247fv9ioqt5ap.cloudfront.net/apple-touch-icon.png">
+<span class="url__sitetitle">postalk</span>
+<a class="url__title" href="https://postalk.io" target="_blank">postalk | オンラインの議論を加速させるカード型チャットツール</a>
+<div class="url__description">postalk はカードを並べてコミュケーションができるオンラインツールです。リモートワークでの遠隔ミーティング・画像を使った議論などに最適です。</div>
+<img class="url__img" src="https://d247fv9ioqt5ap.cloudfront.net/images/ogimage.png">
                 `
               }
             : card
