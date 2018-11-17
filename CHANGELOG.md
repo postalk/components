@@ -1,4 +1,12 @@
 
+<a name="v0.7.7"></a>
+## [v0.7.7](https://github.com/postalk/components/compare/v0.7.6...v0.7.7) (2018-11-17)
+
+### Fix
+
+* **card:** break word
+
+
 <a name="v0.7.6"></a>
 ## [v0.7.6](https://github.com/postalk/components/compare/v0.7.5...v0.7.6) (2018-11-17)
 
