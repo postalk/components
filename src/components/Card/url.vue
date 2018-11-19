@@ -1,5 +1,5 @@
 <template>
-  <span class="text" v-html="getLinkified()" />
+  <span class="text" v-html="getLinkified()"/>
 </template>
 
 <script lang="ts">

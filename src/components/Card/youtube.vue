@@ -1,5 +1,13 @@
 <template>
-  <iframe v-if="getURL()" :src="getURL()" type="text/html" width="500" height="282" frameborder="0" allowfullscreen></iframe>
+  <iframe
+    v-if="getURL()"
+    :src="getURL()"
+    type="text/html"
+    width="500"
+    height="282"
+    frameborder="0"
+    allowfullscreen
+  ></iframe>
 </template>
 
 <script lang="ts">

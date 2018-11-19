@@ -1,5 +1,5 @@
 <template>
-  <VueDraggableResizable 
+  <VueDraggableResizable
     :class="{
       draggable: true,
       isDragging: dragging
@@ -16,38 +16,38 @@
     @dragstop="onStop"
     drag-handle=".drag"
   >
-  <div 
-    class="drag top"
-    :style="{
+    <div
+      class="drag top"
+      :style="{
       width: `${width}px`,
       height: `${DRAG_WIDTH + OVERRAPPING}px`
     }"
-  />
-  <div 
-    class="drag bottm"
-    :style="{
+    />
+    <div
+      class="drag bottm"
+      :style="{
       top: `${height - DRAG_WIDTH - OVERRAPPING}px`,
       width: `${width}px`,
       height: `${DRAG_WIDTH + OVERRAPPING}px`
     }"
-  />
-  <div 
-    class="drag left"
-    :style="{
+    />
+    <div
+      class="drag left"
+      :style="{
       top: `${DRAG_WIDTH + OVERRAPPING}px`,
       width: `${DRAG_WIDTH + OVERRAPPING}px`,
       height: `${height - DRAG_WIDTH * 2 - OVERRAPPING * 2}px`
     }"
-  />
-  <div 
-    class="drag right"
-    :style="{
+    />
+    <div
+      class="drag right"
+      :style="{
       top: `${DRAG_WIDTH + OVERRAPPING}px`,
       left: `${width - DRAG_WIDTH - OVERRAPPING}px`,
       width: `${DRAG_WIDTH + OVERRAPPING}px`,
       height: `${height - DRAG_WIDTH * 2 - OVERRAPPING * 2}px`
     }"
-  />
+    />
   </VueDraggableResizable>
 </template>
 

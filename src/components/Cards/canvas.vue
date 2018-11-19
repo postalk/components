@@ -11,21 +11,18 @@
       @dragleave="onDragLeave"
       @drop="onDrop"
     >
-      <slot />
+      <slot/>
       <div
-          v-if="startX !== 0 || startY !== 0"
-          class="selector"
-          :style="{
+        v-if="startX !== 0 || startY !== 0"
+        class="selector"
+        :style="{
             width: `${w}px`,
             height: `${h}px`,
             top: `${y}px`,
             left: `${x}px`
           }"
-        />
-      <div 
-        v-if="isDragging"
-        class="dragfield"
       />
+      <div v-if="isDragging" class="dragfield"/>
     </div>
   </Centered>
 </template>

@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="board"
-  >
+  <div class="board">
     <CardCanvas
       :handleCursor="saveCursor"
       :handleCreate="createNewCard"
@@ -61,10 +59,7 @@
       :onPaste="paste"
       :onNewCard="createNewCard"
     />
-    <div 
-      v-if="uploading"
-      class="uploading"
-    >
+    <div v-if="uploading" class="uploading">
       <Centered>
         <div class="loader">
           <span></span>

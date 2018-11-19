@@ -1,6 +1,6 @@
 <template>
-    <div 
-      :class="{
+  <div
+    :class="{
         cardRoot: true,
         isMoving: movingId && movingId !== id,
         isSelected: selected,
@@ -13,18 +13,18 @@
         isEditing: editing,
         isOutside: x < 0 || x > 79.5 * UNIT || y < 0 || y > 46.25 * UNIT
       }"
-      :style="{
+    :style="{
         left: `${x}px`,
         top: `${y}px`,
         height: `${height - DRAG_WIDTH * 2 + 2}px`
       }"
-      :id="id"
-      @dblclick="stopEvent"
-    >
-      <div 
-        ref="card"
-        class="card"
-        :style="{
+    :id="id"
+    @dblclick="stopEvent"
+  >
+    <div
+      ref="card"
+      class="card"
+      :style="{
           transform: movingId && movingId !== id && selected 
             ? `translate(${diff.x}px, ${diff.y}px)`
             : undefined,
@@ -35,54 +35,57 @@
           width: isImage(value) ? `${width - (DRAG_WIDTH * 2 + 2)}px` : undefined,
           height: isImage(value) ? `${height - (DRAG_WIDTH * 2 + 2)}px` : undefined
         }"
-        @click="onClick"
-      >
-        <WebPage v-if="html && url === value" :html="html" :handleMeasure="onHTMLMeasure" />
-        <Img :url="value" :handleMeasure="onImageMeasure" v-else-if="isImage(value)" />
-        <Youtube :txt="value" v-else-if="isYoutube(value)" />
-        <Twitter :txt="value" v-else-if="isTwitter(value)" />
-        <URL :txt="value" :handleURL="onURL" v-else-if="isUrl(value)" />
-        <Table :txt="value" v-else-if="isTable(value)" />
-        <OrderedList :txt="value" v-else-if="isOrderedList(value)" />
-        <Headline :txt="value" v-else-if="isHeadline(value, color)" />
-        <div class="text" v-else v-html="getLinkified()" />
-        <Input 
-          v-if="editing"
-          class="input" 
-          :initial="value"
-          :isNew="id.match(/^new$/)"
-          :handleSubmit="submit"
-          :handleBlur="blur"
-        />
-      </div>
-      <Drag
-        v-if="show"
-        class="card-draggable"
-        :width="width"
-        :height="height"
-        :x="x"
-        :y="y"
-        :onDragging="onDragging"
-        :onDragStop="handleStop"
+      @click="onClick"
+    >
+      <WebPage
+        v-if="html && url === value"
+        :html="html"
+        :handleMeasure="onHTMLMeasure"
       />
-      <div
-        v-if="disabled"
-        class="disabled-text"
-      >
-        selected by someone
-      </div>
+      <ImageContent
+        :url="value"
+        :handleMeasure="onImageMeasure"
+        v-else-if="isImage(value)"
+      />
+      <Youtube :txt="value" v-else-if="isYoutube(value)"/>
+      <Twitter :txt="value" v-else-if="isTwitter(value)"/>
+      <URL :txt="value" :handleURL="onURL" v-else-if="isUrl(value)"/>
+      <Table :txt="value" v-else-if="isTable(value)"/>
+      <OrderedList :txt="value" v-else-if="isOrderedList(value)"/>
+      <Headline :txt="value" v-else-if="isHeadline(value, color)"/>
+      <div class="text" v-else v-html="getLinkified()"/>
+      <CardInput
+        v-if="editing"
+        class="input"
+        :initial="value"
+        :isNew="id.match(/^new$/)"
+        :handleSubmit="submit"
+        :handleBlur="blur"
+      />
     </div>
+    <Drag
+      v-if="show"
+      class="card-draggable"
+      :width="width"
+      :height="height"
+      :x="x"
+      :y="y"
+      :onDragging="onDragging"
+      :onDragStop="handleStop"
+    />
+    <div v-if="disabled" class="disabled-text">selected by someone</div>
+  </div>
 </template>
 
 <script lang="ts">
 import isImage from 'is-image-url'
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import Input from '@/components/Input/index.vue'
+import CardInput from '@/components/Input/index.vue'
 import Headline from './headline.vue'
 import Table from './table.vue'
 import OrderedList from './ordered-list.vue'
 import Drag from './drag.vue'
-import Img from './image.vue'
+import ImageContent from './image.vue'
 import Youtube from './youtube.vue'
 import Twitter from './twitter.vue'
 import URL from './url.vue'
@@ -105,8 +108,8 @@ import { DRAG_WIDTH, CARD_PADDING, UNIT } from '@/components/numbers'
     Headline,
     Table,
     OrderedList,
-    Img,
-    Input,
+    ImageContent,
+    CardInput,
     Drag,
     Youtube,
     Twitter,
