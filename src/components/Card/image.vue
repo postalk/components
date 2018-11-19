@@ -1,8 +1,5 @@
 <template>
-  <img 
-    class="image"
-    :src="url"
-  />
+  <img class="image" :src="url">
 </template>
 
 <script lang="ts">

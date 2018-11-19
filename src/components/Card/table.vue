@@ -1,13 +1,10 @@
 <template>
-  <table
-    class="table"
-    :style="{
+  <table class="table" :style="{
       width: `${len * 120}px` 
-    }"
-  >
+    }">
     <tbody>
       <tr class="row" v-for="(value, index) in getRow()" :key="index">
-        <td 
+        <td
           class="cell"
           v-for="(cell, i) in getCell(value)"
           :key="i"

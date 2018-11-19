@@ -1,7 +1,7 @@
 <template>
   <ol class="list">
-    <li 
-      class="item" 
+    <li
+      class="item"
       :class="`is-${index}`"
       v-for="(value, index) in getList()"
       :key="index"

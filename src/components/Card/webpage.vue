@@ -1,5 +1,5 @@
 <template>
-  <span class="url" v-html="html" />
+  <span class="url" v-html="html"/>
 </template>
 
 <script lang="ts">
