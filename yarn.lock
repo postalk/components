@@ -1402,10 +1402,10 @@
   resolved "https://registry.yarnpkg.com/@types/storybook__addon-actions/-/storybook__addon-actions-3.4.1.tgz#8f90d76b023b58ee794170f2fe774a3fddda2c1d"
   integrity sha512-An8pNb1/7QhkdOT8Ht5WjJsSxAh2mWti/J4eILwUHpXVZ1j3xlVaOzwTbg8twN4DjgOAggjEDOj6Bx8YOWh9Pg==
 
-"@types/storybook__addon-links@3.3.2":
-  version "3.3.2"
-  resolved "https://registry.yarnpkg.com/@types/storybook__addon-links/-/storybook__addon-links-3.3.2.tgz#913f6dae27903da7b1f117e9b51ca473770dba50"
-  integrity sha512-Fu1CG6WmIMCe8wZFmz17lnneJzNYrcLw4NKi/g+AKJisq0K/smGE9CRz4/Bj23vp3rz298bDJBIH/lStZRIW0A==
+"@types/storybook__addon-links@3.3.3":
+  version "3.3.3"
+  resolved "https://registry.yarnpkg.com/@types/storybook__addon-links/-/storybook__addon-links-3.3.3.tgz#fb920aadcab0e86233888240ec81a04fab0ec473"
+  integrity sha512-Nu+XyDRgyfqbuv1AF8rnJ2RjXKUGunbIYN32IrLkrxzNt2mhyvam+op7Mn4s6XGgeKJtXbMhl2ZetAc+F2i5IQ==
   dependencies:
     "@types/react" "*"
 
