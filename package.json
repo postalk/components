@@ -14,7 +14,7 @@
     "linkifyjs": "2.1.7",
     "vue": "2.5.17",
     "vue-class-component": "6.3.2",
-    "vue-draggable-resizable": "1.7.3",
+    "vue-draggable-resizable": "1.7.4",
     "vue-property-decorator": "7.2.0",
     "vue-textarea-autosize": "1.0.4",
     "vue-tweet-embed": "2.1.2"
