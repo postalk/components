@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "@storybook/addon-actions": "4.0.8",
-    "@storybook/addon-links": "4.0.8",
+    "@storybook/addon-links": "4.0.9",
     "@storybook/addon-storyshots": "4.0.9",
     "@types/jest": "23.3.9",
     "@types/storybook__addon-actions": "3.4.1",
