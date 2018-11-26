@@ -12254,10 +12254,10 @@ vue-cli-plugin-storybook@0.4.8:
     "@storybook/addons" "4.0.0-alpha.20"
     "@storybook/vue" "4.0.0-alpha.20"
 
-vue-draggable-resizable@1.7.4:
-  version "1.7.4"
-  resolved "https://registry.yarnpkg.com/vue-draggable-resizable/-/vue-draggable-resizable-1.7.4.tgz#c96739c500e1e49b2ec7fa0957a61f7157f3fa05"
-  integrity sha512-lifbdPtKFvQvgznINy6Z9CnDw2qP4W/LnU4RC0rJ2MpKvGAxt14151pUqsroocS9w28raunvvgBy6KLPGxtqGg==
+vue-draggable-resizable@1.7.5:
+  version "1.7.5"
+  resolved "https://registry.yarnpkg.com/vue-draggable-resizable/-/vue-draggable-resizable-1.7.5.tgz#25a42d6e2400dde11ee0e42cb6760f402380c81e"
+  integrity sha512-+L0tqbZYuskfSpKlk1EfsB9OOuy7NNFPaIry4nZ7g+Sr4JaL5xQ6pEaE5IavkV9M/riX/1pr6uAPc9pLxcqfLg==
 
 vue-hot-reload-api@^2.3.0:
   version "2.3.0"
