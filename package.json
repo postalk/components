@@ -41,7 +41,7 @@
     "fixpack": "2.3.1",
     "lint-staged": "8.0.5",
     "node-sass": "4.10.0",
-    "now": "12.1.7",
+    "now": "12.1.8",
     "require-context": "1.1.0",
     "sass-loader": "7.1.0",
     "ts-jest": "23.10.5",
