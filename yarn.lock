@@ -1104,13 +1104,13 @@
     global "^4.3.2"
     prop-types "^15.6.2"
 
-"@storybook/addon-storyshots@4.0.11":
-  version "4.0.11"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-storyshots/-/addon-storyshots-4.0.11.tgz#e6f0e8f4805604b4f65cbdaade702a258c4afd23"
-  integrity sha512-coou6V9pH08DyO8pthGUFCIgEZyFHw+Y2TSSyz7jZkNCYiAEa11TpcDQv4xh5RW+Qliiqx4/xH0ByVo5rNEpsw==
+"@storybook/addon-storyshots@4.0.12":
+  version "4.0.12"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-storyshots/-/addon-storyshots-4.0.12.tgz#f44c57472f9f06b153a429cba03399ec90be8af8"
+  integrity sha512-DDGf+zXlJtg3gAPVNejDTkeOIeSEyrve0qNGmtyP91ftJEWw75jfTVXN7kQBDYsUFwrEVysBcUenFeFmB8kNgQ==
   dependencies:
     "@babel/runtime" "^7.1.2"
-    "@storybook/addons" "4.0.11"
+    "@storybook/addons" "4.0.12"
     glob "^7.1.3"
     global "^4.3.2"
     jest-specific-snapshot "^1.0.0"
