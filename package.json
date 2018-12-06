@@ -20,7 +20,7 @@
     "vue-tweet-embed": "2.1.2"
   },
   "devDependencies": {
-    "@storybook/addon-actions": "4.0.11",
+    "@storybook/addon-actions": "4.0.12",
     "@storybook/addon-links": "4.0.12",
     "@storybook/addon-storyshots": "4.0.12",
     "@types/jest": "23.3.10",
