@@ -12329,10 +12329,10 @@ vue-tweet-embed@2.1.2:
   resolved "https://registry.yarnpkg.com/vue-tweet-embed/-/vue-tweet-embed-2.1.2.tgz#2933d76971fc0488453325f55b9e60414eac1219"
   integrity sha512-8CLOxKQqot2Kg+uGIBcaR0o7xu8bh6VY7rva/03DI/cByBangOiY2W+c884i4Z8wocngljy/a9eIrJzsfj0PcQ==
 
-vue@2.5.17, vue@^2.0.0:
-  version "2.5.17"
-  resolved "https://registry.yarnpkg.com/vue/-/vue-2.5.17.tgz#0f8789ad718be68ca1872629832ed533589c6ada"
-  integrity sha512-mFbcWoDIJi0w0Za4emyLiW72Jae0yjANHbCVquMKijcavBGypqlF7zHRgMa5k4sesdv7hv2rB4JPdZfR+TPfhQ==
+vue@2.5.20, vue@^2.0.0:
+  version "2.5.20"
+  resolved "https://registry.yarnpkg.com/vue/-/vue-2.5.20.tgz#79fff9ccaa10cc37e7a7239b4c7adfac94df81ba"
+  integrity sha512-kVLZi8RWOk8qwAt+a0bVDy9VV5Zzcnj0fLCMyKLx1dmEBjqmYJYRWHvPwiypiJBtJkdmROy5NP5hyDqTdfBcvQ==
 
 w3c-hr-time@^1.0.1:
   version "1.0.1"
