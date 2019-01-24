@@ -1,3 +1,8 @@
 module.exports = {
-  css: { extract: false }
+  css: { extract: false },
+  pluginOptions: {
+    storybook: {
+      allowedPlugins: ['define']
+    }
+  }
 }
