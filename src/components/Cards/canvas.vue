@@ -31,6 +31,7 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import Centered from '@/components/Centered/index.vue'
 import { UNIT } from '@/components/numbers'
+
 @Component<CardCanvas>({
   components: {
     Centered
@@ -196,7 +197,7 @@ export default class CardCanvas extends Vue {
 
     if (this.$children[0] && this.$children[0].$children.length) {
       const newIds = this.$children[0].$children
-        .filter(card => this.isSelected(card.$el))
+        .filter(card => this.isSelected(card.$el as HTMLElement))
         .map(card => (card as any).id)
       if (!e.shiftKey) {
         this.handleSelect(newIds)
