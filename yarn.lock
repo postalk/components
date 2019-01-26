@@ -1011,6 +1011,14 @@
     "@babel/helper-regex" "^7.0.0"
     regexpu-core "^4.1.3"
 
+"@babel/polyfill@^7.0.0":
+  version "7.2.5"
+  resolved "https://registry.yarnpkg.com/@babel/polyfill/-/polyfill-7.2.5.tgz#6c54b964f71ad27edddc567d065e57e87ed7fa7d"
+  integrity sha512-8Y/t3MWThtMLYr0YNC/Q76tqN1w30+b0uQMeFUYauG2UGTR19zyUtFrAzT23zNtBxPp+LbE5E/nwV/q/r3y6ug==
+  dependencies:
+    core-js "^2.5.7"
+    regenerator-runtime "^0.12.0"
+
 "@babel/preset-env@^7.0.0":
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/@babel/preset-env/-/preset-env-7.0.0.tgz#f450f200c14e713f98cb14d113bf0c2cfbb89ca9"
@@ -12595,10 +12603,12 @@ vue-textarea-autosize@1.0.4:
   resolved "https://registry.yarnpkg.com/vue-textarea-autosize/-/vue-textarea-autosize-1.0.4.tgz#671e4f9b69d278be9b94ea304a3032bcabb54135"
   integrity sha512-24ivBeHvivkJdtUMSi7Pv8OBqzTnIRr/eTlDlbg0W3umpERY8Fq67FlAK3CrhCNHAlXOxgUOQtVKlslYN1/MTg==
 
-vue-tweet-embed@2.1.2:
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/vue-tweet-embed/-/vue-tweet-embed-2.1.2.tgz#2933d76971fc0488453325f55b9e60414eac1219"
-  integrity sha512-8CLOxKQqot2Kg+uGIBcaR0o7xu8bh6VY7rva/03DI/cByBangOiY2W+c884i4Z8wocngljy/a9eIrJzsfj0PcQ==
+vue-tweet-embed@2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/vue-tweet-embed/-/vue-tweet-embed-2.2.1.tgz#c3a236bd12f2bf1bb5cb14f4c219721b148048df"
+  integrity sha512-sJiKizQtdwPsPumGzaqsVO5CzU9fEWNLtvndD5uCW+Z+JVHsYjyGqMAj+QSGp1QnOcrMRzyyRIjXnDZICv930A==
+  dependencies:
+    "@babel/polyfill" "^7.0.0"
 
 vue@2.5.22, vue@^2.0.0:
   version "2.5.22"
