@@ -1,4 +1,12 @@
 
+<a name="v0.7.8"></a>
+## [v0.7.8](https://github.com/postalk/components/compare/v0.7.7...v0.7.8) (2019-01-26)
+
+### Fix
+
+* update types
+
+
 <a name="v0.7.7"></a>
 ## [v0.7.7](https://github.com/postalk/components/compare/v0.7.6...v0.7.7) (2018-11-17)
 
