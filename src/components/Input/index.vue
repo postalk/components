@@ -62,8 +62,8 @@ export default class Input extends Vue {
   private isCancel: boolean = false
 
   private mounted() {
-    const input = this.$refs.input as Vue
-    input.$el.focus()
+    const $el = (this.$refs.input as Vue).$el as HTMLElement
+    $el.focus()
   }
 
   private doneEdit(): void {

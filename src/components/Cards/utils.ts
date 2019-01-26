@@ -50,7 +50,7 @@ export const getPastedCards = (
       x: grid(Math.floor(windowWidth() / 2)) + Number(el.dataset.x) - GRID * 5,
       y: grid(Math.floor(windowHeight() / 2)) + Number(el.dataset.y) - GRID,
       color: el.dataset.color as string,
-      value: el.textContent,
+      value: el.textContent || undefined,
       author
     }))
 
