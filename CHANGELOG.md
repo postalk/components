@@ -1,4 +1,12 @@
 
+<a name="v0.8.1"></a>
+## [v0.8.1](https://github.com/postalk/components/compare/v0.8.0...v0.8.1) (2019-01-31)
+
+### Fix
+
+* **canvas:** tweak about droppable text/html
+
+
 <a name="v0.8.0"></a>
 ## [v0.8.0](https://github.com/postalk/components/compare/v0.7.8...v0.8.0) (2019-01-31)
 
