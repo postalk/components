@@ -31,6 +31,8 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import Centered from '@/components/Centered/index.vue'
 import { UNIT } from '@/components/numbers'
+import { getTransferredCards } from '@/components/Cards/utils'
+import { CardForm } from '@/components/types'
 
 @Component<CardCanvas>({
   components: {
@@ -51,7 +53,9 @@ import { UNIT } from '@/components/numbers'
 })
 export default class CardCanvas extends Vue {
   @Prop()
-  private handleCreate!: (x: number, y: number) => void
+  private handleNew!: (x: number, y: number) => void
+  @Prop()
+  private handleCreate!: (cards: CardForm[]) => void
   @Prop()
   private handleCursor!: (x: number, y: number) => void
   @Prop()
@@ -74,7 +78,7 @@ export default class CardCanvas extends Vue {
   private isDragging: boolean = false
 
   private onDblClick(e: MouseEvent) {
-    this.handleCreate(e.offsetX, e.offsetY)
+    this.handleNew(e.offsetX, e.offsetY)
   }
 
   private onClick(e: MouseEvent) {
@@ -124,9 +128,45 @@ export default class CardCanvas extends Vue {
     }
     const files = e.dataTransfer.files
     let file
+
     if (files.length < 1) {
+      const parser = new DOMParser()
+      const includesSpan =
+        !!e.dataTransfer.getData('text/html') &&
+        parser
+          .parseFromString(e.dataTransfer.getData('text/html'), 'text/html')
+          .body.querySelectorAll('span').length > 1
+
+      let trandferData
+
+      switch (true) {
+        case includesSpan:
+          trandferData = e.dataTransfer.getData('text/html')
+          break
+        case !!e.dataTransfer.getData('text/uri-list'):
+          trandferData = `<span>${e.dataTransfer.getData(
+            'text/uri-list'
+          )}<span>`
+          break
+        case !!e.dataTransfer.getData('text/plain'):
+          trandferData = `<span>${e.dataTransfer.getData('text/plain')}<span>`
+          break
+      }
+      if (!trandferData) { return }
+
+      const spans = parser
+        .parseFromString(trandferData, 'text/html')
+        .body.querySelectorAll('span')
+
+      if (spans.length < 1) {
+        return
+      }
+      this.handleCreate(
+        getTransferredCards(spans, { x: e.offsetX, y: e.offsetY })
+      )
       return
     }
+
     // tslint:disable:prefer-for-of
     for (let i = 0; i < files.length; i++) {
       file = files[i]

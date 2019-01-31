@@ -1,4 +1,4 @@
-import { CardInfo } from '../types'
+import { CardInfo, CardForm } from '../types'
 import { GRID, CARD_PADDING, UNIT } from '../numbers'
 import {
   width as windowWidth,
@@ -36,23 +36,31 @@ export const copyCards = (e: ClipboardEvent, cards: CardInfo[]) => {
   )
 }
 
-export const getPastedCards = (
+export const getTransferredCards = (
   spans: NodeListOf<HTMLSpanElement>,
-  author: string
-) =>
+  position?: { x: number; y: number }
+): CardForm[] =>
   Array.prototype.slice
     .call(spans)
     .filter(
       (el: HTMLSpanElement) =>
-        el.textContent && el.dataset.x && el.dataset.y && el.dataset.color
+        el.textContent && ((el.dataset.x && el.dataset.y) || position)
     )
-    .map((el: HTMLSpanElement) => ({
-      x: grid(Math.floor(windowWidth() / 2)) + Number(el.dataset.x) - GRID * 5,
-      y: grid(Math.floor(windowHeight() / 2)) + Number(el.dataset.y) - GRID,
-      color: el.dataset.color as string,
-      value: el.textContent || undefined,
-      author
-    }))
+    .map((el: HTMLSpanElement) => {
+      const x = position
+        ? grid(position.x)
+        : grid(Math.floor(windowWidth() / 2)) + Number(el.dataset.x) - GRID * 5
+      const y = position
+        ? grid(position.y)
+        : grid(Math.floor(windowHeight() / 2)) + Number(el.dataset.y) - GRID
+      return {
+        x,
+        y,
+        color: el.dataset.color || 'white',
+        value: el.textContent || undefined,
+        author: ''
+      }
+    })
 
 export const getMultipleCards = (text: string) => {
   const cards: Array<{ offset: number; value: string }> = []
