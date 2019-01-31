@@ -1,4 +1,12 @@
 
+<a name="v0.8.0"></a>
+## [v0.8.0](https://github.com/postalk/components/compare/v0.7.8...v0.8.0) (2019-01-31)
+
+### Feat
+
+* **canvas:** make text/plain, text/html, text/uri-list droppable
+
+
 <a name="v0.7.8"></a>
 ## [v0.7.8](https://github.com/postalk/components/compare/v0.7.7...v0.7.8) (2019-01-26)
 
