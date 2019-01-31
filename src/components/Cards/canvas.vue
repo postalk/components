@@ -135,7 +135,7 @@ export default class CardCanvas extends Vue {
         !!e.dataTransfer.getData('text/html') &&
         parser
           .parseFromString(e.dataTransfer.getData('text/html'), 'text/html')
-          .body.querySelectorAll('span').length > 1
+          .body.querySelectorAll('span').length > 0
 
       let trandferData
 
@@ -152,7 +152,9 @@ export default class CardCanvas extends Vue {
           trandferData = `<span>${e.dataTransfer.getData('text/plain')}<span>`
           break
       }
-      if (!trandferData) { return }
+      if (!trandferData) {
+        return
+      }
 
       const spans = parser
         .parseFromString(trandferData, 'text/html')
