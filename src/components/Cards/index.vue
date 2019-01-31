@@ -2,7 +2,8 @@
   <div class="board">
     <CardCanvas
       :handleCursor="saveCursor"
-      :handleCreate="createNewCard"
+      :handleNew="createNewCard"
+      :handleCreate="createCards"
       :handleSelect="updateSelectIds"
       :handleImage="createImageCard"
       :selectedCardIds="selectedCardIds"
@@ -81,7 +82,7 @@ import Shortcuts from '../Shortcuts/index.vue'
 import CardCanvas from './canvas.vue'
 import Centered from '@/components/Centered/index.vue'
 import { CardInfo, CardForm } from '@/components/types'
-import { copyCards, getPastedCards, getMultipleCards } from './utils'
+import { copyCards, getTransferredCards, getMultipleCards } from './utils'
 import { grid } from '@/components/utils'
 import { OFFSET } from '@/components/numbers'
 
@@ -205,7 +206,7 @@ export default class Cards extends Vue {
 
   /*
    * Board
-  **/
+   **/
 
   private saveCursor(x: number, y: number): void {
     this.cursorX = x
@@ -230,9 +231,20 @@ export default class Cards extends Vue {
     this.uploading = true
   }
 
+  private createCards(cards: CardForm[]) {
+    cards = cards.map(c => ({
+      ...c,
+      author: this.author
+    }))
+
+    this.willSelect = cards
+    this.clearSelected()
+    this.handleCreate(cards)
+  }
+
   /*
    *  A card
-  **/
+   **/
 
   private onStart(id: string): void {
     if (!this.selectedCardIds.includes(id)) {
@@ -283,13 +295,15 @@ export default class Cards extends Vue {
     const cards = getMultipleCards(value)
     if (cards.length > 1) {
       this.handleUpdate([{ id, value: cards[0].value }])
-      const payloads = cards.filter((card, i) => i !== 0).map(card => ({
-        x: selectedCard.x || 0,
-        y: selectedCard.y ? grid(selectedCard.y + card.offset) : 0,
-        value: card.value,
-        color: selectedCard.color || '',
-        author: this.author
-      }))
+      const payloads = cards
+        .filter((card, i) => i !== 0)
+        .map(card => ({
+          x: selectedCard.x || 0,
+          y: selectedCard.y ? grid(selectedCard.y + card.offset) : 0,
+          value: card.value,
+          color: selectedCard.color || '',
+          author: this.author
+        }))
       this.willSelect = payloads
       this.handleCreate(payloads)
     } else {
@@ -318,7 +332,7 @@ export default class Cards extends Vue {
 
   /*
    * A new card
-  **/
+   **/
 
   private createNewCard(x?: number, y?: number) {
     x = x || this.cursorX
@@ -352,7 +366,7 @@ export default class Cards extends Vue {
 
   /*
    * Selected cards
-  **/
+   **/
 
   private changeColor(color: string): void {
     const colors = ['white', 'blue', 'yellow', 'red']
@@ -390,7 +404,7 @@ export default class Cards extends Vue {
 
   /*
    * Shortcuts
-  **/
+   **/
 
   private selectAll() {
     this.selectedCardIds = this.cards
@@ -424,7 +438,10 @@ export default class Cards extends Vue {
     if (spans.length < 1) {
       return
     }
-    const cards = getPastedCards(spans, this.author)
+    const cards = getTransferredCards(spans).map(c => ({
+      ...c,
+      author: this.author
+    }))
 
     this.willSelect = cards
     this.clearSelected()
