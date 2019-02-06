@@ -1898,17 +1898,18 @@
     babel-loader "^8.0.5"
     webpack ">=4 < 4.29"
 
-"@vue/cli-plugin-typescript@3.3.0":
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/@vue/cli-plugin-typescript/-/cli-plugin-typescript-3.3.0.tgz#a278010e0959ea9be44b23dfdf65d3c3e01c66a9"
-  integrity sha512-JZ+RYMXL27zq3hU/RnJJaVb6OvsQ5M7qTfZEBWnc45oyw/nFBRLkmFYgQztktvxXvlLcTkJeb8I2cTwxZ2BxnA==
+"@vue/cli-plugin-typescript@3.4.0":
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/@vue/cli-plugin-typescript/-/cli-plugin-typescript-3.4.0.tgz#a74f00a30bb253726a9d02e59fd6779853f764e8"
+  integrity sha512-VjNlHghaDEFheXg89C+RxPaYGKebst14/C2oVxHNeuzVO2SG6ac2LRJl0KM6eKKUD+QFj0/NJWrJZKmSgpHO9Q==
   dependencies:
     "@types/webpack-env" "^1.13.6"
-    "@vue/cli-shared-utils" "^3.3.0"
+    "@vue/cli-shared-utils" "^3.4.0"
     fork-ts-checker-webpack-plugin "^0.5.2"
-    globby "^8.0.1"
-    ts-loader "^5.3.2"
-    tslint "^5.12.0"
+    globby "^9.0.0"
+    ts-loader "^5.3.3"
+    tslint "^5.12.1"
+    webpack ">=4 < 4.29"
 
 "@vue/cli-plugin-unit-jest@3.3.0":
   version "3.3.0"
@@ -6069,7 +6070,7 @@ globals@^9.18.0:
   resolved "https://registry.yarnpkg.com/globals/-/globals-9.18.0.tgz#aa3896b3e69b487f17e31ed2143d69a8e30c2d8a"
   integrity sha512-S0nG3CLEQiY/ILxqtztTWH/3iRRdyBLw6KMDxnKMchrtbj2OFmehVh0WUCfW3DUrIgx/qFrJPICrq4Z4sTR9UQ==
 
-globby@8.0.1, globby@^8.0.1:
+globby@8.0.1:
   version "8.0.1"
   resolved "https://registry.yarnpkg.com/globby/-/globby-8.0.1.tgz#b5ad48b8aa80b35b814fc1281ecc851f1d2b5b50"
   integrity sha512-oMrYrJERnKBLXNLVTqhm3vPEdJ/b2ZE28xN4YARiix1NOIOBPEpOUnm844K1iu/BkphCaf2WNFwMszv8Soi1pw==
@@ -12327,7 +12328,7 @@ ts-jest@23.10.5:
     semver "^5.5"
     yargs-parser "10.x"
 
-ts-loader@^5.3.2:
+ts-loader@^5.3.3:
   version "5.3.3"
   resolved "https://registry.yarnpkg.com/ts-loader/-/ts-loader-5.3.3.tgz#8b4af042e773132d86b3c99ef0acf3b4d325f473"
   integrity sha512-KwF1SplmOJepnoZ4eRIloH/zXL195F51skt7reEsS6jvDqzgc/YSbz9b8E07GxIUwLXdcD4ssrJu6v8CwaTafA==
@@ -12353,7 +12354,7 @@ tslib@^1.8.0, tslib@^1.8.1, tslib@^1.9.0:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.9.3.tgz#d7e4dd79245d85428c4d7e4822a79917954ca286"
   integrity sha512-4krF8scpejhaOgqzBEcGM7yDIEfi0/8+8zDRZhNZZ2kjmHJ4hv3zCbQWxoJGz1iw5U0Jl0nma13xzHXcncMavQ==
 
-tslint@^5.12.0:
+tslint@^5.12.1:
   version "5.12.1"
   resolved "https://registry.yarnpkg.com/tslint/-/tslint-5.12.1.tgz#8cec9d454cf8a1de9b0a26d7bdbad6de362e52c1"
   integrity sha512-sfodBHOucFg6egff8d1BvuofoOQ/nOeYNfbp7LDlKBcLNrL3lmS5zoiDGyOMdT7YsEXAwWpTdAHwOGOc8eRZAw==
