@@ -1818,10 +1818,10 @@
     lodash.kebabcase "^4.1.1"
     svg-tags "^1.0.0"
 
-"@vue/babel-preset-app@^3.3.0":
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/@vue/babel-preset-app/-/babel-preset-app-3.3.0.tgz#390dc0ea20a477c9cc09d3a0541f673c0beedb4f"
-  integrity sha512-ZnuzErAub1hiFp9c/BI94JMEG7AcbS3/nqToJofOYJFspwWerozxefHF3i3owy6KymBQODVetdyI+iZu80b23A==
+"@vue/babel-preset-app@^3.4.0":
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/@vue/babel-preset-app/-/babel-preset-app-3.4.0.tgz#926c718066babc0117ee70cebf890d3aaa812bfa"
+  integrity sha512-P7IaOFtMUd5iic2PH/iY6YPgtPnyd7SzA+ACv1283F5RcLutTURhl2smC1cWUJFGVrUhTmsYEcbS4+06wKymWw==
   dependencies:
     "@babel/plugin-proposal-class-properties" "^7.0.0"
     "@babel/plugin-proposal-decorators" "^7.1.0"
@@ -1831,13 +1831,11 @@
     "@babel/preset-env" "^7.0.0"
     "@babel/runtime" "^7.0.0"
     "@babel/runtime-corejs2" "^7.2.0"
-    "@vue/babel-preset-jsx" "^1.0.0-beta.1"
-    babel-helper-vue-jsx-merge-props "^2.0.3"
+    "@vue/babel-preset-jsx" "^1.0.0-beta.2"
     babel-plugin-dynamic-import-node "^2.2.0"
-    babel-plugin-transform-vue-jsx "^4.0.1"
-    core-js "^2.6.1"
+    core-js "^2.6.3"
 
-"@vue/babel-preset-jsx@^1.0.0-beta.1":
+"@vue/babel-preset-jsx@^1.0.0-beta.2":
   version "1.0.0-beta.2"
   resolved "https://registry.yarnpkg.com/@vue/babel-preset-jsx/-/babel-preset-jsx-1.0.0-beta.2.tgz#3e5dc2b73da58391c1c7327c2bd2ef154fe4e46e"
   integrity sha512-nZoAKBR/h6iPMQ66ieQcIdlpPBmqhtUUcgjBS541jIVxSog1rwzrc00jlsuecLonzUMWPU0PabyitsG74vhN1w==
@@ -1889,14 +1887,16 @@
   resolved "https://registry.yarnpkg.com/@vue/cli-overlay/-/cli-overlay-3.4.0.tgz#7fe7cf41eacbaf1f1579efcad93e23b65d4581db"
   integrity sha512-uLfQZvMChAf3UQNR+WN8a7vAPqvaw2tJs1TrNxPg+Dr7bm7HWoitvFremF0vLWkxIRM5e+VJgYV3wHk9EwWhzg==
 
-"@vue/cli-plugin-babel@3.3.0":
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/@vue/cli-plugin-babel/-/cli-plugin-babel-3.3.0.tgz#5dea0b90b1ce0dc0ee48e33b32af6b859bcf8ff3"
-  integrity sha512-HS5DwLe42fmkDgu4+78zMITNK+WiLoHKHBCCOuoEqjmsvvKaH/ByCGJOHYgTTe0aI+AiTAAkR2sZ2YulAjlvlQ==
+"@vue/cli-plugin-babel@3.4.0":
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/@vue/cli-plugin-babel/-/cli-plugin-babel-3.4.0.tgz#d6e7967995f860b94204bdfb17900fadd4aea2d9"
+  integrity sha512-8ViOzJa8UqUnmMl1422t8EIlCUc5PegSMsdU6xoqfavL83uEGjR+fE4gAI+g7xKo7Qk9+8Z8VvaredXMbmxCzA==
   dependencies:
     "@babel/core" "^7.0.0"
-    "@vue/babel-preset-app" "^3.3.0"
-    babel-loader "^8.0.4"
+    "@vue/babel-preset-app" "^3.4.0"
+    "@vue/cli-shared-utils" "^3.4.0"
+    babel-loader "^8.0.5"
+    webpack ">=4 < 4.29"
 
 "@vue/cli-plugin-typescript@3.3.0":
   version "3.3.0"
@@ -2728,11 +2728,6 @@ babel-helper-to-multiple-sequence-expressions@^0.5.0:
   resolved "https://registry.yarnpkg.com/babel-helper-to-multiple-sequence-expressions/-/babel-helper-to-multiple-sequence-expressions-0.5.0.tgz#a3f924e3561882d42fcf48907aa98f7979a4588d"
   integrity sha512-m2CvfDW4+1qfDdsrtf4dwOslQC3yhbgyBFptncp4wvtdrDHqueW7slsYv4gArie056phvQFhT2nRcGS4bnm6mA==
 
-babel-helper-vue-jsx-merge-props@^2.0.3:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/babel-helper-vue-jsx-merge-props/-/babel-helper-vue-jsx-merge-props-2.0.3.tgz#22aebd3b33902328e513293a8e4992b384f9f1b6"
-  integrity sha512-gsLiKK7Qrb7zYJNgiXKpXblxbV5ffSwR0f5whkPAaBAR4fhi6bwRZxX9wBlIc5M/v8CCkXUbXZL4N/nSE97cqg==
-
 babel-helpers@^6.24.1:
   version "6.24.1"
   resolved "https://registry.yarnpkg.com/babel-helpers/-/babel-helpers-6.24.1.tgz#3471de9caec388e5c850e597e58a26ddf37602b2"
@@ -2749,12 +2744,12 @@ babel-jest@23.6.0, babel-jest@^23.6.0:
     babel-plugin-istanbul "^4.1.6"
     babel-preset-jest "^23.2.0"
 
-babel-loader@^8.0.4:
-  version "8.0.4"
-  resolved "https://registry.yarnpkg.com/babel-loader/-/babel-loader-8.0.4.tgz#7bbf20cbe4560629e2e41534147692d3fecbdce6"
-  integrity sha512-fhBhNkUToJcW9nV46v8w87AJOwAJDz84c1CL57n3Stj73FANM/b9TbCUK4YhdOwEyZ+OxhYpdeZDNzSI29Firw==
+babel-loader@^8.0.5:
+  version "8.0.5"
+  resolved "https://registry.yarnpkg.com/babel-loader/-/babel-loader-8.0.5.tgz#225322d7509c2157655840bba52e46b6c2f2fe33"
+  integrity sha512-NTnHnVRd2JnRqPC0vW+iOQWU5pchDbYXsG2E6DMXEpMfUcQKclF9gmf3G3ZMhzG7IG9ji4coL0cm+FxeWxDpnw==
   dependencies:
-    find-cache-dir "^1.0.0"
+    find-cache-dir "^2.0.0"
     loader-utils "^1.0.2"
     mkdirp "^0.5.1"
     util.promisify "^1.0.0"
@@ -2951,13 +2946,6 @@ babel-plugin-transform-undefined-to-void@^6.9.4:
   version "6.9.4"
   resolved "https://registry.yarnpkg.com/babel-plugin-transform-undefined-to-void/-/babel-plugin-transform-undefined-to-void-6.9.4.tgz#be241ca81404030678b748717322b89d0c8fe280"
   integrity sha1-viQcqBQEAwZ4t0hxcyK4nQyP4oA=
-
-babel-plugin-transform-vue-jsx@^4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/babel-plugin-transform-vue-jsx/-/babel-plugin-transform-vue-jsx-4.0.1.tgz#2c8bddce87a6ef09eaa59869ff1bfbeeafc5f88d"
-  integrity sha512-wbOz7ITB5cloLSjKUU1hWn8zhR+Dwah/RZiTiJY/CQliCwhowmzu6m7NEF+y5EJX/blDzGjRtZvC10Vdb3Q7vw==
-  dependencies:
-    esutils "^2.0.2"
 
 babel-preset-jest@^23.2.0:
   version "23.2.0"
@@ -4089,7 +4077,7 @@ core-js@^2.4.0, core-js@^2.5.0, core-js@^2.5.7:
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.5.7.tgz#f972608ff0cead68b841a16a932d0b183791814e"
   integrity sha512-RszJCAxg/PP6uzXVXL6BsxSXx/B05oJAQ2vkJRjyjrEcNVycaqOmNb5OTxZPE3xa5gwZduqza6L9JOCenh/Ecw==
 
-core-js@^2.6.1:
+core-js@^2.6.3:
   version "2.6.3"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.6.3.tgz#4b70938bdffdaf64931e66e2db158f0892289c49"
   integrity sha512-l00tmFFZOBHtYhN4Cz7k32VM7vTn3rE2ANjQDxdEN6zmXZ/xq1jQuutnmHvMG1ZJ7xd72+TA5YpUK8wz3rWsfQ==
