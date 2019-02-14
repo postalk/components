@@ -1785,10 +1785,10 @@
     "@types/react" "*"
     "@types/webpack-env" "*"
 
-"@types/storybook__vue@3.3.1":
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/@types/storybook__vue/-/storybook__vue-3.3.1.tgz#be15009df7333692e0df46e0b6e5e287729dfeec"
-  integrity sha512-kTcUW/Yam0Ou7u/P9mumFEBgarvbytE336FMsWKKNU/1vq8YFmwY/5N8YpMiVjyz5PmQXBQ+rRTEZVdt3l2S7w==
+"@types/storybook__vue@3.3.2":
+  version "3.3.2"
+  resolved "https://registry.yarnpkg.com/@types/storybook__vue/-/storybook__vue-3.3.2.tgz#f25fd1abb7335bc02fde51ab669b81c028ec53ed"
+  integrity sha512-I8xQVdvaLn7HFCQWbGCEkY+n0XCePgrgiZCj+CHpc2HbUrks7xpCf2qqUaPDVH5udJuuYRWm7bysoiGo4U60nQ==
   dependencies:
     "@types/webpack-env" "*"
     vue "^2.0.0"
