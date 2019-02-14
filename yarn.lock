@@ -12689,13 +12689,14 @@ vue-class-component@6.3.2, vue-class-component@^6.2.0:
   resolved "https://registry.yarnpkg.com/vue-class-component/-/vue-class-component-6.3.2.tgz#e6037e84d1df2af3bde4f455e50ca1b9eec02be6"
   integrity sha512-cH208IoM+jgZyEf/g7mnFyofwPDJTM/QvBNhYMjqGB8fCsRyTf68rH2ISw/G20tJv+5mIThQ3upKwoL4jLTr1A==
 
-vue-cli-plugin-storybook@0.5.1:
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/vue-cli-plugin-storybook/-/vue-cli-plugin-storybook-0.5.1.tgz#92aadd36d6ea59487c1e76d3a91f5437d496e8f2"
-  integrity sha512-LIB0dII5yALS8DS/CODTAry3n36grs3rbK8O5DWvRxx9eZtHH4q3Owds54LrKQRbLQGqxOfYhPrhFEHZZGbepg==
+vue-cli-plugin-storybook@0.5.2:
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/vue-cli-plugin-storybook/-/vue-cli-plugin-storybook-0.5.2.tgz#ed8fe1ef09613e8bb7bad1b4b028515bc0a0af68"
+  integrity sha512-E9joz8norWa6c71fxO22UAAotluS7dKzhRQTyl9wyPXbEMSjqlZ5jjgd9B6MxW1t58RzEEMSaZ9bMDV063wDtg==
   dependencies:
     "@storybook/addons" "^4.1.0"
     "@storybook/vue" "^4.1.0"
+    commander "^2.19.0"
 
 vue-draggable-resizable@1.7.5:
   version "1.7.5"
