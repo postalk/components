@@ -1417,14 +1417,14 @@
     react-inspector "^2.3.0"
     uuid "^3.3.2"
 
-"@storybook/addon-links@4.1.12":
-  version "4.1.12"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-links/-/addon-links-4.1.12.tgz#f88f3a2ac19f6a47148bfc1c8c0577164500edbc"
-  integrity sha512-NrYSG5kc3RrHFS+QmOdfzLy3ApQQ6z/kDhnbED0Mc0zQKptxFJgYtAWHAJkw1ZRFQwtYewS712nkbIvLVPvg5Q==
+"@storybook/addon-links@4.1.13":
+  version "4.1.13"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-links/-/addon-links-4.1.13.tgz#3f7de0676f242ea2a812695b2e0ae40f951a0945"
+  integrity sha512-bQ9lAYUbkmnstluKojCN3pRmYnwEtkhnn8jUdBJiLiTFGpZxFbk5m3QjMVOtJEQ06ezKK+OV0Q/3WP63TN4r+Q==
   dependencies:
-    "@storybook/addons" "4.1.12"
-    "@storybook/components" "4.1.12"
-    "@storybook/core-events" "4.1.12"
+    "@storybook/addons" "4.1.13"
+    "@storybook/components" "4.1.13"
+    "@storybook/core-events" "4.1.13"
     core-js "^2.5.7"
     global "^4.3.2"
     prop-types "^15.6.2"
@@ -1548,11 +1548,6 @@
     react-split-pane "^0.1.84"
     react-textarea-autosize "^7.0.4"
     render-fragment "^0.1.1"
-
-"@storybook/core-events@4.1.12":
-  version "4.1.12"
-  resolved "https://registry.yarnpkg.com/@storybook/core-events/-/core-events-4.1.12.tgz#1a861c1c450f076c146f6cc3c8a4ccd0d4dc0d35"
-  integrity sha512-NrZ5k2tsS8Cil99E2M4wzOdkTaxkK0NvicwEPoTcz0utyWrF4T7fThE3qoGBoVTZ+6quWazRFvsvO9MhEnMYnw==
 
 "@storybook/core-events@4.1.13":
   version "4.1.13"
