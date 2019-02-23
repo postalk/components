@@ -4,7 +4,7 @@
 #
 version: 2
 jobs:
-  lint:
+  build:
     docker:
       - image: circleci/node:10
     steps:
@@ -14,10 +14,13 @@ jobs:
             - v1-dependencies-{{ checksum "package.json" }}
       - run: yarn install
       - run: yarn lint
+      - run: yarn build
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
+      - store_artifacts:
+          path: .storybook/build
   test:
     docker:
       - image: circleci/node:10
@@ -54,13 +57,13 @@ workflows:
   version: 2
   workflow:
     jobs:
-      - lint:
+      - build:
           filters:
             tags:
               only: /^v.*/
       - test:
           requires:
-            - lint
+            - build
           filters:
             tags:
               only: /^v.*/
