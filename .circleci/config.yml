@@ -1,8 +1,17 @@
+# Javascript Node CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+#
+
+defaults: &defaults
+  working_directory: ~/repo
+  docker:
+    - image: circleci/node:10
+
 version: 2
 jobs:
   build:
-    docker:
-      - image: circleci/node:10
+    <<: *defaults
     steps:
       - checkout
       - restore_cache:
@@ -17,17 +26,14 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
       - store_artifacts:
           path: .storybook/build
-
   test:
-    docker:
-      - image: circleci/node:10
+    <<: *defaults
     steps:
       - checkout
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
       - run: yarn install
-      - run: yarn lint
       - run: yarn test
       - run: 'echo "repo_token: ${COVERALLS_REPO_TOKEN}" >> .coveralls.yml'
       - run: yarn coverage
@@ -35,28 +41,27 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
+      - persist_to_workspace:
+          root: ~/repo
+          paths: .
 
-  publish:
-    docker:
-      - image: circleci/node:10
+  deploy:
+    <<: *defaults
     steps:
+      - checkout
       - attach_workspace:
           at: ~/repo
-      - run:
-          name: Authenticate with registry
-          command: 'echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/repo/.npmrc'
-      - checkout
+      - run: 'echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/repo/.npmrc'
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
       - run: yarn install
-      - run: yarn lint
       - run: yarn build
+      - run: npm publish
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-      - run: npm publish
 
 workflows:
   version: 2
@@ -72,9 +77,10 @@ workflows:
           filters:
             tags:
               only: /^v.*/
-      - publish:
+      - deploy:
           requires:
-            - hold
+            - build
+            - test
           filters:
             branches:
               ignore: /.*/
