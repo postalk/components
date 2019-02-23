@@ -1,6 +1,10 @@
+# Javascript Node CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+#
 version: 2
 jobs:
-  build:
+  lint:
     docker:
       - image: circleci/node:10
     steps:
@@ -10,14 +14,10 @@ jobs:
             - v1-dependencies-{{ checksum "package.json" }}
       - run: yarn install
       - run: yarn lint
-      - run: yarn build:storybook
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-      - store_artifacts:
-          path: .storybook/build
-
   test:
     docker:
       - image: circleci/node:10
@@ -27,7 +27,6 @@ jobs:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
       - run: yarn install
-      - run: yarn lint
       - run: yarn test
       - run: 'echo "repo_token: ${COVERALLS_REPO_TOKEN}" >> .coveralls.yml'
       - run: yarn coverage
@@ -41,34 +40,34 @@ jobs:
       - image: circleci/node:10
     steps:
       - checkout
-      - run: 'echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/repo/.npmrc'
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
       - run: yarn install
-      - run: yarn lint
-      - run: yarn build
-      - run: npm publish
+      - run: yarn deploy
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
 
 workflows:
   version: 2
   workflow:
     jobs:
-      - build:
+      - lint:
           filters:
             tags:
               only: /^v.*/
       - test:
           requires:
-            - build
+            - lint
           filters:
             tags:
               only: /^v.*/
       - deploy:
           requires:
-            - hold
+            - lint
+            - test
           filters:
             branches:
-              ignore: /.*/
-            tags:
-              only: /^v.*/
+              only: master
