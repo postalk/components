@@ -36,26 +36,18 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-  publish:
+  deploy:
     docker:
       - image: circleci/node:10
     steps:
-      - attach_workspace:
-          at: ~/repo
-      - run:
-          name: Authenticate with registry
-          command: 'echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/repo/.npmrc'
       - checkout
+      - run: 'echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/repo/.npmrc'
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
       - run: yarn install
       - run: yarn lint
       - run: yarn build
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
       - run: npm publish
 
 workflows:
@@ -72,7 +64,7 @@ workflows:
           filters:
             tags:
               only: /^v.*/
-      - publish:
+      - deploy:
           requires:
             - hold
           filters:
