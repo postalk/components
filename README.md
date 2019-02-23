@@ -35,7 +35,3 @@ If you want to update snapshots
 ```
 yarn test -u
 ```
-
-## Deployed storybook
-
-https://postalk-components.now.sh
