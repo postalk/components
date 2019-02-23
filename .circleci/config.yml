@@ -2,11 +2,16 @@
 #
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
+
+defaults: &defaults
+  working_directory: ~/repo
+  docker:
+    - image: circleci/node:10
+
 version: 2
 jobs:
   build:
-    docker:
-      - image: circleci/node:10
+    <<: *defaults
     steps:
       - checkout
       - restore_cache:
@@ -22,8 +27,7 @@ jobs:
       - store_artifacts:
           path: .storybook/build
   test:
-    docker:
-      - image: circleci/node:10
+    <<: *defaults
     steps:
       - checkout
       - restore_cache:
@@ -37,12 +41,17 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
+      - persist_to_workspace:
+          root: ~/repo
+          paths: .
 
   deploy:
-    docker:
-      - image: circleci/node:10
+    <<: *defaults
     steps:
       - checkout
+      - attach_workspace:
+          at: ~/repo
+      - run: 'echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/repo/.npmrc'
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
