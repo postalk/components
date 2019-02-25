@@ -4,7 +4,12 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import { UNIT } from '@/components/numbers'
+import {
+  UNIT,
+  SMALL_TEXT,
+  WEBSITE_MARGIN,
+  LINE_HEIGHT
+} from '@/components/numbers'
 
 @Component
 export default class WebPage extends Vue {
@@ -58,7 +63,7 @@ export default class WebPage extends Vue {
       const that = this as any
       self.handleMeasure(
         that.height / that.width,
-        height + 18 + 0.125 * 3 * UNIT
+        height + SMALL_TEXT * LINE_HEIGHT + WEBSITE_MARGIN * 3
       )
     }
     img.src = src
@@ -68,7 +73,7 @@ export default class WebPage extends Vue {
 
 <style lang="scss">
 .url {
-  line-height: 1.5;
+  line-height: $LINE_HEIGHT;
   position: relative;
   .url__favicon {
     top: 0;
@@ -80,28 +85,28 @@ export default class WebPage extends Vue {
   }
   .url__sitetitle {
     padding-left: 1.25rem;
-    color: #999;
-    font-size: 0.75rem;
+    color: $LIGHT_GRAY;
+    font-size: $SMALL_TEXT;
     display: block;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    line-height: 18px;
+    line-height: $LINE_HEIGHT;
   }
   .url__title {
     display: block;
-    font-size: 0.8125rem;
-    margin-top: 0.125rem;
-    margin-bottom: 0.125rem;
-    line-height: 1.5;
+    font-size: $TEXT;
+    margin-top: $WEBSITE_MARGIN;
+    margin-bottom: $WEBSITE_MARGIN;
+    line-height: $WEBSITE_LINE_HEIGHT;
     word-wrap: break-word;
   }
   .url__description {
-    color: #666;
-    font-size: 0.75rem;
-    margin-top: 0.125rem;
-    margin-bottom: 0.125rem;
-    line-height: 1.5;
+    color: $GRAY;
+    font-size: $SMALL_TEXT;
+    margin-top: $WEBSITE_MARGIN;
+    margin-bottom: $WEBSITE_MARGIN;
+    line-height: $WEBSITE_LINE_HEIGHT;
     word-wrap: break-word;
   }
   .url__img {
@@ -109,22 +114,23 @@ export default class WebPage extends Vue {
     width: 100%;
   }
 }
+
 .calc-html-title-width {
-  font-size: 0.8125rem;
+  font-size: $TEXT;
   position: absolute;
   visibility: hidden;
   height: auto;
-  width: calc(12rem - 1rem - 2px);
+  width: calc(#{$CARD_WIDTH} - #{$PADDING} * 2 - #{$BORDER_WIDTH} * 2);
   word-break: break-word;
-  line-height: 1.5;
+  line-height: $WEBSITE_LINE_HEIGHT;
 }
 .calc-html-description-width {
-  font-size: 0.75rem;
+  font-size: $SMALL_TEXT;
   position: absolute;
   visibility: hidden;
   height: auto;
-  width: calc(12rem - 1rem - 2px);
+  width: calc(#{$CARD_WIDTH} - #{$PADDING} * 2 - #{$BORDER_WIDTH} * 2);
   word-break: break-word;
-  line-height: 1.5;
+  line-height: $WEBSITE_LINE_HEIGHT;
 }
 </style>
