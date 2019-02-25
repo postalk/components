@@ -1,2 +1,2 @@
-import Cards from './wrappers/Cards.vue'
+import Cards from './components/Cards.vue'
 export { Cards }
