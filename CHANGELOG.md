@@ -1,4 +1,16 @@
 
+<a name="v0.9.0"></a>
+## [v0.9.0](https://github.com/postalk/components/compare/v0.8.2...v0.9.0) (2019-02-25)
+
+### Feat
+
+* change components sizes, add new color, refactor
+
+### Test
+
+* **snapshot:** update
+
+
 <a name="v0.8.2"></a>
 ## [v0.8.2](https://github.com/postalk/components/compare/v0.8.1...v0.8.2) (2019-02-23)
 
