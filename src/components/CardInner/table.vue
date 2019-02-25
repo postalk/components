@@ -56,21 +56,21 @@ export default class Table extends Vue {
 
 <style scoped lang="scss">
 .table {
-  line-height: 1.3;
-  margin: calc(-0.5rem - 1px);
+  line-height: $TABLE_LINE_HEIGHT;
+  margin: calc(-1 * #{$PADDING} - #{$BORDER_WIDTH});
   border-collapse: collapse;
   border-spacing: 0;
   table-layout: fixed;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-  border-right: 1px solid rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid $BORDER_COLOR;
+  border-right: 1px solid $BORDER_COLOR;
 }
 .cell {
-  width: 7.5rem;
-  font-size: 0.8125rem;
+  width: $TABLE_WIDTH;
+  font-size: $TEXT;
   font-weight: normal;
   vertical-align: middle;
-  padding: 0.6125rem 0.5rem;
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  padding: $PADDING;
+  border: 1px solid $BORDER_COLOR;
   text-align: center;
   word-wrap: break-word;
 }

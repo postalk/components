@@ -180,13 +180,11 @@ export default class Cards extends Vue {
   @Prop()
   private handleUndo!: () => void
   @Prop()
-  private handleAddUndoActions!: (
-    actions: {
-      type: string
-      ids?: string[]
-      cards?: Array<Partial<CardInfo>>
-    }
-  ) => void
+  private handleAddUndoActions!: (actions: {
+    type: string
+    ids?: string[]
+    cards?: Array<Partial<CardInfo>>
+  }) => void
 
   private newCard: Partial<CardInfo> = {}
 
@@ -369,12 +367,12 @@ export default class Cards extends Vue {
    **/
 
   private changeColor(color: string): void {
-    const colors = ['white', 'blue', 'yellow', 'red']
+    const colors = ['white', 'offwhite', 'red', 'yellow', 'blue']
     const selectedCards = this.cards.filter(card =>
       this.selectedCardIds.includes(card.id)
     )
     const current = selectedCards[0].color
-    const index = (colors.indexOf(current) + 1) % 4
+    const index = (colors.indexOf(current) + 1) % colors.length
 
     const updates = this.selectedCardIds.map(id => ({
       id,
@@ -457,7 +455,7 @@ export default class Cards extends Vue {
 }
 .uploading {
   position: absolute;
-  z-index: 50;
+  z-index: $Z_OVER;
   width: 100%;
   height: 100%;
   background-color: rgba(255, 255, 255, 0.6);
@@ -470,7 +468,7 @@ export default class Cards extends Vue {
   width: 20px;
   height: 20px;
   background: #00e6e6;
-  opacity: 0.5;
+  opacity: $DISABLED_OPACITY;
   border-radius: 20px;
   animation: loader 1s infinite ease-in-out;
 }
@@ -510,14 +508,14 @@ export default class Cards extends Vue {
 }
 </style>
 
-<style>
+<style lang="scss">
 .calc-text-width {
-  font-size: 0.8125rem;
+  font-size: $TEXT;
   position: absolute;
   visibility: hidden;
   height: auto;
-  width: calc(12rem - 1rem - 2px);
+  width: calc(#{$CARD_WIDTH} - #{$PADDING} * 2 - #{$BORDER_WIDTH} * 2);
   word-break: break-word;
-  line-height: 1.5;
+  line-height: $LINE_HEIGHT;
 }
 </style>

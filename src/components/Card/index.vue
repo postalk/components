@@ -1,23 +1,22 @@
 <template>
   <div
     :class="{
-        cardRoot: true,
-        isMoving: movingId && movingId !== id,
-        isSelected: selected,
-        isDisabled: disabled,
-        isImage: isImage(value),
-        isTable: isTable(value),
-        isYoutube: isYoutube(value),
-        isTwitter: isTwitter(value),
-        isHTML: html,
-        isEditing: editing,
-        isOutside: x < 0 || x > 79.5 * UNIT || y < 0 || y > 46.25 * UNIT
-      }"
+      cardRoot: true,
+      isMoving: movingId && movingId !== id,
+      isSelected: selected,
+      isDisabled: disabled,
+      isImage: isImage(value),
+      isTable: isTable(value),
+      isYoutube: isYoutube(value),
+      isTwitter: isTwitter(value),
+      isEditing: editing,
+      isOutside: x < 0 || x > CANVAS_WIDTH || y < 0 || y >  CANVAS_HEIGHT
+    }"
     :style="{
-        left: `${x}px`,
-        top: `${y}px`,
-        height: `${height - DRAG_WIDTH * 2 + 2}px`
-      }"
+      left: `${x}px`,
+      top: `${y}px`,
+      height: `${height - DRAG_WIDTH * 2 + BORDER_WIDTH * 2}px`
+    }"
     :id="id"
     @dblclick="stopEvent"
   >
@@ -25,35 +24,26 @@
       ref="card"
       class="card"
       :style="{
-          transform: movingId && movingId !== id && selected 
-            ? `translate(${diff.x}px, ${diff.y}px)`
-            : undefined,
-          'background-color': getColor()['background-color'],
-          'border-color': selected ? selectColor : getColor()['border-color'],
-          'outline': selected ? `solid 1px ${selectColor}` : undefined,
-          'min-height': !value ? UNIT * 3 : undefined,
-          width: isImage(value) ? `${width - (DRAG_WIDTH * 2 + 2)}px` : undefined,
-          height: isImage(value) ? `${height - (DRAG_WIDTH * 2 + 2)}px` : undefined
-        }"
+        transform: movingId && movingId !== id && selected 
+          ? `translate(${diff.x}px, ${diff.y}px)`
+          : undefined,
+        'background-color': getColor()['background-color'],
+        'border-color': selected ? selectColor : getColor()['border-color'],
+        'outline': selected ? `solid 1px ${selectColor}` : undefined,
+        'min-height': !value ? UNIT * 3 : undefined,
+        width: isImage(value) ? `${width - (DRAG_WIDTH * 2 + BORDER_WIDTH * 2)}px` : undefined,
+        height: isImage(value) ? `${height - (DRAG_WIDTH * 2 + BORDER_WIDTH * 2)}px` : undefined
+      }"
       @click="onClick"
     >
-      <WebPage
-        v-if="html && url === value"
+      <CardInner
+        :type="getType({ value, html, url, color })"
+        :value="value"
         :html="html"
-        :handleMeasure="onHTMLMeasure"
+        :handleImageMeasure="onImageMeasure"
+        :handleHTMLMeasure="onHTMLMeasure"
+        :handleURL="onURL"
       />
-      <ImageContent
-        :url="value"
-        :handleMeasure="onImageMeasure"
-        v-else-if="isImage(value)"
-      />
-      <Youtube :txt="value" v-else-if="isYoutube(value)"/>
-      <Twitter :txt="value" v-else-if="isTwitter(value)"/>
-      <URL :txt="value" :handleURL="onURL" v-else-if="isUrl(value)"/>
-      <Table :txt="value" v-else-if="isTable(value)"/>
-      <OrderedList :txt="value" v-else-if="isOrderedList(value)"/>
-      <Headline :txt="value" v-else-if="isHeadline(value, color)"/>
-      <div class="text" v-else v-html="getLinkified()"/>
       <CardInput
         v-if="editing"
         class="input"
@@ -80,17 +70,9 @@
 <script lang="ts">
 import isImage from 'is-image-url'
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import CardInput from '@/components/Input/index.vue'
-import Headline from './headline.vue'
-import Table from './table.vue'
-import OrderedList from './ordered-list.vue'
+import CardInput from '@/components/CardInput/index.vue'
+import CardInner from '@/components/CardInner/index.vue'
 import Drag from './drag.vue'
-import ImageContent from './image.vue'
-import Youtube from './youtube.vue'
-import Twitter from './twitter.vue'
-import URL from './url.vue'
-import WebPage from './webpage.vue'
-import linkify from 'linkifyjs/string'
 import isUrl from 'is-url'
 import {
   YELLOW,
@@ -99,22 +81,32 @@ import {
   BLUE_DARK,
   RED,
   RED_DARK,
-  SELECT
+  SELECT,
+  OFFWHITE
 } from '../color'
-import { DRAG_WIDTH, CARD_PADDING, UNIT } from '@/components/numbers'
+import {
+  DRAG_WIDTH,
+  PADDING,
+  UNIT,
+  CANVAS_WIDTH,
+  CANVAS_HEIGHT,
+  BORDER_WIDTH,
+  CARD_WIDTH
+} from '@/components/numbers'
+import {
+  isYoutube,
+  isTwitter,
+  isTable,
+  isOrderedList,
+  isHeadline,
+  getHeadlineHeight
+} from '@/components/utils'
 
 @Component<Card>({
   components: {
-    Headline,
-    Table,
-    OrderedList,
-    ImageContent,
     CardInput,
-    Drag,
-    Youtube,
-    Twitter,
-    URL,
-    WebPage
+    CardInner,
+    Drag
   },
   watch: {
     initial(newVal, oldVal) {
@@ -187,8 +179,14 @@ export default class Card extends Vue {
 
   private DRAG_WIDTH = DRAG_WIDTH
   private UNIT = UNIT
+  private CANVAS_WIDTH = CANVAS_WIDTH
+  private CANVAS_HEIGHT = CANVAS_HEIGHT
+  private BORDER_WIDTH = BORDER_WIDTH
 
-  private isUrl = isUrl
+  private isImage = isImage
+  private isYoutube = isYoutube
+  private isTwitter = isTwitter
+  private isTable = isTable
 
   private mounted() {
     this.matchBoundRect()
@@ -199,8 +197,8 @@ export default class Card extends Vue {
 
   private matchBoundRect(): void {
     const el = this.$refs.card as Element
-    this.height = el.clientHeight + DRAG_WIDTH * 2 + 2
-    this.width = el.clientWidth + DRAG_WIDTH * 2 + 2
+    this.height = el.clientHeight + DRAG_WIDTH * 2 + BORDER_WIDTH * 2
+    this.width = el.clientWidth + DRAG_WIDTH * 2 + BORDER_WIDTH * 2
   }
 
   private rerender(): void {
@@ -234,17 +232,19 @@ export default class Card extends Vue {
   }
 
   private onImageMeasure(width: number, height: number) {
-    this.height = Math.round(height / 2) + DRAG_WIDTH * 2 + CARD_PADDING * 2 + 2
-    this.width = Math.round(width / 2) + DRAG_WIDTH * 2 + CARD_PADDING * 2 + 2
+    this.height =
+      Math.round(height / 2) + DRAG_WIDTH * 2 + PADDING * 2 + BORDER_WIDTH * 2
+    this.width =
+      Math.round(width / 2) + DRAG_WIDTH * 2 + PADDING * 2 + BORDER_WIDTH * 2
   }
 
   private onHTMLMeasure(ratio: number, defaultHeight: number) {
     this.height =
       defaultHeight +
-      (12 * UNIT - 1 * UNIT - 2) * ratio +
+      (CARD_WIDTH - PADDING * 2 - BORDER_WIDTH * 2) * ratio +
       DRAG_WIDTH * 2 +
-      CARD_PADDING * 2 +
-      2
+      PADDING * 2 +
+      BORDER_WIDTH * 2
   }
 
   private onDragging(x: number, y: number): void {
@@ -262,39 +262,34 @@ export default class Card extends Vue {
     this.handleURL(url, this.id)
   }
 
-  private isHeadline(str: string, color: string): boolean {
-    const multiByteLen = Array.from(str).filter(s =>
-      s.match(/[\u30a0-\u30ff\u3040-\u309f\u3005-\u3006\u30e0-\u9fcf]+/g)
-    ).length
-    const textWidth = (str.length - multiByteLen) * 1 + multiByteLen * 2
-
-    return multiByteLen
-      ? textWidth < 24 && (color !== 'white' && !!color)
-      : (str.split(/\b\S+\b/g).length - 1 < 3 || str.length < 14) &&
-          (color !== 'white' && !!color)
-  }
-
-  private isOrderedList(str: string): boolean {
-    return !!str.match(/\r?\n/)
-  }
-
-  private isTable(str: string): boolean {
-    return !!str.match(/[\s|　][\/|／][\s|　]/)
-  }
-
-  private isImage(str: string): boolean {
-    return isImage(str)
-  }
-
-  private isYoutube(str: string): boolean {
-    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=)([^#\&\?]*).*/
-    const match = str.match(regExp)
-    return !!match && match[2].length === 11
-  }
-
-  private isTwitter(str: string): boolean {
-    const regExp = /^https\:\/\/twitter\.com\/.+\/status\/([0-9]+)/
-    return !!str.match(regExp)
+  private getType({
+    value,
+    html,
+    url,
+    color
+  }: {
+    value: string
+    html: string
+    url: string
+    color: string
+  }): string {
+    return html && url === value
+      ? 'webpage'
+      : this.isImage(value)
+      ? 'image'
+      : this.isYoutube(value)
+      ? 'youtube'
+      : this.isTwitter(value)
+      ? 'twitter'
+      : isUrl(value)
+      ? 'url'
+      : this.isTable(value)
+      ? 'table'
+      : isOrderedList(value)
+      ? 'list'
+      : isHeadline(value, color)
+      ? 'headline'
+      : ''
   }
 
   private getColor(): {
@@ -306,33 +301,31 @@ export default class Card extends Vue {
         this.color === 'red'
           ? RED
           : this.color === 'blue'
-            ? BLUE
-            : this.color === 'yellow'
-              ? YELLOW
-              : '',
+          ? BLUE
+          : this.color === 'yellow'
+          ? YELLOW
+          : this.color === 'offwhite'
+          ? OFFWHITE
+          : '',
       'border-color':
         this.color === 'red'
           ? RED_DARK
           : this.color === 'blue'
-            ? BLUE_DARK
-            : this.color === 'yellow'
-              ? YELLOW_DARK
-              : ''
+          ? BLUE_DARK
+          : this.color === 'yellow'
+          ? YELLOW_DARK
+          : ''
     }
-  }
-
-  private getLinkified(): string {
-    return linkify(this.value)
   }
 }
 </script>
 
 <style scoped lang="scss">
 .cardRoot {
-  width: 12rem;
+  width: $CARD_WIDTH;
   height: 0;
   position: absolute;
-  z-index: 1;
+  z-index: $Z_CARD_ROOT;
   &.isMoving {
     .draggable {
       opacity: 0;
@@ -340,7 +333,7 @@ export default class Card extends Vue {
   }
   &.isImage,
   &.isYoutube {
-    z-index: 0 !important;
+    z-index: $Z_MEDIA_CARD_ROOT !important;
     .card {
       width: auto;
       background-color: transparent;
@@ -356,34 +349,34 @@ export default class Card extends Vue {
     }
   }
   &.isEditing {
-    z-index: 3;
+    z-index: $Z_EDITING_CARD_ROOT;
     .card-draggable {
       display: none;
     }
   }
   &.isTable {
     width: auto;
-    min-width: 11.25rem;
+    min-width: $TABLE_WIDTH;
     .card {
       width: auto;
     }
   }
   &.isDisabled {
     z-index: 0 !important;
-    opacity: 0.5;
+    opacity: $DISABLED_OPACITY;
     &:after {
       content: '';
       background-color: rgba(255, 255, 255, 0);
-      z-index: 6;
+      z-index: $Z_DISABLED_COVER;
       position: absolute;
-      top: -20px;
-      left: -20px;
-      width: calc(100% + 20px + 20px);
-      height: calc(100% + 20px + 20px);
+      top: -1 * $DRAG_WIDTH;
+      left: -1 * $DRAG_WIDTH;
+      width: calc(100% + #{$DRAG_WIDTH} * 2);
+      height: calc(100% + #{$DRAG_WIDTH} * 2);
     }
   }
   &.isOutside {
-    opacity: 0.6;
+    opacity: $DISABLED_OPACITY;
   }
 }
 
@@ -392,19 +385,12 @@ export default class Card extends Vue {
   position: absolute;
   width: 100%;
   background-color: #fff;
-  border: 1px solid #efefef;
+  border: $BORDER_WIDTH solid $BORDER_COLOR;
   line-height: 0;
   text-align: left;
-  padding: 0.5rem;
-  z-index: 4;
+  padding: $PADDING;
+  z-index: $Z_CARD;
   user-select: none;
-}
-
-.text {
-  font-size: 0.8125rem;
-  color: #222;
-  line-height: 1.5;
-  word-wrap: break-word;
 }
 
 .input {
@@ -418,9 +404,22 @@ export default class Card extends Vue {
   position: absolute;
   top: -1.125rem;
   left: 0;
-  font-size: 0.8125rem;
+  font-size: $TEXT;
   font-weight: bold;
   font-style: italic;
-  color: #222;
+  color: $TEXT_COLOR;
+}
+</style>
+
+<style lang="scss">
+.calc-headline-height {
+  font-size: $HEADLINE_TEXT;
+  position: absolute;
+  visibility: hidden;
+  height: auto;
+  width: calc(#{$CARD_WIDTH} - #{$PADDING} * 2 - #{$BORDER_WIDTH} * 2);
+  word-break: break-word;
+  line-height: $HEADLINE_LINE_HEIGHT;
+  font-weight: 400;
 }
 </style>

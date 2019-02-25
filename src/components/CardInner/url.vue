@@ -5,6 +5,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import linkify from 'linkifyjs/string'
+import { nl2br } from '@/components/utils'
 
 @Component<URL>({
   watch: {
@@ -24,16 +25,16 @@ export default class URL extends Vue {
     this.handleURL(this.txt)
   }
   private getLinkified(): string {
-    return linkify(this.txt)
+    return nl2br(linkify(this.txt))
   }
 }
 </script>
 
 <style scoped lang="scss">
 .text {
-  font-size: 0.8125rem;
-  color: #222;
-  line-height: 1.5;
+  font-size: $TEXT;
+  color: $TEXT_COLOR;
+  line-height: $LINE_HEIGHT;
   word-wrap: break-word;
 }
 </style>

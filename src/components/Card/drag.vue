@@ -54,7 +54,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import VueDraggableResizable from 'vue-draggable-resizable'
-import { GRID } from '@/components/numbers'
+import { GRID, DRAG_WIDTH, PADDING } from '@/components/numbers'
 @Component<Drag>({
   components: {
     VueDraggableResizable
@@ -75,9 +75,9 @@ export default class Drag extends Vue {
   private onDragStop!: () => void
 
   private dragging = false
-  private DRAG_WIDTH = 20
+  private DRAG_WIDTH = DRAG_WIDTH
   private GRID = GRID
-  private OVERRAPPING = 8
+  private OVERRAPPING = PADDING
 
   private onMove(x: number, y: number) {
     if (!this.dragging) {
@@ -95,7 +95,7 @@ export default class Drag extends Vue {
 
 <style scoped lang="scss">
 .draggable {
-  z-index: 5 !important;
+  z-index: $Z_DRAG !important;
   opacity: 0;
   width: 0 !important;
   height: 0 !important;

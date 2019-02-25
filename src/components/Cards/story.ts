@@ -1,7 +1,7 @@
 import { storiesOf } from '@storybook/vue'
 import Cards from './index.vue'
 import Vue, { ComponentOptions } from 'vue'
-import { cards } from '../data'
+import { cards, dummyHTML } from '../data'
 import { CardInfo, CardForm } from '@/components/types'
 import { randomStr } from '@/components/test'
 import { action } from '@storybook/addon-actions'
@@ -66,13 +66,7 @@ const SelectTester: ComponentOptions<Vue> = {
             ? {
                 ...card,
                 url: `https://postalk.io`,
-                html: `
-<img class="url__favicon" src="https://d247fv9ioqt5ap.cloudfront.net/apple-touch-icon.png">
-<span class="url__sitetitle">postalk</span>
-<a class="url__title" href="https://postalk.io" target="_blank">postalk | オンラインの議論を加速させるカード型チャットツール</a>
-<div class="url__description">postalk はカードを並べてコミュケーションができるオンラインツールです。リモートワークでの遠隔ミーティング・画像を使った議論などに最適です。</div>
-<img class="url__img" src="https://d247fv9ioqt5ap.cloudfront.net/images/ogimage.png">
-                `
+                html: dummyHTML
               }
             : card
         })

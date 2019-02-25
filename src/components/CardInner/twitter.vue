@@ -25,8 +25,8 @@ export default class Twitter extends Vue {
 
 <style scoped lang="scss">
 .tweet {
-  width: 18.375rem;
-  height: 18rem;
+  width: $TWITTER_WIDTH;
+  height: $TWITTER_WIDTH;
   overflow: scroll;
 }
 </style>

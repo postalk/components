@@ -47,7 +47,7 @@ Vue.use(VueTextareaAutosize)
     }
   }
 })
-export default class Input extends Vue {
+export default class CardInput extends Vue {
   @Prop()
   private handleSubmit!: (text: string) => void
   @Prop()
@@ -111,15 +111,15 @@ export default class Input extends Vue {
 
 <style scoped lang="scss">
 .input {
-  font-size: 0.8125rem;
+  font-size: $TEXT;
   width: 100%;
   border: none;
-  line-height: 1.5;
+  line-height: $LINE_HEIGHT;
   background-color: #fff;
   position: relative;
-  padding: 0.5rem;
+  padding: $PADDING;
   &:focus {
-    border: #3098db;
+    border: $SELECT_COLOR;
   }
 }
 </style>

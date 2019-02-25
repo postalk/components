@@ -1,19 +1,19 @@
 import { storiesOf } from '@storybook/vue'
 import { action } from '@storybook/addon-actions'
-import Input from './index.vue'
+import CardInput from './index.vue'
 import { CenteredDecorator } from '@/components/test'
 
-storiesOf('Input', module)
+storiesOf('CardInput', module)
   .addDecorator(CenteredDecorator)
   .add('Default', () => ({
-    components: { Input },
+    components: { CardInput },
     data: () => {
       return {
         value: 'Test'
       }
     },
     template: `<div style="width: 300px">
-        <Input
+        <CardInput
           :initial="value"
           :isNew="false"
           :handleSubmit="submit"

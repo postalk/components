@@ -1,36 +1,34 @@
 <template>
-  <Centered>
+  <div
+    class="canvas"
+    @click="onClick"
+    @mousedown.left.self="startSelect"
+    @mousemove="openSelector"
+    @mouseup.left="selectElement"
+    @dblclick.exact="onDblClick"
+    @dragover="onDragOver"
+    @dragleave="onDragLeave"
+    @drop="onDrop"
+  >
+    <slot/>
     <div
-      class="canvas"
-      @click="onClick"
-      @mousedown.left.self="startSelect"
-      @mousemove="openSelector"
-      @mouseup.left="selectElement"
-      @dblclick.exact="onDblClick"
-      @dragover="onDragOver"
-      @dragleave="onDragLeave"
-      @drop="onDrop"
-    >
-      <slot/>
-      <div
-        v-if="startX !== 0 || startY !== 0"
-        class="selector"
-        :style="{
-            width: `${w}px`,
-            height: `${h}px`,
-            top: `${y}px`,
-            left: `${x}px`
-          }"
-      />
-      <div v-if="isDragging" class="dragfield"/>
-    </div>
-  </Centered>
+      v-if="startX !== 0 || startY !== 0"
+      class="selector"
+      :style="{
+        width: `${w}px`,
+        height: `${h}px`,
+        top: `${y}px`,
+        left: `${x}px`
+      }"
+    />
+    <div v-if="isDragging" class="dragfield"/>
+  </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import Centered from '@/components/Centered/index.vue'
-import { UNIT } from '@/components/numbers'
+import { UNIT, CANVAS_WIDTH, CANVAS_HEIGHT } from '@/components/numbers'
 import { getTransferredCards } from '@/components/Cards/utils'
 import { CardForm } from '@/components/types'
 
@@ -205,8 +203,8 @@ export default class CardCanvas extends Vue {
     if (
       offsetX < UNIT ||
       offsetY < UNIT ||
-      offsetX > 79.5 * UNIT - UNIT ||
-      offsetY > 46.25 * UNIT - UNIT
+      offsetX > CANVAS_WIDTH * UNIT - UNIT ||
+      offsetY > CANVAS_HEIGHT * UNIT - UNIT
     ) {
       this.selectElement(e)
     }
@@ -237,8 +235,8 @@ export default class CardCanvas extends Vue {
     this.startX = 0
     this.startY = 0
 
-    if (this.$children[0] && this.$children[0].$children.length) {
-      const newIds = this.$children[0].$children
+    if (this.$children[0]) {
+      const newIds = this.$children
         .filter(card => this.isSelected(card.$el as HTMLElement))
         .map(card => (card as any).id)
       if (!e.shiftKey) {
@@ -263,22 +261,26 @@ export default class CardCanvas extends Vue {
 
 <style scoped lang="scss">
 .canvas {
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
   position: relative;
-  width: 79.5rem;
-  height: 46.25rem;
+  width: $CANVAS_WIDTH;
+  height: $CANVAS_HEIGHT;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
   background-position: 20px 20px;
   background-color: #fff;
   background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23BBBBBB' d='M0 0h1v1H0z' fill-rule='evenodd'/%3E%3C/svg%3E");
 }
 .selector {
-  z-index: 5;
+  z-index: $Z_SELECTOR;
   position: absolute;
   background: rgba(0, 0, 0, 0.2);
 }
 .dragfield {
   position: absolute;
-  z-index: 50;
+  z-index: $Z_OVER;
   width: 100%;
   height: 100%;
   background: rgba(255, 255, 255, 0.6);

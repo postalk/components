@@ -1,5 +1,5 @@
 import { CardInfo, CardForm } from '../types'
-import { GRID, CARD_PADDING, UNIT } from '../numbers'
+import { GRID, PADDING, UNIT } from '../numbers'
 import {
   width as windowWidth,
   height as windowHeight
@@ -83,19 +83,14 @@ export const getMultipleCards = (text: string) => {
           value: p
         })
         offset = grid(
-          offset +
-            height +
-            paddingNum * CARD_PADDING * 2 +
-            paddingNum +
-            2 +
-            UNIT / 2
+          offset + height + paddingNum * PADDING * 2 + paddingNum + 2 + UNIT / 2
         )
         /*
             font-size: 13
             line-height: 1.5
             padding top, bottom: 8
             border top, bottom: 1
-            card's width = calc(12rem - 1rem - 2px);
+            card's width = calc(10rem - 1rem - 2px);
             additional = 16 / 2
           */
       }
