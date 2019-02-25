@@ -1,4 +1,12 @@
 
+<a name="v0.9.2"></a>
+## [v0.9.2](https://github.com/postalk/components/compare/v0.9.1...v0.9.2) (2019-02-25)
+
+### Fix
+
+* fix import
+
+
 <a name="v0.9.1"></a>
 ## [v0.9.1](https://github.com/postalk/components/compare/v0.9.0...v0.9.1) (2019-02-25)
 
