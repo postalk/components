@@ -1,4 +1,12 @@
 
+<a name="v0.9.1"></a>
+## [v0.9.1](https://github.com/postalk/components/compare/v0.9.0...v0.9.1) (2019-02-25)
+
+### Fix
+
+* remove wrapper for lib
+
+
 <a name="v0.9.0"></a>
 ## [v0.9.0](https://github.com/postalk/components/compare/v0.8.2...v0.9.0) (2019-02-25)
 
