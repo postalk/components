@@ -39,7 +39,7 @@
     "coveralls": "3.0.3",
     "cz-conventional-changelog": "2.1.0",
     "fixpack": "2.3.1",
-    "lint-staged": "8.1.4",
+    "lint-staged": "8.1.5",
     "node-sass": "4.11.0",
     "require-context": "1.1.0",
     "sass-loader": "7.1.0",
