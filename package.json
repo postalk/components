@@ -23,7 +23,7 @@
     "@storybook/addon-actions": "5.0.0",
     "@storybook/addon-links": "4.1.13",
     "@storybook/addon-storyshots": "4.1.13",
-    "@types/jest": "24.0.9",
+    "@types/jest": "24.0.10",
     "@types/storybook__addon-actions": "3.4.2",
     "@types/storybook__addon-links": "3.3.4",
     "@types/storybook__addon-storyshots": "3.4.8",
