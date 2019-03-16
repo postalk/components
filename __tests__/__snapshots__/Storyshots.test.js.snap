@@ -47,20 +47,12 @@ exports[`Storyshots CardInner headline 1`] = `
   <div
     style="position: absolute; cursor: pointer; width: 100%; background-color: rgb(255, 255, 255); border: 1px solid #efefef; line-height: 0; text-align: left; padding: 0.5rem;"
   >
-    <div
-      style="position: absolute; width: 10rem; height: 0px;"
-    >
-      <div
-        style="position: absolute; cursor: pointer; width: 100%; background-color: rgb(255, 255, 255); border: 1px solid #efefef; line-height: 0; text-align: left; padding: 0.5rem;"
+    <div>
+      <h2
+        class="headline"
       >
-        <div>
-          <h2
-            class="headline"
-          >
-            ほげほげ
-          </h2>
-        </div>
-      </div>
+        ほげほげ
+      </h2>
     </div>
   </div>
 </div>
@@ -73,19 +65,11 @@ exports[`Storyshots CardInner image 1`] = `
   <div
     style="position: absolute; cursor: pointer; width: auto; background-color: transparent; line-height: 0; text-align: left; padding: 0px;"
   >
-    <div
-      style="position: absolute; width: 10rem; height: 0px;"
-    >
-      <div
-        style="position: absolute; cursor: pointer; width: auto; background-color: transparent; line-height: 0; text-align: left; padding: 0px;"
-      >
-        <div>
-          <img
-            class="image"
-            src="https://i.gyazo.com/4215f0df9b4c256b39afd12327f40277.png"
-          />
-        </div>
-      </div>
+    <div>
+      <img
+        class="image"
+        src="https://i.gyazo.com/4215f0df9b4c256b39afd12327f40277.png"
+      />
     </div>
   </div>
 </div>
@@ -98,29 +82,21 @@ exports[`Storyshots CardInner ordered-list 1`] = `
   <div
     style="position: absolute; cursor: pointer; width: 100%; background-color: rgb(255, 255, 255); border: 1px solid #efefef; line-height: 0; text-align: left; padding: 0.5rem;"
   >
-    <div
-      style="position: absolute; width: 10rem; height: 0px;"
-    >
-      <div
-        style="position: absolute; cursor: pointer; width: 100%; background-color: rgb(255, 255, 255); border: 1px solid #efefef; line-height: 0; text-align: left; padding: 0.5rem;"
+    <div>
+      <ol
+        class="list"
       >
-        <div>
-          <ol
-            class="list"
-          >
-            <li
-              class="item is-0"
-            >
-              ああああ
-            </li>
-            <li
-              class="item is-1"
-            >
-              いいいい
-            </li>
-          </ol>
-        </div>
-      </div>
+        <li
+          class="item is-0"
+        >
+          ああああ
+        </li>
+        <li
+          class="item is-1"
+        >
+          いいいい
+        </li>
+      </ol>
     </div>
   </div>
 </div>
@@ -133,66 +109,58 @@ exports[`Storyshots CardInner table 1`] = `
   <div
     style="position: absolute; cursor: pointer; width: auto; background-color: rgb(255, 255, 255); border: 1px solid #efefef; line-height: 0; text-align: left; padding: 0.5rem;"
   >
-    <div
-      style="position: absolute; width: auto; min-width: 11.25rem; height: 0px;"
-    >
-      <div
-        style="position: absolute; cursor: pointer; width: auto; background-color: rgb(255, 255, 255); border: 1px solid #efefef; line-height: 0; text-align: left; padding: 0.5rem;"
+    <div>
+      <table
+        class="table"
+        style="width: 360px;"
       >
-        <div>
-          <table
-            class="table"
-            style="width: 360px;"
+        <tbody>
+          <tr
+            class="row"
           >
-            <tbody>
-              <tr
-                class="row"
+            <td
+              class="cell"
+            >
+              <a
+                class="linkified"
+                href="http://google.com"
+                target="_blank"
               >
-                <td
-                  class="cell"
-                >
-                  <a
-                    class="linkified"
-                    href="http://google.com"
-                    target="_blank"
-                  >
-                    google.com
-                  </a>
-                </td>
-                <td
-                  class="cell"
-                >
-                  アイコス
-                </td>
-                <td
-                  class="cell"
-                >
-                  レイガン
-                </td>
-              </tr>
-              <tr
-                class="row"
-              >
-                <td
-                  class="cell"
-                >
-                  理解者
-                </td>
-                <td
-                  class="cell"
-                >
-                  鉄球の上に
-                </td>
-                <td
-                  class="cell"
-                >
-                  瓶ビール
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+                google.com
+              </a>
+            </td>
+            <td
+              class="cell"
+            >
+              アイコス
+            </td>
+            <td
+              class="cell"
+            >
+              レイガン
+            </td>
+          </tr>
+          <tr
+            class="row"
+          >
+            <td
+              class="cell"
+            >
+              理解者
+            </td>
+            <td
+              class="cell"
+            >
+              鉄球の上に
+            </td>
+            <td
+              class="cell"
+            >
+              瓶ビール
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
@@ -205,19 +173,11 @@ exports[`Storyshots CardInner text 1`] = `
   <div
     style="position: absolute; cursor: pointer; width: 100%; background-color: rgb(255, 255, 255); border: 1px solid #efefef; line-height: 0; text-align: left; padding: 0.5rem;"
   >
-    <div
-      style="position: absolute; width: 10rem; height: 0px;"
-    >
+    <div>
       <div
-        style="position: absolute; cursor: pointer; width: 100%; background-color: rgb(255, 255, 255); border: 1px solid #efefef; line-height: 0; text-align: left; padding: 0.5rem;"
+        class="text"
       >
-        <div>
-          <div
-            class="text"
-          >
-            ほげほげ
-          </div>
-        </div>
+        ほげほげ
       </div>
     </div>
   </div>
@@ -231,19 +191,11 @@ exports[`Storyshots CardInner twitter 1`] = `
   <div
     style="position: absolute; cursor: pointer; width: auto; background-color: rgb(255, 255, 255); border: 1px solid #efefef; line-height: 0; text-align: left; padding: 0px 0.5rem;"
   >
-    <div
-      style="position: absolute; width: 10rem; height: 0px;"
-    >
+    <div>
       <div
-        style="position: absolute; cursor: pointer; width: auto; background-color: rgb(255, 255, 255); border: 1px solid #efefef; line-height: 0; text-align: left; padding: 0px 0.5rem;"
+        class="tweet"
       >
-        <div>
-          <div
-            class="tweet"
-          >
-            <div />
-          </div>
-        </div>
+        <div />
       </div>
     </div>
   </div>
@@ -257,26 +209,18 @@ exports[`Storyshots CardInner url 1`] = `
   <div
     style="position: absolute; cursor: pointer; width: 100%; background-color: rgb(255, 255, 255); border: 1px solid #efefef; line-height: 0; text-align: left; padding: 0.5rem;"
   >
-    <div
-      style="position: absolute; width: 10rem; height: 0px;"
-    >
-      <div
-        style="position: absolute; cursor: pointer; width: 100%; background-color: rgb(255, 255, 255); border: 1px solid #efefef; line-height: 0; text-align: left; padding: 0.5rem;"
+    <div>
+      <span
+        class="text"
       >
-        <div>
-          <span
-            class="text"
-          >
-            <a
-              class="linkified"
-              href="https://postalk.io"
-              target="_blank"
-            >
-              https://postalk.io
-            </a>
-          </span>
-        </div>
-      </div>
+        <a
+          class="linkified"
+          href="https://postalk.io"
+          target="_blank"
+        >
+          https://postalk.io
+        </a>
+      </span>
     </div>
   </div>
 </div>
@@ -289,56 +233,48 @@ exports[`Storyshots CardInner webpage 1`] = `
   <div
     style="position: absolute; cursor: pointer; width: 100%; background-color: rgb(255, 255, 255); border: 1px solid #efefef; line-height: 0; text-align: left; padding: 0.5rem;"
   >
-    <div
-      style="position: absolute; width: 10rem; height: 0px;"
-    >
-      <div
-        style="position: absolute; cursor: pointer; width: 100%; background-color: rgb(255, 255, 255); border: 1px solid #efefef; line-height: 0; text-align: left; padding: 0.5rem;"
+    <div>
+      <span
+        class="url"
       >
-        <div>
-          <span
-            class="url"
-          >
-            
+        
 
-            <img
-              class="url__favicon"
-              src="https://d247fv9ioqt5ap.cloudfront.net/apple-touch-icon.png"
-            />
-            
+        <img
+          class="url__favicon"
+          src="https://d247fv9ioqt5ap.cloudfront.net/apple-touch-icon.png"
+        />
+        
 
-            <span
-              class="url__sitetitle"
-            >
-              postalk
-            </span>
-            
+        <span
+          class="url__sitetitle"
+        >
+          postalk
+        </span>
+        
 
-            <a
-              class="url__title"
-              href="https://postalk.io"
-              target="_blank"
-            >
-              postalk | オンラインの議論を加速させるカード型チャットツール
-            </a>
-            
+        <a
+          class="url__title"
+          href="https://postalk.io"
+          target="_blank"
+        >
+          postalk | オンラインの議論を加速させるカード型チャットツール
+        </a>
+        
 
-            <div
-              class="url__description"
-            >
-              postalk はカードを並べてコミュケーションができるオンラインツールです。リモートワークでの遠隔ミーティング・画像を使った議論などに最適です。
-            </div>
-            
-
-            <img
-              class="url__img"
-              src="https://d247fv9ioqt5ap.cloudfront.net/images/ogimage.png"
-            />
-            
-
-          </span>
+        <div
+          class="url__description"
+        >
+          postalk はカードを並べてコミュケーションができるオンラインツールです。リモートワークでの遠隔ミーティング・画像を使った議論などに最適です。
         </div>
-      </div>
+        
+
+        <img
+          class="url__img"
+          src="https://d247fv9ioqt5ap.cloudfront.net/images/ogimage.png"
+        />
+        
+
+      </span>
     </div>
   </div>
 </div>
@@ -351,23 +287,15 @@ exports[`Storyshots CardInner youtube 1`] = `
   <div
     style="position: absolute; cursor: pointer; width: auto; background-color: transparent; line-height: 0; text-align: left; padding: 0px;"
   >
-    <div
-      style="position: absolute; width: 10rem; height: 0px;"
-    >
-      <div
-        style="position: absolute; cursor: pointer; width: auto; background-color: transparent; line-height: 0; text-align: left; padding: 0px;"
-      >
-        <div>
-          <iframe
-            allowfullscreen="allowfullscreen"
-            frameborder="0"
-            height="282"
-            src="https://www.youtube.com/embed/sa-TUpSx1JA?enablejsapi=1"
-            type="text/html"
-            width="500"
-          />
-        </div>
-      </div>
+    <div>
+      <iframe
+        allowfullscreen="allowfullscreen"
+        frameborder="0"
+        height="282"
+        src="https://www.youtube.com/embed/sa-TUpSx1JA?enablejsapi=1"
+        type="text/html"
+        width="500"
+      />
     </div>
   </div>
 </div>
@@ -381,21 +309,13 @@ exports[`Storyshots CardInput Default 1`] = `
     class="centered"
   >
     <div
-      class="wrapper"
+      style="width: 300px;"
     >
-      <div
-        class="centered"
-      >
-        <div
-          style="width: 300px;"
-        >
-          <textarea
-            class="input"
-            placeholder="Type something here..."
-            style="resize: none; overflow: hidden; height: 30px;"
-          />
-        </div>
-      </div>
+      <textarea
+        class="input"
+        placeholder="Type something here..."
+        style="resize: none; overflow: hidden; height: 30px;"
+      />
     </div>
   </div>
 </div>
