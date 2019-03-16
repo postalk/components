@@ -1,4 +1,8 @@
 
+<a name="v0.9.3"></a>
+## [v0.9.3](https://github.com/postalk/components/compare/v0.9.2...v0.9.3) (2019-03-16)
+
+
 <a name="v0.9.2"></a>
 ## [v0.9.2](https://github.com/postalk/components/compare/v0.9.1...v0.9.2) (2019-02-25)
 
