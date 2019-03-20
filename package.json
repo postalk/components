@@ -12,7 +12,7 @@
     "is-image-url": "1.1.8",
     "is-url": "1.2.4",
     "linkifyjs": "2.1.8",
-    "vue": "2.6.9",
+    "vue": "2.6.10",
     "vue-class-component": "7.0.1",
     "vue-draggable-resizable": "1.7.5",
     "vue-property-decorator": "8.0.0",
@@ -46,7 +46,7 @@
     "ts-jest": "24.0.0",
     "typescript": "3.3.3333",
     "vue-cli-plugin-storybook": "0.6.0",
-    "vue-template-compiler": "2.6.9"
+    "vue-template-compiler": "2.6.10"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
