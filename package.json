@@ -28,7 +28,7 @@
     "@types/storybook__addon-links": "3.3.4",
     "@types/storybook__addon-storyshots": "3.4.8",
     "@types/storybook__vue": "5.0.0",
-    "@vue/cli-plugin-babel": "3.5.3",
+    "@vue/cli-plugin-babel": "3.5.5",
     "@vue/cli-plugin-typescript": "3.5.3",
     "@vue/cli-plugin-unit-jest": "3.5.3",
     "@vue/cli-service": "3.5.3",
