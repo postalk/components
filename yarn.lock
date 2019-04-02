@@ -1530,10 +1530,10 @@
     "@types/react" "*"
     "@types/webpack-env" "*"
 
-"@types/storybook__vue@5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@types/storybook__vue/-/storybook__vue-5.0.0.tgz#a201c238b5f3a28c541a8ef658b4b9f1e20b7c0d"
-  integrity sha512-ovLBjbFzByb2HWxdZABT4ldtyaN23qfmBgcDWOquskmu0lq3Tftygqm/3dZ+QUIBkAbg5AJw+9OzWPJnALHEsQ==
+"@types/storybook__vue@5.0.1":
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/@types/storybook__vue/-/storybook__vue-5.0.1.tgz#13dbf544057c3975e77b23f32ba2f1cfec5b0cb3"
+  integrity sha512-BYzMst5JsMsMJzTzBOx+y04JCyHDJKE/h5mEpkYcvVNKqSizHDrmi+Xp1ZDhzf4V7PubTcst1v3B3/CTqI6sRw==
   dependencies:
     "@types/webpack-env" "*"
     vue "^2.0.0"
