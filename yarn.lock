@@ -1036,15 +1036,15 @@
     error-stack-parser "^2.0.0"
     string-width "^2.0.0"
 
-"@storybook/addon-actions@5.0.6":
-  version "5.0.6"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-actions/-/addon-actions-5.0.6.tgz#78cf9c05b8b6cde1d5d46961ffb95d92be16bf46"
-  integrity sha512-Qbenp6Dv8uphDKsIemtW8bSu3PNYIDSB5av7bW9GieYex8QL6ntv7dja0DaD6NmIfjOZdO0Q0U3Nc9CAgHGOBQ==
+"@storybook/addon-actions@5.0.8":
+  version "5.0.8"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-actions/-/addon-actions-5.0.8.tgz#85b74bd7c672d4e668830c7e7bc820f7c35daf2c"
+  integrity sha512-MwIYzJGi1Pok9CkTznqABT+rGLBDURixKgkzGEphMLDWXQSOIg8AdLvlr8EC1U+pDyFqgG9fGeDgOa8W5bVdHQ==
   dependencies:
-    "@storybook/addons" "5.0.6"
-    "@storybook/components" "5.0.6"
-    "@storybook/core-events" "5.0.6"
-    "@storybook/theming" "5.0.6"
+    "@storybook/addons" "5.0.8"
+    "@storybook/components" "5.0.8"
+    "@storybook/core-events" "5.0.8"
+    "@storybook/theming" "5.0.8"
     core-js "^2.6.5"
     fast-deep-equal "^2.0.1"
     global "^4.3.2"
@@ -1218,16 +1218,16 @@
     recompose "^0.30.0"
     render-fragment "^0.1.1"
 
-"@storybook/components@5.0.6":
-  version "5.0.6"
-  resolved "https://registry.yarnpkg.com/@storybook/components/-/components-5.0.6.tgz#de77af3443f771d94a692edb719bc0d8c0149daf"
-  integrity sha512-C++A39n9O09PU2e4Y8x/zbZ+Tf0t/mfPw83Mkh8d8OHS4rHdVKEhq6QC8oDuqT9YBNhJOohtg5d9n+7s8sqZyQ==
+"@storybook/components@5.0.8":
+  version "5.0.8"
+  resolved "https://registry.yarnpkg.com/@storybook/components/-/components-5.0.8.tgz#9dc83b2cd13bd37ab17ebf804ec13c922018195e"
+  integrity sha512-aIU/lySNIei4YljCd6uYcMgg1pRuQ08hPzk3aJ8OHODAOXUxWCN8STyPwB6h2q01HFZ0rhlEDeoybszFr7bORQ==
   dependencies:
-    "@storybook/addons" "5.0.6"
-    "@storybook/client-logger" "5.0.6"
-    "@storybook/core-events" "5.0.6"
-    "@storybook/router" "5.0.6"
-    "@storybook/theming" "5.0.6"
+    "@storybook/addons" "5.0.8"
+    "@storybook/client-logger" "5.0.8"
+    "@storybook/core-events" "5.0.8"
+    "@storybook/router" "5.0.8"
+    "@storybook/theming" "5.0.8"
     core-js "^2.6.5"
     global "^4.3.2"
     immer "^1.12.0"
@@ -1253,13 +1253,6 @@
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/@storybook/core-events/-/core-events-5.0.1.tgz#62f412809e0e99b2d642e30de2cb0205682a885c"
   integrity sha512-I0d57Vm/BM2L668EDLmVNDOWSNU0xnQErDonDmzEWUFluiHaTWZ3Uz16vIB/6cIpZvF0XUPfwPlCQ1yf3gbJsg==
-  dependencies:
-    core-js "^2.6.5"
-
-"@storybook/core-events@5.0.6":
-  version "5.0.6"
-  resolved "https://registry.yarnpkg.com/@storybook/core-events/-/core-events-5.0.6.tgz#ead92a1e463d53fa57151b62192e74f8e3f45b3b"
-  integrity sha512-OpNHSAxgaok1JYbF5AOML23rIyIyTxir7Ou/s4McN2k0Z2huLaIBA3aeu7vSMygOvN+q6VGMc4uC7f6WQ6kwUg==
   dependencies:
     core-js "^2.6.5"
 
@@ -1367,13 +1360,13 @@
     memoizerific "^1.11.3"
     qs "^6.5.2"
 
-"@storybook/router@5.0.6":
-  version "5.0.6"
-  resolved "https://registry.yarnpkg.com/@storybook/router/-/router-5.0.6.tgz#1856aaa2771145a7ace804d893fa92bc73418039"
-  integrity sha512-mK+chRfpoINrDEWXQ7P2Gff179hl3q0bPfDo4DwbGO0wf0yOKDGXf+S/vlIF29+5weyhrMe4Si9PALq4ibsl6Q==
+"@storybook/router@5.0.8":
+  version "5.0.8"
+  resolved "https://registry.yarnpkg.com/@storybook/router/-/router-5.0.8.tgz#fcbbe29a65c7c65aebe25bc79eeb9f573cc7f3a8"
+  integrity sha512-6A9OGFkmrSQr7ZvemiibbVj4eULtkT6prEkbOi6aPMZmDq+gTT17jR1B6ekfciQmQoOPfmlpZsZkqlxejXxqoA==
   dependencies:
     "@reach/router" "^1.2.1"
-    "@storybook/theming" "5.0.6"
+    "@storybook/theming" "5.0.8"
     core-js "^2.6.5"
     global "^4.3.2"
     memoizerific "^1.11.3"
@@ -1399,14 +1392,14 @@
     prop-types "^15.6.2"
     react-inspector "^2.3.1"
 
-"@storybook/theming@5.0.6":
-  version "5.0.6"
-  resolved "https://registry.yarnpkg.com/@storybook/theming/-/theming-5.0.6.tgz#5827d780eb45a031ad27cd19bd87cd70a818546f"
-  integrity sha512-Kz0/ujHknhan7DHApLIdSzfLAMbpo7AEKmi+R060ZV0ImGmAP9O7Ytqws7u1O25fgA4AgCDyeDpT4N9i83la+w==
+"@storybook/theming@5.0.8":
+  version "5.0.8"
+  resolved "https://registry.yarnpkg.com/@storybook/theming/-/theming-5.0.8.tgz#b91c45599155f636fd5e24b04cb0c8fa2acf5187"
+  integrity sha512-0GLGynbP2VSUMQomF+VZD165zQNCrDdy0VXcndWfS+FrTFwaUeCl0oRS6resJGehCVO5KqTviEx7uBVURW3nlA==
   dependencies:
     "@emotion/core" "^10.0.7"
     "@emotion/styled" "^10.0.7"
-    "@storybook/client-logger" "5.0.6"
+    "@storybook/client-logger" "5.0.8"
     common-tags "^1.8.0"
     core-js "^2.6.5"
     deep-object-diff "^1.1.0"
