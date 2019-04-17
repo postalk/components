@@ -1069,12 +1069,12 @@
     prop-types "^15.6.2"
     qs "^6.5.2"
 
-"@storybook/addon-storyshots@5.0.8":
-  version "5.0.8"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-storyshots/-/addon-storyshots-5.0.8.tgz#b34157b8895219e00c392b1938d4ce3583caa10a"
-  integrity sha512-hU2uRFcq6SkLAmYR7zhNAPz6MNDRSFm729d2XPR0dTyYKGv/OURisi9sJya6vfFAyAtxajuYg4T5ZIrFrbVcFA==
+"@storybook/addon-storyshots@5.0.9":
+  version "5.0.9"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-storyshots/-/addon-storyshots-5.0.9.tgz#1e896ba0fe5e28268f41f1d532b3b1fd53d46767"
+  integrity sha512-D9hEYRS7bfCSCuEw+hyq1IPgLjyDw32YUIWr8rWN+SLIM4LtIpcJSPC6kEv2GCCLu07hX4PBgL2O2RowktLQLw==
   dependencies:
-    "@storybook/addons" "5.0.8"
+    "@storybook/addons" "5.0.9"
     core-js "^2.6.5"
     glob "^7.1.3"
     global "^4.3.2"
@@ -1089,17 +1089,6 @@
   dependencies:
     "@storybook/channels" "5.0.1"
     "@storybook/client-logger" "5.0.1"
-    core-js "^2.6.5"
-    global "^4.3.2"
-    util-deprecate "^1.0.2"
-
-"@storybook/addons@5.0.8":
-  version "5.0.8"
-  resolved "https://registry.yarnpkg.com/@storybook/addons/-/addons-5.0.8.tgz#9bca24ab8e95a36dc91e4e2855449e751702cdfb"
-  integrity sha512-Tl/ntlBt+KfAEaLyzfFTJsqmawtmKvrJDy8kqNM1oIfsOxig25T9eqU8RfWgK99bMdsbhA99P+cplk6LuVY1Ww==
-  dependencies:
-    "@storybook/channels" "5.0.8"
-    "@storybook/client-logger" "5.0.8"
     core-js "^2.6.5"
     global "^4.3.2"
     util-deprecate "^1.0.2"
@@ -1133,13 +1122,6 @@
   dependencies:
     core-js "^2.6.5"
 
-"@storybook/channels@5.0.8":
-  version "5.0.8"
-  resolved "https://registry.yarnpkg.com/@storybook/channels/-/channels-5.0.8.tgz#d44517cd6f19f87ccab5e899bd9b515a4395c97c"
-  integrity sha512-t0PVow9xxQMK04ltp1LtrACG5f63vUM/THtdtoucxepirpfTGr+9B2SP791ZDtpARp5sFqAB7CGN8zDGfZF7lQ==
-  dependencies:
-    core-js "^2.6.5"
-
 "@storybook/channels@5.0.9":
   version "5.0.9"
   resolved "https://registry.yarnpkg.com/@storybook/channels/-/channels-5.0.9.tgz#a750b349a8278ab58bdcc41ae00f5cb60644ad83"
@@ -1170,13 +1152,6 @@
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/@storybook/client-logger/-/client-logger-5.0.1.tgz#1f02aa7af7aab1b69c2797ce75f7306397415e0a"
   integrity sha512-UWswQhukybl4P3f9MRhqmVlLf4aseVvktL3EfLFdWkiPss845mXY6Yateju6zZ6z4yXrPg0mXWN3ct2vFADpoA==
-  dependencies:
-    core-js "^2.6.5"
-
-"@storybook/client-logger@5.0.8":
-  version "5.0.8"
-  resolved "https://registry.yarnpkg.com/@storybook/client-logger/-/client-logger-5.0.8.tgz#d37ee57f7d6ec207f60c3f87163d564427f5b82c"
-  integrity sha512-PKmSx6M7WNHwUUh4R9OluKWZfkHN7PztaRWrp9dvNy9rOd/c7vVWK1ekGRaMR06MHkszZ5boPerV8c9xEydEfg==
   dependencies:
     core-js "^2.6.5"
 
