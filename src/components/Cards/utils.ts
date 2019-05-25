@@ -20,6 +20,10 @@ export const copyCards = (e: ClipboardEvent, cards: CardInfo[]) => {
   const medianX = grid((cards[cards.length - 1].x + cards[0].x) / 2)
   const medianY = grid((cards[cards.length - 1].y + cards[0].y) / 2)
 
+  if (!e.clipboardData) {
+    return
+  }
+
   e.clipboardData.setData(
     'text/plain',
     cards.map(card => card.value).join('\n')
