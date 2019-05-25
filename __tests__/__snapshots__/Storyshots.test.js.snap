@@ -591,6 +591,38 @@ exports[`Storyshots Centered Default 1`] = `
 </div>
 `;
 
+exports[`Storyshots Dialog Default 1`] = `
+<div
+  class="mask"
+>
+  <div
+    class="wrapper"
+  >
+    <div
+      class="container"
+    >
+      <p
+        class="text"
+      >
+        
+    Continue to link your accounts between two services.
+   
+      </p>
+       
+      <div
+        class="buttonWrapper"
+      >
+        <button
+          class="button"
+        >
+          OK
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`Storyshots Shortcuts Default 1`] = `<div />`;
 
 exports[`Storyshots Shortcuts Selected 1`] = `<div />`;
