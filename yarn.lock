@@ -13620,10 +13620,10 @@ vue-textarea-autosize@1.0.4:
   resolved "https://registry.yarnpkg.com/vue-textarea-autosize/-/vue-textarea-autosize-1.0.4.tgz#671e4f9b69d278be9b94ea304a3032bcabb54135"
   integrity sha512-24ivBeHvivkJdtUMSi7Pv8OBqzTnIRr/eTlDlbg0W3umpERY8Fq67FlAK3CrhCNHAlXOxgUOQtVKlslYN1/MTg==
 
-vue-tweet-embed@2.2.1:
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/vue-tweet-embed/-/vue-tweet-embed-2.2.1.tgz#c3a236bd12f2bf1bb5cb14f4c219721b148048df"
-  integrity sha512-sJiKizQtdwPsPumGzaqsVO5CzU9fEWNLtvndD5uCW+Z+JVHsYjyGqMAj+QSGp1QnOcrMRzyyRIjXnDZICv930A==
+vue-tweet-embed@2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/vue-tweet-embed/-/vue-tweet-embed-2.3.0.tgz#127079eeacf85eba10dbea46b6fe1c7256f2847a"
+  integrity sha512-x7HjTwmxnhEspJefO+F6qLwZQeSoA6Xf+ySylNVRv46aDgjCfSqYHMgo+sSnt7MJlVaULWZwKiE2Q3G6ftYZwA==
   dependencies:
     "@babel/polyfill" "^7.0.0"
 
